@@ -98,13 +98,15 @@ create table CAIA_UNLIMITED.Regimen(
 create table CAIA_UNLIMITED.Usuario(
 	usur_username nvarchar(255) not null,
 	usur_password nvarchar(255) not null,
-	usur_nombre nvarchar(255) not null,
-	usur_apellido nvarchar(255) not null,
-	usur_documento_tipo nvarchar(3) not null,
-	usur_documento numeric(18,0) not null,
+	usur_nombre nvarchar(255),
+	usur_apellido nvarchar(255),
+	usur_documento_tipo nvarchar(3),
+	usur_documento numeric(18,0),
 	usur_mail nvarchar(255),
 	usur_nacimiento datetime,
-	dire_id numeric(18,0) not null
+	usur_habilitado bit not null,
+	usur_intentos numeric(18,0) not null,
+	dire_id numeric(18,0)
 )
 
 create table CAIA_UNLIMITED.Direccion(
@@ -156,13 +158,13 @@ create table CAIA_UNLIMITED.Pago(
 )
 
 create table CAIA_UNLIMITED.Rol(
-	rol_codigo numeric(18,0) not null,
+	rol_codigo numeric(18,0) identity(0,1) not null,
 	rol_nombre nvarchar(255) not null,
 	rol_estado bit not null
 )
 
 create table CAIA_UNLIMITED.Funcionalidad(
-	func_codigo numeric(18,0) not null,
+	func_codigo numeric(18,0) identity(0,1) not null,
 	func_detalle nvarchar(255) not null
 )
 
@@ -447,3 +449,13 @@ from CAIA_UNLIMITED.Consumible join gd_esquema.Maestra on (Consumible_Codigo = c
 								join CAIA_UNLIMITED.Estadia E on (E.rese_codigo = R.rese_codigo)
 where cons_codigo is not null
 
+insert into CAIA_UNLIMITED.Usuario (usur_username, usur_password, usur_habilitado, usur_intentos) values('admin', HASHBYTES('SHA2_256', 'w23e'), 1, 0)
+
+insert into CAIA_UNLIMITED.Rol (rol_nombre, rol_estado) values('Administrador General', 1)
+
+insert into CAIA_UNLIMITED.Rol_X_Usuario (rol_usur_username, rol_usur_codigo) values('admin', 0)
+
+insert into CAIA_UNLIMITED.Funcionalidad (func_detalle) values('ABM_ROL'), ('ABM_USUARIO'), ('ABM_CLIENTE'), ('ABM_HOTEL'), ('ABM_HABITACION'), ('ABM_ESTADIA'), ('RESERVA'), ('CANCELAR_RESERVA'), ('ESTADIA'), ('CONSUMIBLES'), ('FACTURAR'), ('LISTADO_ESTADISTICO') 
+
+insert into CAIA_UNLIMITED.Funcionalidad_X_Rol (func_rol_codigo_rol, func_rol_codigo_func) 
+values (0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (0, 7), (0, 8), (0, 9), (0, 10), (0, 11)
