@@ -56,11 +56,11 @@ namespace FrbaHotel.Login
 
                 try
                 {
-                    string autentificacion = string.Format("SELECT usur_name, usur_password FROM CAIA_UNLIMITED.Usuario WHERE usur_name = '{0}' AND usur_password = '{1}'", txtUser.Text.Trim(), txtPW.Text.Trim());
+                    string autentificacion = string.Format("SELECT usur_username, usur_password FROM CAIA_UNLIMITED.Usuario WHERE usur_name = '{0}' AND usur_password = '{1}'", txtUser.Text.Trim(), txtPW.Text.Trim());
 
                     DataSet ds = DataBase.realizarConsulta(autentificacion);
 
-                    string account = ds.Tables[0].Rows[0]["usur_name"].ToString().Trim();
+                    string account = ds.Tables[0].Rows[0]["usur_username"].ToString().Trim();
                     string password = ds.Tables[0].Rows[0]["usur_password"].ToString().Trim();
 
                     if (account == txtUser.Text.Trim() && password == txtPW.Text.Trim())

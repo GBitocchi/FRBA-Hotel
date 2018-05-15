@@ -18,3 +18,17 @@ C:\Users\Gusbi\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.Form1.resources
 C:\Users\Gusbi\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.Login.Inicio.resources
 C:\Users\Gusbi\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.Login.Usuario.resources
 C:\Users\Gusbi\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmRol.Form1.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\bin\Debug\FrbaHotel.exe.config
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.exe
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.pdb
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\bin\Debug\FrbaHotel.exe
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\bin\Debug\FrbaHotel.pdb
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.csprojResolveAssemblyReference.cache
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.Crear.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.MenuHabitacion.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmRol.Form1.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.Form1.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.Login.Inicio.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.Login.Usuario.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.Properties.Resources.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.csproj.GenerateResource.Cache
