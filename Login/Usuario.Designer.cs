@@ -40,7 +40,6 @@
             this.lblErrorUser = new System.Windows.Forms.Label();
             this.lblErrorPW = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.lblErrorAutentificacion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -160,13 +159,6 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "label3";
             // 
-            // label4
-            // 
-            this.label4.Location = new System.Drawing.Point(0, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 23);
-            this.label4.TabIndex = 0;
-            // 
             // lblErrorAutentificacion
             // 
             this.lblErrorAutentificacion.AutoSize = true;
@@ -186,7 +178,6 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(877, 735);
             this.Controls.Add(this.lblErrorAutentificacion);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblErrorPW);
             this.Controls.Add(this.lblErrorUser);
@@ -232,7 +223,6 @@
         private System.Windows.Forms.Label lblErrorUser;
         private System.Windows.Forms.Label lblErrorPW;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblErrorAutentificacion;
     }
 }
