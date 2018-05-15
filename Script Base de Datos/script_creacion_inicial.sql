@@ -77,7 +77,6 @@ drop table CAIA_UNLIMITED.Consumible
 
 create table CAIA_UNLIMITED.Hotel(
 	hote_id numeric(18,0) identity(0,1) not null,
-	hote_nombre nvarchar(255),
 	hote_cant_estrellas numeric(18,0) not null,
 	hote_recarga_estrella numeric(18,0) not null,
 	hote_habilitado bit not null,
@@ -430,20 +429,3 @@ from gd_esquema.Maestra join CAIA_UNLIMITED.Factura on (Factura_Nro = fact_nro)
 --															dire_piso = Cliente_Piso and
 --															dire_dpto = Cliente_Depto)
 --where Cliente_Mail not in (select hues_mail from CAIA_UNLIMITED.Huesped)
-
-insert into CAIA_UNLIMITED.Regimen_X_Hotel(regi_hote_codigo, regi_hote_id)
-select distinct regi_codigo, hote_id
-from CAIA_UNLIMITED.Regimen join gd_esquema.Maestra on (regi_descripcion = Regimen_Descripcion and
-														regi_precio_base = Regimen_Precio)
-							join CAIA_UNLIMITED.Direccion D on (Hotel_Calle = dire_dom_calle and
-																Hotel_Ciudad = dire_ciudad and
-																Hotel_Nro_Calle = dire_nro_calle)
-							join CAIA_UNLIMITED.Hotel H on (H.dire_id = D.dire_id)
-
-insert into CAIA_UNLIMITED.Consumible_X_Estadia (cons_esta_codigo_cons, cons_esta_codigo_esta)
-select distinct cons_codigo, esta_codigo
-from CAIA_UNLIMITED.Consumible join gd_esquema.Maestra on (Consumible_Codigo = cons_codigo)
-								join CAIA_UNLIMITED.Reserva R on (Reserva_Codigo = rese_codigo)
-								join CAIA_UNLIMITED.Estadia E on (E.rese_codigo = R.rese_codigo)
-where cons_codigo is not null
-

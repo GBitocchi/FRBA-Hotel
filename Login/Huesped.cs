@@ -8,14 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FrbaHotel
+namespace FrbaHotel.Login
 {
-    public partial class Form1 : Form
+    public partial class Huesped : Form
     {
-        public Form1()
+        public Huesped()
         {
             InitializeComponent();
-            DataBase conexion = new DataBase();
         }
     }
 }
