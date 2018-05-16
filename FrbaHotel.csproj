@@ -117,11 +117,11 @@
     <Compile Include="Login\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login\SeleccionRol.cs">
+    <Compile Include="Login\Seleccion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login\SeleccionRol.Designer.cs">
-      <DependentUpon>SeleccionRol.cs</DependentUpon>
+    <Compile Include="Login\Seleccion.Designer.cs">
+      <DependentUpon>Seleccion.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\Usuario.cs">
       <SubType>Form</SubType>
@@ -166,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\Seleccion.resx">
+      <DependentUpon>Seleccion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Usuario.resx">
       <DependentUpon>Usuario.cs</DependentUpon>
