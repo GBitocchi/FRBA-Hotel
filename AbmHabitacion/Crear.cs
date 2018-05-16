@@ -12,7 +12,6 @@ namespace FrbaHotel.AbmHabitacion
 {
     public partial class Crear : Form
     {
-        List<String> values;
         public Crear()
         {
             InitializeComponent();

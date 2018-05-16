@@ -32,3 +32,6 @@ C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.Login.Inicio.resour
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.Login.Usuario.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.Properties.Resources.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.csproj.GenerateResource.Cache
+C:\Users\Lucas\Documents\FRBA-Hotel\bin\Debug\FrbaHotel.exe.config
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.exe
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.pdb

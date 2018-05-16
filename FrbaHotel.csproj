@@ -62,6 +62,12 @@
     <Compile Include="AbmHabitacion\MenuHabitacion.Designer.cs">
       <DependentUpon>MenuHabitacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmHabitacion\Modificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHabitacion\Modificar.Designer.cs">
+      <DependentUpon>Modificar.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmRegimen\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHabitacion\MenuHabitacion.resx">
       <DependentUpon>MenuHabitacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHabitacion\Modificar.resx">
+      <DependentUpon>Modificar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
