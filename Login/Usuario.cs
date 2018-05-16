@@ -53,49 +53,49 @@ namespace FrbaHotel.Login
             }
             else
             {         
-                string autentificacion = string.Format("SELECT usur_password, usur_intentos, usur_habilitado, rol_nombre FROM CAIA_UNLIMITED.Rol INNER JOIN CAIA_UNLIMITED.Rol_X_Usuario on rol_usur_codigo = rol_codigo INNER JOIN CAIA_UNLIMITED.Usuario on usur_username = rol_usur_codigo WHERE usur_username = '{0}' AND rol_estado = 1",txtUser.Text.Trim());
+                string autentificacion = string.Format("SELECT u.usur_password, u.usur_intentos, u.usur_habilitado, r.rol_nombre, h.hote_nombre FROM CAIA_UNLIMITED.Rol r INNER JOIN CAIA_UNLIMITED.Rol_X_Usuario ru on ru.rol_codigo = r.rol_codigo INNER JOIN CAIA_UNLIMITED.Usuario u on u.usur_username = ru.usur_username INNER JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on u.usur_username = uh.usur_username INNER JOIN CAIA_UNLIMITED.Hotel h on h.hote_id = uh.hote_id WHERE u.usur_username = '{0}' AND r.rol_estado = 1",txtUser.Text.Trim());
 
                 DataSet dsAutentificacion = DataBase.realizarConsulta(autentificacion);
 
-                if (dsAutentificacion.Tables[0].Rows.Count != 0 && ((dsAutentificacion.Tables[0].Rows[0]["usur_password"].ToString().Trim()) == txtPW.Text.Trim()))
+                if (dsAutentificacion.Tables["CAIA_UNLIMITED.Usuario"].Rows.Count != 0 && ((dsAutentificacion.Tables["CAIA_UNLIMITED.Usuario"].Rows[0]["u.usur_password"].ToString().Trim()) == txtPW.Text.Trim()) && (((int)dsAutentificacion.Tables["CAIA_UNLIMITED.Usuario"].Rows[0]["u.usur_intentos"])!=3))
                 {
-                    dsAutentificacion.Tables[0].Rows[0]["usur_intentos"] = 0;
-                    dsAutentificacion.Tables[0].AcceptChanges();
-                    
-                    List<String> listaRoles = new List<string>();
+                    dsAutentificacion.Tables["CAIA_UNLIMITED.Usuario"].Rows[0]["u.usur_intentos"] = 0;
+                    dsAutentificacion.Tables["CAIA_UNLIMITED.Usuario"].AcceptChanges();
 
-                    for (int i = 0; i < dsAutentificacion.Tables[0].Rows.Count; i++)
-                    {             
-                        if((dsAutentificacion.Tables[0].Rows[i]["rol_nombre"])!= null){
-                            listaRoles.Add(dsAutentificacion.Tables[0].Rows[i]["rol_nombre"].ToString().Trim());
-                        }                     
-                    }
-
-                    if (listaRoles.Count >= 2)
+                    if ((dsAutentificacion.Tables["CAIA_UNLIMITED.Hotel"].Rows.Count) > 1)
                     {
                         this.Hide();
-                        new SeleccionRol(listaRoles).Show();
+                        new Seleccion(dsAutentificacion).Show();
                     }
                     else
                     {
-                        this.Hide();
-                        new VistaSistema().Show();
-                    }                      
+                        if ((dsAutentificacion.Tables["CAIA_UNLIMITED.Rol"].Rows.Count) > 1)
+                        {
+                            this.Hide();
+                            new Seleccion(dsAutentificacion).Show();
+                        }
+                        else
+                        {
+                            this.Hide();
+                            new VistaSistema().Show();
+                        }
+                    }                                                   
                 }
-                else if ((dsAutentificacion.Tables[0].Rows[0]["usur_password"].ToString().Trim()) != txtPW.Text.Trim())
-                {               
-                    int intentos = (int)dsAutentificacion.Tables[0].Rows[0]["usur_intentos"];
+                else if ((dsAutentificacion.Tables["CAIA_UNLIMITED.Usuario"].Rows[0]["u.usur_password"].ToString().Trim()) != txtPW.Text.Trim())
+                {
+                    int intentos = (int)dsAutentificacion.Tables["CAIA_UNLIMITED.Usuario"].Rows[0]["u.usur_intentos"];
 
                     if (intentos == 3)
-                    {
-                        dsAutentificacion.Tables[0].Rows[0]["usur_habilitado"] = 0;
-                        dsAutentificacion.Tables[0].AcceptChanges();
+                    {                      
+                        dsAutentificacion.Tables["CAIA_UNLIMITED.Usuario"].Rows[0]["u.usur_habilitado"] = 0;
+                        dsAutentificacion.Tables["CAIA_UNLIMITED.Usuario"].AcceptChanges();
+                        MessageBox.Show("Se ha inhabilitado al usuario " +txtUser.Text.Trim()+" por muchos intentos de inicio de sesion. Contacte con el administrador.");
                     }
                     else
                     {
                         intentos++;
-                        dsAutentificacion.Tables[0].Rows[0]["usur_intentos"] = intentos;
-                        dsAutentificacion.Tables[0].AcceptChanges();
+                        dsAutentificacion.Tables["CAIA_UNLIMITED.Usuario"].Rows[0]["u.usur_intentos"] = intentos;
+                        dsAutentificacion.Tables["CAIA_UNLIMITED.Usuario"].AcceptChanges();
                     }
                     
                     lblErrorAutentificacion.Visible = true;  

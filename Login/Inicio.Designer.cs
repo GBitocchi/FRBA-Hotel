@@ -40,10 +40,11 @@
             // 
             // btnGuest
             // 
+            this.btnGuest.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuest.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnGuest.Location = new System.Drawing.Point(393, 561);
             this.btnGuest.Name = "btnGuest";
-            this.btnGuest.Size = new System.Drawing.Size(121, 23);
+            this.btnGuest.Size = new System.Drawing.Size(121, 29);
             this.btnGuest.TabIndex = 1;
             this.btnGuest.Text = "Huesped";
             this.btnGuest.UseVisualStyleBackColor = true;
@@ -51,9 +52,10 @@
             // 
             // btnUsuario
             // 
+            this.btnUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUsuario.Location = new System.Drawing.Point(393, 491);
             this.btnUsuario.Name = "btnUsuario";
-            this.btnUsuario.Size = new System.Drawing.Size(121, 23);
+            this.btnUsuario.Size = new System.Drawing.Size(121, 31);
             this.btnUsuario.TabIndex = 0;
             this.btnUsuario.Text = "Usuario";
             this.btnUsuario.UseVisualStyleBackColor = true;
@@ -74,9 +76,10 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(769, 672);
+            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.Location = new System.Drawing.Point(772, 662);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 23);
+            this.btnSalir.Size = new System.Drawing.Size(77, 32);
             this.btnSalir.TabIndex = 2;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
