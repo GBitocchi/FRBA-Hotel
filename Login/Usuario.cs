@@ -34,6 +34,10 @@ namespace FrbaHotel.Login
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
+            lblErrorAutentificacion.Visible = false;
+            lblErrorUser.Visible = false;
+            lblErrorPW.Visible = false;
+            
             if (txtUser.Text == "" && txtPW.Text == "")
             {
                 lblErrorUser.Visible = true;
@@ -41,38 +45,72 @@ namespace FrbaHotel.Login
             }
             else if (txtPW.Text == "")
             {
-                lblErrorUser.Visible = false;
                 lblErrorPW.Visible = true;
             }
             else if (txtUser.Text == "")
             {
                 lblErrorUser.Visible = true;
-                lblErrorPW.Visible = false;
             }
             else
-            {
-                lblErrorUser.Visible = false;
-                lblErrorPW.Visible = false;
+            {         
+                string autentificacion = string.Format("SELECT usur_password, usur_intentos, usur_habilitado, rol_nombre FROM CAIA_UNLIMITED.Rol INNER JOIN CAIA_UNLIMITED.Rol_X_Usuario on rol_usur_codigo = rol_codigo INNER JOIN CAIA_UNLIMITED.Usuario on usur_username = rol_usur_codigo WHERE usur_username = '{0}' AND rol_estado = 1",txtUser.Text.Trim());
 
-                try
+                DataSet dsAutentificacion = DataBase.realizarConsulta(autentificacion);
+
+                if (dsAutentificacion.Tables[0].Rows.Count != 0 && ((dsAutentificacion.Tables[0].Rows[0]["usur_password"].ToString().Trim()) == txtPW.Text.Trim()))
                 {
-                    string autentificacion = string.Format("SELECT usur_username, usur_password FROM CAIA_UNLIMITED.Usuario WHERE usur_name = '{0}' AND usur_password = '{1}'", txtUser.Text.Trim(), txtPW.Text.Trim());
+                    dsAutentificacion.Tables[0].Rows[0]["usur_intentos"] = 0;
+                    dsAutentificacion.Tables[0].AcceptChanges();
+                    
+                    List<String> listaRoles = new List<string>();
 
-                    DataSet ds = DataBase.realizarConsulta(autentificacion);
-
-                    string account = ds.Tables[0].Rows[0]["usur_username"].ToString().Trim();
-                    string password = ds.Tables[0].Rows[0]["usur_password"].ToString().Trim();
-
-                    if (account == txtUser.Text.Trim() && password == txtPW.Text.Trim())
-                    {
-                        
+                    for (int i = 0; i < dsAutentificacion.Tables[0].Rows.Count; i++)
+                    {             
+                        if((dsAutentificacion.Tables[0].Rows[i]["rol_nombre"])!= null){
+                            listaRoles.Add(dsAutentificacion.Tables[0].Rows[i]["rol_nombre"].ToString().Trim());
+                        }                     
                     }
+
+                    if (listaRoles.Count >= 2)
+                    {
+                        this.Hide();
+                        new SeleccionRol(listaRoles).Show();
+                    }
+                    else
+                    {
+                        this.Hide();
+                        new VistaSistema().Show();
+                    }                      
                 }
-                catch (Exception error)
-                {
-                    lblErrorAutentificacion.Visible = true;
+                else if ((dsAutentificacion.Tables[0].Rows[0]["usur_password"].ToString().Trim()) != txtPW.Text.Trim())
+                {               
+                    int intentos = (int)dsAutentificacion.Tables[0].Rows[0]["usur_intentos"];
+
+                    if (intentos == 3)
+                    {
+                        dsAutentificacion.Tables[0].Rows[0]["usur_habilitado"] = 0;
+                        dsAutentificacion.Tables[0].AcceptChanges();
+                    }
+                    else
+                    {
+                        intentos++;
+                        dsAutentificacion.Tables[0].Rows[0]["usur_intentos"] = intentos;
+                        dsAutentificacion.Tables[0].AcceptChanges();
+                    }
+                    
+                    lblErrorAutentificacion.Visible = true;  
                 }
+                else
+                {                                       
+                    lblErrorAutentificacion.Visible = true;                                    
+                }
+                            
             }
+        }
+
+        private void txtPW_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
