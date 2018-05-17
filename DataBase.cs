@@ -34,10 +34,10 @@ namespace FrbaHotel
             return DS;
         }
 
-        public static void actualizarBD(string actualizacion) 
+        public static void procedureBD(string procedure) 
         {
             SqlConnection Con = conectarBD();
-            SqlDataAdapter DP = new SqlDataAdapter(actualizacion, Con);
+            SqlDataAdapter DP = new SqlDataAdapter(procedure, Con);
             DP.SelectCommand.ExecuteNonQuery();
             Con.Close();
         }

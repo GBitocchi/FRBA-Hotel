@@ -68,3 +68,5 @@ C:\Users\Gusbi\Desktop\TP Gestion\FRBA-Hotel\bin\Debug\FrbaHotel.pdb
 C:\Users\Gusbi\Desktop\TP Gestion\FRBA-Hotel\obj\Debug\FrbaHotel.Login.Seleccion.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.MenuModificacion.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.Login.Seleccion.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.HabitacionCreada.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.HabitacionModificada.resources
