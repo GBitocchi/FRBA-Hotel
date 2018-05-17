@@ -169,10 +169,11 @@ create table CAIA_UNLIMITED.Funcionalidad(
 )
 
 create table CAIA_UNLIMITED.Habitacion(
+	hote_id numeric(18,0) not null,
 	habi_numero numeric(18,0) not null,
 	habi_piso numeric(18,0) not null,
 	habi_frente nvarchar(50) not null,
-	hote_id numeric(18,0) not null,
+	habi_descripcion nvarchar(255),
 	thab_codigo numeric(18,0) not null
 )
 

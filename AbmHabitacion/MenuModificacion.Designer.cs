@@ -29,15 +29,12 @@
         private void InitializeComponent()
         {
             this.dgHabitaciones = new System.Windows.Forms.DataGridView();
-            this.nroHabitacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.piso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ubicacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.txtNroHabitacion = new System.Windows.Forms.TextBox();
+            this.txtUbicacion = new System.Windows.Forms.TextBox();
+            this.txtPiso = new System.Windows.Forms.TextBox();
+            this.txtDescripcion = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,44 +46,20 @@
             // 
             // dgHabitaciones
             // 
+            this.dgHabitaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgHabitaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgHabitaciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nroHabitacion,
-            this.piso,
-            this.ubicacion});
-            this.dgHabitaciones.Location = new System.Drawing.Point(44, 353);
+            this.dgHabitaciones.Location = new System.Drawing.Point(44, 359);
             this.dgHabitaciones.Name = "dgHabitaciones";
             this.dgHabitaciones.ReadOnly = true;
             this.dgHabitaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgHabitaciones.Size = new System.Drawing.Size(457, 180);
+            this.dgHabitaciones.Size = new System.Drawing.Size(570, 180);
             this.dgHabitaciones.TabIndex = 0;
             this.dgHabitaciones.DoubleClick += new System.EventHandler(this.dgHabitaciones_DoubleClick);
-            // 
-            // nroHabitacion
-            // 
-            this.nroHabitacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nroHabitacion.HeaderText = "Número de habitación";
-            this.nroHabitacion.Name = "nroHabitacion";
-            this.nroHabitacion.ReadOnly = true;
-            // 
-            // piso
-            // 
-            this.piso.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.piso.HeaderText = "Piso";
-            this.piso.Name = "piso";
-            this.piso.ReadOnly = true;
-            // 
-            // ubicacion
-            // 
-            this.ubicacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ubicacion.HeaderText = "Ubicación";
-            this.ubicacion.Name = "ubicacion";
-            this.ubicacion.ReadOnly = true;
             // 
             // btnCancelar
             // 
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(404, 266);
+            this.btnCancelar.Location = new System.Drawing.Point(427, 265);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(97, 34);
             this.btnCancelar.TabIndex = 2;
@@ -104,40 +77,40 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Seleccionar habitación";
             // 
-            // textBox1
+            // txtNroHabitacion
             // 
-            this.textBox1.Location = new System.Drawing.Point(357, 83);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(144, 20);
-            this.textBox1.TabIndex = 4;
+            this.txtNroHabitacion.Location = new System.Drawing.Point(380, 81);
+            this.txtNroHabitacion.Name = "txtNroHabitacion";
+            this.txtNroHabitacion.Size = new System.Drawing.Size(144, 20);
+            this.txtNroHabitacion.TabIndex = 4;
             // 
-            // textBox2
+            // txtUbicacion
             // 
-            this.textBox2.Location = new System.Drawing.Point(357, 135);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(144, 20);
-            this.textBox2.TabIndex = 5;
+            this.txtUbicacion.Location = new System.Drawing.Point(380, 138);
+            this.txtUbicacion.Name = "txtUbicacion";
+            this.txtUbicacion.Size = new System.Drawing.Size(144, 20);
+            this.txtUbicacion.TabIndex = 5;
             // 
-            // textBox3
+            // txtPiso
             // 
-            this.textBox3.Location = new System.Drawing.Point(357, 109);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(144, 20);
-            this.textBox3.TabIndex = 6;
+            this.txtPiso.Location = new System.Drawing.Point(380, 110);
+            this.txtPiso.Name = "txtPiso";
+            this.txtPiso.Size = new System.Drawing.Size(144, 20);
+            this.txtPiso.TabIndex = 6;
             // 
-            // richTextBox1
+            // txtDescripcion
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(44, 189);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(457, 71);
-            this.richTextBox1.TabIndex = 7;
-            this.richTextBox1.Text = "";
+            this.txtDescripcion.Location = new System.Drawing.Point(127, 188);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(397, 71);
+            this.txtDescripcion.TabIndex = 7;
+            this.txtDescripcion.Text = "";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(40, 78);
+            this.label2.Location = new System.Drawing.Point(123, 77);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(164, 20);
             this.label2.TabIndex = 8;
@@ -147,7 +120,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(40, 109);
+            this.label3.Location = new System.Drawing.Point(123, 108);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 20);
             this.label3.TabIndex = 9;
@@ -157,7 +130,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(40, 135);
+            this.label4.Location = new System.Drawing.Point(123, 134);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(79, 20);
             this.label4.TabIndex = 10;
@@ -167,7 +140,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(40, 166);
+            this.label5.Location = new System.Drawing.Point(123, 165);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 20);
             this.label5.TabIndex = 11;
@@ -177,7 +150,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(39, 37);
+            this.label6.Location = new System.Drawing.Point(279, 34);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(104, 25);
             this.label6.TabIndex = 12;
@@ -186,7 +159,7 @@
             // btnModificar
             // 
             this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.Location = new System.Drawing.Point(301, 266);
+            this.btnModificar.Location = new System.Drawing.Point(324, 265);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(97, 34);
             this.btnModificar.TabIndex = 13;
@@ -198,17 +171,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(552, 571);
+            this.ClientSize = new System.Drawing.Size(668, 571);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtDescripcion);
+            this.Controls.Add(this.txtPiso);
+            this.Controls.Add(this.txtUbicacion);
+            this.Controls.Add(this.txtNroHabitacion);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.dgHabitaciones);
@@ -223,15 +196,12 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgHabitaciones;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nroHabitacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn piso;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ubicacion;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.TextBox txtNroHabitacion;
+        private System.Windows.Forms.TextBox txtUbicacion;
+        private System.Windows.Forms.TextBox txtPiso;
+        private System.Windows.Forms.RichTextBox txtDescripcion;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

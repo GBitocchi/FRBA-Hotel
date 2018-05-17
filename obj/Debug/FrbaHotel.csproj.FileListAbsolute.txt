@@ -66,3 +66,5 @@ C:\Users\Gusbi\Desktop\TP Gestion\FRBA-Hotel\obj\Debug\FrbaHotel.csproj.Generate
 C:\Users\Gusbi\Desktop\TP Gestion\FRBA-Hotel\bin\Debug\FrbaHotel.exe
 C:\Users\Gusbi\Desktop\TP Gestion\FRBA-Hotel\bin\Debug\FrbaHotel.pdb
 C:\Users\Gusbi\Desktop\TP Gestion\FRBA-Hotel\obj\Debug\FrbaHotel.Login.Seleccion.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.MenuModificacion.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.Login.Seleccion.resources

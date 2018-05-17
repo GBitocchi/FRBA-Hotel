@@ -26,6 +26,7 @@ namespace FrbaHotel.AbmHabitacion
         private void modificar_Click(object sender, EventArgs e)
         {
             this.Hide();
+            new MenuModificacion().Show();
         }
 
         private void baja_Click(object sender, EventArgs e)
