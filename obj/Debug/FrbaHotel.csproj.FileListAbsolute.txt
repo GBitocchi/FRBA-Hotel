@@ -70,3 +70,22 @@ C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.MenuM
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.Login.Seleccion.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.HabitacionCreada.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.HabitacionModificada.resources
+C:\Users\Lucas\Documents\FRBA-Hotel\bin\Debug\FrbaHotel.exe
+C:\Users\Lucas\Documents\FRBA-Hotel\bin\Debug\FrbaHotel.pdb
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.csprojResolveAssemblyReference.cache
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.BajaHabitacion.resources
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.Crear.resources
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.HabitacionCreada.resources
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.HabitacionModificada.resources
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.MenuHabitacion.resources
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.MenuModificacion.resources
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.AbmRol.Form1.resources
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.Form1.resources
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.Login.Inicio.resources
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.Login.Seleccion.resources
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.Login.Usuario.resources
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.Properties.Resources.resources
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.csproj.GenerateResource.Cache
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.EstadoCambiado.resources
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.CrearHotel.resources
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.MenuHotel.resources

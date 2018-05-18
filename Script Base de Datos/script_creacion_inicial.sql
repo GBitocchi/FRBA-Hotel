@@ -174,6 +174,7 @@ create table CAIA_UNLIMITED.Habitacion(
 	habi_piso numeric(18,0) not null,
 	habi_frente nvarchar(50) not null,
 	habi_descripcion nvarchar(255),
+	habi_habilitado bit not null,
 	thab_codigo numeric(18,0) not null
 )
 
@@ -386,8 +387,8 @@ from gd_esquema.Maestra join CAIA_UNLIMITED.Direccion on (Hotel_Calle = dire_dom
 															Hotel_Nro_Calle = dire_nro_calle)
 
 --Habitacion
-insert into CAIA_UNLIMITED.Habitacion (habi_numero, habi_piso, habi_frente, hote_id, thab_codigo)
-select distinct Habitacion_Numero, Habitacion_Piso, Habitacion_Frente, hote_id, thab_codigo
+insert into CAIA_UNLIMITED.Habitacion (habi_numero, habi_piso, habi_frente, hote_id, thab_codigo, habi_habilitado)
+select distinct Habitacion_Numero, Habitacion_Piso, Habitacion_Frente, hote_id, thab_codigo, 1
 from gd_esquema.Maestra join CAIA_UNLIMITED.Tipo_Habitacion on (thab_codigo = Habitacion_Tipo_Codigo and
 																thab_descripcion = Habitacion_Tipo_Descripcion and
 																thab_porcentual = Habitacion_Tipo_Porcentual)

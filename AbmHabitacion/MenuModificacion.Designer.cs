@@ -41,6 +41,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnModificar = new System.Windows.Forms.Button();
+            this.lblNroHabitacion = new System.Windows.Forms.Label();
+            this.lblPiso = new System.Windows.Forms.Label();
+            this.lblUbicacion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgHabitaciones)).BeginInit();
             this.SuspendLayout();
             // 
@@ -167,11 +170,47 @@
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
+            // lblNroHabitacion
+            // 
+            this.lblNroHabitacion.AutoSize = true;
+            this.lblNroHabitacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNroHabitacion.ForeColor = System.Drawing.Color.Red;
+            this.lblNroHabitacion.Location = new System.Drawing.Point(530, 81);
+            this.lblNroHabitacion.Name = "lblNroHabitacion";
+            this.lblNroHabitacion.Size = new System.Drawing.Size(208, 20);
+            this.lblNroHabitacion.TabIndex = 14;
+            this.lblNroHabitacion.Text = "*Falta numero de habitación";
+            // 
+            // lblPiso
+            // 
+            this.lblPiso.AutoSize = true;
+            this.lblPiso.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPiso.ForeColor = System.Drawing.Color.Red;
+            this.lblPiso.Location = new System.Drawing.Point(530, 110);
+            this.lblPiso.Name = "lblPiso";
+            this.lblPiso.Size = new System.Drawing.Size(164, 20);
+            this.lblPiso.TabIndex = 15;
+            this.lblPiso.Text = "*Falta numero de piso";
+            // 
+            // lblUbicacion
+            // 
+            this.lblUbicacion.AutoSize = true;
+            this.lblUbicacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUbicacion.ForeColor = System.Drawing.Color.Red;
+            this.lblUbicacion.Location = new System.Drawing.Point(530, 138);
+            this.lblUbicacion.Name = "lblUbicacion";
+            this.lblUbicacion.Size = new System.Drawing.Size(122, 20);
+            this.lblUbicacion.TabIndex = 16;
+            this.lblUbicacion.Text = "*Falta ubicación";
+            // 
             // MenuModificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(668, 571);
+            this.ClientSize = new System.Drawing.Size(752, 571);
+            this.Controls.Add(this.lblUbicacion);
+            this.Controls.Add(this.lblPiso);
+            this.Controls.Add(this.lblNroHabitacion);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -208,5 +247,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnModificar;
+        private System.Windows.Forms.Label lblNroHabitacion;
+        private System.Windows.Forms.Label lblPiso;
+        private System.Windows.Forms.Label lblUbicacion;
     }
 }

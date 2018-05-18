@@ -32,6 +32,7 @@ namespace FrbaHotel.AbmHabitacion
         private void baja_Click(object sender, EventArgs e)
         {
             this.Hide();
+            new BajaHabitacion().Show();
         }
 
         private void atras_Click(object sender, EventArgs e)
