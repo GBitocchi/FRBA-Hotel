@@ -116,7 +116,8 @@ create table CAIA_UNLIMITED.Direccion(
 	dire_nro_calle numeric(18,0) not null,
 	dire_piso numeric(18,0),
 	dire_dpto nvarchar(50),
-	dire_ciudad nvarchar(255)
+	dire_ciudad nvarchar(255),
+	dire_pais nvarchar(255)
 )
 
 create table CAIA_UNLIMITED.Huesped(
