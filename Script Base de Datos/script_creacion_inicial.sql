@@ -79,7 +79,7 @@ create table CAIA_UNLIMITED.Hotel(
 	hote_id numeric(18,0) identity(0,1) not null,
 	hote_nombre nvarchar(255),
 	hote_cant_estrellas numeric(18,0) not null,
-	hote_recarga_estrella numeric(18,0) not null,
+	hote_recarga_estrella numeric(18,0),
 	hote_habilitado bit not null,
 	hote_fecha_creacion datetime,
 	hote_mail nvarchar(255),

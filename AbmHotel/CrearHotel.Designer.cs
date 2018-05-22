@@ -291,7 +291,7 @@
             this.txtNumero.Location = new System.Drawing.Point(458, 139);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(68, 20);
-            this.txtNumero.TabIndex = 26;
+            this.txtNumero.TabIndex = 12;
             // 
             // cbEstrellas
             // 
@@ -305,7 +305,7 @@
             this.cbEstrellas.Location = new System.Drawing.Point(303, 165);
             this.cbEstrellas.Name = "cbEstrellas";
             this.cbEstrellas.Size = new System.Drawing.Size(223, 21);
-            this.cbEstrellas.TabIndex = 27;
+            this.cbEstrellas.TabIndex = 13;
             this.cbEstrellas.Text = "Cantidad de estrellas...";
             // 
             // txtCiudad
@@ -313,14 +313,14 @@
             this.txtCiudad.Location = new System.Drawing.Point(303, 192);
             this.txtCiudad.Name = "txtCiudad";
             this.txtCiudad.Size = new System.Drawing.Size(223, 20);
-            this.txtCiudad.TabIndex = 28;
+            this.txtCiudad.TabIndex = 14;
             // 
             // txtPais
             // 
             this.txtPais.Location = new System.Drawing.Point(303, 218);
             this.txtPais.Name = "txtPais";
             this.txtPais.Size = new System.Drawing.Size(223, 20);
-            this.txtPais.TabIndex = 29;
+            this.txtPais.TabIndex = 15;
             // 
             // CrearHotel
             // 

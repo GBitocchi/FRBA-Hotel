@@ -90,22 +90,58 @@ namespace FrbaHotel.AbmHotel
                 }
                 catch
                 {
-                    string crear_dire = "insert into CAIA_UNLIMITED.Direccion (dire_dom_calle, dire_nro_calle, dire_ciudad, dire_pais, dire_telefono) values('" + 
-                        txtDireccion.Text.Trim() + "', " + txtNumero.Text.Trim() + ", '" + txtCiudad.Text.Trim() + "', '" + txtPais.Text.Trim() + "', '" +
-                        txtTelefono.Text.Trim() + "')";
-                    DataBase.procedureBD(crear_dire);
-                    string obtener_id_direccion = "select dire_id from CAIA_UNLIMITED.Direccion where dire_dom_calle= '" + txtDireccion.Text.Trim() + "' and dire_nro_calle= " +
-                        txtNumero.Text.Trim() + " and dire_ciudad= '" + txtCiudad.Text.Trim() + "' and dire_pais= '" + txtPais.Text.Trim() + "' and dire_telefono= '" +
-                        txtTelefono.Text.Trim() + "'";
-                    DataSet ds = new DataSet();
-                    ds = DataBase.realizarConsulta(obtener_id_direccion);
-                    string id_dire = ds.Tables[0].Rows[0][0].ToString();
-                    string crear_hotel = "insert into CAIA_UNLIMITED.Hotel (hote_nombre, hote_mail, hote_cant_estrellas, dire_id) values('" + txtNombreHotel.Text.Trim() + "', '" + txtMail.Text.Trim() + "', " + 
-                        cant_estrellas + ", " + id_dire + ")";
-                    DataBase.procedureBD(crear_hotel);
-                 
+                    NuevaDireccion();
+                    string id_dire = ObtenerIDDireccion();
+                    NuevoHotel(cant_estrellas, id_dire);
+                    string id_hotel = ObtenerIDHotel(id_dire);
+                    CrearRegimenXHotel(id_hotel);
                 }
             }
+        }
+
+        private void CrearRegimenXHotel(string id_hotel)
+        {
+            foreach (DataGridViewRow regimen in dgRegimenes.SelectedRows)
+            {
+                string id_regimen = regimen.Cells[0].Value.ToString();
+                string nuevo_hotel_regimen = "insert into CAIA_UNLIMITED.Regimen_X_Hotel (regi_hote_codigo, regi_hote_id) values (" + id_regimen +", " + id_hotel + ")";
+                DataBase.procedureBD(nuevo_hotel_regimen);
+            }
+                
+        }
+
+        private string ObtenerIDHotel(string id_dire)
+        {
+            string obtener_id_hotel = "select hote_id from CAIA_UNLIMITED.Hotel where hote_nombre ='" + txtNombreHotel.Text.Trim() + "' and hote_mail='" + txtMail.Text.Trim() +
+                "' and dire_id=" + id_dire;
+            DataSet dh = DataBase.realizarConsulta(obtener_id_hotel);
+            string id_hotel = dh.Tables[0].Rows[0][0].ToString();
+            return id_hotel;
+        }
+
+        private void NuevoHotel(string cant_estrellas, string id_dire)
+        {
+            string nuevo_hotel = "insert into CAIA_UNLIMITED.Hotel (hote_nombre, hote_mail, hote_cant_estrellas, dire_id, hote_habilitado) values('" + txtNombreHotel.Text.Trim() + "', '" + txtMail.Text.Trim() + "', " +
+                cant_estrellas + ", " + id_dire + ", " + 1 + ")";
+            DataBase.procedureBD(nuevo_hotel);
+        }
+
+        private string ObtenerIDDireccion()
+        {
+            string obtener_id_direccion = "select dire_id from CAIA_UNLIMITED.Direccion where dire_dom_calle= '" + txtDireccion.Text.Trim() + "' and dire_nro_calle= " +
+                txtNumero.Text.Trim() + " and dire_ciudad= '" + txtCiudad.Text.Trim() + "' and dire_pais= '" + txtPais.Text.Trim() + "' and dire_telefono= '" +
+                txtTelefono.Text.Trim() + "'";
+            DataSet dd = DataBase.realizarConsulta(obtener_id_direccion);
+            string id_dire = dd.Tables[0].Rows[0][0].ToString();
+            return id_dire;
+        }
+
+        private void NuevaDireccion()
+        {
+            string crear_dire = "insert into CAIA_UNLIMITED.Direccion (dire_dom_calle, dire_nro_calle, dire_ciudad, dire_pais, dire_telefono) values('" +
+                txtDireccion.Text.Trim() + "', " + txtNumero.Text.Trim() + ", '" + txtCiudad.Text.Trim() + "', '" + txtPais.Text.Trim() + "', '" +
+                txtTelefono.Text.Trim() + "')";
+            DataBase.procedureBD(crear_dire);
         }
 
         private void btnAtras_Click(object sender, EventArgs e)
