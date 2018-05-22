@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FrbaHotel.Login
+namespace FrbaHotel.Menu_Sistema
 {
     public partial class VistaSistema : Form
     {

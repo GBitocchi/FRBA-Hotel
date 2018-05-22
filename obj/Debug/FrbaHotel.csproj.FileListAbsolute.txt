@@ -89,3 +89,27 @@ C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.csproj.GenerateResource.
 C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.EstadoCambiado.resources
 C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.CrearHotel.resources
 C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.MenuHotel.resources
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\bin\Debug\FrbaHotel.exe.config
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.exe
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.pdb
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\bin\Debug\FrbaHotel.exe
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\bin\Debug\FrbaHotel.pdb
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.csprojResolveAssemblyReference.cache
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.BajaHabitacion.resources
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.Crear.resources
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.EstadoCambiado.resources
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.HabitacionCreada.resources
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.HabitacionModificada.resources
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.MenuHabitacion.resources
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.MenuModificacion.resources
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.CrearHotel.resources
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.MenuHotel.resources
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.AbmRol.Form1.resources
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.Form1.resources
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.Login.Inicio.resources
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.Login.Seleccion.resources
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.Login.Usuario.resources
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.Properties.Resources.resources
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.csproj.GenerateResource.Cache
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.Login.cambioContraseña.resources
+C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.Menu_Sistema.VistaSistema.resources

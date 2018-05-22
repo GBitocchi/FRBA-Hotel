@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 namespace FrbaHotel
 {
     class DataBase
-    {
+    {   
         public static SqlConnection conectarBD()
         {
             SqlConnection Con = new SqlConnection(@"Data Source=localhost\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");

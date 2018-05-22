@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrbaHotel.Menu_Sistema;
 
 namespace FrbaHotel.Login
 {
@@ -59,7 +60,7 @@ namespace FrbaHotel.Login
         private void btnGuest_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new Huesped().Show();
+            new VistaSistema().Show();
         }
     }
 }
