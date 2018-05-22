@@ -332,7 +332,7 @@ alter table CAIA_UNLIMITED.Funcionalidad_X_Rol
 	references CAIA_UNLIMITED.Funcionalidad (func_codigo)
 
 alter table CAIA_UNLIMITED.Regimen_X_Hotel
-	add constraint PK_Regimen_X_Hotel primary key (regi_hote_codigo, regi_hote_id),
+	add constraint PK_Regimen_X_Hotel primary key (regi_hote_id, regi_hote_codigo),
 	constraint FK_RegimenHotel_Regi foreign key (regi_hote_codigo)
 	references CAIA_UNLIMITED.Regimen (regi_codigo),
 	constraint FK_RegimenHotel_Hote foreign key (regi_hote_id)

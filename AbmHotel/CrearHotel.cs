@@ -81,20 +81,25 @@ namespace FrbaHotel.AbmHotel
             if (Completo())
             {
                 string cant_estrellas = cbEstrellas.SelectedItem.ToString().Split(' ')[0];
-                string existencia = "select hote_nombre, dire_dom_calle, dire_nro_calle, dire_telefono, dire_ciudad from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) where hote_nombre =" + 
-                    txtNombreHotel.Text.Trim() + " and hote_cant_estrellas=" + cant_estrellas + " and dire_dom_calle =" + txtDireccion.Text.Trim() + " and dire_nro_calle =" +
-                    txtNumero.Text.Trim() + " and  dire_ciudad=" + txtCiudad.Text + " and dire_pais=" + txtPais.Text;
+                string existencia_hotel = "select * from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) where H.hote_nombre ='" + 
+                    txtNombreHotel.Text.Trim() + "' and H.hote_cant_estrellas=" + cant_estrellas + " and D.dire_dom_calle ='" + txtDireccion.Text.Trim() + "' and D.dire_nro_calle =" +
+                    txtNumero.Text.Trim() + " and  D.dire_ciudad='" + txtCiudad.Text.Trim() + "' and D.dire_pais='" + txtPais.Text.Trim() + "'";
+                string existencia_direccion = "select * from CAIA_UNLIMITED.Direccion where dire_dom_calle='" + txtDireccion.Text.Trim() + "' and dire_nro_calle=" + txtNumero.Text.Trim() + " and dire_ciudad='" + txtCiudad.Text.Trim() +
+                    "' and dire_pais='" + txtPais.Text.Trim() + "'";
                 try
                 {
-                    DataBase.realizarConsulta(existencia);
+                    DataBase.realizarConsulta(existencia_direccion);
+                    DataBase.realizarConsulta(existencia_hotel);
                 }
                 catch
                 {
+                    Console.WriteLine("No existe");
                     NuevaDireccion();
                     string id_dire = ObtenerIDDireccion();
                     NuevoHotel(cant_estrellas, id_dire);
                     string id_hotel = ObtenerIDHotel(id_dire);
                     CrearRegimenXHotel(id_hotel);
+                    new HotelCreado().Show();
                 }
             }
         }
@@ -104,7 +109,8 @@ namespace FrbaHotel.AbmHotel
             foreach (DataGridViewRow regimen in dgRegimenes.SelectedRows)
             {
                 string id_regimen = regimen.Cells[0].Value.ToString();
-                string nuevo_hotel_regimen = "insert into CAIA_UNLIMITED.Regimen_X_Hotel (regi_hote_codigo, regi_hote_id) values (" + id_regimen +", " + id_hotel + ")";
+                string nuevo_hotel_regimen = "insert into CAIA_UNLIMITED.Regimen_X_Hotel (regi_hote_codigo, regi_hote_id) values (" + 
+                    id_regimen +", " + id_hotel + ")";
                 DataBase.procedureBD(nuevo_hotel_regimen);
             }
                 

@@ -113,3 +113,5 @@ C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.Properties.Re
 C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.csproj.GenerateResource.Cache
 C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.Login.cambioContraseña.resources
 C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.Menu_Sistema.VistaSistema.resources
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.Login.cambioContraseña.resources
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.Menu_Sistema.VistaSistema.resources
