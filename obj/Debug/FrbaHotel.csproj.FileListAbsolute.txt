@@ -115,3 +115,6 @@ C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.Login.cambioC
 C:\Users\Gusbi\Desktop\TP de Mierda\FRBA-Hotel\obj\Debug\FrbaHotel.Menu_Sistema.VistaSistema.resources
 C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.Login.cambioContraseña.resources
 C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.Menu_Sistema.VistaSistema.resources
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.HotelCreado.resources
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.DirecccionExistente.resources
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.HotelExistente.resources

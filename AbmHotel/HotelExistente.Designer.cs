@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.AbmHotel
 {
-    partial class HotelCreado
+    partial class HotelExistente
     {
         /// <summary>
         /// Required designer variable.
@@ -35,9 +35,9 @@
             // btnAceptar
             // 
             this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAceptar.Location = new System.Drawing.Point(118, 71);
+            this.btnAceptar.Location = new System.Drawing.Point(120, 69);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(90, 35);
+            this.btnAceptar.Size = new System.Drawing.Size(85, 31);
             this.btnAceptar.TabIndex = 0;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
@@ -47,21 +47,21 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(45, 32);
+            this.label1.Location = new System.Drawing.Point(90, 32);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(251, 25);
+            this.label1.Size = new System.Drawing.Size(158, 25);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Hotel creado correctamente";
+            this.label1.Text = "El hotel ya existe";
             // 
-            // HotelCreado
+            // HotelExistente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(329, 128);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAceptar);
-            this.Name = "HotelCreado";
-            this.Text = "HotelCreado";
+            this.Name = "HotelExistente";
+            this.Text = "HotelExistente";
             this.ResumeLayout(false);
             this.PerformLayout();
 

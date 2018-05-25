@@ -43,6 +43,14 @@ namespace FrbaHotel.AbmHotel
            {
                lblDireccion.Visible = true;
            }
+           else if (txtNumero.Text.Trim() == "")
+           {
+               lblDireccion.Visible = true;
+           }
+           else if (cbEstrellas.SelectedItem.ToString() == "Cantidad de estrellas...")
+           {
+               lblEstrellas.Visible = true;
+           }
            else if (txtCiudad.Text.Trim() == "")
            {
                lblCiudad.Visible = true;
@@ -50,10 +58,6 @@ namespace FrbaHotel.AbmHotel
            else if (txtPais.Text.Trim() == "")
            {
                lblPais.Visible = true;
-           }
-           else if (cbEstrellas.SelectedItem.ToString() == "Cantidad de estrellas...")
-           {
-               lblEstrellas.Visible = true;
            }
            else
            {
@@ -77,29 +81,30 @@ namespace FrbaHotel.AbmHotel
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
-            Completo();
             if (Completo())
             {
                 string cant_estrellas = cbEstrellas.SelectedItem.ToString().Split(' ')[0];
-                string existencia_hotel = "select * from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) where H.hote_nombre ='" + 
-                    txtNombreHotel.Text.Trim() + "' and H.hote_cant_estrellas=" + cant_estrellas + " and D.dire_dom_calle ='" + txtDireccion.Text.Trim() + "' and D.dire_nro_calle =" +
-                    txtNumero.Text.Trim() + " and  D.dire_ciudad='" + txtCiudad.Text.Trim() + "' and D.dire_pais='" + txtPais.Text.Trim() + "'";
-                string existencia_direccion = "select * from CAIA_UNLIMITED.Direccion where dire_dom_calle='" + txtDireccion.Text.Trim() + "' and dire_nro_calle=" + txtNumero.Text.Trim() + " and dire_ciudad='" + txtCiudad.Text.Trim() +
-                    "' and dire_pais='" + txtPais.Text.Trim() + "'";
-                try
+                string existencia_hotel = String.Format("select * from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) where hote_nombre ='{0}' and hote_cant_estrellas={1} and dire_dom_calle ='{2}' and dire_nro_calle ={3} and  dire_ciudad='{4}' and dire_pais='{5}'",txtNombreHotel.Text.Trim(), cant_estrellas, txtDireccion.Text.Trim(), txtNumero.Text.Trim(), txtCiudad.Text.Trim(), txtPais.Text.Trim());
+                string existencia_direccion = String.Format("select * from CAIA_UNLIMITED.Direccion where dire_dom_calle='{0}' and dire_nro_calle={1} and dire_ciudad='{2}' and dire_pais='{3}'", txtDireccion.Text.Trim(), txtNumero.Text.Trim(), txtCiudad.Text.Trim(), txtPais.Text.Trim());
+                if (DataBase.realizarConsulta(existencia_direccion).Tables[0].Rows.Count == 0)
                 {
-                    DataBase.realizarConsulta(existencia_direccion);
-                    DataBase.realizarConsulta(existencia_hotel);
+                    if (DataBase.realizarConsulta(existencia_hotel).Tables[0].Rows.Count == 0)
+                    {
+                        NuevaDireccion();
+                        string id_dire = ObtenerIDDireccion();
+                        NuevoHotel(cant_estrellas, id_dire);
+                        string id_hotel = ObtenerIDHotel(id_dire);
+                        CrearRegimenXHotel(id_hotel);
+                        new HotelCreado().Show();
+                    }
+                    else
+                    {
+                        new HotelExistente().Show();
+                    }
                 }
-                catch
+                else
                 {
-                    Console.WriteLine("No existe");
-                    NuevaDireccion();
-                    string id_dire = ObtenerIDDireccion();
-                    NuevoHotel(cant_estrellas, id_dire);
-                    string id_hotel = ObtenerIDHotel(id_dire);
-                    CrearRegimenXHotel(id_hotel);
-                    new HotelCreado().Show();
+                    new DirecccionExistente().Show();
                 }
             }
         }

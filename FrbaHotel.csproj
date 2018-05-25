@@ -98,6 +98,24 @@
     <Compile Include="AbmHotel\CrearHotel.Designer.cs">
       <DependentUpon>CrearHotel.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmHotel\DirecccionExistente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHotel\DirecccionExistente.Designer.cs">
+      <DependentUpon>DirecccionExistente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmHotel\HotelCreado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHotel\HotelCreado.Designer.cs">
+      <DependentUpon>HotelCreado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmHotel\HotelExistente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHotel\HotelExistente.Designer.cs">
+      <DependentUpon>HotelExistente.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmHotel\MenuHotel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,6 +226,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\CrearHotel.resx">
       <DependentUpon>CrearHotel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\DirecccionExistente.resx">
+      <DependentUpon>DirecccionExistente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\HotelCreado.resx">
+      <DependentUpon>HotelCreado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\HotelExistente.resx">
+      <DependentUpon>HotelExistente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\MenuHotel.resx">
       <DependentUpon>MenuHotel.cs</DependentUpon>
