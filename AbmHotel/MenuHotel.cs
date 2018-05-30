@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrbaHotel.Menu_Sistema;
 
 namespace FrbaHotel.AbmHotel
 {
@@ -26,11 +27,18 @@ namespace FrbaHotel.AbmHotel
         private void btnModificar_Click(object sender, EventArgs e)
         {
             this.Hide();
+            new ModificarHotel().Show();
         }
 
         private void btnEstado_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void btnAtras_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new VistaSistema().Show();
         }
     }
 }
