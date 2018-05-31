@@ -12,27 +12,29 @@ namespace FrbaHotel.AbmHabitacion
 {
     public partial class MenuHabitacion : Form
     {
-        public MenuHabitacion()
+        int hotel_id;
+        public MenuHabitacion(int hotelId)
         {
             InitializeComponent();
+            hotel_id = hotelId;
         }
 
         private void crear_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new Crear().Show();
+            new Crear(hotel_id).Show();
         }
 
         private void modificar_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new MenuModificacion().Show();
+            new MenuModificacion(hotel_id).Show();
         }
 
         private void baja_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new BajaHabitacion().Show();
+            new BajaHabitacion(hotel_id).Show();
         }
 
         private void atras_Click(object sender, EventArgs e)

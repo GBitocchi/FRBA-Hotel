@@ -12,25 +12,25 @@ namespace FrbaHotel.AbmHabitacion
 {
     public partial class BajaHabitacion : Form
     {
-        //int hote_id;
+        int hotel_id;
         private void MostrarDG()
         {
-            string nueva_consulta = "select habi_numero as 'Numero de habitacion', habi_piso as 'Piso', habi_frente 'Ubicacion', habi_habilitado as 'Habilitada' from CAIA_UNLIMITED.Habitacion";
+            string nueva_consulta = "select habi_numero as 'Numero de habitacion', habi_piso as 'Piso', habi_frente 'Ubicacion', habi_habilitado as 'Habilitada' from CAIA_UNLIMITED.Habitacion where hote_id=" + hotel_id.ToString();
             DataSet ds_habitaciones = DataBase.realizarConsulta(nueva_consulta);
             dgBajaHabitacion.DataSource = ds_habitaciones.Tables[0];
         }
 
-        public BajaHabitacion(/*int id_hotel*/)
+        public BajaHabitacion(int hotelId)
         {
             InitializeComponent();
-           // hote_id = id_hotel;
+            hotel_id = hotelId;
             MostrarDG();
         }
 
         private void btnAtras_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new MenuHabitacion().Show();
+            new MenuHabitacion(hotel_id).Show();
         }
 
         private void btnBaja_Click(object sender, EventArgs e)
@@ -39,7 +39,7 @@ namespace FrbaHotel.AbmHabitacion
             string estado_actual = dgBajaHabitacion.SelectedRows[0].Cells[3].Value.ToString();
             if (estado_actual != "0")
             {
-                string baja_habitacion = "update CAIA_UNLIMITED.Habitacion set habi_habilitado = 0 where habi_numero =" + numero_habitacion + " and hote_id=" + 0;
+                string baja_habitacion = "update CAIA_UNLIMITED.Habitacion set habi_habilitado = 0 where habi_numero =" + numero_habitacion + " and hote_id=" + hotel_id.ToString();
                 DataBase.procedureBD(baja_habitacion);
                 new EstadoCambiado().Show();
                 MostrarDG();
@@ -53,7 +53,7 @@ namespace FrbaHotel.AbmHabitacion
             string estado_actual = dgBajaHabitacion.SelectedRows[0].Cells[3].Value.ToString();
             if (estado_actual != "1") 
             {
-                string alta_habitacion = "update CAIA_UNLIMITED.Habitacion set habi_habilitado = 1 where habi_numero =" + numero_habitacion + " and hote_id=" + 0;
+                string alta_habitacion = "update CAIA_UNLIMITED.Habitacion set habi_habilitado = 1 where habi_numero =" + numero_habitacion + " and hote_id=" + hotel_id.ToString();
                 DataBase.procedureBD(alta_habitacion);
                 new EstadoCambiado().Show();
                 MostrarDG();
