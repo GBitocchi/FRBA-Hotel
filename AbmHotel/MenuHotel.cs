@@ -13,7 +13,7 @@ namespace FrbaHotel.AbmHotel
 {
     public partial class MenuHotel : Form
     {
-        public MenuHotel()
+        public MenuHotel()//Falta agregar hote_id al constructor
         {
             InitializeComponent();
         }
@@ -27,7 +27,7 @@ namespace FrbaHotel.AbmHotel
         private void btnModificar_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new ModificarHotel().Show();
+            new ModificarHotel("1").Show();
         }
 
         private void btnEstado_Click(object sender, EventArgs e)

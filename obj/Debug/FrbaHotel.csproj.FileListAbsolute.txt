@@ -119,3 +119,4 @@ C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.HotelCreado.res
 C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.DirecccionExistente.resources
 C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.HotelExistente.resources
 C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.ModificarHotel.resources
+C:\Users\Lucas\Documents\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.FiltrarHotel.resources

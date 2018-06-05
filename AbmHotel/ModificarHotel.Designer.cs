@@ -106,6 +106,12 @@
             // cbCantidadEstrellas
             // 
             this.cbCantidadEstrellas.FormattingEnabled = true;
+            this.cbCantidadEstrellas.Items.AddRange(new object[] {
+            "1 estrella",
+            "2 estrellas",
+            "3 estrellas",
+            "4 estrellas",
+            "5 estrellas"});
             this.cbCantidadEstrellas.Location = new System.Drawing.Point(328, 193);
             this.cbCantidadEstrellas.Name = "cbCantidadEstrellas";
             this.cbCantidadEstrellas.Size = new System.Drawing.Size(223, 21);

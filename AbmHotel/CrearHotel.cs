@@ -18,53 +18,53 @@ namespace FrbaHotel.AbmHotel
             DataSet ds = DataBase.realizarConsulta(consulta_regimenes);
             dgRegimenes.DataSource = ds.Tables[0];
         }
-       private bool Completo() 
-       {
-           lblCiudad.Visible = false;
-           lblDireccion.Visible = false;
-           lblEstrellas.Visible = false;
-           lblMail.Visible = false;
-           lblNombreHotel.Visible = false;
-           lblPais.Visible = false;
-           lblTelefono.Visible = false;
-           if (txtNombreHotel.Text.Trim() == "")
-           {
-               lblNombreHotel.Visible = true;
-           }
-           else if (txtMail.Text.Trim() == "")
-           {
-               lblMail.Visible = true;
-           }
-           else if (txtTelefono.Text.Trim() == "")
-           {
-               lblTelefono.Visible = true;
-           }
-           else if (txtDireccion.Text.Trim() == "")
-           {
-               lblDireccion.Visible = true;
-           }
-           else if (txtNumero.Text.Trim() == "")
-           {
-               lblDireccion.Visible = true;
-           }
-           else if (cbEstrellas.SelectedItem.ToString() == "Cantidad de estrellas...")
-           {
-               lblEstrellas.Visible = true;
-           }
-           else if (txtCiudad.Text.Trim() == "")
-           {
-               lblCiudad.Visible = true;
-           }
-           else if (txtPais.Text.Trim() == "")
-           {
-               lblPais.Visible = true;
-           }
-           else
-           {
-               return true;
-           }
-           return false;
-       }
+        private bool Completo()
+        {
+            lblCiudad.Visible = false;
+            lblDireccion.Visible = false;
+            lblEstrellas.Visible = false;
+            lblMail.Visible = false;
+            lblNombreHotel.Visible = false;
+            lblPais.Visible = false;
+            lblTelefono.Visible = false;
+            if (txtNombreHotel.Text.Trim() == "")
+            {
+                lblNombreHotel.Visible = true;
+            }
+            else if (txtMail.Text.Trim() == "")
+            {
+                lblMail.Visible = true;
+            }
+            else if (txtTelefono.Text.Trim() == "")
+            {
+                lblTelefono.Visible = true;
+            }
+            else if (txtDireccion.Text.Trim() == "")
+            {
+                lblDireccion.Visible = true;
+            }
+            else if (txtNumero.Text.Trim() == "")
+            {
+                lblDireccion.Visible = true;
+            }
+            else if (cbEstrellas.SelectedItem.ToString() == "Cantidad de estrellas...")
+            {
+                lblEstrellas.Visible = true;
+            }
+            else if (txtCiudad.Text.Trim() == "")
+            {
+                lblCiudad.Visible = true;
+            }
+            else if (txtPais.Text.Trim() == "")
+            {
+                lblPais.Visible = true;
+            }
+            else
+            {
+                return true;
+            }
+            return false;
+        }
 
         public CrearHotel()
         {
@@ -84,7 +84,7 @@ namespace FrbaHotel.AbmHotel
             if (Completo())
             {
                 string cant_estrellas = cbEstrellas.SelectedItem.ToString().Split(' ')[0];
-                string existencia_hotel = String.Format("select * from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) where hote_nombre ='{0}' and hote_cant_estrellas={1} and dire_dom_calle ='{2}' and dire_nro_calle ={3} and  dire_ciudad='{4}' and dire_pais='{5}'",txtNombreHotel.Text.Trim(), cant_estrellas, txtDireccion.Text.Trim(), txtNumero.Text.Trim(), txtCiudad.Text.Trim(), txtPais.Text.Trim());
+                string existencia_hotel = String.Format("select * from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) where hote_nombre ='{0}' and hote_cant_estrellas={1} and dire_dom_calle ='{2}' and dire_nro_calle ={3} and  dire_ciudad='{4}' and dire_pais='{5}'", txtNombreHotel.Text.Trim(), cant_estrellas, txtDireccion.Text.Trim(), txtNumero.Text.Trim(), txtCiudad.Text.Trim(), txtPais.Text.Trim());
                 string existencia_direccion = String.Format("select * from CAIA_UNLIMITED.Direccion where dire_dom_calle='{0}' and dire_nro_calle={1} and dire_ciudad='{2}' and dire_pais='{3}'", txtDireccion.Text.Trim(), txtNumero.Text.Trim(), txtCiudad.Text.Trim(), txtPais.Text.Trim());
                 if (DataBase.realizarConsulta(existencia_direccion).Tables[0].Rows.Count == 0)
                 {
@@ -114,11 +114,11 @@ namespace FrbaHotel.AbmHotel
             foreach (DataGridViewRow regimen in dgRegimenes.SelectedRows)
             {
                 string id_regimen = regimen.Cells[0].Value.ToString();
-                string nuevo_hotel_regimen = "insert into CAIA_UNLIMITED.Regimen_X_Hotel (regi_hote_codigo, regi_hote_id) values (" + 
-                    id_regimen +", " + id_hotel + ")";
+                string nuevo_hotel_regimen = "insert into CAIA_UNLIMITED.Regimen_X_Hotel (regi_hote_codigo, regi_hote_id) values (" +
+                    id_regimen + ", " + id_hotel + ")";
                 DataBase.procedureBD(nuevo_hotel_regimen);
             }
-                
+
         }
 
         private string ObtenerIDHotel(string id_dire)
