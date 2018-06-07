@@ -33,6 +33,7 @@ namespace FrbaHotel.AbmHotel
         private void btnEstado_Click(object sender, EventArgs e)
         {
             this.Hide();
+            new BajaHotel().Show();
         }
 
         private void btnAtras_Click(object sender, EventArgs e)
