@@ -71,7 +71,7 @@ namespace FrbaHotel.AbmHotel
                     this.Hide();
                     new FiltrarHotel().Show();
                 }
-               
+
             }
         }
 
@@ -95,7 +95,7 @@ namespace FrbaHotel.AbmHotel
 
         private bool hayModificaciones()
         {
-            if (txtNombreHotel.Text.Trim() == nombreViejo && txtMail.Text.Trim() == mailViejo && txtTelefono.Text.Trim() == telefonoViejo && txtDireccion.Text.Trim() == direccionVieja && txtNumero.Text.Trim() == numeroViejo && txtCiudad.Text.Trim() == ciudadVieja && txtPais.Text.Trim() == paisViejo && cantidadDeEstrellas == (cbCantidadEstrellas.SelectedIndex + 1).ToString()) 
+            if (txtNombreHotel.Text.Trim() == nombreViejo && txtMail.Text.Trim() == mailViejo && txtTelefono.Text.Trim() == telefonoViejo && txtDireccion.Text.Trim() == direccionVieja && txtNumero.Text.Trim() == numeroViejo && txtCiudad.Text.Trim() == ciudadVieja && txtPais.Text.Trim() == paisViejo && cantidadDeEstrellas == (cbCantidadEstrellas.SelectedIndex + 1).ToString())
             {
                 return false;
             }

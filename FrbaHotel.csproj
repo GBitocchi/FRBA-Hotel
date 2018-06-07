@@ -98,6 +98,12 @@
     <Compile Include="AbmHotel\BajaHotel.Designer.cs">
       <DependentUpon>BajaHotel.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmHotel\CampoInvalido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHotel\CampoInvalido.Designer.cs">
+      <DependentUpon>CampoInvalido.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmHotel\CrearHotel.cs">
       <SubType>Form</SubType>
     </Compile>

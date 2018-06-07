@@ -70,6 +70,12 @@ namespace FrbaHotel.AbmHotel
         public CrearHotel()
         {
             InitializeComponent();
+            ocultarErrores();
+            MostrarDG();
+        }
+
+        private void ocultarErrores()
+        {
             lblCiudad.Visible = false;
             lblDireccion.Visible = false;
             lblEstrellas.Visible = false;
@@ -77,7 +83,6 @@ namespace FrbaHotel.AbmHotel
             lblNombreHotel.Visible = false;
             lblPais.Visible = false;
             lblTelefono.Visible = false;
-            MostrarDG();
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
@@ -88,11 +93,11 @@ namespace FrbaHotel.AbmHotel
                 string existencia_direccion = String.Format("select * from CAIA_UNLIMITED.Direccion where dire_dom_calle='{0}' and dire_nro_calle={1} and dire_ciudad='{2}' and dire_pais='{3}'", txtDireccion.Text.Trim(), txtNumero.Text.Trim(), txtCiudad.Text.Trim(), txtPais.Text.Trim());
                 if (DataBase.realizarConsulta(existencia_direccion).Tables[0].Rows.Count == 0)
                 {
-                        ejecutarStoredProcedure();
-                        string id_hotel = ObtenerIDHotel();
-                        CrearRegimenXHotel(id_hotel);
-                        new HotelCreado().Show();
-                        reiniciarVista();
+                    ejecutarStoredProcedure();
+                    string id_hotel = ObtenerIDHotel();
+                    CrearRegimenXHotel(id_hotel);
+                    new HotelCreado().Show();
+                    reiniciarVista();
                 }
                 else
                 {
