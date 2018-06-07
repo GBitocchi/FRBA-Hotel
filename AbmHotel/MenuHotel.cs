@@ -27,7 +27,7 @@ namespace FrbaHotel.AbmHotel
         private void btnModificar_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new ModificarHotel("1").Show();
+            new FiltrarHotel().Show();
         }
 
         private void btnEstado_Click(object sender, EventArgs e)

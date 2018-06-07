@@ -35,6 +35,7 @@
             this.btnFiltrar = new System.Windows.Forms.Button();
             this.dgHoteles = new System.Windows.Forms.DataGridView();
             this.btnAtras = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgHoteles)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,6 +86,7 @@
             this.dgHoteles.Name = "dgHoteles";
             this.dgHoteles.ReadOnly = true;
             this.dgHoteles.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dgHoteles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgHoteles.Size = new System.Drawing.Size(521, 150);
             this.dgHoteles.TabIndex = 5;
             this.dgHoteles.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgHoteles_CellContentDoubleClick);
@@ -99,11 +101,22 @@
             this.btnAtras.UseVisualStyleBackColor = true;
             this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(29, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(128, 25);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Filtrar hoteles";
+            // 
             // FiltrarHotel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(565, 292);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAtras);
             this.Controls.Add(this.dgHoteles);
             this.Controls.Add(this.btnFiltrar);
@@ -128,5 +141,6 @@
         private System.Windows.Forms.Button btnFiltrar;
         private System.Windows.Forms.DataGridView dgHoteles;
         private System.Windows.Forms.Button btnAtras;
+        private System.Windows.Forms.Label label1;
     }
 }

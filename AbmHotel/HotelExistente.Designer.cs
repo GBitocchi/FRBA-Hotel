@@ -61,7 +61,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAceptar);
             this.Name = "HotelExistente";
-            this.Text = "HotelExistente";
+            this.Text = "Creacion de hotel";
             this.ResumeLayout(false);
             this.PerformLayout();
 

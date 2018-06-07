@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -63,11 +64,42 @@ namespace FrbaHotel.AbmHotel
         {
             if (completo())
             {
+                if (hayModificaciones())
+                {
+                    ejecutarStoredProcedure();
+                    new HotelModificado().Show();
+                    this.Hide();
+                    new FiltrarHotel().Show();
+                }
+               
             }
-            this.Hide();
-            //Abro la ventana de filtro
+        }
 
+        private void ejecutarStoredProcedure()
+        {
+            SqlConnection db = DataBase.conectarBD();
+            SqlCommand modificarHotel = new SqlCommand("sp_ModificarHotel", db);
+            modificarHotel.CommandType = CommandType.StoredProcedure;
+            modificarHotel.Parameters.AddWithValue("@idHotel", hotel_id);
+            modificarHotel.Parameters.AddWithValue("@nombre_hotel", txtNombreHotel.Text.Trim());
+            modificarHotel.Parameters.AddWithValue("@mail", txtMail.Text.Trim());
+            modificarHotel.Parameters.AddWithValue("@estrellas", cbCantidadEstrellas.SelectedIndex + 1);
+            modificarHotel.Parameters.AddWithValue("@hote_telefono", txtTelefono.Text.Trim());
+            modificarHotel.Parameters.AddWithValue("@calle", txtDireccion.Text.Trim());
+            modificarHotel.Parameters.AddWithValue("@numero_calle", Int32.Parse(txtNumero.Text.Trim()));
+            modificarHotel.Parameters.AddWithValue("@ciudad", txtCiudad.Text.Trim());
+            modificarHotel.Parameters.AddWithValue("@pais", txtPais.Text.Trim());
+            modificarHotel.ExecuteNonQuery();
+            db.Close();
+        }
 
+        private bool hayModificaciones()
+        {
+            if (txtNombreHotel.Text.Trim() == nombreViejo && txtMail.Text.Trim() == mailViejo && txtTelefono.Text.Trim() == telefonoViejo && txtDireccion.Text.Trim() == direccionVieja && txtNumero.Text.Trim() == numeroViejo && txtCiudad.Text.Trim() == ciudadVieja && txtPais.Text.Trim() == paisViejo && cantidadDeEstrellas == (cbCantidadEstrellas.SelectedIndex + 1).ToString()) 
+            {
+                return false;
+            }
+            return true;
         }
 
         private bool completo()

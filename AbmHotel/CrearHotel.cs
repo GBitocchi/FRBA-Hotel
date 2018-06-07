@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -84,29 +85,48 @@ namespace FrbaHotel.AbmHotel
             if (Completo())
             {
                 string cant_estrellas = cbEstrellas.SelectedItem.ToString().Split(' ')[0];
-                string existencia_hotel = String.Format("select * from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) where hote_nombre ='{0}' and hote_cant_estrellas={1} and dire_dom_calle ='{2}' and dire_nro_calle ={3} and  dire_ciudad='{4}' and dire_pais='{5}'", txtNombreHotel.Text.Trim(), cant_estrellas, txtDireccion.Text.Trim(), txtNumero.Text.Trim(), txtCiudad.Text.Trim(), txtPais.Text.Trim());
                 string existencia_direccion = String.Format("select * from CAIA_UNLIMITED.Direccion where dire_dom_calle='{0}' and dire_nro_calle={1} and dire_ciudad='{2}' and dire_pais='{3}'", txtDireccion.Text.Trim(), txtNumero.Text.Trim(), txtCiudad.Text.Trim(), txtPais.Text.Trim());
                 if (DataBase.realizarConsulta(existencia_direccion).Tables[0].Rows.Count == 0)
                 {
-                    if (DataBase.realizarConsulta(existencia_hotel).Tables[0].Rows.Count == 0)
-                    {
-                        NuevaDireccion();
-                        string id_dire = ObtenerIDDireccion();
-                        NuevoHotel(cant_estrellas, id_dire);
-                        string id_hotel = ObtenerIDHotel(id_dire);
+                        ejecutarStoredProcedure();
+                        string id_hotel = ObtenerIDHotel();
                         CrearRegimenXHotel(id_hotel);
                         new HotelCreado().Show();
-                    }
-                    else
-                    {
-                        new HotelExistente().Show();
-                    }
+                        reiniciarVista();
                 }
                 else
                 {
                     new DirecccionExistente().Show();
                 }
             }
+        }
+
+        private void ejecutarStoredProcedure()
+        {
+            SqlConnection db = DataBase.conectarBD();
+            SqlCommand agregarHotel = new SqlCommand("sp_AlmacenarHotel", db);
+            agregarHotel.CommandType = CommandType.StoredProcedure;
+            agregarHotel.Parameters.AddWithValue("@nombre_hotel", txtNombreHotel.Text.Trim());
+            agregarHotel.Parameters.AddWithValue("@mail", txtMail.Text.Trim());
+            agregarHotel.Parameters.AddWithValue("@estrellas", cbEstrellas.SelectedIndex + 1);
+            agregarHotel.Parameters.AddWithValue("@hote_telefono", txtTelefono.Text.Trim());
+            agregarHotel.Parameters.AddWithValue("@calle", txtDireccion.Text.Trim());
+            agregarHotel.Parameters.AddWithValue("@numero_calle", Int32.Parse(txtNumero.Text.Trim()));
+            agregarHotel.Parameters.AddWithValue("@ciudad", txtCiudad.Text.Trim());
+            agregarHotel.Parameters.AddWithValue("@pais", txtPais.Text.Trim());
+            agregarHotel.ExecuteNonQuery();
+            db.Close();
+        }
+
+        private void reiniciarVista()
+        {
+            txtNumero.Clear();
+            txtCiudad.Clear();
+            txtDireccion.Clear();
+            txtMail.Clear();
+            txtNombreHotel.Clear();
+            txtPais.Clear();
+            txtTelefono.Clear();
         }
 
         private void CrearRegimenXHotel(string id_hotel)
@@ -121,38 +141,13 @@ namespace FrbaHotel.AbmHotel
 
         }
 
-        private string ObtenerIDHotel(string id_dire)
+        private string ObtenerIDHotel()
         {
-            string obtener_id_hotel = "select hote_id from CAIA_UNLIMITED.Hotel where hote_nombre ='" + txtNombreHotel.Text.Trim() + "' and hote_mail='" + txtMail.Text.Trim() +
-                "' and dire_id=" + id_dire;
+            string obtener_id_hotel = "select hote_id from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) where hote_nombre ='" + txtNombreHotel.Text.Trim() + "' and hote_mail='" + txtMail.Text.Trim() +
+                "' and dire_dom_calle ='" + txtDireccion.Text.Trim() + "' and dire_nro_calle =" + txtNumero.Text.Trim() + " and dire_ciudad= '" + txtCiudad.Text.Trim() + "' and dire_pais= '" + txtPais.Text.Trim() + "' and dire_telefono = " + txtTelefono.Text.Trim();
             DataSet dh = DataBase.realizarConsulta(obtener_id_hotel);
             string id_hotel = dh.Tables[0].Rows[0][0].ToString();
             return id_hotel;
-        }
-
-        private void NuevoHotel(string cant_estrellas, string id_dire)
-        {
-            string nuevo_hotel = "insert into CAIA_UNLIMITED.Hotel (hote_nombre, hote_mail, hote_cant_estrellas, dire_id, hote_habilitado) values('" + txtNombreHotel.Text.Trim() + "', '" + txtMail.Text.Trim() + "', " +
-                cant_estrellas + ", " + id_dire + ", " + 1 + ")";
-            DataBase.procedureBD(nuevo_hotel);
-        }
-
-        private string ObtenerIDDireccion()
-        {
-            string obtener_id_direccion = "select dire_id from CAIA_UNLIMITED.Direccion where dire_dom_calle= '" + txtDireccion.Text.Trim() + "' and dire_nro_calle= " +
-                txtNumero.Text.Trim() + " and dire_ciudad= '" + txtCiudad.Text.Trim() + "' and dire_pais= '" + txtPais.Text.Trim() + "' and dire_telefono= '" +
-                txtTelefono.Text.Trim() + "'";
-            DataSet dd = DataBase.realizarConsulta(obtener_id_direccion);
-            string id_dire = dd.Tables[0].Rows[0][0].ToString();
-            return id_dire;
-        }
-
-        private void NuevaDireccion()
-        {
-            string crear_dire = "insert into CAIA_UNLIMITED.Direccion (dire_dom_calle, dire_nro_calle, dire_ciudad, dire_pais, dire_telefono) values('" +
-                txtDireccion.Text.Trim() + "', " + txtNumero.Text.Trim() + ", '" + txtCiudad.Text.Trim() + "', '" + txtPais.Text.Trim() + "', '" +
-                txtTelefono.Text.Trim() + "')";
-            DataBase.procedureBD(crear_dire);
         }
 
         private void btnAtras_Click(object sender, EventArgs e)
