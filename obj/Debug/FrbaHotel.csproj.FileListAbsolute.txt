@@ -155,3 +155,17 @@ C:\Users\Lucas\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.Properties.Resources.resou
 C:\Users\Lucas\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.csproj.GenerateResource.Cache
 C:\Users\Lucas\Desktop\FRBA-Hotel\bin\Debug\FrbaHotel.exe
 C:\Users\Lucas\Desktop\FRBA-Hotel\bin\Debug\FrbaHotel.pdb
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.BajaHabitacion.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.EstadoCambiado.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.BajaHotel.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.CrearHotel.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.DirecccionExistente.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.FechasMantenimiento.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.FiltrarHotel.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.HotelCreado.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.HotelExistente.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.HotelModificado.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.MenuHotel.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.ModificarHotel.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.Login.cambioContraseña.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.Menu_Sistema.VistaSistema.resources
