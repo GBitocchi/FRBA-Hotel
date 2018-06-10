@@ -12,7 +12,7 @@ namespace FrbaHotel.AbmHabitacion
 {
     public partial class BajaHabitacion : Form
     {
-        int hotel_id;
+        string hotel_id;
         private void MostrarDG()
         {
             string nueva_consulta = "select habi_numero as 'Numero de habitacion', habi_piso as 'Piso', habi_frente 'Ubicacion', habi_habilitado as 'Habilitada' from CAIA_UNLIMITED.Habitacion where hote_id=" + hotel_id.ToString();
@@ -20,7 +20,7 @@ namespace FrbaHotel.AbmHabitacion
             dgBajaHabitacion.DataSource = ds_habitaciones.Tables[0];
         }
 
-        public BajaHabitacion(int hotelId)
+        public BajaHabitacion(string hotelId)
         {
             InitializeComponent();
             hotel_id = hotelId;

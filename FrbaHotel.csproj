@@ -74,6 +74,12 @@
     <Compile Include="AbmHabitacion\HabitacionCreada.Designer.cs">
       <DependentUpon>HabitacionCreada.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmHabitacion\HabitacionExistente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHabitacion\HabitacionExistente.Designer.cs">
+      <DependentUpon>HabitacionExistente.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmHabitacion\HabitacionModificada.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,18 @@
     </Compile>
     <Compile Include="AbmHotel\FiltrarHotel.Designer.cs">
       <DependentUpon>FiltrarHotel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmHotel\HayMantenimientos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHotel\HayMantenimientos.Designer.cs">
+      <DependentUpon>HayMantenimientos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmHotel\HayReservas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHotel\HayReservas.Designer.cs">
+      <DependentUpon>HayReservas.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmHotel\HotelBajaExitosa.cs">
       <SubType>Form</SubType>
@@ -257,6 +275,9 @@
     <EmbeddedResource Include="AbmHabitacion\HabitacionCreada.resx">
       <DependentUpon>HabitacionCreada.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmHabitacion\HabitacionExistente.resx">
+      <DependentUpon>HabitacionExistente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmHabitacion\HabitacionModificada.resx">
       <DependentUpon>HabitacionModificada.cs</DependentUpon>
     </EmbeddedResource>
@@ -280,6 +301,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\FiltrarHotel.resx">
       <DependentUpon>FiltrarHotel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\HayMantenimientos.resx">
+      <DependentUpon>HayMantenimientos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\HayReservas.resx">
+      <DependentUpon>HayReservas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\HotelCreado.resx">
       <DependentUpon>HotelCreado.cs</DependentUpon>

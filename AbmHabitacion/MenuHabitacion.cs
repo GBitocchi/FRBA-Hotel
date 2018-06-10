@@ -12,8 +12,8 @@ namespace FrbaHotel.AbmHabitacion
 {
     public partial class MenuHabitacion : Form
     {
-        int hotel_id;
-        public MenuHabitacion(int hotelId)
+        string hotel_id;
+        public MenuHabitacion(string hotelId)
         {
             InitializeComponent();
             hotel_id = hotelId;

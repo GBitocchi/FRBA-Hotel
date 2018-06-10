@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace FrbaHotel.AbmHabitacion
         string numeroPiso;
         string ubicacion;
         string descripcion;
-        int hotel_id;
+        string hotel_id;
         private void MostrarDG()
         {
             string nueva_consulta = "select habi_numero as 'Numero de habitacion', habi_piso as 'Piso', habi_frente 'Ubicacion', habi_descripcion as 'Descripcion' from CAIA_UNLIMITED.Habitacion where hote_id = " + hotel_id.ToString();
@@ -26,12 +27,33 @@ namespace FrbaHotel.AbmHabitacion
 
         private void ActualizarBD() 
         {
-            string actualizacion ="update CAIA_UNLIMITED.Habitacion set habi_numero= " + txtNroHabitacion.Text + ", habi_piso = " + txtPiso.Text + ", habi_frente ='" + txtUbicacion.Text + "', habi_descripcion ='" + txtDescripcion.Text + "' where hote_id = " + hotel_id.ToString() + " and habi_numero =" + txtNroHabitacion.Text;
-            DataBase.procedureBD(actualizacion);
-            new HabitacionModificada().Show();
+            try
+            {
+                ejecutarStoredProcedure();
+                new HabitacionModificada().Show();
+            }
+            catch
+            {
+                new HabitacionExistente().Show();
+            }
         }
 
-        public MenuModificacion(int hotelId)
+        private void ejecutarStoredProcedure()
+        {
+            SqlConnection db = DataBase.conectarBD();
+            SqlCommand modificarHabitacion = new SqlCommand("sp_ModificarHabitacion", db);
+            modificarHabitacion.CommandType = CommandType.StoredProcedure;
+            modificarHabitacion.Parameters.AddWithValue("@numero_habitacion", txtNroHabitacion.Text.Trim());
+            modificarHabitacion.Parameters.AddWithValue("@piso", txtPiso.Text.Trim());
+            modificarHabitacion.Parameters.AddWithValue("@frente", txtUbicacion.Text.Trim());
+            modificarHabitacion.Parameters.AddWithValue("@descripcion", txtDescripcion.Text.Trim());
+            modificarHabitacion.Parameters.AddWithValue("@viejo_numero", numeroAnterior);
+            modificarHabitacion.Parameters.AddWithValue("@idHotel", hotel_id);
+            modificarHabitacion.ExecuteNonQuery();
+            db.Close();
+        }
+
+        public MenuModificacion(string hotelId)
         {
             InitializeComponent();
             lblNroHabitacion.Visible = false;

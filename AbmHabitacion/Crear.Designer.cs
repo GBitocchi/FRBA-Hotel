@@ -37,16 +37,15 @@
             this.txtNro_habitacion = new System.Windows.Forms.TextBox();
             this.txtPiso = new System.Windows.Forms.TextBox();
             this.txtUbicacion = new System.Windows.Forms.TextBox();
-            this.txtTipo_habitacion = new System.Windows.Forms.TextBox();
             this.txtDescripcion = new System.Windows.Forms.RichTextBox();
             this.btnCrear = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblErrorNroHab = new System.Windows.Forms.Label();
             this.lblErrorPiso = new System.Windows.Forms.Label();
             this.lblErrorUbi = new System.Windows.Forms.Label();
-            this.lblErrorTipoHab = new System.Windows.Forms.Label();
             this.lblErrorDesc = new System.Windows.Forms.Label();
             this.lblErrorHabiExistente = new System.Windows.Forms.Label();
+            this.cbTipos = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -130,13 +129,6 @@
             this.txtUbicacion.Size = new System.Drawing.Size(122, 20);
             this.txtUbicacion.TabIndex = 8;
             // 
-            // txtTipo_habitacion
-            // 
-            this.txtTipo_habitacion.Location = new System.Drawing.Point(281, 163);
-            this.txtTipo_habitacion.Name = "txtTipo_habitacion";
-            this.txtTipo_habitacion.Size = new System.Drawing.Size(122, 20);
-            this.txtTipo_habitacion.TabIndex = 9;
-            // 
             // txtDescripcion
             // 
             this.txtDescripcion.Location = new System.Drawing.Point(63, 215);
@@ -200,17 +192,6 @@
             this.lblErrorUbi.TabIndex = 15;
             this.lblErrorUbi.Text = "*Ingrese ubicación";
             // 
-            // lblErrorTipoHab
-            // 
-            this.lblErrorTipoHab.AutoSize = true;
-            this.lblErrorTipoHab.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErrorTipoHab.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorTipoHab.Location = new System.Drawing.Point(424, 163);
-            this.lblErrorTipoHab.Name = "lblErrorTipoHab";
-            this.lblErrorTipoHab.Size = new System.Drawing.Size(176, 20);
-            this.lblErrorTipoHab.TabIndex = 16;
-            this.lblErrorTipoHab.Text = "*Ingrese tipo habitación";
-            // 
             // lblErrorDesc
             // 
             this.lblErrorDesc.AutoSize = true;
@@ -233,21 +214,28 @@
             this.lblErrorHabiExistente.TabIndex = 18;
             this.lblErrorHabiExistente.Text = "*Habitacion ya existente";
             // 
+            // cbTipos
+            // 
+            this.cbTipos.FormattingEnabled = true;
+            this.cbTipos.Location = new System.Drawing.Point(282, 165);
+            this.cbTipos.Name = "cbTipos";
+            this.cbTipos.Size = new System.Drawing.Size(121, 21);
+            this.cbTipos.TabIndex = 19;
+            // 
             // Crear
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(676, 367);
+            this.Controls.Add(this.cbTipos);
             this.Controls.Add(this.lblErrorHabiExistente);
             this.Controls.Add(this.lblErrorDesc);
-            this.Controls.Add(this.lblErrorTipoHab);
             this.Controls.Add(this.lblErrorUbi);
             this.Controls.Add(this.lblErrorPiso);
             this.Controls.Add(this.lblErrorNroHab);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnCrear);
             this.Controls.Add(this.txtDescripcion);
-            this.Controls.Add(this.txtTipo_habitacion);
             this.Controls.Add(this.txtUbicacion);
             this.Controls.Add(this.txtPiso);
             this.Controls.Add(this.txtNro_habitacion);
@@ -275,15 +263,14 @@
         private System.Windows.Forms.TextBox txtNro_habitacion;
         private System.Windows.Forms.TextBox txtPiso;
         private System.Windows.Forms.TextBox txtUbicacion;
-        private System.Windows.Forms.TextBox txtTipo_habitacion;
         private System.Windows.Forms.RichTextBox txtDescripcion;
         private System.Windows.Forms.Button btnCrear;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label lblErrorNroHab;
         private System.Windows.Forms.Label lblErrorPiso;
         private System.Windows.Forms.Label lblErrorUbi;
-        private System.Windows.Forms.Label lblErrorTipoHab;
         private System.Windows.Forms.Label lblErrorDesc;
         private System.Windows.Forms.Label lblErrorHabiExistente;
+        private System.Windows.Forms.ComboBox cbTipos;
     }
 }
