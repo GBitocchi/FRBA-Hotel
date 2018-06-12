@@ -44,11 +44,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbmFacturacion\EstadiasAFacturar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmFacturacion\EstadiasAFacturar.Designer.cs">
+      <DependentUpon>EstadiasAFacturar.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmCliente\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AbmCliente\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmFacturacion\Facturacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmFacturacion\Facturacion.Designer.cs">
+      <DependentUpon>Facturacion.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmHabitacion\BajaHabitacion.cs">
       <SubType>Form</SubType>
@@ -263,6 +275,12 @@
     <Compile Include="RegistrarEstadia\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AbmFacturacion\EstadiasAFacturar.resx">
+      <DependentUpon>EstadiasAFacturar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmFacturacion\Facturacion.resx">
+      <DependentUpon>Facturacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmHabitacion\BajaHabitacion.resx">
       <DependentUpon>BajaHabitacion.cs</DependentUpon>
     </EmbeddedResource>

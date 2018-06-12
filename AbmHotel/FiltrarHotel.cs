@@ -51,7 +51,7 @@ namespace FrbaHotel.AbmHotel
                 }
                 else
                 {
-                    //Ventana de error
+                    new CampoInvalido().Show();
                     return "";
                 }
             }
