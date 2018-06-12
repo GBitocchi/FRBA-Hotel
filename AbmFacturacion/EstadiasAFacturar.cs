@@ -21,7 +21,7 @@ namespace FrbaHotel.AbmFacturacion
 
         private void btnFacturar_Click(object sender, EventArgs e)
         {
-            string codigoEstadia = dgEstadias.SelectedRows[0].Cells[0].Value.ToString();
+            string codigoEstadia = dgEstadias.SelectedRows[0].Cells[1].Value.ToString();
             new Facturacion(codigoEstadia).Show();
             this.Hide();
         }

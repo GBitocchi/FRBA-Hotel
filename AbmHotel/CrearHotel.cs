@@ -94,8 +94,6 @@ namespace FrbaHotel.AbmHotel
                 if (DataBase.realizarConsulta(existencia_direccion).Tables[0].Rows.Count == 0)
                 {
                     ejecutarStoredProcedure();
-                    string id_hotel = ObtenerIDHotel();
-                    CrearRegimenXHotel(id_hotel);
                     new HotelCreado().Show();
                     reiniciarVista();
                 }
@@ -120,6 +118,15 @@ namespace FrbaHotel.AbmHotel
             agregarHotel.Parameters.AddWithValue("@ciudad", txtCiudad.Text.Trim());
             agregarHotel.Parameters.AddWithValue("@pais", txtPais.Text.Trim());
             agregarHotel.ExecuteNonQuery();
+            string id_hotel = ObtenerIDHotel();
+            foreach (DataGridViewRow regimen in dgRegimenes.SelectedRows)
+            {
+                SqlCommand agregarRegimenHotel = new SqlCommand("sp_RegimenXHotel", db);
+                agregarRegimenHotel.CommandType = CommandType.StoredProcedure;
+                agregarRegimenHotel.Parameters.AddWithValue("@codigo_regimen", regimen.Cells[0].Value.ToString());
+                agregarRegimenHotel.Parameters.AddWithValue("@id_hotel", id_hotel);
+                agregarRegimenHotel.ExecuteNonQuery();
+            }
             db.Close();
         }
 
@@ -132,18 +139,7 @@ namespace FrbaHotel.AbmHotel
             txtNombreHotel.Clear();
             txtPais.Clear();
             txtTelefono.Clear();
-        }
-
-        private void CrearRegimenXHotel(string id_hotel)
-        {
-            foreach (DataGridViewRow regimen in dgRegimenes.SelectedRows)
-            {
-                string id_regimen = regimen.Cells[0].Value.ToString();
-                string nuevo_hotel_regimen = "insert into CAIA_UNLIMITED.Regimen_X_Hotel (regi_hote_codigo, regi_hote_id) values (" +
-                    id_regimen + ", " + id_hotel + ")";
-                DataBase.procedureBD(nuevo_hotel_regimen);
-            }
-
+            ocultarErrores();
         }
 
         private string ObtenerIDHotel()

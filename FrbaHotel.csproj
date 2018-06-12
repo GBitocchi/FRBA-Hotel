@@ -62,6 +62,12 @@
     <Compile Include="AbmFacturacion\Facturacion.Designer.cs">
       <DependentUpon>Facturacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmFacturacion\FacturaInvalidacs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmFacturacion\FacturaInvalidacs.Designer.cs">
+      <DependentUpon>FacturaInvalidacs.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmHabitacion\BajaHabitacion.cs">
       <SubType>Form</SubType>
     </Compile>
