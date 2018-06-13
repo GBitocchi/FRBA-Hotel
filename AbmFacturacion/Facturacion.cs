@@ -118,7 +118,7 @@ namespace FrbaHotel.AbmFacturacion
         private void ejecutarStoredProcedure()
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand agregarFactura = new SqlCommand("sp_AgregarFactura", db);
+            SqlCommand agregarFactura = new SqlCommand("sp_AlmacenarFactura", db);
             agregarFactura.CommandType = CommandType.StoredProcedure;
             agregarFactura.Parameters.AddWithValue("@numero", txtNroFactura.Text.Trim());
             agregarFactura.Parameters.AddWithValue("@total", txtTotal.Text.Trim());
@@ -126,12 +126,15 @@ namespace FrbaHotel.AbmFacturacion
             agregarFactura.Parameters.AddWithValue("@mail", txtHuesped.Text.Trim());
             agregarFactura.Parameters.AddWithValue("@documento", documento);
             agregarFactura.ExecuteNonQuery();
-            //SqlCommand agregarItemFactura = new SqlCommand("sp_AgregarItem", db);
-            //agregarItemFactura.CommandType = CommandType.StoredProcedure;
-            //agregarItemFactura.Parameters.AddWithValue();
-            //agregarItemFactura.Parameters.AddWithValue();
-            //agregarItemFactura.Parameters.AddWithValue();
-            //agregarItemFactura.Parameters.AddWithValue();            
+            foreach (DataGridViewRow item in dgConsumibles.Rows)
+            {
+                SqlCommand agregarItemFactura = new SqlCommand("sp_AlmacenarItem", db);
+                agregarItemFactura.CommandType = CommandType.StoredProcedure;
+                agregarItemFactura.Parameters.AddWithValue("@consumible",item.Cells[0].Value.ToString());
+                agregarItemFactura.Parameters.AddWithValue("@cantidad", item.Cells[3].Value.ToString());
+                agregarItemFactura.Parameters.AddWithValue("@monto", (Convert.ToDouble(item.Cells[2].Value) * Convert.ToDouble(item.Cells[3].Value)).ToString());
+                agregarItemFactura.Parameters.AddWithValue("@numero_factura", txtNroFactura.Text.Trim());
+            }    
             db.Close();
         }
 

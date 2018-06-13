@@ -22,6 +22,7 @@ namespace FrbaHotel.AbmHotel
             string consultaHotel = string.Format("select hote_nombre as 'Nombre hotel', hote_mail as 'Mail', hote_cant_estrellas as 'Cantidad de estrellas', dire_telefono as 'Telefono', dire_dom_calle as 'Calle', dire_nro_calle as 'Numero de calle', dire_ciudad as 'Ciudad', dire_pais as 'Pais' from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) where hote_id = {0}", hotel_id);
             DataTable hotel = DataBase.realizarConsulta(consultaHotel).Tables[0];
             cargarTextBoxes(hotel);
+            //dgRegimenes.DataSource = DataBase.realizarConsulta("select regi_codigo as 'Codigo', regi_descripcion as 'Nombre'
             valoresViejos();
             ocultarErrores();
         }
