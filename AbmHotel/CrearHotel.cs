@@ -107,7 +107,7 @@ namespace FrbaHotel.AbmHotel
         private void ejecutarStoredProcedure()
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand agregarHotel = new SqlCommand("sp_AlmacenarHotel", db);
+            SqlCommand agregarHotel = new SqlCommand("CAIA_UNLIMITED.sp_AlmacenarHotel", db);
             agregarHotel.CommandType = CommandType.StoredProcedure;
             agregarHotel.Parameters.AddWithValue("@nombre_hotel", txtNombreHotel.Text.Trim());
             agregarHotel.Parameters.AddWithValue("@mail", txtMail.Text.Trim());
@@ -121,7 +121,7 @@ namespace FrbaHotel.AbmHotel
             string id_hotel = ObtenerIDHotel();
             foreach (DataGridViewRow regimen in dgRegimenes.SelectedRows)
             {
-                SqlCommand agregarRegimenHotel = new SqlCommand("sp_RegimenXHotel", db);
+                SqlCommand agregarRegimenHotel = new SqlCommand("CAIA_UNLIMITED.sp_RegimenXHotel", db);
                 agregarRegimenHotel.CommandType = CommandType.StoredProcedure;
                 agregarRegimenHotel.Parameters.AddWithValue("@codigo_regimen", regimen.Cells[0].Value.ToString());
                 agregarRegimenHotel.Parameters.AddWithValue("@id_hotel", id_hotel);

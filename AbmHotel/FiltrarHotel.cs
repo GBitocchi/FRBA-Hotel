@@ -15,8 +15,8 @@ namespace FrbaHotel.AbmHotel
         public FiltrarHotel()
         {
             InitializeComponent();
-            DataSet hoteles = DataBase.realizarConsulta("select hote_id as 'ID', hote_nombre as 'Nombre', hote_cant_estrellas as 'Estrellas', hote_mail as 'Mail', dire_dom_calle as 'Calle', dire_nro_calle as 'Numero', dire_ciudad as 'Ciudad', dire_pais as 'Pais', dire_telefono as 'Telefono' from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Direccion D on (D.dire_id = H.dire_id)");
-            dgHoteles.DataSource = hoteles.Tables[0];
+            dgHoteles.DataSource = DataBase.realizarConsulta("select hote_id as 'ID', hote_nombre as 'Nombre', hote_cant_estrellas as 'Estrellas', hote_mail as 'Mail', dire_dom_calle as 'Calle', dire_nro_calle as 'Numero', dire_ciudad as 'Ciudad', dire_pais as 'Pais', dire_telefono as 'Telefono' from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Direccion D on (D.dire_id = H.dire_id)").Tables[0];
+
         }
 
         private void btnFiltrar_Click(object sender, EventArgs e)
@@ -89,7 +89,7 @@ namespace FrbaHotel.AbmHotel
             new MenuHotel().Show();
         }
 
-        private void dgHoteles_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgHoteles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string idHotel = dgHoteles.SelectedRows[0].Cells[0].Value.ToString();
             this.Hide();

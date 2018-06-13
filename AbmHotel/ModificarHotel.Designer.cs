@@ -54,6 +54,7 @@
             this.lblDireccion = new System.Windows.Forms.Label();
             this.lblCiudad = new System.Windows.Forms.Label();
             this.lblPais = new System.Windows.Forms.Label();
+            this.lblRegimenes = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgRegimenes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -133,9 +134,11 @@
             // 
             // dgRegimenes
             // 
+            this.dgRegimenes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgRegimenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgRegimenes.Location = new System.Drawing.Point(70, 295);
             this.dgRegimenes.Name = "dgRegimenes";
+            this.dgRegimenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgRegimenes.Size = new System.Drawing.Size(481, 150);
             this.dgRegimenes.TabIndex = 9;
             // 
@@ -307,11 +310,23 @@
             this.lblPais.TabIndex = 27;
             this.lblPais.Text = "*Falta pais";
             // 
+            // lblRegimenes
+            // 
+            this.lblRegimenes.AutoSize = true;
+            this.lblRegimenes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegimenes.ForeColor = System.Drawing.Color.Red;
+            this.lblRegimenes.Location = new System.Drawing.Point(557, 295);
+            this.lblRegimenes.Name = "lblRegimenes";
+            this.lblRegimenes.Size = new System.Drawing.Size(138, 20);
+            this.lblRegimenes.TabIndex = 28;
+            this.lblRegimenes.Text = "*Faltan regimenes";
+            // 
             // ModificarHotel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 515);
+            this.Controls.Add(this.lblRegimenes);
             this.Controls.Add(this.lblPais);
             this.Controls.Add(this.lblCiudad);
             this.Controls.Add(this.lblDireccion);
@@ -340,6 +355,7 @@
             this.Controls.Add(this.label1);
             this.Name = "ModificarHotel";
             this.Text = "Modificar Hotel";
+//            this.Load += new System.EventHandler(this.ModificarHotel_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgRegimenes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -374,5 +390,6 @@
         private System.Windows.Forms.Label lblDireccion;
         private System.Windows.Forms.Label lblCiudad;
         private System.Windows.Forms.Label lblPais;
+        private System.Windows.Forms.Label lblRegimenes;
     }
 }

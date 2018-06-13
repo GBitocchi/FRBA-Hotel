@@ -204,3 +204,12 @@ C:\Users\Lucas\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmRegimen.Crear.resources
 C:\Users\Lucas\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmRegimen.MenuModificarDarDeBaja.resources
 C:\Users\Lucas\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmRegimen.MenuRegimen.resources
 C:\Users\Lucas\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmRegimen.Modificacion.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmCliente.Crear.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmCliente.MenuClientes.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmCliente.MenuModificarYBaja.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmCliente.Modificar.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmRegimen.Crear.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmRegimen.MenuModificarDarDeBaja.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmRegimen.MenuRegimen.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmRegimen.Modificacion.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.ReservasParaRegimen.resources

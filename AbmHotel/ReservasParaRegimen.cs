@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.AbmHotel
 {
-    public partial class HotelModificado : Form
+    public partial class ReservasParaRegimen : Form
     {
-        public HotelModificado()
+        public ReservasParaRegimen()
         {
             InitializeComponent();
         }
@@ -20,7 +20,6 @@ namespace FrbaHotel.AbmHotel
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new FiltrarHotel().Show();
         }
     }
 }

@@ -34,7 +34,7 @@ namespace FrbaHotel.AbmRegimen
         private void btnDarDeBaja_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new Modificacion().Show();
+            //new Modificacion().Show();
         }
        
     }

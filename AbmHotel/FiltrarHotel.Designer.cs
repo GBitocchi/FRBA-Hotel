@@ -93,7 +93,8 @@
             this.dgHoteles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgHoteles.Size = new System.Drawing.Size(521, 150);
             this.dgHoteles.TabIndex = 5;
-            this.dgHoteles.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgHoteles_CellContentDoubleClick);
+//            this.dgHoteles.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgHoteles_CellContentDoubleClick);
+            this.dgHoteles.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgHoteles_CellDoubleClick);
             // 
             // btnAtras
             // 
