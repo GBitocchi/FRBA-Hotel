@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.AbmFacturacion
 {
-    public partial class FacturaInvalida : Form
+    public partial class PagoRealizado : Form
     {
-        public FacturaInvalida()
+        public PagoRealizado()
         {
             InitializeComponent();
         }
@@ -20,6 +20,7 @@ namespace FrbaHotel.AbmFacturacion
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             this.Hide();
+            new EstadiasAFacturar().Show();
         }
     }
 }

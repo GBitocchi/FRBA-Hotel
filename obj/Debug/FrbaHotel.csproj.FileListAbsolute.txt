@@ -179,3 +179,10 @@ C:\Users\Lucas\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmFacturacion.Facturacion
 C:\Users\Lucas\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHabitacion.HabitacionExistente.resources
 C:\Users\Lucas\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.HayMantenimientos.resources
 C:\Users\Lucas\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.HayReservas.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmFacturacion.DatosTarjeta.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmFacturacion.FacturaInvalida.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmFacturacion.MedioDePago.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmFacturacion.PagarTarjeta.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmFacturacion.PagoRealizado.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmFacturacion.ErrorDePago.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmFacturacion.FacturaYaPagada.resources

@@ -14,6 +14,7 @@ namespace FrbaHotel.AbmFacturacion
 {
     public partial class Facturacion : Form
     {
+        bool existe = false;
         string documento;
         string estadia;
         public Facturacion(string codigoEstadia)
@@ -32,14 +33,40 @@ namespace FrbaHotel.AbmFacturacion
                         totalAFacturar += Convert.ToInt32(dgConsumibles.Rows[i].Cells[2].Value) * Convert.ToInt32(dgConsumibles.Rows[i].Cells[3].Value);
                     }
                 }
-                totalAFacturar += Convert.ToInt32(txtNoches.Text.Trim()) * Convert.ToDouble(txtPrecioRegimen.Text.Trim());
+                totalAFacturar += Convert.ToInt32(txtNoches.Text.Trim()) * Convert.ToDouble(txtPrecioRegimen.Text.Trim()) * cantidadPersonas();
                 txtTotal.Text = Convert.ToString(totalAFacturar);
             }
             else
             {
+                existe = true;
                 cargarFacturaExistente(codigoEstadia);
             }
             
+        }
+
+        private double cantidadPersonas()
+        {
+            string tipoHabitacion = DataBase.realizarConsulta("select thab_descripcion from CAIA_UNLIMITED.Estadia E join CAIA_UNLIMITED.Reserva R on (E.rese_codigo = R.rese_codigo) join CAIA_UNLIMITED.Habitacion H on (R.hote_id = H.hote_id and R.habi_numero = H.habi_numero) join CAIA_UNLIMITED.Tipo_Habitacion T on (H.thab_codigo = T.thab_codigo) where esta_codigo=" + estadia).Tables[0].Rows[0][0].ToString();
+            if (tipoHabitacion == "Base Simple")
+            {
+                return 1;
+            }
+            else if (tipoHabitacion == "Base Doble")
+            {
+                return 2;
+            }
+            else if (tipoHabitacion == "Base Triple")
+            {
+                return 3;
+            }
+            else if (tipoHabitacion == "Base Cuadruple")
+            {
+                return 4;
+            }
+            else
+            {
+                return 2;
+            }
         }
 
         private void cargarFacturaExistente(string codigoEstadia)
@@ -66,9 +93,21 @@ namespace FrbaHotel.AbmFacturacion
         {
             try
             {
-                ejecutarStoredProcedure();
-                this.Hide();
-                new Pagar(txtNroFactura.Text.Trim()).Show();
+                if (!existe)
+                {
+                    ejecutarStoredProcedure();
+                    this.Hide();
+                    new MedioDePago(txtNroFactura.Text.Trim()).Show();
+                }
+                else if (DataBase.realizarConsulta("select pago_codigo from CAIA_UNLIMITED.Factura where pago_codigo IS NOT NULL AND fact_nro =" + txtNroFactura.Text.Trim()).Tables[0].Rows.Count == 0)
+                {
+                    this.Hide();
+                    new MedioDePago(txtNroFactura.Text.Trim()).Show();
+                }
+                else
+                {
+                    new FacturaYaPagada().Show();
+                }
             }
             catch
             {
@@ -87,6 +126,12 @@ namespace FrbaHotel.AbmFacturacion
             agregarFactura.Parameters.AddWithValue("@mail", txtHuesped.Text.Trim());
             agregarFactura.Parameters.AddWithValue("@documento", documento);
             agregarFactura.ExecuteNonQuery();
+            //SqlCommand agregarItemFactura = new SqlCommand("sp_AgregarItem", db);
+            //agregarItemFactura.CommandType = CommandType.StoredProcedure;
+            //agregarItemFactura.Parameters.AddWithValue();
+            //agregarItemFactura.Parameters.AddWithValue();
+            //agregarItemFactura.Parameters.AddWithValue();
+            //agregarItemFactura.Parameters.AddWithValue();            
             db.Close();
         }
 

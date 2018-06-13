@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.AbmFacturacion
 {
-    public partial class FacturaInvalida : Form
+    public partial class FacturaYaPagada : Form
     {
-        public FacturaInvalida()
+        public FacturaYaPagada()
         {
             InitializeComponent();
         }

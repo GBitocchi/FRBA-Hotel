@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.AbmFacturacion
 {
-    public partial class Pagar : Form
+    public partial class DatosTarjeta : Form
     {
-        public Pagar(string nroFactura)
+        public DatosTarjeta()
         {
             InitializeComponent();
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

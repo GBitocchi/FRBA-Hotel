@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.AbmFacturacion
 {
-    partial class FacturaInvalida
+    partial class FacturaYaPagada
     {
         /// <summary>
         /// Required designer variable.
@@ -35,10 +35,10 @@
             // btnAceptar
             // 
             this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAceptar.Location = new System.Drawing.Point(125, 67);
+            this.btnAceptar.Location = new System.Drawing.Point(120, 62);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(87, 34);
-            this.btnAceptar.TabIndex = 0;
+            this.btnAceptar.TabIndex = 2;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
@@ -47,21 +47,21 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(20, 33);
+            this.label1.Location = new System.Drawing.Point(76, 29);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(288, 25);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "El numero de factura es invalido";
+            this.label1.Size = new System.Drawing.Size(175, 25);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Factura ya pagada";
             // 
-            // FacturaInvalida
+            // FacturaYaPagada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(329, 128);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAceptar);
-            this.Name = "FacturaInvalida";
-            this.Text = "FacturaInvalida";
+            this.Name = "FacturaYaPagada";
+            this.Text = "FacturaYaPagada";
             this.ResumeLayout(false);
             this.PerformLayout();
 
