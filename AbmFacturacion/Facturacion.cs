@@ -41,6 +41,7 @@ namespace FrbaHotel.AbmFacturacion
                 existe = true;
                 cargarFacturaExistente(codigoEstadia);
             }
+            lblNroFactura.Visible = false;
             
         }
 
@@ -95,10 +96,17 @@ namespace FrbaHotel.AbmFacturacion
             {
                 if (!existe)
                 {
-                    ejecutarStoredProcedure();
-                    this.Hide();
-                    new MedioDePago(txtNroFactura.Text.Trim()).Show();
-                }
+                    if (txtNroFactura.Text.Trim() != "")
+                    {
+                        ejecutarStoredProcedure();
+                        this.Hide();
+                        new MedioDePago(txtNroFactura.Text.Trim()).Show();
+                    }
+                    else
+                    {
+                        lblNroFactura.Visible = true;
+                    }
+                      }
                 else if (DataBase.realizarConsulta("select pago_codigo from CAIA_UNLIMITED.Factura where pago_codigo IS NOT NULL AND fact_nro =" + txtNroFactura.Text.Trim()).Tables[0].Rows.Count == 0)
                 {
                     this.Hide();

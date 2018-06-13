@@ -44,6 +44,7 @@
             this.txtNoches = new System.Windows.Forms.TextBox();
             this.txtPrecioRegimen = new System.Windows.Forms.TextBox();
             this.txtPorcentual = new System.Windows.Forms.TextBox();
+            this.lblNroFactura = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgConsumibles)).BeginInit();
             this.SuspendLayout();
             // 
@@ -198,11 +199,23 @@
             this.txtPorcentual.Size = new System.Drawing.Size(100, 20);
             this.txtPorcentual.TabIndex = 16;
             // 
+            // lblNroFactura
+            // 
+            this.lblNroFactura.AutoSize = true;
+            this.lblNroFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNroFactura.ForeColor = System.Drawing.Color.Red;
+            this.lblNroFactura.Location = new System.Drawing.Point(541, 25);
+            this.lblNroFactura.Name = "lblNroFactura";
+            this.lblNroFactura.Size = new System.Drawing.Size(185, 20);
+            this.lblNroFactura.TabIndex = 17;
+            this.lblNroFactura.Text = "*Falta numero de factura";
+            // 
             // Facturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(547, 443);
+            this.ClientSize = new System.Drawing.Size(738, 443);
+            this.Controls.Add(this.lblNroFactura);
             this.Controls.Add(this.txtPorcentual);
             this.Controls.Add(this.txtPrecioRegimen);
             this.Controls.Add(this.txtNoches);
@@ -245,5 +258,6 @@
         private System.Windows.Forms.TextBox txtNoches;
         private System.Windows.Forms.TextBox txtPrecioRegimen;
         private System.Windows.Forms.TextBox txtPorcentual;
+        private System.Windows.Forms.Label lblNroFactura;
     }
 }
