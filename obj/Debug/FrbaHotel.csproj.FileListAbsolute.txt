@@ -186,3 +186,6 @@ C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmFacturacion.Paga
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmFacturacion.PagoRealizado.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmFacturacion.ErrorDePago.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmFacturacion.FacturaYaPagada.resources
+C:\Users\Germa\Desktop\FRBA-Hotel\bin\Debug\FrbaHotel.exe.config
+C:\Users\Germa\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.exe
+C:\Users\Germa\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.pdb

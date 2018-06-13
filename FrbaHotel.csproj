@@ -44,6 +44,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbmCliente\Crear.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmCliente\Crear.Designer.cs">
+      <DependentUpon>Crear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmCliente\MenuClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmCliente\MenuClientes.Designer.cs">
+      <DependentUpon>MenuClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmCliente\MenuModificarYBaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmCliente\MenuModificarYBaja.Designer.cs">
+      <DependentUpon>MenuModificarYBaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmCliente\Modificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmCliente\Modificar.Designer.cs">
+      <DependentUpon>Modificar.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmFacturacion\DatosTarjeta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,12 +85,6 @@
     </Compile>
     <Compile Include="AbmFacturacion\EstadiasAFacturar.Designer.cs">
       <DependentUpon>EstadiasAFacturar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmCliente\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmCliente\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmFacturacion\Facturacion.cs">
       <SubType>Form</SubType>
@@ -236,11 +254,29 @@
     <Compile Include="AbmHotel\ModificarHotel.Designer.cs">
       <DependentUpon>ModificarHotel.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmRegimen\Form1.cs">
+    <Compile Include="AbmRegimen\Crear.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmRegimen\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AbmRegimen\Crear.Designer.cs">
+      <DependentUpon>Crear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmRegimen\MenuModificarDarDeBaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRegimen\MenuModificarDarDeBaja.Designer.cs">
+      <DependentUpon>MenuModificarDarDeBaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmRegimen\MenuRegimen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRegimen\MenuRegimen.Designer.cs">
+      <DependentUpon>MenuRegimen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmRegimen\Modificacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRegimen\Modificacion.Designer.cs">
+      <DependentUpon>Modificacion.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRol\Form1.cs">
       <SubType>Form</SubType>
@@ -317,6 +353,18 @@
     <Compile Include="RegistrarEstadia\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AbmCliente\Crear.resx">
+      <DependentUpon>Crear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmCliente\MenuClientes.resx">
+      <DependentUpon>MenuClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmCliente\MenuModificarYBaja.resx">
+      <DependentUpon>MenuModificarYBaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmCliente\Modificar.resx">
+      <DependentUpon>Modificar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmFacturacion\DatosTarjeta.resx">
       <DependentUpon>DatosTarjeta.cs</DependentUpon>
     </EmbeddedResource>
@@ -403,6 +451,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\ModificarHotel.resx">
       <DependentUpon>ModificarHotel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRegimen\Crear.resx">
+      <DependentUpon>Crear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRegimen\MenuModificarDarDeBaja.resx">
+      <DependentUpon>MenuModificarDarDeBaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRegimen\MenuRegimen.resx">
+      <DependentUpon>MenuRegimen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRegimen\Modificacion.resx">
+      <DependentUpon>Modificacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
