@@ -34,6 +34,7 @@ namespace FrbaHotel.AbmFacturacion
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            ocultarErrores();
             if (completo())
             {
                 if (camposCorrectos())
