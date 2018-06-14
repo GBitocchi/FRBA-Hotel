@@ -7,6 +7,7 @@ using FrbaHotel.Login;
 using FrbaHotel.AbmHabitacion;
 using FrbaHotel.AbmHotel;
 using FrbaHotel.AbmFacturacion;
+using FrbaHotel.ListadoEstadistico;
 
 namespace FrbaHotel
 {
@@ -20,7 +21,7 @@ namespace FrbaHotel
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);         
-            Application.Run(new MenuHotel());       
+            Application.Run(new ListadosEstadisticos());       
         }
     }
 }

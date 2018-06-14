@@ -309,6 +309,18 @@
     <Compile Include="GenerarModificacionReserva\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ListadoEstadistico\ListadosEstadisticos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoEstadistico\ListadosEstadisticos.Designer.cs">
+      <DependentUpon>ListadosEstadisticos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoEstadistico\MasCanceladas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoEstadistico\MasCanceladas.Designer.cs">
+      <DependentUpon>MasCanceladas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\cambioContraseña.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -473,6 +485,12 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ListadoEstadistico\ListadosEstadisticos.resx">
+      <DependentUpon>ListadosEstadisticos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoEstadistico\MasCanceladas.resx">
+      <DependentUpon>MasCanceladas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login\cambioContraseña.resx">
       <DependentUpon>cambioContraseña.cs</DependentUpon>
     </EmbeddedResource>
@@ -510,9 +528,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ListadoEstadistico\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
