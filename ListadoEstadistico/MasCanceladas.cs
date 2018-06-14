@@ -18,7 +18,7 @@ namespace FrbaHotel.ListadoEstadistico
             DataTable canceladas = DataBase.realizarConsulta("SELECT TOP 5 H.hote_id as 'ID', hote_nombre as 'Nombre' FROM CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Reserva R on (H.hote_id = R.hote_id) join CAIA_UNLIMITED.Estado_Reserva E on (E.esre_codigo = R.esre_codigo) WHERE esre_detalle LIKE '%cancelada%' GROUP BY H.hote_id, hote_nombre ORDER BY COUNT(*) DESC").Tables[0];
             if (canceladas.Rows.Count == 0)
             {
-                new NingunaCancelada().Show();
+                new DatosInsuficientes().Show();
                 this.Hide();
             }
             else

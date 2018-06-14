@@ -25,6 +25,7 @@ namespace FrbaHotel.ListadoEstadistico
 
         private void btnConsumiblesFacturados_Click(object sender, EventArgs e)
         {
+            new MayorFacturacionConsumibles().Show();
             this.Hide();
         }
 

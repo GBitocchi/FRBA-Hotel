@@ -215,3 +215,5 @@ C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmRegimen.Modifica
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.AbmHotel.ReservasParaRegimen.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.ListadoEstadistico.ListadosEstadisticos.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.ListadoEstadistico.MasCanceladas.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.ListadoEstadistico.DatosInsuficientes.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.ListadoEstadistico.MayorFacturacionConsumibles.resources

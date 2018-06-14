@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.ListadoEstadistico
 {
-    public partial class NingunaCancelada : Form
+    public partial class DatosInsuficientes : Form
     {
-        public NingunaCancelada()
+        public DatosInsuficientes()
         {
             InitializeComponent();
         }
