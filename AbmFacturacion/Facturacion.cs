@@ -92,6 +92,7 @@ namespace FrbaHotel.AbmFacturacion
 
         private void btnPagar_Click(object sender, EventArgs e)
         {
+            lblNroFactura.Visible = false;
             try
             {
                 if (!existe)
