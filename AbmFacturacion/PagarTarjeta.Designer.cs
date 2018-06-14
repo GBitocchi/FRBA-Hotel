@@ -59,7 +59,7 @@
             this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(112, 35);
-            this.btnAceptar.TabIndex = 0;
+            this.btnAceptar.TabIndex = 8;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
@@ -70,7 +70,7 @@
             this.btnAtras.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAtras.Name = "btnAtras";
             this.btnAtras.Size = new System.Drawing.Size(112, 35);
-            this.btnAtras.TabIndex = 1;
+            this.btnAtras.TabIndex = 9;
             this.btnAtras.Text = " Atras";
             this.btnAtras.UseVisualStyleBackColor = true;
             this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
@@ -83,7 +83,7 @@
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(148, 20);
-            this.txtTotal.TabIndex = 2;
+            this.txtTotal.TabIndex = 7;
             // 
             // txtBanco
             // 
@@ -92,7 +92,7 @@
             this.txtBanco.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtBanco.Name = "txtBanco";
             this.txtBanco.Size = new System.Drawing.Size(148, 20);
-            this.txtBanco.TabIndex = 4;
+            this.txtBanco.TabIndex = 5;
             // 
             // txtCodigo
             // 
@@ -101,7 +101,7 @@
             this.txtCodigo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(148, 20);
-            this.txtCodigo.TabIndex = 5;
+            this.txtCodigo.TabIndex = 4;
             // 
             // txtNroTarjeta
             // 
@@ -110,7 +110,7 @@
             this.txtNroTarjeta.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNroTarjeta.Name = "txtNroTarjeta";
             this.txtNroTarjeta.Size = new System.Drawing.Size(148, 20);
-            this.txtNroTarjeta.TabIndex = 6;
+            this.txtNroTarjeta.TabIndex = 3;
             // 
             // txtApellido
             // 
@@ -119,7 +119,7 @@
             this.txtApellido.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(148, 20);
-            this.txtApellido.TabIndex = 7;
+            this.txtApellido.TabIndex = 2;
             // 
             // txtNombre
             // 
@@ -128,7 +128,7 @@
             this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(148, 20);
-            this.txtNombre.TabIndex = 8;
+            this.txtNombre.TabIndex = 1;
             // 
             // label1
             // 
@@ -224,7 +224,7 @@
             this.dtVencimiento.Location = new System.Drawing.Point(280, 288);
             this.dtVencimiento.Name = "dtVencimiento";
             this.dtVencimiento.Size = new System.Drawing.Size(200, 20);
-            this.dtVencimiento.TabIndex = 17;
+            this.dtVencimiento.TabIndex = 6;
             // 
             // lblNombre
             // 

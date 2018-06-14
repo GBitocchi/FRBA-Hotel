@@ -55,6 +55,7 @@
             this.cbEstrellas = new System.Windows.Forms.ComboBox();
             this.txtCiudad = new System.Windows.Forms.TextBox();
             this.txtPais = new System.Windows.Forms.TextBox();
+            this.lblRegimenes = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgRegimenes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -322,11 +323,23 @@
             this.txtPais.Size = new System.Drawing.Size(223, 20);
             this.txtPais.TabIndex = 15;
             // 
+            // lblRegimenes
+            // 
+            this.lblRegimenes.AutoSize = true;
+            this.lblRegimenes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegimenes.ForeColor = System.Drawing.Color.Red;
+            this.lblRegimenes.Location = new System.Drawing.Point(545, 276);
+            this.lblRegimenes.Name = "lblRegimenes";
+            this.lblRegimenes.Size = new System.Drawing.Size(171, 20);
+            this.lblRegimenes.TabIndex = 26;
+            this.lblRegimenes.Text = "*Seleccione regimenes";
+            // 
             // CrearHotel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(788, 464);
+            this.Controls.Add(this.lblRegimenes);
             this.Controls.Add(this.txtPais);
             this.Controls.Add(this.txtCiudad);
             this.Controls.Add(this.cbEstrellas);
@@ -391,5 +404,6 @@
         private System.Windows.Forms.ComboBox cbEstrellas;
         private System.Windows.Forms.TextBox txtCiudad;
         private System.Windows.Forms.TextBox txtPais;
+        private System.Windows.Forms.Label lblRegimenes;
     }
 }

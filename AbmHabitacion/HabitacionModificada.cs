@@ -12,14 +12,17 @@ namespace FrbaHotel.AbmHabitacion
 {
     public partial class HabitacionModificada : Form
     {
-        public HabitacionModificada()
+        string idHotel;
+        public HabitacionModificada(string hotel_id)
         {
             InitializeComponent();
+            idHotel = hotel_id;
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             this.Hide();
+            new MenuHabitacion(idHotel).Show();
         }
     }
 }

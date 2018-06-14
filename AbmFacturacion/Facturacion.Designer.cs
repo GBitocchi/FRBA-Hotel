@@ -129,7 +129,7 @@
             this.btnPagar.Location = new System.Drawing.Point(357, 380);
             this.btnPagar.Name = "btnPagar";
             this.btnPagar.Size = new System.Drawing.Size(86, 39);
-            this.btnPagar.TabIndex = 8;
+            this.btnPagar.TabIndex = 2;
             this.btnPagar.Text = "Pagar";
             this.btnPagar.UseVisualStyleBackColor = true;
             this.btnPagar.Click += new System.EventHandler(this.btnPagar_Click);
@@ -140,7 +140,7 @@
             this.btnAtras.Location = new System.Drawing.Point(449, 380);
             this.btnAtras.Name = "btnAtras";
             this.btnAtras.Size = new System.Drawing.Size(86, 39);
-            this.btnAtras.TabIndex = 9;
+            this.btnAtras.TabIndex = 3;
             this.btnAtras.Text = "Atras";
             this.btnAtras.UseVisualStyleBackColor = true;
             this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);

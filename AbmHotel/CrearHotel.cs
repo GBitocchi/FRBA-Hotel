@@ -28,6 +28,7 @@ namespace FrbaHotel.AbmHotel
             lblNombreHotel.Visible = false;
             lblPais.Visible = false;
             lblTelefono.Visible = false;
+            int aux;
             if (txtNombreHotel.Text.Trim() == "")
             {
                 lblNombreHotel.Visible = true;
@@ -36,7 +37,7 @@ namespace FrbaHotel.AbmHotel
             {
                 lblMail.Visible = true;
             }
-            else if (txtTelefono.Text.Trim() == "")
+            else if (txtTelefono.Text.Trim() == "" || !int.TryParse(txtTelefono.Text.Trim(), out aux))
             {
                 lblTelefono.Visible = true;
             }
@@ -44,7 +45,7 @@ namespace FrbaHotel.AbmHotel
             {
                 lblDireccion.Visible = true;
             }
-            else if (txtNumero.Text.Trim() == "")
+            else if (txtNumero.Text.Trim() == "" || !int.TryParse(txtNumero.Text.Trim(), out aux))
             {
                 lblDireccion.Visible = true;
             }
@@ -59,6 +60,10 @@ namespace FrbaHotel.AbmHotel
             else if (txtPais.Text.Trim() == "")
             {
                 lblPais.Visible = true;
+            }
+            else if (dgRegimenes.SelectedRows.Count == 0)
+            {
+                lblRegimenes.Visible = true;
             }
             else
             {

@@ -34,17 +34,18 @@ namespace FrbaHotel.AbmHabitacion
 
         private bool constatarCampos()
         {
-            if (txtNro_habitacion.Text == "")
+            int aux;
+            if (txtNro_habitacion.Text.Trim() == "")
             {
                 lblErrorNroHab.Visible = true;
                 return false;
             }
-            else if (txtPiso.Text == "")
+            else if (txtPiso.Text.Trim() == "" || !int.TryParse(txtPiso.Text.Trim(), out aux))
             {
                 lblErrorPiso.Visible = true;
                 return false;
             }
-            else if (txtUbicacion.Text == "")
+            else if (txtUbicacion.Text.Trim() == "")
             {
                 lblErrorUbi.Visible = true;
                 return false;

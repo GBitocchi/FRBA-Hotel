@@ -30,7 +30,7 @@ namespace FrbaHotel.AbmHabitacion
             try
             {
                 ejecutarStoredProcedure();
-                new HabitacionModificada().Show();
+                new HabitacionModificada(hotel_id).Show();
             }
             catch
             {
@@ -70,18 +70,19 @@ namespace FrbaHotel.AbmHabitacion
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
+            int aux;
             lblNroHabitacion.Visible = false;
             lblPiso.Visible = false;
             lblUbicacion.Visible = false;
-            if (txtNroHabitacion.Text == "")
+            if (txtNroHabitacion.Text.Trim() == "")
             {
                 lblNroHabitacion.Visible = true;
             }
-            else if (txtPiso.Text == "")
+            else if (txtPiso.Text.Trim() == "" || !int.TryParse(txtPiso.Text.Trim(), out aux))
             {
                 lblPiso.Visible = true;
             }
-            else if (txtUbicacion.Text == "")
+            else if (txtUbicacion.Text.Trim() == "")
             {
                 lblUbicacion.Visible = true;
             }
