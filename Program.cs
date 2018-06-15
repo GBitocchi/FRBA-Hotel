@@ -1,13 +1,14 @@
-﻿using System;
+﻿using FrbaHotel.AbmFacturacion;
+using FrbaHotel.AbmHabitacion;
+using FrbaHotel.AbmHotel;
+using FrbaHotel.ListadoEstadistico;
+using FrbaHotel.Login;
+using FrbaHotel.RegistrarConsumible;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FrbaHotel.Login;
-using FrbaHotel.AbmHabitacion;
-using FrbaHotel.AbmHotel;
-using FrbaHotel.AbmFacturacion;
-using FrbaHotel.RegistrarConsumible;
 
 namespace FrbaHotel
 {
@@ -21,7 +22,7 @@ namespace FrbaHotel
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);         
-            Application.Run(new MenuRegistrarConsumible());       
+            Application.Run(new ListadosEstadisticos());       
         }
     }
 }

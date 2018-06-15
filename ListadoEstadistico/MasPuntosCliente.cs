@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.ListadoEstadistico
 {
-    public partial class MayorFacturacionConsumibles : Form
+    public partial class MasPuntosCliente : Form
     {
-        public MayorFacturacionConsumibles()
+        public MasPuntosCliente()
         {
             InitializeComponent();
-            dgMasFacturacion.DataSource = DataBase.realizarConsulta("select * from CAIA_UNLIMITED.vw_MasFacturacion").Tables[0];
+            dgClientes.DataSource = DataBase.realizarConsulta("select * from CAIA_UNLIMITED.vw_MasPuntos").Tables[0];
         }
 
         private void btnAtras_Click(object sender, EventArgs e)
@@ -23,7 +23,5 @@ namespace FrbaHotel.ListadoEstadistico
             this.Hide();
             new ListadosEstadisticos().Show();
         }
-
-
     }
 }

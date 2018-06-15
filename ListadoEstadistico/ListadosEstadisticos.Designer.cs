@@ -34,6 +34,7 @@
             this.btnMasMantenimiento = new System.Windows.Forms.Button();
             this.btnMasOcupadas = new System.Windows.Forms.Button();
             this.btnClientesPuntos = new System.Windows.Forms.Button();
+            this.btnAtras = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -101,11 +102,23 @@
             this.btnClientesPuntos.UseVisualStyleBackColor = true;
             this.btnClientesPuntos.Click += new System.EventHandler(this.btnClientesPuntos_Click);
             // 
+            // btnAtras
+            // 
+            this.btnAtras.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAtras.Location = new System.Drawing.Point(32, 276);
+            this.btnAtras.Name = "btnAtras";
+            this.btnAtras.Size = new System.Drawing.Size(228, 37);
+            this.btnAtras.TabIndex = 6;
+            this.btnAtras.Text = "Atras";
+            this.btnAtras.UseVisualStyleBackColor = true;
+            this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
+            // 
             // ListadosEstadisticos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(297, 296);
+            this.ClientSize = new System.Drawing.Size(297, 332);
+            this.Controls.Add(this.btnAtras);
             this.Controls.Add(this.btnClientesPuntos);
             this.Controls.Add(this.btnMasOcupadas);
             this.Controls.Add(this.btnMasMantenimiento);
@@ -127,5 +140,6 @@
         private System.Windows.Forms.Button btnMasMantenimiento;
         private System.Windows.Forms.Button btnMasOcupadas;
         private System.Windows.Forms.Button btnClientesPuntos;
+        private System.Windows.Forms.Button btnAtras;
     }
 }

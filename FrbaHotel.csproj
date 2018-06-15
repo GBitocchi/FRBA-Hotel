@@ -327,6 +327,24 @@
     <Compile Include="ListadoEstadistico\MasCanceladas.Designer.cs">
       <DependentUpon>MasCanceladas.cs</DependentUpon>
     </Compile>
+    <Compile Include="ListadoEstadistico\MasMantenimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoEstadistico\MasMantenimiento.Designer.cs">
+      <DependentUpon>MasMantenimiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoEstadistico\MasOcupadas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoEstadistico\MasOcupadas.Designer.cs">
+      <DependentUpon>MasOcupadas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoEstadistico\MasPuntosCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoEstadistico\MasPuntosCliente.Designer.cs">
+      <DependentUpon>MasPuntosCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListadoEstadistico\MayorFacturacionConsumibles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -505,6 +523,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ListadoEstadistico\MasCanceladas.resx">
       <DependentUpon>MasCanceladas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoEstadistico\MasMantenimiento.resx">
+      <DependentUpon>MasMantenimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoEstadistico\MasOcupadas.resx">
+      <DependentUpon>MasOcupadas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoEstadistico\MasPuntosCliente.resx">
+      <DependentUpon>MasPuntosCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListadoEstadistico\MayorFacturacionConsumibles.resx">
       <DependentUpon>MayorFacturacionConsumibles.cs</DependentUpon>

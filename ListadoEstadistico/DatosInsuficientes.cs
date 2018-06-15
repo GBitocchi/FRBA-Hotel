@@ -20,7 +20,6 @@ namespace FrbaHotel.ListadoEstadistico
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new ListadosEstadisticos().Show();
         }
     }
 }

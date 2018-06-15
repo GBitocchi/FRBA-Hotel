@@ -272,3 +272,7 @@ C:\Users\Germa\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.Menu_Sistema.VistaSistema.
 C:\Users\Germa\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.Properties.Resources.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.RegistrarConsumible.MenuRegistrarConsumible.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.csproj.GenerateResource.Cache
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.RegistrarConsumible.MenuRegistrarConsumible.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.ListadoEstadistico.MasMantenimiento.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.ListadoEstadistico.MasOcupadas.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\obj\Debug\FrbaHotel.ListadoEstadistico.MasPuntosCliente.resources

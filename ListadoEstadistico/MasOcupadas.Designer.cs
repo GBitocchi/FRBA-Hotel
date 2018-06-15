@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.ListadoEstadistico
 {
-    partial class MayorFacturacionConsumibles
+    partial class MasOcupadas
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,14 @@
         {
             this.btnAtras = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.dgMasFacturacion = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dgMasFacturacion)).BeginInit();
+            this.dgOcupadas = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgOcupadas)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAtras
             // 
             this.btnAtras.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAtras.Location = new System.Drawing.Point(328, 229);
+            this.btnAtras.Location = new System.Drawing.Point(271, 230);
             this.btnAtras.Name = "btnAtras";
             this.btnAtras.Size = new System.Drawing.Size(75, 35);
             this.btnAtras.TabIndex = 5;
@@ -49,35 +49,35 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 28);
+            this.label1.Location = new System.Drawing.Point(46, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(398, 25);
+            this.label1.Size = new System.Drawing.Size(258, 25);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Hoteles con mas facturacion de consumibles";
+            this.label1.Text = "Habitaciones mas ocupadas";
             // 
-            // dgMasFacturacion
+            // dgOcupadas
             // 
-            this.dgMasFacturacion.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgMasFacturacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgMasFacturacion.Location = new System.Drawing.Point(14, 73);
-            this.dgMasFacturacion.MultiSelect = false;
-            this.dgMasFacturacion.Name = "dgMasFacturacion";
-            this.dgMasFacturacion.ReadOnly = true;
-            this.dgMasFacturacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgMasFacturacion.Size = new System.Drawing.Size(389, 150);
-            this.dgMasFacturacion.TabIndex = 3;
+            this.dgOcupadas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgOcupadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgOcupadas.Location = new System.Drawing.Point(12, 74);
+            this.dgOcupadas.MultiSelect = false;
+            this.dgOcupadas.Name = "dgOcupadas";
+            this.dgOcupadas.ReadOnly = true;
+            this.dgOcupadas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgOcupadas.Size = new System.Drawing.Size(334, 150);
+            this.dgOcupadas.TabIndex = 3;
             // 
-            // MayorFacturacionConsumibles
+            // MasOcupadas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(415, 292);
+            this.ClientSize = new System.Drawing.Size(360, 292);
             this.Controls.Add(this.btnAtras);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dgMasFacturacion);
-            this.Name = "MayorFacturacionConsumibles";
-            this.Text = "Mas facturacion";
-            ((System.ComponentModel.ISupportInitialize)(this.dgMasFacturacion)).EndInit();
+            this.Controls.Add(this.dgOcupadas);
+            this.Name = "MasOcupadas";
+            this.Text = "Mayor ocupacion";
+            ((System.ComponentModel.ISupportInitialize)(this.dgOcupadas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -87,6 +87,6 @@
 
         private System.Windows.Forms.Button btnAtras;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dgMasFacturacion;
+        private System.Windows.Forms.DataGridView dgOcupadas;
     }
 }
