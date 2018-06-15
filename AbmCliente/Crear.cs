@@ -45,14 +45,7 @@ namespace FrbaHotel.AbmCliente
             {
                 return false;
             } 
-            if (txtNacimiento.Text.Trim()=="")
-            {
-                return false;
-            } 
-            if (txtNacimiento.Text.Trim()=="")
-            {
-                return false;
-            } 
+          
             if (txtCalle.Text.Trim()=="")
             {
                 return false;
@@ -81,6 +74,10 @@ namespace FrbaHotel.AbmCliente
             {
                 return false;
             }
+            if (txtNacimiento.Text.Trim() == "")
+            {
+                return false;
+            }
             return true;
         }
 
@@ -92,7 +89,6 @@ namespace FrbaHotel.AbmCliente
             txtNumero_Identificacion.Clear();
             txtTipo_Identificacion.Clear();
             txtEmail.Clear();
-            txtNacimiento.Clear();
             txtNacionalidad.Clear();
             txtCalle.Clear();
             txtCalle_Nro.Clear();
@@ -101,6 +97,7 @@ namespace FrbaHotel.AbmCliente
             txtCiudad.Clear();
             txtTelefono.Clear();
             txtPais.Clear();
+            txtNacimiento.Clear();
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
@@ -109,13 +106,19 @@ namespace FrbaHotel.AbmCliente
             {
 
                 string email_ingresado = String.Format("SELECT hues_mail FROM CAIA_UNLIMITED.Huesped  where hues_mail='{0}'", txtEmail.Text.Trim());
-                               
+                string documento_ingresado = String.Format("SELECT hues_documento FROM CAIA_UNLIMITED.Huesped WHERE hues_documento = '{0}'  AND hues_documento_tipo = '{1}'",txtNumero_Identificacion.Text.Trim(), txtTipo_Identificacion.Text.Trim());
+               
                 if (DataBase.realizarConsulta(email_ingresado).Tables[0].Rows.Count == 0)
                 {
-                    ejecutarStoredProcedureCrear();
-                    MessageBox.Show("Cliente " + txtNombre + " ingresado correctamente.");
-                    RestaurarFormulario();
-                    
+                    if (DataBase.realizarConsulta(documento_ingresado).Tables[0].Rows.Count == 0)
+                    {
+                        ejecutarStoredProcedureCrear();
+                        MessageBox.Show("Cliente " + txtNombre + " ingresado correctamente.");
+                        RestaurarFormulario();
+                    }else
+                    {
+                        MessageBox.Show("El tipo y numero de identificacion ingresado ya existe.");
+                    }
                 }else
                 {
                     MessageBox.Show("El mail ingresado ya existe.");
@@ -133,14 +136,14 @@ namespace FrbaHotel.AbmCliente
         private void ejecutarStoredProcedureCrear()
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand crearCliente = new SqlCommand("sp_CrearCliente", db);
+            SqlCommand crearCliente = new SqlCommand("sp_CrearHuesped", db);
             crearCliente.CommandType = CommandType.StoredProcedure;
             crearCliente.Parameters.AddWithValue("@nombre", txtNombre.Text.Trim());
             crearCliente.Parameters.AddWithValue("@apellido", txtApellido.Text.Trim());
             crearCliente.Parameters.AddWithValue("@documento", txtNumero_Identificacion.Text.Trim());
             crearCliente.Parameters.AddWithValue("@tipo", txtTipo_Identificacion.Text.Trim());
             crearCliente.Parameters.AddWithValue("@mail", txtEmail.Text.Trim());
-            crearCliente.Parameters.AddWithValue("@fecha_nacimientno", txtNacimiento.Text.Trim());
+            crearCliente.Parameters.AddWithValue("@fecha_nacimiento", DateTime.Parse(txtNacimiento.Text));
             crearCliente.Parameters.AddWithValue("@nacionalidad", txtNacionalidad.Text.Trim());
             crearCliente.Parameters.AddWithValue("@calle", txtCalle.Text.Trim());
             crearCliente.Parameters.AddWithValue("@calle_nro", txtCalle_Nro.Text.Trim());
@@ -158,6 +161,13 @@ namespace FrbaHotel.AbmCliente
         {
             this.Hide();
             new MenuClientes().Show();
+        }
+
+      
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            txtNacimiento.Text = calendario.SelectionStart.ToShortDateString();
         }
     }
 }

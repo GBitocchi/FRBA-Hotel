@@ -47,25 +47,25 @@
     <Compile Include="AbmCliente\Crear.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmCliente\Crear.Designer.cs">
+    <Compile Include="AbmCliente\Crear.designer.cs">
       <DependentUpon>Crear.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmCliente\MenuClientes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmCliente\MenuClientes.Designer.cs">
+    <Compile Include="AbmCliente\MenuClientes.designer.cs">
       <DependentUpon>MenuClientes.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmCliente\MenuModificarYBaja.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmCliente\MenuModificarYBaja.Designer.cs">
+    <Compile Include="AbmCliente\MenuModificarYBaja.designer.cs">
       <DependentUpon>MenuModificarYBaja.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmCliente\Modificar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmCliente\Modificar.Designer.cs">
+    <Compile Include="AbmCliente\Modificar.designer.cs">
       <DependentUpon>Modificar.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmFacturacion\DatosTarjeta.cs">
@@ -263,25 +263,25 @@
     <Compile Include="AbmRegimen\Crear.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmRegimen\Crear.Designer.cs">
+    <Compile Include="AbmRegimen\Crear.designer.cs">
       <DependentUpon>Crear.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRegimen\MenuModificarDarDeBaja.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmRegimen\MenuModificarDarDeBaja.Designer.cs">
+    <Compile Include="AbmRegimen\MenuModificarDarDeBaja.designer.cs">
       <DependentUpon>MenuModificarDarDeBaja.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRegimen\MenuRegimen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmRegimen\MenuRegimen.Designer.cs">
+    <Compile Include="AbmRegimen\MenuRegimen.designer.cs">
       <DependentUpon>MenuRegimen.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRegimen\Modificacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmRegimen\Modificacion.Designer.cs">
+    <Compile Include="AbmRegimen\Modificacion.designer.cs">
       <DependentUpon>Modificacion.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRol\Form1.cs">
@@ -365,11 +365,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegistrarConsumible\Form1.cs">
+    <Compile Include="RegistrarConsumible\MenuRegistrarConsumible.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RegistrarConsumible\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="RegistrarConsumible\MenuRegistrarConsumible.Designer.cs">
+      <DependentUpon>MenuRegistrarConsumible.cs</DependentUpon>
     </Compile>
     <Compile Include="RegistrarEstadia\Form1.cs">
       <SubType>Form</SubType>
@@ -533,6 +533,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RegistrarConsumible\MenuRegistrarConsumible.resx">
+      <DependentUpon>MenuRegistrarConsumible.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

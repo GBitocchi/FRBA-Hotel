@@ -15,15 +15,15 @@ namespace FrbaHotel.AbmRegimen
         public MenuModificarDarDeBaja()
         {
             InitializeComponent();
-            DataSet regimenes = DataBase.realizarConsulta("select regi_codigo as 'Codigo', regi_descripcion as 'Descripcion', regi_precio_base as 'Precio base', regi_estado as 'Estado' from CAIA_UNLIMITED.Hotel ");
+            DataSet regimenes = DataBase.realizarConsulta("select regi_codigo as 'Codigo', regi_descripcion as 'Descripcion', regi_precio_base as 'Precio base', regi_estado as 'Estado' from CAIA_UNLIMITED.Regimen ");
             dgRegimenes.DataSource = regimenes.Tables[0];
         }
 
         private void dgRegimenes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            string codigo = dgRegimenes.SelectedRows[0].Cells[0].Value.ToString();
+            string codigoId = dgRegimenes.SelectedRows[0].Cells[0].Value.ToString();
             this.Hide();
-            new Modificacion(codigo).Show();
+            new Modificacion(codigoId).Show();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

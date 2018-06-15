@@ -42,12 +42,14 @@
             this.Nombre = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.dgClientes = new System.Windows.Forms.DataGridView();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.Filtros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgClientes)).BeginInit();
             this.SuspendLayout();
             // 
             // Filtros
             // 
+            this.Filtros.Controls.Add(this.btnLimpiar);
             this.Filtros.Controls.Add(this.txtTipo_Identificacion);
             this.Filtros.Controls.Add(this.btnFiltrar);
             this.Filtros.Controls.Add(this.txtEmail);
@@ -75,7 +77,7 @@
             // 
             // btnFiltrar
             // 
-            this.btnFiltrar.Location = new System.Drawing.Point(423, 139);
+            this.btnFiltrar.Location = new System.Drawing.Point(500, 144);
             this.btnFiltrar.Name = "btnFiltrar";
             this.btnFiltrar.Size = new System.Drawing.Size(134, 28);
             this.btnFiltrar.TabIndex = 8;
@@ -168,12 +170,25 @@
             // 
             // dgClientes
             // 
+            this.dgClientes.AllowUserToAddRows = false;
             this.dgClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgClientes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.dgClientes.Location = new System.Drawing.Point(40, 239);
             this.dgClientes.Name = "dgClientes";
+            this.dgClientes.RowHeadersVisible = false;
+            this.dgClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgClientes.Size = new System.Drawing.Size(650, 176);
             this.dgClientes.TabIndex = 5;
             this.dgClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgClientes_CellContentClick);
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(340, 144);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(134, 28);
+            this.btnLimpiar.TabIndex = 10;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
             // 
             // MenuModificarYBaja
             // 
@@ -208,5 +223,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.DataGridView dgClientes;
         private System.Windows.Forms.TextBox txtTipo_Identificacion;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }

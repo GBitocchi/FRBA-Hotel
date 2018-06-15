@@ -14,12 +14,13 @@ namespace FrbaHotel.AbmCliente
     public partial class Modificar : Form
     {
         string nombreAnt, apellidoAnt, dniAnt, tipoAnt, mailAnt, nacimientoAnt, nacionalidadAnt, calleAnt, numeroAnt, pisoAnt, dptoAnt, ciudadAnt, paisAtn, telefonoAnt;
+        int estadoAnt;
 
         public Modificar(string mail)
         {
             InitializeComponent();
             mailAnt = mail;
-            string consultaCliente = string.Format("select hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as'DNI', hues_documento_tipo as 'Tipo', hues_mail as 'E-Mail', hues_nacimiento as 'Fecha de nacimiento', hues_nacionalidad as 'Nacionalidad', dire_dom_calle as 'Calle', dire_nro_calle as 'Nro', dire_piso as 'Piso', dire_dpto as 'Dpto', dire_ciudad as 'Ciudad',dire_pais as 'Pais', dire_telefono as 'Telefono' from CAIA_UNLIMITED.Huesped H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) where hues_mail={0}",mail);
+            string consultaCliente = string.Format("select hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as'DNI', hues_documento_tipo as 'Tipo', hues_mail as 'E-Mail', hues_nacimiento as 'Fecha de nacimiento', hues_nacionalidad as 'Nacionalidad', dire_dom_calle as 'Calle', dire_nro_calle as 'Nro', dire_piso as 'Piso', dire_dpto as 'Dpto', dire_ciudad as 'Ciudad',dire_pais as 'Pais', dire_telefono as 'Telefono', hues_habilitado as 'Estado' from CAIA_UNLIMITED.Huesped H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) where hues_mail='{0}'", mail); 
             DataTable cliente = DataBase.realizarConsulta(consultaCliente).Tables[0];
             cargarInfo(cliente);
             valoresAnterioresCliente();
@@ -43,6 +44,15 @@ namespace FrbaHotel.AbmCliente
             txtCiudad.Text= cliente.Rows[0][11].ToString();
             txtPais.Text = cliente.Rows[0][12].ToString();
             txtTelefono.Text= cliente.Rows[0][13].ToString();
+            string estado = cliente.Rows[0][14].ToString();
+            if (bool.Parse(estado))
+            {
+                rbtHabilitado.Select();
+            }
+            else
+            {
+                rbtInabilitado.Select();
+            }
         }
 
         private void valoresAnterioresCliente()
@@ -61,20 +71,28 @@ namespace FrbaHotel.AbmCliente
             ciudadAnt = txtCiudad.Text;
             paisAtn = txtPais.Text;
             telefonoAnt = txtTelefono.Text;
+            if (rbtHabilitado.Checked)
+            {
+                estadoAnt = 1;
+            }
+            else
+            {
+                estadoAnt = 0;
+            }
         }
 
 
-        private void ejecutarStoredProcedureModificar() // VER
+        private void ejecutarStoredProcedureModificar() 
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand crearCliente = new SqlCommand("sp_ModificarCliente", db);
+            SqlCommand crearCliente = new SqlCommand("sp_ModificarHues", db);
             crearCliente.CommandType = CommandType.StoredProcedure;
             crearCliente.Parameters.AddWithValue("@nombre", txtNombre.Text.Trim());
             crearCliente.Parameters.AddWithValue("@apellido", txtApellido.Text.Trim());
             crearCliente.Parameters.AddWithValue("@documento", txtDni.Text.Trim());
             crearCliente.Parameters.AddWithValue("@tipo", txtTipo.Text.Trim());
             crearCliente.Parameters.AddWithValue("@mail", txtEmail.Text.Trim());
-            crearCliente.Parameters.AddWithValue("@fecha_nacimientno", txtNacimiento.Text.Trim());
+            crearCliente.Parameters.AddWithValue("@fecha_nacimiento", DateTime.Parse(txtNacimiento.Text));
             crearCliente.Parameters.AddWithValue("@nacionalidad", txtNacionalidad.Text.Trim());
             crearCliente.Parameters.AddWithValue("@calle", txtCalle.Text.Trim());
             crearCliente.Parameters.AddWithValue("@calle_nro", txtCalle_Nro.Text.Trim());
@@ -83,6 +101,15 @@ namespace FrbaHotel.AbmCliente
             crearCliente.Parameters.AddWithValue("@ciudad", txtCiudad.Text.Trim());
             crearCliente.Parameters.AddWithValue("@pais", txtPais.Text.Trim());
             crearCliente.Parameters.AddWithValue("@telefono", txtTelefono.Text.Trim());
+            if (rbtHabilitado.Checked)
+            {
+                crearCliente.Parameters.AddWithValue("@estado", 1);
+            }
+            else
+            {
+                crearCliente.Parameters.AddWithValue("@estado", 0);
+            }
+            
             crearCliente.ExecuteNonQuery();
             db.Close();
         }
@@ -197,27 +224,25 @@ namespace FrbaHotel.AbmCliente
             }
         }
 
-        private void ejecutarStoredProcedureDarDeBaja() // VER
+        private void ejecutarStoredProcedureDarDeBaja() 
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand crearCliente = new SqlCommand("sp_DarDeBajaCliente", db);
+            SqlCommand crearCliente = new SqlCommand("sp_BajaHues", db);
             crearCliente.CommandType = CommandType.StoredProcedure;
-            crearCliente.Parameters.AddWithValue("@nombre", txtNombre.Text.Trim());
-            crearCliente.Parameters.AddWithValue("@apellido", txtApellido.Text.Trim());
-            crearCliente.Parameters.AddWithValue("@documento", txtDni.Text.Trim());
-            crearCliente.Parameters.AddWithValue("@tipo", txtTipo.Text.Trim());
             crearCliente.Parameters.AddWithValue("@mail", txtEmail.Text.Trim());
-            crearCliente.Parameters.AddWithValue("@fecha_nacimientno", txtNacimiento.Text.Trim());
-            crearCliente.Parameters.AddWithValue("@nacionalidad", txtNacionalidad.Text.Trim());
-            crearCliente.Parameters.AddWithValue("@calle", txtCalle.Text.Trim());
-            crearCliente.Parameters.AddWithValue("@calle_nro", txtCalle_Nro.Text.Trim());
-            crearCliente.Parameters.AddWithValue("@piso", txtPiso.Text.Trim());
-            crearCliente.Parameters.AddWithValue("@dpto", txtDpto.Text.Trim());
-            crearCliente.Parameters.AddWithValue("@ciudad", txtCiudad.Text.Trim());
-            crearCliente.Parameters.AddWithValue("@pais", txtPais.Text.Trim());
-            crearCliente.Parameters.AddWithValue("@telefono", txtTelefono.Text.Trim());
             crearCliente.ExecuteNonQuery();
             db.Close();
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            txtNacimiento.Text = calendario.SelectionStart.ToShortDateString();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new MenuModificarYBaja().Show();
         }
 
     }

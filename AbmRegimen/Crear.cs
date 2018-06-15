@@ -23,21 +23,13 @@ namespace FrbaHotel.AbmRegimen
             if (camposCompletos())
             {
                 int estado;
-                string regimen_ingresado = String.Format("SELECT regi_codigo FROM CAIA_UNLIMITED.Regimen  where regi_codigo='{0}'", txtCodigo.Text.Trim());
                 
-
-                if (DataBase.realizarConsulta(regimen_ingresado).Tables[0].Rows.Count == 0)
-                {
                     estado = estadoActualRegimen();
                     ejecutarStoredProcedureCrear(estado);
-                    MessageBox.Show("Regimen " + txtCodigo.Text + " ingresado correctamente.");
+                    MessageBox.Show("Regimen " + txtDescripcion.Text + " ingresado correctamente.");
                     RestaurarFormulario();
 
-                }
-                else
-                {
-                    MessageBox.Show("El codigo ingresado ya existe.");
-                }
+               
 
             }
             else
@@ -50,9 +42,8 @@ namespace FrbaHotel.AbmRegimen
         private void ejecutarStoredProcedureCrear(int estado)
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand crearRegimen = new SqlCommand("sp_CrearRegimen", db);
-            crearRegimen.CommandType = CommandType.StoredProcedure;
-            crearRegimen.Parameters.AddWithValue("@codigo", txtCodigo.Text.Trim());
+            SqlCommand crearRegimen = new SqlCommand("sp_CrearRegi", db);
+            crearRegimen.CommandType = CommandType.StoredProcedure;            
             crearRegimen.Parameters.AddWithValue("@descripcion", txtDescripcion.Text.Trim());
             crearRegimen.Parameters.AddWithValue("@precio_base", txtPrecio_Base.Text.Trim());
             crearRegimen.Parameters.AddWithValue("@estado", estado);
@@ -66,11 +57,7 @@ namespace FrbaHotel.AbmRegimen
             if (txtDescripcion.Text.Trim() == "")
             {
                 return false;
-            }
-            if (txtCodigo.Text.Trim() == "")
-            {
-                return false;
-            }
+            }            
             if (txtPrecio_Base.Text.Trim() == "")
             {
                 return false;
@@ -80,7 +67,6 @@ namespace FrbaHotel.AbmRegimen
 
         private void RestaurarFormulario()
         {
-            txtCodigo.Clear();
             txtDescripcion.Clear();
             txtPrecio_Base.Clear();
         }

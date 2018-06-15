@@ -60,6 +60,7 @@
             this.btnModificar.TabIndex = 5;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click_1);
             // 
             // btnCrear
             // 
@@ -69,8 +70,9 @@
             this.btnCrear.TabIndex = 4;
             this.btnCrear.Text = "Crear";
             this.btnCrear.UseVisualStyleBackColor = true;
+            this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click_1);
             // 
-            // Form1
+            // MenuRegimen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -79,7 +81,7 @@
             this.Controls.Add(this.btnDarDeBaja);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnCrear);
-            this.Name = "Form1";
+            this.Name = "MenuRegimen";
             this.Text = "Menu Regimen";
             this.ResumeLayout(false);
 

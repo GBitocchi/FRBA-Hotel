@@ -39,6 +39,7 @@
             this.dgRegimenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgRegimenes.Location = new System.Drawing.Point(22, 44);
             this.dgRegimenes.Name = "dgRegimenes";
+            this.dgRegimenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgRegimenes.Size = new System.Drawing.Size(650, 176);
             this.dgRegimenes.TabIndex = 8;
             this.dgRegimenes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgRegimenes_CellContentClick);

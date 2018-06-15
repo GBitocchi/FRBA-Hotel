@@ -15,7 +15,7 @@ namespace FrbaHotel.AbmCliente
         public MenuModificarYBaja()
         {
             InitializeComponent();
-            DataSet huespedes = DataBase.realizarConsulta("select hues_mail as 'Mail', hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as 'Documento', hues_documento_tipo as 'Tipo' from CAIA_UNLIMITED.Huesped)");
+            DataSet huespedes = DataBase.realizarConsulta("select hues_mail as 'Mail', hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as 'Documento', hues_documento_tipo as 'Tipo'  from CAIA_UNLIMITED.Huesped");
             dgClientes.DataSource = huespedes.Tables[0];
         }
 
@@ -31,55 +31,68 @@ namespace FrbaHotel.AbmCliente
 
         private string generarConsulta()
         {
-            string consulta = "select hues_mail as 'Mail', hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as 'Documento', hues_documento_tipo as 'Tipo' from CAIA_UNLIMITED.Huesped where ";
-            bool hayOtro = false;
-            if (txtEmail.Text.Trim() != "")
+            string consulta;
+            if (txtNombre.Text.Trim() == "" && txtEmail.Text.Trim() == "" && txtApellido.Text.Trim() == "" && txtNro_Identificacion.Text.Trim() == ""  && txtTipo_Identificacion.Text.Trim() == "")
             {
-                consulta += string.Format("hues_mail = '{0}'", txtEmail.Text.Trim());
-                hayOtro = true;
+                consulta = "select hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as'DNI', hues_documento_tipo as 'Tipo', hues_mail as 'E-Mail', hues_nacimiento as 'Fecha de nacimiento', hues_nacionalidad as 'Nacionalidad', dire_dom_calle as 'Calle', dire_nro_calle as 'Nro', dire_piso as 'Piso', dire_dpto as 'Dpto', dire_ciudad as 'Ciudad',dire_pais as 'Pais', dire_telefono as 'Telefono' from CAIA_UNLIMITED.Huesped H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id)";
             }
-            if (txtNombre.Text.Trim() != "")
+            else
             {
-                if (hayOtro)
+                consulta = "select hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as'DNI', hues_documento_tipo as 'Tipo', hues_mail as 'E-Mail', hues_nacimiento as 'Fecha de nacimiento', hues_nacionalidad as 'Nacionalidad', dire_dom_calle as 'Calle', dire_nro_calle as 'Nro', dire_piso as 'Piso', dire_dpto as 'Dpto', dire_ciudad as 'Ciudad',dire_pais as 'Pais', dire_telefono as 'Telefono' from CAIA_UNLIMITED.Huesped H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) where ";
+                bool hayOtro = false;
+                if (txtNombre.Text.Trim() != "")
                 {
-                    consulta += ", ";
+                    consulta += string.Format("hues_nombre LIKE '%{0}%'", txtNombre.Text.Trim());
+                    hayOtro = true;
                 }
-                consulta += string.Format("hues_nombre = '{0}'", txtNombre.Text.Trim());
+
+                if (txtApellido.Text.Trim() != "")
+                {
+                    if (hayOtro)
+                    {
+                        consulta += ", ";
+                    }
+                    consulta += string.Format("hues_apellido LIKE '%{0}%'", txtApellido.Text.Trim());
+                }
+
+                if (txtNro_Identificacion.Text.Trim() != "")
+                {
+                    if (hayOtro)
+                    {
+                        consulta += ", ";
+                    }
+                    int documento;
+                    if (int.TryParse(txtNro_Identificacion.Text.Trim(), out documento))
+                    {
+                        consulta += string.Format("hues_documento = {0}", documento);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Campo/s invalidos");
+                        return "";
+                    }
+                }
+
+                if (txtTipo_Identificacion.Text.Trim() != "")
+                {
+                    if (hayOtro)
+                    {
+                        consulta += ", ";
+                    }
+                    consulta += string.Format("hues_documento_tipo LIKE '%{0}%'", txtTipo_Identificacion.Text.Trim());
+                }
+
+                if (txtEmail.Text.Trim() != "")
+                {
+                    if (hayOtro)
+                    {
+                        consulta += ", ";
+                    }
+                    consulta += string.Format("hues_mail LIKE '%{0}%'", txtEmail.Text.Trim());
+                }
+                
             }
-            if (txtApellido.Text.Trim() != "")
-            {
-                if (hayOtro)
-                {
-                    consulta += ", ";
-                }
-                consulta += string.Format("dire_pais = '{0}'", txtApellido.Text.Trim());
-            }
-            if (txtNro_Identificacion.Text.Trim() != "")
-            {
-                if (hayOtro)
-                {
-                    consulta += ", ";
-                }
-                int documento;
-                if (int.TryParse(txtNro_Identificacion.Text.Trim(), out documento))
-                {
-                    consulta += string.Format("hues_documento = {0}", documento);
-                }
-                else
-                {
-                    MessageBox.Show("Campo/s invalidos");
-                    return "";
-                }
-            }
-            if (txtTipo_Identificacion.Text.Trim() != "")
-            {
-                if (hayOtro)
-                {
-                    consulta += ", ";
-                }
-                consulta += string.Format("hues_documento_tipo = '{0}'", txtTipo_Identificacion.Text.Trim());
-            }
-           
+
             return consulta;
         }
 

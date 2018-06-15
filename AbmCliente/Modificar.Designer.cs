@@ -41,7 +41,6 @@
             this.txtDni = new System.Windows.Forms.TextBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtNacimiento = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -60,16 +59,23 @@
             this.btnModificar_Cliente = new System.Windows.Forms.Button();
             this.txtPais = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
+            this.btnSeleccionar = new System.Windows.Forms.Button();
+            this.calendario = new System.Windows.Forms.MonthCalendar();
+            this.txtNacimiento = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.rbtHabilitado = new System.Windows.Forms.RadioButton();
+            this.rbtInabilitado = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(467, 334);
+            this.btnCancelar.Location = new System.Drawing.Point(453, 473);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(148, 34);
             this.btnCancelar.TabIndex = 57;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // txtDpto
             // 
@@ -154,13 +160,6 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(173, 20);
             this.txtNombre.TabIndex = 44;
-            // 
-            // txtNacimiento
-            // 
-            this.txtNacimiento.Location = new System.Drawing.Point(154, 291);
-            this.txtNacimiento.Name = "txtNacimiento";
-            this.txtNacimiento.Size = new System.Drawing.Size(173, 20);
-            this.txtNacimiento.TabIndex = 43;
             // 
             // label15
             // 
@@ -291,7 +290,7 @@
             // 
             // btnDar_Baja
             // 
-            this.btnDar_Baja.Location = new System.Drawing.Point(32, 334);
+            this.btnDar_Baja.Location = new System.Drawing.Point(453, 393);
             this.btnDar_Baja.Name = "btnDar_Baja";
             this.btnDar_Baja.Size = new System.Drawing.Size(148, 34);
             this.btnDar_Baja.TabIndex = 59;
@@ -301,7 +300,7 @@
             // 
             // btnModificar_Cliente
             // 
-            this.btnModificar_Cliente.Location = new System.Drawing.Point(251, 334);
+            this.btnModificar_Cliente.Location = new System.Drawing.Point(453, 433);
             this.btnModificar_Cliente.Name = "btnModificar_Cliente";
             this.btnModificar_Cliente.Size = new System.Drawing.Size(148, 34);
             this.btnModificar_Cliente.TabIndex = 60;
@@ -325,11 +324,72 @@
             this.label16.TabIndex = 61;
             this.label16.Text = "Pais";
             // 
+            // btnSeleccionar
+            // 
+            this.btnSeleccionar.Location = new System.Drawing.Point(184, 488);
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.Size = new System.Drawing.Size(109, 26);
+            this.btnSeleccionar.TabIndex = 290;
+            this.btnSeleccionar.Text = "Seleccionar fecha";
+            this.btnSeleccionar.UseVisualStyleBackColor = true;
+            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
+            // 
+            // calendario
+            // 
+            this.calendario.Location = new System.Drawing.Point(145, 322);
+            this.calendario.Name = "calendario";
+            this.calendario.TabIndex = 289;
+            // 
+            // txtNacimiento
+            // 
+            this.txtNacimiento.Enabled = false;
+            this.txtNacimiento.Location = new System.Drawing.Point(154, 290);
+            this.txtNacimiento.Name = "txtNacimiento";
+            this.txtNacimiento.Size = new System.Drawing.Size(173, 20);
+            this.txtNacimiento.TabIndex = 288;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(350, 341);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 291;
+            this.label1.Text = "Estado";
+            // 
+            // rbtHabilitado
+            // 
+            this.rbtHabilitado.AutoSize = true;
+            this.rbtHabilitado.Location = new System.Drawing.Point(442, 339);
+            this.rbtHabilitado.Name = "rbtHabilitado";
+            this.rbtHabilitado.Size = new System.Drawing.Size(72, 17);
+            this.rbtHabilitado.TabIndex = 292;
+            this.rbtHabilitado.TabStop = true;
+            this.rbtHabilitado.Text = "Habilitado";
+            this.rbtHabilitado.UseVisualStyleBackColor = true;
+            // 
+            // rbtInabilitado
+            // 
+            this.rbtInabilitado.AutoSize = true;
+            this.rbtInabilitado.Location = new System.Drawing.Point(542, 339);
+            this.rbtInabilitado.Name = "rbtInabilitado";
+            this.rbtInabilitado.Size = new System.Drawing.Size(79, 17);
+            this.rbtInabilitado.TabIndex = 293;
+            this.rbtInabilitado.TabStop = true;
+            this.rbtInabilitado.Text = "Inhabilitado";
+            this.rbtInabilitado.UseVisualStyleBackColor = true;
+            // 
             // Modificar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(654, 391);
+            this.ClientSize = new System.Drawing.Size(688, 519);
+            this.Controls.Add(this.rbtInabilitado);
+            this.Controls.Add(this.rbtHabilitado);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnSeleccionar);
+            this.Controls.Add(this.calendario);
+            this.Controls.Add(this.txtNacimiento);
             this.Controls.Add(this.txtPais);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.btnModificar_Cliente);
@@ -347,7 +407,6 @@
             this.Controls.Add(this.txtDni);
             this.Controls.Add(this.txtApellido);
             this.Controls.Add(this.txtNombre);
-            this.Controls.Add(this.txtNacimiento);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
@@ -384,7 +443,6 @@
         private System.Windows.Forms.TextBox txtDni;
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.TextBox txtNacimiento;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
@@ -403,5 +461,11 @@
         private System.Windows.Forms.Button btnModificar_Cliente;
         private System.Windows.Forms.TextBox txtPais;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button btnSeleccionar;
+        private System.Windows.Forms.MonthCalendar calendario;
+        private System.Windows.Forms.TextBox txtNacimiento;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RadioButton rbtHabilitado;
+        private System.Windows.Forms.RadioButton rbtInabilitado;
     }
 }

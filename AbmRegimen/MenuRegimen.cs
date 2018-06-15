@@ -16,25 +16,19 @@ namespace FrbaHotel.AbmRegimen
         {
             InitializeComponent();
         }
+              
 
-        private void btnCrear_Click(object sender, EventArgs e)
+        private void btnCrear_Click_1(object sender, EventArgs e)
         {
             this.Hide();
             new Crear().Show();
-
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
+        private void btnModificar_Click_1(object sender, EventArgs e)
         {
             this.Hide();
 
             new MenuModificarDarDeBaja().Show();
-        }
-
-        private void btnDarDeBaja_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            //new Modificacion().Show();
         }
        
     }

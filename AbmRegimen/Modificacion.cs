@@ -13,13 +13,14 @@ namespace FrbaHotel.AbmRegimen
 {
     public partial class Modificacion : Form
     {
-        string codigoAnt, descripcionAnt, precioBaseAnt;
+        string descripcionAnt, precioBaseAnt,idCodigo;
         int estadoAnt;
-
-        public Modificacion(string codigo)
+        
+        public Modificacion(string codigoId)
         {
             InitializeComponent();
-            string consultaRegimen = string.Format("select regi_codigo as 'Codigo', regi_descripcion as 'Descripcion', regi_precio_base as'Precio base', regi_estado as 'Estado' from CAIA_UNLIMITED.Regimen where regi_codigo={0}", codigo);
+            idCodigo = codigoId;
+            string consultaRegimen = string.Format("select regi_descripcion as 'Descripcion', regi_precio_base as'Precio base', regi_estado as 'Estado' from CAIA_UNLIMITED.Regimen where regi_codigo='{0}'", codigoId);
             DataTable regimen = DataBase.realizarConsulta(consultaRegimen).Tables[0];
             cargarInfo(regimen);
             valoresAnterioresRegimen();
@@ -30,9 +31,8 @@ namespace FrbaHotel.AbmRegimen
             if (estaCompleto())
             {
                 if (hayModificaciones())
-                {
-                    int estado = estadoActualRegimen();
-                    ejecutarStoredProcedureModificar(estado);
+                {                    
+                    ejecutarStoredProcedureModificar();
                     MessageBox.Show("Regimen modificado exitosamente");
                     this.Hide();
                     new MenuModificarDarDeBaja().Show();
@@ -49,15 +49,22 @@ namespace FrbaHotel.AbmRegimen
             }
         }
 
-        private void ejecutarStoredProcedureModificar(int estado)
+        private void ejecutarStoredProcedureModificar()
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand crearRegimen = new SqlCommand("sp_ModificarRegimen", db);
+            SqlCommand crearRegimen = new SqlCommand("sp_Modificar", db);
             crearRegimen.CommandType = CommandType.StoredProcedure;
-            crearRegimen.Parameters.AddWithValue("@codigo", txtCodigo.Text.Trim());
+            crearRegimen.Parameters.AddWithValue("@codigo", idCodigo);
             crearRegimen.Parameters.AddWithValue("@descripcion", txtDescripcion.Text.Trim());
             crearRegimen.Parameters.AddWithValue("@precio_base", txtPrecio_Base.Text.Trim());
-            crearRegimen.Parameters.AddWithValue("@estado", estado);
+            if (rbActivo.Checked)
+            {
+                crearRegimen.Parameters.AddWithValue("@estado", 1);
+            }
+            else
+            {
+                crearRegimen.Parameters.AddWithValue("@estado", 0);
+            }
             crearRegimen.ExecuteNonQuery();
             db.Close();
         }
@@ -76,8 +83,8 @@ namespace FrbaHotel.AbmRegimen
 
         private bool hayModificaciones()
         {
-            //COMO CHEQUEAR SI EL BOTTON SE CAMBIO
-            if (txtCodigo.Text.Trim() == codigoAnt && txtDescripcion.Text.Trim() == descripcionAnt && txtPrecio_Base.Text.Trim() == precioBaseAnt  && estadoActualRegimen()==estadoAnt)
+            
+            if (txtDescripcion.Text.Trim() == descripcionAnt && txtPrecio_Base.Text.Trim() == precioBaseAnt  && estadoActualRegimen()==estadoAnt)
             {
                 return false;
             }
@@ -86,11 +93,8 @@ namespace FrbaHotel.AbmRegimen
 
         private bool estaCompleto()
         {
-            if (txtCodigo.Text.Trim() == "")
-            {
-                return false;
-            }
-            else if (txtDescripcion.Text.Trim() == "")
+           
+            if (txtDescripcion.Text.Trim() == "")
             {
                 return false;
             }
@@ -107,24 +111,22 @@ namespace FrbaHotel.AbmRegimen
 
         private void cargarInfo(DataTable regimen)
         {
-            txtCodigo.Text = regimen.Rows[0][0].ToString();
-            txtDescripcion.Text = regimen.Rows[0][1].ToString();
-            txtPrecio_Base.Text = regimen.Rows[0][2].ToString();
-            string estado = regimen.Rows[0][3].ToString();
-            int est = Convert.ToInt32(estado);
-            if ( est == 1)
+            txtDescripcion.Text = regimen.Rows[0][0].ToString();
+            txtPrecio_Base.Text = regimen.Rows[0][1].ToString();
+            string estado = regimen.Rows[0][2].ToString();
+            if (bool.Parse(estado))
             {
-                rbActivo.PerformClick();
+                rbActivo.Select();
             }
             else
             {
-                rbNo_activo.PerformClick();
+                rbNo_activo.Select();
             }
         }
 
         private void valoresAnterioresRegimen()
         {
-            codigoAnt = txtCodigo.Text;
+            
             descripcionAnt = txtDescripcion.Text;
             precioBaseAnt = txtPrecio_Base.Text;
             if (rbActivo.Checked)
@@ -146,22 +148,19 @@ namespace FrbaHotel.AbmRegimen
             }
             else
             {
-                //ejecutarStoredProcedureDarDeBaja();
-                MessageBox.Show("Cliente dado de baja exitosamente");
+                ejecutarStoredProcedureDarDeBaja();
+                MessageBox.Show("Regimen dado de baja exitosamente");
                 this.Hide();
                 new MenuModificarDarDeBaja().Show();
             }
         }
 
-        private void ejecutarStoredProcedureDarDeBaja(int estado)
+        private void ejecutarStoredProcedureDarDeBaja()
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand crearRegimen = new SqlCommand("sp_BajaRegimen", db);
+            SqlCommand crearRegimen = new SqlCommand("sp_BajaRegi", db);
             crearRegimen.CommandType = CommandType.StoredProcedure;
-            crearRegimen.Parameters.AddWithValue("@codigo", txtCodigo.Text.Trim());
-            crearRegimen.Parameters.AddWithValue("@descripcion", txtDescripcion.Text.Trim());
-            crearRegimen.Parameters.AddWithValue("@precio_base", txtPrecio_Base.Text.Trim());
-            crearRegimen.Parameters.AddWithValue("@estado", estado);
+            crearRegimen.Parameters.AddWithValue("@codigo", idCodigo);
             crearRegimen.ExecuteNonQuery();
             db.Close();
         }
