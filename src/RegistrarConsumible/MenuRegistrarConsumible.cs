@@ -26,15 +26,15 @@ namespace FrbaHotel.RegistrarConsumible
 
         private void btnAgregar_Reserva_Click(object sender, EventArgs e)
         {
-            string consultaHabitacion = string.Format("select habi_numero as 'Numero habitacion' from CAIA_UNLIMITED.Reserva R join CAIA_UNLIMITED.Estadia E on (R.rese_codigo = E.rese_codigo) where esta_codigo='{0}'", txtCodigo_Estadia.Text);
+            string consultaHabitacion = string.Format("select habi_numero as 'Numero habitacion' from CAIA_UNLIMITED.Reserva R join CAIA_UNLIMITED.Estadia E on (R.rese_codigo = E.rese_codigo) where esta_codigo={0}", txtCodigo_Estadia.Text);
             DataTable habitacion = DataBase.realizarConsulta(consultaHabitacion).Tables[0];
             txtHabitacion.Text = habitacion.Rows[0][0].ToString();
 
-            string consultaHotel = string.Format("select hote_id as 'Codigo hotel' from CAIA_UNLIMITED.Reserva R join CAIA_UNLIMITED.Estadia E on (R.rese_codigo = E.rese_codigo) where esta_codigo='{0}'", txtCodigo_Estadia.Text);
+            string consultaHotel = string.Format("select R.hote_id as 'Codigo hotel' from CAIA_UNLIMITED.Reserva R join CAIA_UNLIMITED.Estadia E on (R.rese_codigo = E.rese_codigo) where esta_codigo={0}", txtCodigo_Estadia.Text.Trim());            
             DataTable hotel = DataBase.realizarConsulta(consultaHotel).Tables[0];
             txtHotel.Text = hotel.Rows[0][0].ToString();
 
-            string consultaRegimen = string.Format("select regi_descripcion as 'Regimen' from CAIA_UNLIMITED.Regimen R join CAIA_UNLIMITED.Regimen_X_Hotel RX on (R.regi_codigo = RX.regi_codigo) join CAIA_UNLIMITED.Hotel H on (H.hote_id = RX.hote_id) where esta_codigo='{0}'", txtHotel.Text);
+            string consultaRegimen = string.Format("select regi_descripcion as 'Regimen' from CAIA_UNLIMITED.Regimen R join CAIA_UNLIMITED.Regimen_X_Hotel X on (R.regi_codigo = X.regi_codigo) join CAIA_UNLIMITED.Hotel H on (H.hote_id = X.hote_id) where esta_codigo={0}", txtHotel.Text);           
             DataTable regimen = DataBase.realizarConsulta(consultaHabitacion).Tables[0];
             txtRegimen.Text = regimen.Rows[0][0].ToString();
         }
