@@ -56,7 +56,7 @@ namespace FrbaHotel.AbmRegimen
             crearRegimen.CommandType = CommandType.StoredProcedure;
             crearRegimen.Parameters.AddWithValue("@codigo", idCodigo);
             crearRegimen.Parameters.AddWithValue("@descripcion", txtDescripcion.Text.Trim());
-            crearRegimen.Parameters.AddWithValue("@precio_base", txtPrecio_Base.Text.Trim());
+            crearRegimen.Parameters.AddWithValue("@precio_base", Convert.ToDouble(txtPrecio_Base.Text.Trim()));
             if (rbActivo.Checked)
             {
                 crearRegimen.Parameters.AddWithValue("@estado", 1);
