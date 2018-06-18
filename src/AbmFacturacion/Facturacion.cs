@@ -90,7 +90,7 @@ namespace FrbaHotel.AbmFacturacion
             txtHuesped.Text = huesped.Tables[0].Rows[0][0].ToString();
             documento = huesped.Tables[0].Rows[0][1].ToString();
             txtPrecioRegimen.Text = DataBase.realizarConsulta("select regi_precio_base from CAIA_UNLIMITED.Regimen R join CAIA_UNLIMITED.Reserva H on (R.regi_codigo = H.regi_codigo) join CAIA_UNLIMITED.Estadia E on (E.rese_codigo = H.rese_codigo) where esta_codigo =" + codigoEstadia).Tables[0].Rows[0][0].ToString();
-            txtPorcentual.Text = DataBase.realizarConsulta("select thab_porcentual from CAIA_UNLIMITED.Tipo_Habitacion T join CAIA_UNLIMITED.Habitacion H on (T.thab_codigo = H.thab_codigo) join CAIA_UNLIMITED.Habitacion_X_Reserva X on (X.habi_rese_id = H.hote_id and X.habi_rese_numero = H.habi_numero) join CAIA_UNLIMITED.Reserva R on (R.rese_codigo = X.habi_rese_codigo) join CAIA_UNLIMITED.Estadia E on (R.rese_codigo = E.rese_codigo) where esta_codigo =" + codigoEstadia).Tables[0].Rows[0][0].ToString();
+            txtPorcentual.Text = DataBase.realizarConsulta("select H.hote_recarga_estrella * H.hote_cant_estrellas from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Habitacion_X_Reserva X on (X.habi_rese_id = H.hote_id) join CAIA_UNLIMITED.Reserva R on (R.rese_codigo = X.habi_rese_codigo) join CAIA_UNLIMITED.Estadia E on (E.rese_codigo = R.rese_codigo) where esta_codigo = " + codigoEstadia).Tables[0].Rows[0][0].ToString();
             txtNoches.Text = DataBase.realizarConsulta("select esta_cantidad_noches from CAIA_UNLIMITED.Estadia where esta_codigo =" + codigoEstadia).Tables[0].Rows[0][0].ToString();
 
         }
