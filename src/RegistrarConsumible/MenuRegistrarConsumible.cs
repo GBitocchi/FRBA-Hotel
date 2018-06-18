@@ -26,11 +26,11 @@ namespace FrbaHotel.RegistrarConsumible
 
         private void btnAgregar_Reserva_Click(object sender, EventArgs e)
         {
-            string consultaHabitacion = string.Format("select habi_numero as 'Numero habitacion' from CAIA_UNLIMITED.Reserva R join CAIA_UNLIMITED.Estadia E on (R.rese_codigo = E.rese_codigo) where esta_codigo={0}", txtCodigo_Estadia.Text);
+            string consultaHabitacion = string.Format("select habi_rese_numero as 'Numero habitacion' from CAIA_UNLIMITED.Reserva R join CAIA_UNLIMITED.Estadia E on (R.rese_codigo = E.rese_codigo) join CAIA_UNLIMITED.Habitacion_X_Reserva X on (X.habi_rese_codigo = R.rese_codigo) where esta_codigo={0}", txtCodigo_Estadia.Text);
             DataTable habitacion = DataBase.realizarConsulta(consultaHabitacion).Tables[0];
             txtHabitacion.Text = habitacion.Rows[0][0].ToString();
 
-            string consultaHotel = string.Format("select R.hote_id as 'Codigo hotel' from CAIA_UNLIMITED.Reserva R join CAIA_UNLIMITED.Estadia E on (R.rese_codigo = E.rese_codigo) where esta_codigo={0}", txtCodigo_Estadia.Text.Trim());            
+            string consultaHotel = string.Format("select habi_rese_id as 'Codigo hotel' from CAIA_UNLIMITED.Reserva R join CAIA_UNLIMITED.Estadia E on (R.rese_codigo = E.rese_codigo) join CAIA_UNLIMITED.Habitacion_X_Reserva X on (X.habi_rese_codigo = R.rese_codigo) where esta_codigo={0}", txtCodigo_Estadia.Text.Trim());            
             DataTable hotel = DataBase.realizarConsulta(consultaHotel).Tables[0];
             txtHotel.Text = hotel.Rows[0][0].ToString();
 
