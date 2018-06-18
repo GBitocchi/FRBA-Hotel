@@ -854,18 +854,19 @@ go
 create view CAIA_UNLIMITED.vw_MasCancelada
 as 
 	SELECT TOP 5 H.hote_id as 'ID', hote_nombre as 'Nombre' 
-	FROM CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Reserva R on (H.hote_id = R.hote_id) 
-								join CAIA_UNLIMITED.Estado_Reserva E on (E.esre_codigo = R.esre_codigo) 
-	WHERE esre_detalle LIKE '%cancelada%' 
-	GROUP BY H.hote_id, hote_nombre 
-	ORDER BY COUNT(*) DESC
+	FROM CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Habitacion_X_Reserva X on (X.habi_rese_id = H.hote_id)
+								join CAIA_UNLIMITED.Reserva R on (R.rese_codigo = X.habi_rese_codigo)
+								join CAIA_UNLIMITED.Reserva_Cancelada C on (C.reca_rese = R.rese_codigo)
+	GROUP BY H.hote_id, hote_nombre
+	ORDER BY COUNT(*)
+	  
 go
 
 create view CAIA_UNLIMITED.vw_MasFacturacion
 as
 	select top 5 H.hote_id 'ID', hote_nombre as 'Nombre'
-	from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Reserva R on (H.hote_id = R.hote_id)
-							join CAIA_UNLIMITED.Estadia E on (E.rese_codigo = R.rese_codigo)
+	from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Habitacion_X_Reserva X on (X.habi_rese_id = H.hote_id)
+							join CAIA_UNLIMITED.Estadia E on (E.rese_codigo = X.habi_rese_codigo)
 							join CAIA_UNLIMITED.Factura F on (F.esta_codigo = E.esta_codigo)
 							join CAIA_UNLIMITED.Item_Factura I on (F.fact_nro = I.fact_nro)
 	group by H.hote_id, hote_nombre
@@ -876,9 +877,8 @@ create view CAIA_UNLIMITED.vw_MasOcupada
 as
 	select top 5 A.habi_numero as 'Habitacion', A.hote_id as 'Hotel', A.habi_piso as 'Piso', A.habi_frente as 'Frente' 
 	from CAIA_UNLIMITED.Habitacion A join CAIA_UNLIMITED.Hotel H on (H.hote_id = A.hote_id)
-									join CAIA_UNLIMITED.Reserva R on (R.hote_id = H.hote_id and
-																		A.habi_numero = R.habi_numero)
-									join CAIA_UNLIMITED.Estadia E on (R.rese_codigo = E.rese_codigo)
+									join CAIA_UNLIMITED.Habitacion_X_Reserva X on (X.habi_rese_id = H.hote_id and X.habi_rese_numero = A.habi_numero)
+									join CAIA_UNLIMITED.Estadia E on (X.habi_rese_codigo = E.rese_codigo)
 	group by A.habi_numero, A.hote_id, A.habi_piso, A.habi_frente
 	order by sum(E.esta_cantidad_noches), count(*) desc
 go

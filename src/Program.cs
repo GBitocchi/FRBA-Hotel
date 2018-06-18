@@ -22,7 +22,7 @@ namespace FrbaHotel
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);         
-            Application.Run(new MenuRegistrarConsumible());       
+            Application.Run(new ListadosEstadisticos());       
         }
     }
 }
