@@ -13,6 +13,10 @@ if OBJECT_ID('[CAIA_UNLIMITED].[Rol_X_Usuario]', 'U') is not null
 drop table CAIA_UNLIMITED.Rol_X_Usuario
 go
 
+if OBJECT_ID('[CAIA_UNLIMITED].[Habitacion_X_Reserva]', 'U') is not null
+drop table CAIA_UNLIMITED.Habitacion_X_Reserva
+go
+
 if OBJECT_ID('[CAIA_UNLIMITED].[Funcionalidad_X_Rol]', 'U') is not null
 drop table CAIA_UNLIMITED.Funcionalidad_X_Rol
 go
@@ -177,8 +181,6 @@ create table CAIA_UNLIMITED.Reserva(
 	rese_fecha_desde datetime not null,
 	rese_cantidad_noches numeric(18,0) not null,
 	esre_codigo numeric(18,0),
-	hote_id numeric(18,0) not null,
-	habi_numero numeric(18,0) not null,
 	regi_codigo numeric(18,0) not null
 )
 go
@@ -186,6 +188,14 @@ go
 create table CAIA_UNLIMITED.Estado_Reserva(
 	esre_codigo numeric(18,0) identity(0,1) not null,
 	esre_detalle nvarchar(255) not null
+)
+go
+
+create table CAIA_UNLIMITED.Reserva_Cancelada(
+	reca_rese numeric(18,0) not null,
+	reca_motivo nvarchar(255),
+	reca_fecha_cancelacion datetime not null,
+	reca_usuario nvarchar(255) not null
 )
 go
 
@@ -303,6 +313,13 @@ create table CAIA_UNLIMITED.Consumible_X_Estadia(
 )
 go
 
+create table CAIA_UNLIMITED.Habitacion_X_Reserva(
+	habi_rese_numero numeric(18,0) not null,
+	habi_rese_id numeric(18,0) not null,
+	habi_rese_codigo numeric(18,0) not null
+)
+go
+
 alter table CAIA_UNLIMITED.Direccion
 	add constraint PK_Direccion primary key (dire_id)
 go
@@ -357,8 +374,6 @@ alter table CAIA_UNLIMITED.Reserva
 	add constraint PK_Reserva primary key (rese_codigo),
 	constraint FK_Reserva_Estado foreign key (esre_codigo)
 	references CAIA_UNLIMITED.Estado_Reserva (esre_codigo),
-	constraint FK_Reserva_Habitacion foreign key (hote_id, habi_numero)
-	references CAIA_UNLIMITED.Habitacion (hote_id, habi_numero),
 	constraint FK_Reserva_Regimen foreign key (regi_codigo)
 	references CAIA_UNLIMITED.Regimen (regi_codigo)
 	on update cascade
@@ -448,6 +463,21 @@ alter table CAIA_UNLIMITED.Consumible_X_Estadia
 	references CAIA_UNLIMITED.Estadia (esta_codigo)
 go
 
+alter table CAIA_UNLIMITED.Habitacion_X_Reserva
+	add constraint PK_Habitacion_X_Reserva primary key (habi_rese_numero, habi_rese_id, habi_rese_codigo),
+	constraint FK_HabitacionReserva_Habi foreign key (habi_rese_id, habi_rese_numero)
+	references CAIA_UNLIMITED.Habitacion (hote_id, habi_numero),
+	constraint FK_HabitacionReserva_Rese foreign key (habi_rese_codigo)
+	references CAIA_UNLIMITED.Reserva (rese_codigo)
+go
+
+alter table CAIA_UNLIMITED.Reserva_Cancelada
+	add constraint FK_ReservaCancelada_Usuario foreign key (reca_usuario)
+	references CAIA_UNLIMITED.Usuario (usur_username),
+	constraint FK_ReservaCancelada_Reserva foreign key (reca_rese)
+	references CAIA_UNLIMITED.Reserva (rese_codigo)
+go
+
 --Consumibles
 insert into CAIA_UNLIMITED.Consumible (cons_codigo, cons_descripcion, cons_precio)
 select distinct Consumible_Codigo, Consumible_Descripcion, Consumible_Precio from gd_esquema.Maestra
@@ -488,8 +518,8 @@ from gd_esquema.Maestra join CAIA_UNLIMITED.Tipo_Habitacion on (thab_codigo = Ha
 						join CAIA_UNLIMITED.Hotel H on (H.dire_id = D.dire_id) 
 
 --Reserva
-insert into CAIA_UNLIMITED.Reserva (rese_codigo, rese_fecha_realizacion, rese_fecha_desde, rese_cantidad_noches, hote_id, habi_numero, regi_codigo)
-select distinct Reserva_Codigo, Reserva_Fecha_Inicio, Reserva_Fecha_Inicio, Reserva_Cant_Noches, H.hote_id, habi_numero, L.regi_codigo
+insert into CAIA_UNLIMITED.Reserva (rese_codigo, rese_fecha_realizacion, rese_fecha_desde, rese_cantidad_noches, regi_codigo)
+select distinct Reserva_Codigo, Reserva_Fecha_Inicio, Reserva_Fecha_Inicio, Reserva_Cant_Noches, L.regi_codigo
 from gd_esquema.Maestra join CAIA_UNLIMITED.Direccion D on (Hotel_Calle = dire_dom_calle and
 															Hotel_Nro_Calle = dire_nro_calle and
 															Hotel_Ciudad = dire_ciudad)
@@ -497,6 +527,7 @@ from gd_esquema.Maestra join CAIA_UNLIMITED.Direccion D on (Hotel_Calle = dire_d
 						join CAIA_UNLIMITED.Habitacion R on (H.hote_id  = R.hote_id and
 															Habitacion_Numero = habi_numero)
 						join CAIA_UNLIMITED.Regimen L on (regi_descripcion = Regimen_Descripcion)
+
 
 --Estadia
 insert into CAIA_UNLIMITED.Estadia (esta_fecha_inicio, esta_cantidad_noches, rese_codigo)
@@ -559,6 +590,16 @@ from CAIA_UNLIMITED.Reserva join gd_esquema.Maestra on (Reserva_Codigo = rese_co
 							join CAIA_UNLIMITED.Huesped on (Cliente_Mail = hues_mail and 
 															Cliente_Pasaporte_Nro = hues_documento)
 
+--Habitacion por reserva
+insert into CAIA_UNLIMITED.Habitacion_X_Reserva (habi_rese_id, habi_rese_numero, habi_rese_codigo)
+select distinct A.hote_id, A.habi_numero, rese_codigo
+from gd_esquema.Maestra join CAIA_UNLIMITED.Direccion D on (Hotel_Calle = dire_dom_calle and
+																Hotel_Ciudad = dire_ciudad and
+																Hotel_Nro_Calle = dire_nro_calle)
+							join CAIA_UNLIMITED.Hotel H on (H.dire_id = D.dire_id)
+							join CAIA_UNLIMITED.Habitacion A on (A.hote_id = H.hote_id and A.habi_numero = Habitacion_Numero)
+							join CAIA_UNLIMITED.Reserva R on (Reserva_Codigo = rese_codigo)
+
 insert into CAIA_UNLIMITED.Usuario (usur_username, usur_password, usur_habilitado, usur_intentos) values('admin', HASHBYTES('SHA2_256', 'w23e'), 1, 0)
 
 insert into CAIA_UNLIMITED.Rol (rol_nombre, rol_estado) values('Administrador General', 1)
@@ -586,14 +627,14 @@ where hues_mail in (select h1.hues_mail from CAIA_UNLIMITED.Huesped h1 group by 
 
 CREATE PROCEDURE [CAIA_UNLIMITED].[sp_AlmacenarHotel] (@nombre_hotel nvarchar(255), @mail nvarchar(255), @estrellas numeric(18,0),
 							@hote_telefono nvarchar(20), @calle nvarchar(255), @numero_calle numeric(18,0),
-							@ciudad nvarchar(255), @pais nvarchar(255))
+							@ciudad nvarchar(255), @pais nvarchar(255), @fecha datetime)
 AS
 BEGIN
 	insert into CAIA_UNLIMITED.Direccion (dire_ciudad, dire_pais, dire_dom_calle, dire_nro_calle,
 											dire_telefono)
 	values (@ciudad, @pais, @calle, @numero_calle, @hote_telefono)
 	insert into CAIA_UNLIMITED.Hotel (hote_nombre, hote_mail, hote_cant_estrellas, hote_habilitado, hote_fecha_creacion, dire_id)
-	values (@nombre_hotel, @mail, @estrellas, 1, convert(datetime, GETDATE(), 121), (select dire_id from CAIA_UNLIMITED.Direccion
+	values (@nombre_hotel, @mail, @estrellas, 1, convert(datetime, @fecha, 121), (select dire_id from CAIA_UNLIMITED.Direccion
 												where dire_telefono = @hote_telefono and
 												dire_dom_calle = @calle and dire_ciudad = @ciudad
 												and dire_pais = @pais and dire_nro_calle = @numero_calle))		
@@ -629,7 +670,7 @@ GO
 
 CREATE PROCEDURE [CAIA_UNLIMITED].[sp_ModificarHotel] (@idHotel numeric(18,0), @nombre_hotel nvarchar(255), @mail nvarchar(255), @estrellas numeric(18,0),
 							@hote_telefono nvarchar(20), @calle nvarchar(255), @numero_calle numeric(18,0),
-							@ciudad nvarchar(255), @pais nvarchar(255))
+							@ciudad nvarchar(255), @pais nvarchar(255), @fecha datetime)
 AS
 BEGIN
 	update CAIA_UNLIMITED.Direccion 
@@ -639,7 +680,7 @@ BEGIN
 						where hote_id = @idHotel)
 
 	update CAIA_UNLIMITED.Hotel
-	set hote_nombre = @nombre_hotel, hote_mail = @mail, hote_cant_estrellas = @estrellas
+	set hote_nombre = @nombre_hotel, hote_mail = @mail, hote_cant_estrellas = @estrellas, hote_fecha_creacion = convert(datetime, @fecha, 121)
 	where hote_id = @idHotel
 END
 GO
@@ -843,13 +884,6 @@ as
 																		F.hues_mail = H.hues_mail)
 	group by H.hues_mail, H.hues_documento, hues_nombre, hues_apellido
 	order by sum((I.item_monto*I.item_cantidad)/10) + sum((F.fact_total-(I.item_monto*I.item_cantidad))/20) desc
-go
-
-create view [CAIA_UNLIMITED].[vw_MantenimientosTerminados]
-as
-	select hote_id
-	from CAIA_UNLIMITED.Mantenimiento
-	where DATEDIFF(day, mant_fecha_fin, GETDATE()) >= 0
 go
 
 ----Rol

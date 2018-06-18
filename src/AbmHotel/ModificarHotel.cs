@@ -37,6 +37,7 @@ namespace FrbaHotel.AbmHotel
             lblPais.Visible = false;
             lblTelefono.Visible = false;
             lblRegimenes.Visible = false;
+            lblFecha.Visible = false;
         }
 
         private void valoresViejos()
@@ -114,6 +115,7 @@ namespace FrbaHotel.AbmHotel
             modificarHotel.Parameters.AddWithValue("@numero_calle", Int32.Parse(txtNumero.Text.Trim()));
             modificarHotel.Parameters.AddWithValue("@ciudad", txtCiudad.Text.Trim());
             modificarHotel.Parameters.AddWithValue("@pais", txtPais.Text.Trim());
+            modificarHotel.Parameters.AddWithValue("@fecha", dtFechaCreacion.Value.ToString("yyyy-MM-dd hh:mm:ss"));
             modificarHotel.ExecuteNonQuery();
             SqlCommand eliminarRegimenes = new SqlCommand("CAIA_UNLIMITED.sp_EliminarRegimenes", db);
             eliminarRegimenes.CommandType = CommandType.StoredProcedure;
@@ -190,6 +192,10 @@ namespace FrbaHotel.AbmHotel
             else if (dgRegimenes.SelectedRows.Count == 0)
             {
                 lblRegimenes.Visible = true;
+            }
+            else if (dtFechaCreacion.Value > DataBase.fechaSistema())
+            {
+                lblFecha.Visible = true;
             }
             else
             {

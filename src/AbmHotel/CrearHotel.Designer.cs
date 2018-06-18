@@ -344,9 +344,9 @@
             this.lblFecha.ForeColor = System.Drawing.Color.Red;
             this.lblFecha.Location = new System.Drawing.Point(545, 244);
             this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(199, 20);
+            this.lblFecha.Size = new System.Drawing.Size(220, 20);
             this.lblFecha.TabIndex = 29;
-            this.lblFecha.Text = "*Ingrese fecha de creacion";
+            this.lblFecha.Text = "*Fecha de creacion incorrecta";
             // 
             // label11
             // 

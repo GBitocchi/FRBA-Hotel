@@ -320,7 +320,6 @@ C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRegimen.Crea
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRegimen.MenuModificarDarDeBaja.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRegimen.MenuRegimen.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRegimen.Modificacion.resources
-C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRol.Form1.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.Form1.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.ListadoEstadistico.DatosInsuficientes.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.ListadoEstadistico.ListadosEstadisticos.resources
@@ -399,3 +398,6 @@ C:\Users\Gusbi\Desktop\TP-SUBIR\FRBA-Hotel\src\bin\Debug\FrbaHotel.exe
 C:\Users\Gusbi\Desktop\TP-SUBIR\FRBA-Hotel\src\bin\Debug\FrbaHotel.pdb
 C:\Users\Gusbi\Desktop\TP-SUBIR\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmUsuario.VistaUsuario.resources
 C:\Users\Gusbi\Desktop\TP-SUBIR\FRBA-Hotel\src\obj\Debug\FrbaHotel.Menu_Sistema.VistaHuesped.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRol.VistaRol.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmUsuario.VistaUsuario.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.Menu_Sistema.VistaHuesped.resources

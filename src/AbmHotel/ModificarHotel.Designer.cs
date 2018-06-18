@@ -55,6 +55,9 @@
             this.lblCiudad = new System.Windows.Forms.Label();
             this.lblPais = new System.Windows.Forms.Label();
             this.lblRegimenes = new System.Windows.Forms.Label();
+            this.dtFechaCreacion = new System.Windows.Forms.DateTimePicker();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lblFecha = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgRegimenes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -136,7 +139,7 @@
             // 
             this.dgRegimenes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgRegimenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgRegimenes.Location = new System.Drawing.Point(70, 295);
+            this.dgRegimenes.Location = new System.Drawing.Point(70, 371);
             this.dgRegimenes.Name = "dgRegimenes";
             this.dgRegimenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgRegimenes.Size = new System.Drawing.Size(481, 150);
@@ -216,7 +219,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(66, 272);
+            this.label9.Location = new System.Drawing.Point(66, 348);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(139, 20);
             this.label9.TabIndex = 18;
@@ -225,7 +228,7 @@
             // btnAtras
             // 
             this.btnAtras.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAtras.Location = new System.Drawing.Point(454, 451);
+            this.btnAtras.Location = new System.Drawing.Point(454, 527);
             this.btnAtras.Name = "btnAtras";
             this.btnAtras.Size = new System.Drawing.Size(97, 34);
             this.btnAtras.TabIndex = 20;
@@ -236,7 +239,7 @@
             // btnModificar
             // 
             this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.Location = new System.Drawing.Point(351, 451);
+            this.btnModificar.Location = new System.Drawing.Point(351, 527);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(97, 34);
             this.btnModificar.TabIndex = 21;
@@ -315,17 +318,48 @@
             this.lblRegimenes.AutoSize = true;
             this.lblRegimenes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRegimenes.ForeColor = System.Drawing.Color.Red;
-            this.lblRegimenes.Location = new System.Drawing.Point(557, 295);
+            this.lblRegimenes.Location = new System.Drawing.Point(557, 371);
             this.lblRegimenes.Name = "lblRegimenes";
             this.lblRegimenes.Size = new System.Drawing.Size(138, 20);
             this.lblRegimenes.TabIndex = 28;
             this.lblRegimenes.Text = "*Faltan regimenes";
             // 
+            // dtFechaCreacion
+            // 
+            this.dtFechaCreacion.Location = new System.Drawing.Point(328, 272);
+            this.dtFechaCreacion.Name = "dtFechaCreacion";
+            this.dtFechaCreacion.Size = new System.Drawing.Size(223, 20);
+            this.dtFechaCreacion.TabIndex = 29;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(66, 272);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(140, 20);
+            this.label11.TabIndex = 31;
+            this.label11.Text = "Fecha de creacion";
+            // 
+            // lblFecha
+            // 
+            this.lblFecha.AutoSize = true;
+            this.lblFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFecha.ForeColor = System.Drawing.Color.Red;
+            this.lblFecha.Location = new System.Drawing.Point(557, 272);
+            this.lblFecha.Name = "lblFecha";
+            this.lblFecha.Size = new System.Drawing.Size(220, 20);
+            this.lblFecha.TabIndex = 32;
+            this.lblFecha.Text = "*Fecha de creacion incorrecta";
+            // 
             // ModificarHotel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 515);
+            this.ClientSize = new System.Drawing.Size(787, 515);
+            this.Controls.Add(this.lblFecha);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.dtFechaCreacion);
             this.Controls.Add(this.lblRegimenes);
             this.Controls.Add(this.lblPais);
             this.Controls.Add(this.lblCiudad);
@@ -355,7 +389,6 @@
             this.Controls.Add(this.label1);
             this.Name = "ModificarHotel";
             this.Text = "Modificar Hotel";
-//            this.Load += new System.EventHandler(this.ModificarHotel_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgRegimenes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -391,5 +424,8 @@
         private System.Windows.Forms.Label lblCiudad;
         private System.Windows.Forms.Label lblPais;
         private System.Windows.Forms.Label lblRegimenes;
+        private System.Windows.Forms.DateTimePicker dtFechaCreacion;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblFecha;
     }
 }

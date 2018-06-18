@@ -67,6 +67,10 @@ namespace FrbaHotel.AbmHotel
             {
                 lblRegimenes.Visible = true;
             }
+            else if (dtFechaCreacion.Value > DataBase.fechaSistema())
+            {
+                lblFecha.Visible = true;
+            }
             else
             {
                 return true;
@@ -79,6 +83,7 @@ namespace FrbaHotel.AbmHotel
             InitializeComponent();
             ocultarErrores();
             MostrarDG();
+            dtFechaCreacion.Value = DataBase.fechaSistema();
         }
 
         private void ocultarErrores()
@@ -91,6 +96,7 @@ namespace FrbaHotel.AbmHotel
             lblPais.Visible = false;
             lblTelefono.Visible = false;
             lblRegimenes.Visible = false;
+            lblFecha.Visible = false;
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
@@ -125,6 +131,7 @@ namespace FrbaHotel.AbmHotel
             agregarHotel.Parameters.AddWithValue("@numero_calle", Int32.Parse(txtNumero.Text.Trim()));
             agregarHotel.Parameters.AddWithValue("@ciudad", txtCiudad.Text.Trim());
             agregarHotel.Parameters.AddWithValue("@pais", txtPais.Text.Trim());
+            agregarHotel.Parameters.AddWithValue("@fecha", dtFechaCreacion.Value.ToString("yyyy-MM-dd hh:mm:ss"));
             agregarHotel.ExecuteNonQuery();
             string id_hotel = ObtenerIDHotel();
             foreach (DataGridViewRow regimen in dgRegimenes.SelectedRows)

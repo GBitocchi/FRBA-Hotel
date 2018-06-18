@@ -19,6 +19,8 @@ namespace FrbaHotel.AbmHotel
             InitializeComponent();
             hotelID = idHotel;
             txtFechasIncorrectas.Visible = false;
+            dtFin.Value = DataBase.fechaSistema();
+            dtInicio.Value = DataBase.fechaSistema();
         }
 
         private void ejecutarStoredProcedure()
