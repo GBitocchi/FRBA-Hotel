@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace FrbaHotel.AbmCliente
 {
@@ -104,33 +105,90 @@ namespace FrbaHotel.AbmCliente
         {
             if (camposCompletos())
             {
+                if (camposValidos())
+                {
+                    if (formatoMailCorrecto())
+                    {
+                        string email_ingresado = String.Format("SELECT hues_mail FROM CAIA_UNLIMITED.Huesped  where hues_mail='{0}'", txtEmail.Text.Trim());
+                        string documento_ingresado = String.Format("SELECT hues_documento FROM CAIA_UNLIMITED.Huesped WHERE hues_documento = '{0}'  AND hues_documento_tipo = '{1}'", txtNumero_Identificacion.Text.Trim(), txtTipo_Identificacion.Text.Trim());
 
-                string email_ingresado = String.Format("SELECT hues_mail FROM CAIA_UNLIMITED.Huesped  where hues_mail='{0}'", txtEmail.Text.Trim());
-                string documento_ingresado = String.Format("SELECT hues_documento FROM CAIA_UNLIMITED.Huesped WHERE hues_documento = '{0}'  AND hues_documento_tipo = '{1}'",txtNumero_Identificacion.Text.Trim(), txtTipo_Identificacion.Text.Trim());
-               
-                if (DataBase.realizarConsulta(email_ingresado).Tables[0].Rows.Count == 0)
-                {
-                    if (DataBase.realizarConsulta(documento_ingresado).Tables[0].Rows.Count == 0)
-                    {
-                        ejecutarStoredProcedureCrear();
-                        MessageBox.Show("Cliente " + txtNombre + " ingresado correctamente.");
-                        RestaurarFormulario();
-                    }else
-                    {
-                        MessageBox.Show("El tipo y numero de identificacion ingresado ya existe.");
+                        if (DataBase.realizarConsulta(email_ingresado).Tables[0].Rows.Count == 0)
+                        {
+                            if (DataBase.realizarConsulta(documento_ingresado).Tables[0].Rows.Count == 0)
+                            {
+                                ejecutarStoredProcedureCrear();
+                                MessageBox.Show("Cliente " + txtNombre.Text.Trim() + " ingresado correctamente.","Ingresado",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                                RestaurarFormulario();
+                            }
+                            else
+                            {
+                                MessageBox.Show("El tipo y numero de identificacion ingresado ya existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("El mail ingresado ya existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-                }else
-                {
-                    MessageBox.Show("El mail ingresado ya existe.");
                 }
                                 
             }
             else
             {
-                MessageBox.Show("Complete todo los campos");
+                MessageBox.Show("Complete todo los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
 
+        }
+
+
+        private bool formatoMailCorrecto()
+        {
+            Regex expEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            if (!expEmail.IsMatch(txtEmail.Text))
+            {
+                MessageBox.Show("Formato de mail ingresado incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private bool camposValidos()
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtNumero_Identificacion.Text, @"^\d+$"))
+            {
+                MessageBox.Show("Solo se permiten valores numericos en el numero de identificacion","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return false;
+
+            } else if (!System.Text.RegularExpressions.Regex.IsMatch(txtTelefono.Text, @"^\d+$"))
+            {
+                MessageBox.Show("Solo se permiten valores numericos en el telefono","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return false;
+
+            } else if (!System.Text.RegularExpressions.Regex.IsMatch(txtCalle_Nro.Text, @"^\d+$"))
+            {
+                MessageBox.Show("Solo se permiten valores numericos en el numero de calle","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return false;
+
+            } else if (!System.Text.RegularExpressions.Regex.IsMatch(txtDpto.Text, @"^\d+$"))
+            {
+                MessageBox.Show("Solo se permiten valores numericos en el dpto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+
+            }
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(txtPiso.Text, @"^\d+$"))
+            {
+                MessageBox.Show("Solo se permiten valores numericos en el piso", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private void ejecutarStoredProcedureCrear()

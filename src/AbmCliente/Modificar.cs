@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace FrbaHotel.AbmCliente
 {
@@ -191,34 +192,93 @@ namespace FrbaHotel.AbmCliente
             {
                 if (hayModificaciones())
                 {
-                    ejecutarStoredProcedureModificar();
-                    MessageBox.Show("Cliente modificado exitosamente");
-                    this.Hide();
-                    new MenuModificarYBaja().Show();
+                    if (camposValidos())
+                    {
+                        if (formatoMailCorrecto())
+                        {
+                            ejecutarStoredProcedureModificar();
+                            MessageBox.Show("Cliente modificado exitosamente","Modificado",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                            this.Hide();
+                            new MenuModificarYBaja().Show();
+                        }
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("No se realizaron cambios en los campo/s");
+                    MessageBox.Show("No se realizaron cambios en los campo/s", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
 
             }
             else
             {
-                MessageBox.Show("Campo/s incompletos");
+                MessageBox.Show("Campo/s incompletos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
+
+        private bool formatoMailCorrecto()
+        {
+            Regex expEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            if (!expEmail.IsMatch(txtEmail.Text))
+            {
+                MessageBox.Show("Formato de mail ingresado incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private bool camposValidos()
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtDni.Text, @"^\d+$"))
+            {
+                MessageBox.Show("Solo se permiten valores numericos en el numero de identificacion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+
+            }
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(txtTelefono.Text, @"^\d+$"))
+            {
+                MessageBox.Show("Solo se permiten valores numericos en el telefono", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+
+            }
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(txtCalle_Nro.Text, @"^\d+$"))
+            {
+                MessageBox.Show("Solo se permiten valores numericos en el numero de calle", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+
+            }
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(txtDpto.Text, @"^\d+$"))
+            {
+                MessageBox.Show("Solo se permiten valores numericos en el dpto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+
+            }
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(txtPiso.Text, @"^\d+$"))
+            {
+                MessageBox.Show("Solo se permiten valores numericos en el piso", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+
+            }
+            else
+            {
+                return true;
+            }
+        }
+
 
         private void btnDar_Baja_Click(object sender, EventArgs e)
         {
             if (hayModificaciones())
             {
-                MessageBox.Show("No se puede dar de baja, se realizaron cambios en el cliente.");
+                MessageBox.Show("No se puede dar de baja, se realizaron cambios en el cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {                
                 ejecutarStoredProcedureDarDeBaja();
-                MessageBox.Show("Cliente dado de baja exitosamente");
+                MessageBox.Show("Cliente dado de baja exitosamente", "Baja", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Hide();
                 new MenuModificarYBaja().Show();
             }

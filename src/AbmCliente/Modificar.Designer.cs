@@ -256,9 +256,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(28, 168);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(26, 13);
+            this.label5.Size = new System.Drawing.Size(124, 13);
             this.label5.TabIndex = 32;
-            this.label5.Text = "DNI";
+            this.label5.Text = "Numero de identificacion";
             // 
             // label4
             // 

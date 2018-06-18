@@ -1169,3 +1169,14 @@ BEGIN
 	insert into CAIA_UNLIMITED.Consumible_X_Estadia(cons_esta_codigo_cons, cons_esta_codigo_esta)
 	values (@codigo_consumible, @codigo_estadia)
 END
+GO
+
+-----------Cancelar reserva
+
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_CancelarReserva] (@codigo_reserva numeric(18,0), @motivo nvarchar(255), @fecha_cancelacion datetime, @usuario nvarchar(255))
+AS
+BEGIN
+	insert into CAIA_UNLIMITED.Reserva_Cancelada(reca_rese,reca_motivo,reca_fecha_cancelacion,reca_usuario)
+	values (@codigo_reserva,@motivo,@fecha_cancelacion,@usuario)
+END
+GO

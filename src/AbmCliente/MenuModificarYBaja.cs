@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace FrbaHotel.AbmCliente
 {
@@ -21,11 +22,17 @@ namespace FrbaHotel.AbmCliente
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
-            string consulta = generarConsulta();
-            if (consulta != "")
+            if (camposValidos())
             {
-                DataSet huespedes = DataBase.realizarConsulta(consulta);
-                dgClientes.DataSource = huespedes.Tables[0];
+                if (formatoMailCorrecto())
+                {
+                    string consulta = generarConsulta();
+                    if (consulta != "")
+                    {
+                        DataSet huespedes = DataBase.realizarConsulta(consulta);
+                        dgClientes.DataSource = huespedes.Tables[0];
+                    }
+                }
             }
         }
 
@@ -95,6 +102,36 @@ namespace FrbaHotel.AbmCliente
 
             return consulta;
         }
+
+
+        private bool formatoMailCorrecto()
+        {
+            Regex expEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            if (!expEmail.IsMatch(txtEmail.Text))
+            {
+                MessageBox.Show("Formato de mail ingresado incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private bool camposValidos()
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtNro_Identificacion.Text, @"^\d+$"))
+            {
+                MessageBox.Show("Solo se permiten valores numericos en el numero de identificacion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+
+            }
+            else 
+            {
+                return true;
+            }
+        }
+
 
         private void dgClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

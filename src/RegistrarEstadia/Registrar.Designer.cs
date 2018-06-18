@@ -36,12 +36,13 @@
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.txtMail = new System.Windows.Forms.TextBox();
             this.btnAceptar = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbxHuesped = new System.Windows.Forms.GroupBox();
             this.listaHuesped = new System.Windows.Forms.ListView();
             this.Mail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Tipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Numero = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnIngresar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -50,8 +51,7 @@
             this.calendario = new System.Windows.Forms.MonthCalendar();
             this.txtFecha = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.btnIngresar = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.gbxHuesped.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -124,23 +124,23 @@
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
-            // groupBox1
+            // gbxHuesped
             // 
-            this.groupBox1.Controls.Add(this.listaHuesped);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.btnAceptar);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.txtMail);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtNumero);
-            this.groupBox1.Controls.Add(this.txtTipo);
-            this.groupBox1.Location = new System.Drawing.Point(37, 25);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(649, 208);
-            this.groupBox1.TabIndex = 9;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Datos clientes";
+            this.gbxHuesped.Controls.Add(this.listaHuesped);
+            this.gbxHuesped.Controls.Add(this.label1);
+            this.gbxHuesped.Controls.Add(this.btnAceptar);
+            this.gbxHuesped.Controls.Add(this.label2);
+            this.gbxHuesped.Controls.Add(this.label3);
+            this.gbxHuesped.Controls.Add(this.txtMail);
+            this.gbxHuesped.Controls.Add(this.label4);
+            this.gbxHuesped.Controls.Add(this.txtNumero);
+            this.gbxHuesped.Controls.Add(this.txtTipo);
+            this.gbxHuesped.Location = new System.Drawing.Point(36, 256);
+            this.gbxHuesped.Name = "gbxHuesped";
+            this.gbxHuesped.Size = new System.Drawing.Size(648, 208);
+            this.gbxHuesped.TabIndex = 9;
+            this.gbxHuesped.TabStop = false;
+            this.gbxHuesped.Text = "Datos huesped";
             // 
             // listaHuesped
             // 
@@ -165,12 +165,22 @@
             this.groupBox2.Controls.Add(this.calendario);
             this.groupBox2.Controls.Add(this.txtFecha);
             this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Location = new System.Drawing.Point(37, 252);
+            this.groupBox2.Location = new System.Drawing.Point(36, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(648, 227);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Registrar estadia";
+            // 
+            // btnIngresar
+            // 
+            this.btnIngresar.Location = new System.Drawing.Point(115, 181);
+            this.btnIngresar.Name = "btnIngresar";
+            this.btnIngresar.Size = new System.Drawing.Size(99, 26);
+            this.btnIngresar.TabIndex = 10;
+            this.btnIngresar.Text = "Ingresar";
+            this.btnIngresar.UseVisualStyleBackColor = true;
+            this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
             // 
             // label6
             // 
@@ -183,7 +193,6 @@
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Enabled = false;
             this.txtUsuario.Location = new System.Drawing.Point(158, 88);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(173, 20);
@@ -242,27 +251,17 @@
             this.label10.TabIndex = 295;
             this.label10.Text = "Fecha";
             // 
-            // btnIngresar
-            // 
-            this.btnIngresar.Location = new System.Drawing.Point(115, 181);
-            this.btnIngresar.Name = "btnIngresar";
-            this.btnIngresar.Size = new System.Drawing.Size(99, 26);
-            this.btnIngresar.TabIndex = 10;
-            this.btnIngresar.Text = "Ingresar";
-            this.btnIngresar.UseVisualStyleBackColor = true;
-            this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
-            // 
             // Registrar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(724, 500);
+            this.ClientSize = new System.Drawing.Size(724, 519);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbxHuesped);
             this.Name = "Registrar";
             this.Text = "Datos del cliente";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbxHuesped.ResumeLayout(false);
+            this.gbxHuesped.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -279,7 +278,7 @@
         private System.Windows.Forms.TextBox txtNumero;
         private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbxHuesped;
         private System.Windows.Forms.ListView listaHuesped;
         private System.Windows.Forms.ColumnHeader Mail;
         private System.Windows.Forms.ColumnHeader Tipo;

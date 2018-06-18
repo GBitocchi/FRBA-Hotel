@@ -309,11 +309,11 @@
     <Compile Include="AbmUsuario\VistaUsuarioModificar.Designer.cs">
       <DependentUpon>VistaUsuarioModificar.cs</DependentUpon>
     </Compile>
-    <Compile Include="CancelarReserva\Form1.cs">
+    <Compile Include="CancelarReserva\MenuCancelarReserva.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CancelarReserva\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="CancelarReserva\MenuCancelarReserva.Designer.cs">
+      <DependentUpon>MenuCancelarReserva.cs</DependentUpon>
     </Compile>
     <Compile Include="DataBase.cs" />
     <Compile Include="Form1.cs">
@@ -414,15 +414,27 @@
     <Compile Include="RegistrarConsumible\MenuRegistrarConsumible.Designer.cs">
       <DependentUpon>MenuRegistrarConsumible.cs</DependentUpon>
     </Compile>
-    <Compile Include="RegistrarEstadia\CrearHuesped.cs" />
+    <Compile Include="RegistrarEstadia\CancelarReservaHuesped.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrarEstadia\CancelarReservaHuesped.Designer.cs">
+      <DependentUpon>CancelarReservaHuesped.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarEstadia\CrearHuesped.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="RegistrarEstadia\CrearHuesped.Designer.cs">
       <DependentUpon>CrearHuesped.cs</DependentUpon>
     </Compile>
-    <Compile Include="RegistrarEstadia\MenuRegistrarEstadia.cs" />
+    <Compile Include="RegistrarEstadia\MenuRegistrarEstadia.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="RegistrarEstadia\MenuRegistrarEstadia.Designer.cs">
       <DependentUpon>MenuRegistrarEstadia.cs</DependentUpon>
     </Compile>
-    <Compile Include="RegistrarEstadia\Registrar.cs" />
+    <Compile Include="RegistrarEstadia\Registrar.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="RegistrarEstadia\Registrar.Designer.cs">
       <DependentUpon>Registrar.cs</DependentUpon>
     </Compile>
@@ -546,6 +558,9 @@
     <EmbeddedResource Include="AbmUsuario\VistaUsuario.resx">
       <DependentUpon>VistaUsuario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CancelarReserva\MenuCancelarReserva.resx">
+      <DependentUpon>MenuCancelarReserva.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -599,6 +614,9 @@
     </Compile>
     <EmbeddedResource Include="RegistrarConsumible\MenuRegistrarConsumible.resx">
       <DependentUpon>MenuRegistrarConsumible.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarEstadia\CancelarReservaHuesped.resx">
+      <DependentUpon>CancelarReservaHuesped.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrarEstadia\CrearHuesped.resx">
       <DependentUpon>CrearHuesped.cs</DependentUpon>
