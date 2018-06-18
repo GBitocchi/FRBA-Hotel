@@ -56,6 +56,9 @@
             this.txtCiudad = new System.Windows.Forms.TextBox();
             this.txtPais = new System.Windows.Forms.TextBox();
             this.lblRegimenes = new System.Windows.Forms.Label();
+            this.lblFecha = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.dtFechaCreacion = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgRegimenes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -140,7 +143,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(92, 253);
+            this.label8.Location = new System.Drawing.Point(92, 298);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(139, 20);
             this.label8.TabIndex = 8;
@@ -171,7 +174,7 @@
             // 
             this.dgRegimenes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgRegimenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgRegimenes.Location = new System.Drawing.Point(96, 276);
+            this.dgRegimenes.Location = new System.Drawing.Point(96, 321);
             this.dgRegimenes.Name = "dgRegimenes";
             this.dgRegimenes.ReadOnly = true;
             this.dgRegimenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -181,7 +184,7 @@
             // btnCrear
             // 
             this.btnCrear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCrear.Location = new System.Drawing.Point(340, 406);
+            this.btnCrear.Location = new System.Drawing.Point(340, 451);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(90, 34);
             this.btnCrear.TabIndex = 16;
@@ -192,7 +195,7 @@
             // btnAtras
             // 
             this.btnAtras.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAtras.Location = new System.Drawing.Point(436, 406);
+            this.btnAtras.Location = new System.Drawing.Point(436, 451);
             this.btnAtras.Name = "btnAtras";
             this.btnAtras.Size = new System.Drawing.Size(90, 34);
             this.btnAtras.TabIndex = 17;
@@ -328,17 +331,48 @@
             this.lblRegimenes.AutoSize = true;
             this.lblRegimenes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRegimenes.ForeColor = System.Drawing.Color.Red;
-            this.lblRegimenes.Location = new System.Drawing.Point(545, 276);
+            this.lblRegimenes.Location = new System.Drawing.Point(545, 321);
             this.lblRegimenes.Name = "lblRegimenes";
             this.lblRegimenes.Size = new System.Drawing.Size(171, 20);
             this.lblRegimenes.TabIndex = 26;
             this.lblRegimenes.Text = "*Seleccione regimenes";
             // 
+            // lblFecha
+            // 
+            this.lblFecha.AutoSize = true;
+            this.lblFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFecha.ForeColor = System.Drawing.Color.Red;
+            this.lblFecha.Location = new System.Drawing.Point(545, 244);
+            this.lblFecha.Name = "lblFecha";
+            this.lblFecha.Size = new System.Drawing.Size(199, 20);
+            this.lblFecha.TabIndex = 29;
+            this.lblFecha.Text = "*Ingrese fecha de creacion";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(92, 244);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(140, 20);
+            this.label11.TabIndex = 27;
+            this.label11.Text = "Fecha de creacion";
+            // 
+            // dtFechaCreacion
+            // 
+            this.dtFechaCreacion.Location = new System.Drawing.Point(303, 244);
+            this.dtFechaCreacion.Name = "dtFechaCreacion";
+            this.dtFechaCreacion.Size = new System.Drawing.Size(223, 20);
+            this.dtFechaCreacion.TabIndex = 30;
+            // 
             // CrearHotel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(788, 464);
+            this.ClientSize = new System.Drawing.Size(788, 511);
+            this.Controls.Add(this.dtFechaCreacion);
+            this.Controls.Add(this.lblFecha);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.lblRegimenes);
             this.Controls.Add(this.txtPais);
             this.Controls.Add(this.txtCiudad);
@@ -405,5 +439,8 @@
         private System.Windows.Forms.TextBox txtCiudad;
         private System.Windows.Forms.TextBox txtPais;
         private System.Windows.Forms.Label lblRegimenes;
+        private System.Windows.Forms.Label lblFecha;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DateTimePicker dtFechaCreacion;
     }
 }

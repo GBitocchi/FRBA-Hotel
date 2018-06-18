@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace FrbaHotel
 {
@@ -40,6 +41,11 @@ namespace FrbaHotel
             SqlDataAdapter DP = new SqlDataAdapter(procedure, Con);
             DP.SelectCommand.ExecuteNonQuery();
             Con.Close();
+        }
+
+        public static DateTime fechaSistema()
+        {
+            return DateTime.ParseExact(ConfigurationManager.AppSettings["fechaSistema"], "yyyy-MM-dd hh:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
         }
     }
 }

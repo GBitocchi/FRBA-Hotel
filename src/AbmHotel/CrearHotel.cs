@@ -28,6 +28,8 @@ namespace FrbaHotel.AbmHotel
             lblNombreHotel.Visible = false;
             lblPais.Visible = false;
             lblTelefono.Visible = false;
+            lblRegimenes.Visible = false;
+            lblFecha.Visible = false;
             int aux;
             if (txtNombreHotel.Text.Trim() == "")
             {
@@ -88,6 +90,7 @@ namespace FrbaHotel.AbmHotel
             lblNombreHotel.Visible = false;
             lblPais.Visible = false;
             lblTelefono.Visible = false;
+            lblRegimenes.Visible = false;
         }
 
         private void btnCrear_Click(object sender, EventArgs e)

@@ -16,5 +16,11 @@ namespace FrbaHotel.AbmHotel
         {
             InitializeComponent();
         }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new BajaHotel().Show();
+        }
     }
 }

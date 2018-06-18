@@ -134,6 +134,7 @@ namespace FrbaHotel.AbmFacturacion
             agregarFactura.Parameters.AddWithValue("@estadia", estadia);
             agregarFactura.Parameters.AddWithValue("@mail", txtHuesped.Text.Trim());
             agregarFactura.Parameters.AddWithValue("@documento", documento);
+            agregarFactura.Parameters.AddWithValue("@fecha", DataBase.fechaSistema());
             agregarFactura.ExecuteNonQuery();
             foreach (DataGridViewRow item in dgConsumibles.Rows)
             {

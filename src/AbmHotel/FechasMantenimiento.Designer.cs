@@ -149,7 +149,7 @@
             this.Controls.Add(this.dtFin);
             this.Controls.Add(this.dtInicio);
             this.Name = "FechasMantenimiento";
-            this.Text = "FechasMantenimiento";
+            this.Text = "Mantenimiento";
             this.ResumeLayout(false);
             this.PerformLayout();
 
