@@ -251,7 +251,8 @@ create table CAIA_UNLIMITED.Estadia(
 	esta_fecha_inicio datetime not null,
 	esta_cantidad_noches numeric(18,0) not null,
 	rese_codigo numeric(18,0) not null,
-	usur_username nvarchar(255) not null
+	usur_checkin nvarchar(255),
+	usur_checkout nvarchar(255)
 )
 go
 
@@ -388,7 +389,9 @@ alter table CAIA_UNLIMITED.Estadia
 	add constraint PK_Estadia primary key (esta_codigo),
 	constraint FK_Estadia_Reserva foreign key (rese_codigo)
 	references CAIA_UNLIMITED.Reserva (rese_codigo),
-	constraint FK_Estadia_Usuario foreign key (usur_username)
+	constraint FK_Estadia_Usuario_CheckIn foreign key (usur_checkin)
+	references CAIA_UNLIMITED.Usuario (usur_username),
+	constraint FK_Estadia_Usuario_CheckOut foreign key (usur_checkout)
 	references CAIA_UNLIMITED.Usuario (usur_username)
 go
 
@@ -537,14 +540,6 @@ from gd_esquema.Maestra join CAIA_UNLIMITED.Direccion D on (Hotel_Calle = dire_d
 
 insert into CAIA_UNLIMITED.Usuario (usur_username, usur_password, usur_habilitado, usur_intentos) values('admin', HASHBYTES('SHA2_256', 'w23e'), 1, 0)
 
---Estadia
-insert into CAIA_UNLIMITED.Estadia (esta_fecha_inicio, esta_cantidad_noches, rese_codigo, usur_username)
-select distinct Estadia_Fecha_Inicio, Estadia_Cant_Noches, rese_codigo, (select usur_username from CAIA_UNLIMITED.Usuario where usur_username = 'admin')
-from gd_esquema.Maestra join CAIA_UNLIMITED.Reserva on (Reserva_Codigo = rese_codigo)
-where Estadia_Cant_Noches is not null and Estadia_Cant_Noches is not null
-
-
-
 --Huesped
 insert into CAIA_UNLIMITED.Huesped (hues_mail, hues_nombre, hues_apellido, hues_documento, hues_documento_tipo, 
 											hues_nacimiento, hues_nacionalidad, hues_habilitado, dire_id)
@@ -553,6 +548,12 @@ from gd_esquema.Maestra join CAIA_UNLIMITED.Direccion on (dire_dom_calle = Clien
 															dire_nro_calle = Cliente_Nro_Calle and
 															dire_piso = Cliente_Piso and
 															dire_dpto = Cliente_Depto)
+
+--Estadia
+insert into CAIA_UNLIMITED.Estadia (esta_fecha_inicio, esta_cantidad_noches, rese_codigo)
+select distinct Estadia_Fecha_Inicio, Estadia_Cant_Noches, rese_codigo
+from gd_esquema.Maestra join CAIA_UNLIMITED.Reserva on (Reserva_Codigo = rese_codigo)
+where Estadia_Cant_Noches is not null
 
 --Factura
 insert into CAIA_UNLIMITED.Factura (fact_nro, fact_fecha, fact_total, esta_codigo, hues_documento, hues_mail)
@@ -563,6 +564,12 @@ from gd_esquema.Maestra join CAIA_UNLIMITED.Reserva R on (Reserva_Codigo = rese_
 														hues_mail = Cliente_Mail)
 where Factura_Nro is not null
 group by Factura_Nro, Factura_Fecha, esta_codigo, hues_documento, hues_mail
+
+update CAIA_UNLIMITED.Estadia
+set usur_checkin = (select usur_username from CAIA_UNLIMITED.Usuario where usur_username = 'admin'), usur_checkout = (select usur_username from CAIA_UNLIMITED.Usuario where usur_username = 'admin')
+where  exists (select fact_nro from CAIA_UNLIMITED.Factura F where (esta_codigo = F.esta_codigo) and fact_nro is not null)
+
+
 
 --Item_Factura
 insert into CAIA_UNLIMITED.Item_Factura (item_cantidad, item_monto, fact_nro, cons_codigo)
@@ -1159,24 +1166,3 @@ BEGIN
     RAISERROR ('sp_EliminarUsuarios: %d: %s', 16, 1, @error, @message);
   END CATCH
 END
-GO
-
-----------Registrar consumible
-
-CREATE PROCEDURE [CAIA_UNLIMITED].[sp_RegistrarConsumible] (@codigo_estadia numeric(18,0), @codigo_consumible numeric(18,0))
-AS
-BEGIN
-	insert into CAIA_UNLIMITED.Consumible_X_Estadia(cons_esta_codigo_cons, cons_esta_codigo_esta)
-	values (@codigo_consumible, @codigo_estadia)
-END
-GO
-
------------Cancelar reserva
-
-CREATE PROCEDURE [CAIA_UNLIMITED].[sp_CancelarReserva] (@codigo_reserva numeric(18,0), @motivo nvarchar(255), @fecha_cancelacion datetime, @usuario nvarchar(255))
-AS
-BEGIN
-	insert into CAIA_UNLIMITED.Reserva_Cancelada(reca_rese,reca_motivo,reca_fecha_cancelacion,reca_usuario)
-	values (@codigo_reserva,@motivo,@fecha_cancelacion,@usuario)
-END
-GO
