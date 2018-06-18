@@ -285,11 +285,29 @@
     <Compile Include="AbmRegimen\Modificacion.designer.cs">
       <DependentUpon>Modificacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmRol\Form1.cs">
+    <Compile Include="AbmRol\VistaRol.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmRol\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AbmRol\VistaRol.Designer.cs">
+      <DependentUpon>VistaRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmRol\VistaRolModificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRol\VistaRolModificar.Designer.cs">
+      <DependentUpon>VistaRolModificar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmUsuario\VistaUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmUsuario\VistaUsuario.Designer.cs">
+      <DependentUpon>VistaUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmUsuario\VistaUsuarioModificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmUsuario\VistaUsuarioModificar.Designer.cs">
+      <DependentUpon>VistaUsuarioModificar.cs</DependentUpon>
     </Compile>
     <Compile Include="CancelarReserva\Form1.cs">
       <SubType>Form</SubType>
@@ -375,6 +393,12 @@
     </Compile>
     <Compile Include="Login\Usuario.Designer.cs">
       <DependentUpon>Usuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu Sistema\VistaHuesped.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu Sistema\VistaHuesped.Designer.cs">
+      <DependentUpon>VistaHuesped.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu Sistema\VistaSistema.cs">
       <SubType>Form</SubType>
@@ -510,8 +534,11 @@
     <EmbeddedResource Include="AbmRegimen\Modificacion.resx">
       <DependentUpon>Modificacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmRol\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="AbmRol\VistaRol.resx">
+      <DependentUpon>VistaRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmUsuario\VistaUsuario.resx">
+      <DependentUpon>VistaUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -548,6 +575,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Usuario.resx">
       <DependentUpon>Usuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu Sistema\VistaHuesped.resx">
+      <DependentUpon>VistaHuesped.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu Sistema\VistaSistema.resx">
       <DependentUpon>VistaSistema.cs</DependentUpon>

@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FrbaHotel.Menu_Sistema;
+using FrbaHotel.AbmRol;
+using FrbaHotel.AbmUsuario;
+
 
 namespace FrbaHotel.Login
 {
@@ -53,14 +56,14 @@ namespace FrbaHotel.Login
 
         private void btnUsuario_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Hide();           
             new Usuario().Show();
         }
 
         private void btnGuest_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new VistaSistema().Show();
+        {         
+            this.Hide();          
+            new VistaHuesped().Show();
         }
     }
 }

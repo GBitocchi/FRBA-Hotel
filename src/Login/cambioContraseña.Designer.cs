@@ -45,6 +45,7 @@
             this.lblErrorNoCurrentPW = new System.Windows.Forms.Label();
             this.lblErrorPWsNoCoincidence = new System.Windows.Forms.Label();
             this.lblErrorWrongPW = new System.Windows.Forms.Label();
+            this.lblBloqMayusActivated = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,6 +101,7 @@
             this.txtCurrentPW.PasswordChar = '*';
             this.txtCurrentPW.Size = new System.Drawing.Size(227, 26);
             this.txtCurrentPW.TabIndex = 4;
+            this.txtCurrentPW.TextChanged += new System.EventHandler(this.txtCurrentPW_TextChanged);
             // 
             // txtNewPW
             // 
@@ -110,6 +112,7 @@
             this.txtNewPW.PasswordChar = '*';
             this.txtNewPW.Size = new System.Drawing.Size(227, 26);
             this.txtNewPW.TabIndex = 5;
+            this.txtNewPW.TextChanged += new System.EventHandler(this.txtNewPW_TextChanged);
             // 
             // label2
             // 
@@ -153,6 +156,7 @@
             this.txtReEntryNewPW.PasswordChar = '*';
             this.txtReEntryNewPW.Size = new System.Drawing.Size(227, 26);
             this.txtReEntryNewPW.TabIndex = 9;
+            this.txtReEntryNewPW.TextChanged += new System.EventHandler(this.txtReEntryNewPW_TextChanged);
             // 
             // button3
             // 
@@ -219,11 +223,23 @@
             this.lblErrorWrongPW.BackColor = System.Drawing.Color.Transparent;
             this.lblErrorWrongPW.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorWrongPW.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorWrongPW.Location = new System.Drawing.Point(338, 640);
+            this.lblErrorWrongPW.Location = new System.Drawing.Point(136, 640);
             this.lblErrorWrongPW.Name = "lblErrorWrongPW";
             this.lblErrorWrongPW.Size = new System.Drawing.Size(294, 20);
             this.lblErrorWrongPW.TabIndex = 15;
             this.lblErrorWrongPW.Text = "*La contraseña actual es incorrecta";
+            // 
+            // lblBloqMayusActivated
+            // 
+            this.lblBloqMayusActivated.AutoSize = true;
+            this.lblBloqMayusActivated.BackColor = System.Drawing.Color.Transparent;
+            this.lblBloqMayusActivated.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBloqMayusActivated.ForeColor = System.Drawing.Color.White;
+            this.lblBloqMayusActivated.Location = new System.Drawing.Point(482, 640);
+            this.lblBloqMayusActivated.Name = "lblBloqMayusActivated";
+            this.lblBloqMayusActivated.Size = new System.Drawing.Size(175, 20);
+            this.lblBloqMayusActivated.TabIndex = 16;
+            this.lblBloqMayusActivated.Text = "Bloq Mayús Activado";
             // 
             // cambioContraseña
             // 
@@ -231,6 +247,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1093, 895);
+            this.Controls.Add(this.lblBloqMayusActivated);
             this.Controls.Add(this.lblErrorWrongPW);
             this.Controls.Add(this.lblErrorPWsNoCoincidence);
             this.Controls.Add(this.lblErrorNoCurrentPW);
@@ -273,5 +290,6 @@
         private System.Windows.Forms.Label lblErrorNoCurrentPW;
         private System.Windows.Forms.Label lblErrorPWsNoCoincidence;
         private System.Windows.Forms.Label lblErrorWrongPW;
+        private System.Windows.Forms.Label lblBloqMayusActivated;
     }
 }

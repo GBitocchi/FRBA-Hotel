@@ -43,6 +43,7 @@
             this.lblErrorAutentificacion = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label4 = new System.Windows.Forms.Label();
+            this.lblBloqMayus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -198,12 +199,25 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Inicie Sesion";
             // 
+            // lblBloqMayus
+            // 
+            this.lblBloqMayus.AutoSize = true;
+            this.lblBloqMayus.BackColor = System.Drawing.Color.Transparent;
+            this.lblBloqMayus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBloqMayus.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblBloqMayus.Location = new System.Drawing.Point(59, 303);
+            this.lblBloqMayus.Name = "lblBloqMayus";
+            this.lblBloqMayus.Size = new System.Drawing.Size(175, 20);
+            this.lblBloqMayus.TabIndex = 11;
+            this.lblBloqMayus.Text = "Bloq Mayús Activado";
+            // 
             // Usuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(877, 735);
+            this.Controls.Add(this.lblBloqMayus);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.lblErrorAutentificacion);
@@ -255,5 +269,6 @@
         private System.Windows.Forms.Label lblErrorAutentificacion;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblBloqMayus;
     }
 }

@@ -7,11 +7,69 @@ using System.Windows.Forms;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using Microsoft.SqlServer.Server;
 
 namespace FrbaHotel
 {
+    public class Funcionality
+    {
+        public decimal Funcionalidades { get; set; }
+    }
+
+    public class Rolities
+    {
+        public decimal Roles { get; set; }
+    }
+
+    public class Hotelities
+    {
+        public decimal Hoteles { get; set; }
+    }
+
+    public class FuncionalityCollection : List<Funcionality>, IEnumerable<SqlDataRecord>
+    {
+        IEnumerator<SqlDataRecord> IEnumerable<SqlDataRecord>.GetEnumerator()
+        {
+            var sqlRow = new SqlDataRecord(new SqlMetaData("Funcionalidades", SqlDbType.Decimal));
+
+            foreach (Funcionality cust in this)
+            {
+                sqlRow.SetDecimal(0, cust.Funcionalidades);
+                yield return sqlRow;
+            }
+        }
+    }
+
+    public class RolitiesCollection : List<Rolities>, IEnumerable<SqlDataRecord>
+    {
+        IEnumerator<SqlDataRecord> IEnumerable<SqlDataRecord>.GetEnumerator()
+        {
+            var sqlRow = new SqlDataRecord(new SqlMetaData("Roles", SqlDbType.Decimal));
+
+            foreach (Rolities cust in this)
+            {
+                sqlRow.SetDecimal(0, cust.Roles);
+                yield return sqlRow;
+            }
+        }
+    }
+
+    public class HotelitiesCollection : List<Hotelities>, IEnumerable<SqlDataRecord>
+    {
+        IEnumerator<SqlDataRecord> IEnumerable<SqlDataRecord>.GetEnumerator()
+        {
+            var sqlRow = new SqlDataRecord(new SqlMetaData("Hoteles", SqlDbType.Decimal));
+
+            foreach (Hotelities cust in this)
+            {
+                sqlRow.SetDecimal(0, cust.Hoteles);
+                yield return sqlRow;
+            }
+        }
+    }  
+    
     class DataBase
-    {   
+    {      
         public static SqlConnection conectarBD()
         {
             SqlConnection Con = new SqlConnection(@"Data Source=localhost\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
