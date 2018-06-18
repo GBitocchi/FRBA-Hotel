@@ -575,6 +575,10 @@ values ('Reserva correcta'), ('Reserva modificada'), ('Reserva cancelada por rec
 		('Reserva cancelada por cliente'), ('Reserva cancelada por Non-Show'),
 		('Reserva con ingreso')
 
+insert into CAIA_UNLIMITED.Usuario_X_Hotel (usur_hote_username, usur_hote_id)
+select distinct 'admin', hote_id
+from CAIA_UNLIMITED.Hotel
+
 update CAIA_UNLIMITED.Huesped set hues_habilitado = 0
 where hues_mail in (select h1.hues_mail from CAIA_UNLIMITED.Huesped h1 group by h1.hues_mail having count(*)>1)
 
@@ -723,7 +727,7 @@ GO
 
 --------Huesped
 
-CREATE PROCEDURE [dbo].[sp_CrearHuesped] (@nombre nvarchar(255), @apellido nvarchar(255), @documento numeric(18,0), @tipo nvarchar(3), @mail nvarchar(255), @fecha_nacimiento datetime,@nacionalidad nvarchar(255),@calle nvarchar(255),@calle_nro numeric(18,0),@piso numeric(18,0),@dpto nvarchar(50),@ciudad nvarchar(255),@pais nvarchar(255), @telefono nvarchar(20))
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_CrearHuesped] (@nombre nvarchar(255), @apellido nvarchar(255), @documento numeric(18,0), @tipo nvarchar(3), @mail nvarchar(255), @fecha_nacimiento datetime,@nacionalidad nvarchar(255),@calle nvarchar(255),@calle_nro numeric(18,0),@piso numeric(18,0),@dpto nvarchar(50),@ciudad nvarchar(255),@pais nvarchar(255), @telefono nvarchar(20))
 AS
 BEGIN
 	insert into CAIA_UNLIMITED.Direccion (dire_ciudad, dire_pais, dire_dom_calle, dire_nro_calle,
@@ -738,7 +742,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE [dbo].[sp_BajaHues] (@email nvarchar(255))
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_BajaHues] (@email nvarchar(255))
 AS
 BEGIN	
 	update CAIA_UNLIMITED.Huesped 
@@ -747,7 +751,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE [dbo].[sp_ModificarHues] (@nombre nvarchar(255), @apellido nvarchar(255), @documento numeric(18,0), @tipo nvarchar(3), @mail nvarchar(255), @fecha_nacimiento datetime,@nacionalidad nvarchar(255),@calle nvarchar(255),@calle_nro numeric(18,0),@piso numeric(18,0),@dpto nvarchar(50),@ciudad nvarchar(255),@pais nvarchar(255), @telefono nvarchar(20),@estado bit)
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_ModificarHues] (@nombre nvarchar(255), @apellido nvarchar(255), @documento numeric(18,0), @tipo nvarchar(3), @mail nvarchar(255), @fecha_nacimiento datetime,@nacionalidad nvarchar(255),@calle nvarchar(255),@calle_nro numeric(18,0),@piso numeric(18,0),@dpto nvarchar(50),@ciudad nvarchar(255),@pais nvarchar(255), @telefono nvarchar(20),@estado bit)
 AS
 BEGIN
 	update CAIA_UNLIMITED.Direccion 
@@ -765,7 +769,7 @@ GO
 -----Regimen
 
 
-CREATE PROCEDURE [dbo].[sp_Modificar](@codigo numeric(18,0),@descripcion nvarchar(255), @precio_base numeric(18,2),@estado bit)
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_Modificar](@codigo numeric(18,0),@descripcion nvarchar(255), @precio_base numeric(18,2),@estado bit)
 AS
 BEGIN
 	update CAIA_UNLIMITED.Regimen
@@ -773,7 +777,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE [dbo].[sp_BajaRegi] (@codigo numeric(18,0))
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_BajaRegi] (@codigo numeric(18,0))
 AS
 BEGIN
 	update CAIA_UNLIMITED.Regimen 
@@ -781,7 +785,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE [dbo].[sp_CrearRegi] (@descripcion nvarchar(255), @precio_base numeric(18,2),@estado bit)
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_CrearRegi] (@descripcion nvarchar(255), @precio_base numeric(18,2),@estado bit)
 AS
 BEGIN
 
@@ -841,7 +845,7 @@ as
 	order by sum((I.item_monto*I.item_cantidad)/10) + sum((F.fact_total-(I.item_monto*I.item_cantidad))/20) desc
 go
 
-create view CAIA_UNLIMITED.vw_MantenimientosTerminados
+create view [CAIA_UNLIMITED].[vw_MantenimientosTerminados]
 as
 	select hote_id
 	from CAIA_UNLIMITED.Mantenimiento
