@@ -47,27 +47,32 @@ namespace FrbaHotel.AbmFacturacion
 
         private double cantidadPersonas()
         {
-            string tipoHabitacion = DataBase.realizarConsulta("select thab_descripcion from CAIA_UNLIMITED.Estadia E join CAIA_UNLIMITED.Reserva R on (E.rese_codigo = R.rese_codigo) join CAIA_UNLIMITED.Habitacion H on (R.hote_id = H.hote_id and R.habi_numero = H.habi_numero) join CAIA_UNLIMITED.Tipo_Habitacion T on (H.thab_codigo = T.thab_codigo) where esta_codigo=" + estadia).Tables[0].Rows[0][0].ToString();
-            if (tipoHabitacion == "Base Simple")
+            int cantidadPersonas = 0;
+            DataTable tiposHabitacion = DataBase.realizarConsulta("select thab_descripcion from CAIA_UNLIMITED.Estadia E join CAIA_UNLIMITED.Reserva R on (E.rese_codigo = R.rese_codigo) join CAIA_UNLIMITED.Habitacion_X_Reserva X on (R.rese_codigo = X.habi_rese_codigo) join CAIA_UNLIMITED.Habitacion H on (H.hote_id = X.habi_rese_id and H.habi_numero = habi_rese_numero) join CAIA_UNLIMITED.Tipo_Habitacion T on (T.thab_codigo = H.thab_codigo) where esta_codigo=" + estadia).Tables[0];
+            foreach (DataRow tipoHabitacion in tiposHabitacion.Rows)
             {
-                return 1;
+                if (tipoHabitacion[0].ToString() == "Base Simple")
+                {
+                   cantidadPersonas += 1;
+                }
+                else if (tipoHabitacion[0].ToString() == "Base Doble")
+                {
+                    cantidadPersonas += 2;
+                }
+                else if (tipoHabitacion[0].ToString() == "Base Triple")
+                {
+                    cantidadPersonas += 3;
+                }
+                else if (tipoHabitacion[0].ToString() == "Base Cuadruple")
+                {
+                    cantidadPersonas += 4;
+                }
+                else
+                {
+                    cantidadPersonas += 2;
+                }
             }
-            else if (tipoHabitacion == "Base Doble")
-            {
-                return 2;
-            }
-            else if (tipoHabitacion == "Base Triple")
-            {
-                return 3;
-            }
-            else if (tipoHabitacion == "Base Cuadruple")
-            {
-                return 4;
-            }
-            else
-            {
-                return 2;
-            }
+            return cantidadPersonas;
         }
 
         private void cargarFacturaExistente(string codigoEstadia)
@@ -85,7 +90,7 @@ namespace FrbaHotel.AbmFacturacion
             txtHuesped.Text = huesped.Tables[0].Rows[0][0].ToString();
             documento = huesped.Tables[0].Rows[0][1].ToString();
             txtPrecioRegimen.Text = DataBase.realizarConsulta("select regi_precio_base from CAIA_UNLIMITED.Regimen R join CAIA_UNLIMITED.Reserva H on (R.regi_codigo = H.regi_codigo) join CAIA_UNLIMITED.Estadia E on (E.rese_codigo = H.rese_codigo) where esta_codigo =" + codigoEstadia).Tables[0].Rows[0][0].ToString();
-            txtPorcentual.Text = DataBase.realizarConsulta("select thab_porcentual from CAIA_UNLIMITED.Tipo_Habitacion T join CAIA_UNLIMITED.Habitacion H on (T.thab_codigo = H.thab_codigo) join CAIA_UNLIMITED.Reserva R on (H.hote_id = R.hote_id and H.habi_numero = R.habi_numero) join CAIA_UNLIMITED.Estadia E on (R.rese_codigo = E.rese_codigo) where esta_codigo =" + codigoEstadia).Tables[0].Rows[0][0].ToString();
+            txtPorcentual.Text = DataBase.realizarConsulta("select thab_porcentual from CAIA_UNLIMITED.Tipo_Habitacion T join CAIA_UNLIMITED.Habitacion H on (T.thab_codigo = H.thab_codigo) join CAIA_UNLIMITED.Habitacion_X_Reserva X on (X.habi_rese_id = H.hote_id and X.habi_rese_numero = H.habi_numero) join CAIA_UNLIMITED.Reserva R on (R.rese_codigo = X.habi_rese_codigo) join CAIA_UNLIMITED.Estadia E on (R.rese_codigo = E.rese_codigo) where esta_codigo =" + codigoEstadia).Tables[0].Rows[0][0].ToString();
             txtNoches.Text = DataBase.realizarConsulta("select esta_cantidad_noches from CAIA_UNLIMITED.Estadia where esta_codigo =" + codigoEstadia).Tables[0].Rows[0][0].ToString();
 
         }
