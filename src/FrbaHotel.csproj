@@ -414,11 +414,17 @@
     <Compile Include="RegistrarConsumible\MenuRegistrarConsumible.Designer.cs">
       <DependentUpon>MenuRegistrarConsumible.cs</DependentUpon>
     </Compile>
-    <Compile Include="RegistrarEstadia\Form1.cs">
-      <SubType>Form</SubType>
+    <Compile Include="RegistrarEstadia\CrearHuesped.cs" />
+    <Compile Include="RegistrarEstadia\CrearHuesped.Designer.cs">
+      <DependentUpon>CrearHuesped.cs</DependentUpon>
     </Compile>
-    <Compile Include="RegistrarEstadia\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="RegistrarEstadia\MenuRegistrarEstadia.cs" />
+    <Compile Include="RegistrarEstadia\MenuRegistrarEstadia.Designer.cs">
+      <DependentUpon>MenuRegistrarEstadia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarEstadia\Registrar.cs" />
+    <Compile Include="RegistrarEstadia\Registrar.Designer.cs">
+      <DependentUpon>Registrar.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AbmCliente\Crear.resx">
       <DependentUpon>Crear.cs</DependentUpon>
@@ -594,6 +600,16 @@
     <EmbeddedResource Include="RegistrarConsumible\MenuRegistrarConsumible.resx">
       <DependentUpon>MenuRegistrarConsumible.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarEstadia\CrearHuesped.resx">
+      <DependentUpon>CrearHuesped.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarEstadia\MenuRegistrarEstadia.resx">
+      <DependentUpon>MenuRegistrarEstadia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarEstadia\Registrar.resx">
+      <DependentUpon>Registrar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarEstadia\RegistrarCheckIn.resx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

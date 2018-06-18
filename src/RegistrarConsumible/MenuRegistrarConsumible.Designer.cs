@@ -36,7 +36,10 @@
             this.txtHabitacion = new System.Windows.Forms.TextBox();
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.cbxConsumible = new System.Windows.Forms.ComboBox();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listaConsumibles = new System.Windows.Forms.ListView();
+            this.Consumible = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Cantidad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Precio = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnAgregar_Consumible = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnIngresar_Consumibles = new System.Windows.Forms.Button();
@@ -46,6 +49,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtHotel = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.btnEliminar_Consumible = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -114,13 +118,30 @@
             this.cbxConsumible.Size = new System.Drawing.Size(214, 21);
             this.cbxConsumible.TabIndex = 9;
             // 
-            // listView1
+            // listaConsumibles
             // 
-            this.listView1.Location = new System.Drawing.Point(32, 267);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(478, 133);
-            this.listView1.TabIndex = 10;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listaConsumibles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Consumible,
+            this.Cantidad,
+            this.Precio});
+            this.listaConsumibles.Location = new System.Drawing.Point(32, 267);
+            this.listaConsumibles.Name = "listaConsumibles";
+            this.listaConsumibles.Size = new System.Drawing.Size(315, 133);
+            this.listaConsumibles.TabIndex = 10;
+            this.listaConsumibles.UseCompatibleStateImageBehavior = false;
+            this.listaConsumibles.SelectedIndexChanged += new System.EventHandler(this.listaConsumibles_SelectedIndexChanged);
+            // 
+            // Consumible
+            // 
+            this.Consumible.Text = "Consumible";
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.Text = "Cantidad";
+            // 
+            // Precio
+            // 
+            this.Precio.Text = "Precio";
             // 
             // btnAgregar_Consumible
             // 
@@ -140,6 +161,7 @@
             this.btnLimpiar.TabIndex = 13;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // btnIngresar_Consumibles
             // 
@@ -149,6 +171,7 @@
             this.btnIngresar_Consumibles.TabIndex = 14;
             this.btnIngresar_Consumibles.Text = "Ingresar consumibles";
             this.btnIngresar_Consumibles.UseVisualStyleBackColor = true;
+            this.btnIngresar_Consumibles.Click += new System.EventHandler(this.btnIngresar_Consumibles_Click);
             // 
             // label5
             // 
@@ -204,11 +227,22 @@
             this.label7.TabIndex = 19;
             this.label7.Text = "Hotel";
             // 
+            // btnEliminar_Consumible
+            // 
+            this.btnEliminar_Consumible.Location = new System.Drawing.Point(374, 322);
+            this.btnEliminar_Consumible.Name = "btnEliminar_Consumible";
+            this.btnEliminar_Consumible.Size = new System.Drawing.Size(120, 25);
+            this.btnEliminar_Consumible.TabIndex = 21;
+            this.btnEliminar_Consumible.Text = "Eliminar consumible";
+            this.btnEliminar_Consumible.UseVisualStyleBackColor = true;
+            this.btnEliminar_Consumible.Click += new System.EventHandler(this.btnEliminar_Consumible_Click);
+            // 
             // MenuRegistrarConsumible
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(534, 469);
+            this.Controls.Add(this.btnEliminar_Consumible);
             this.Controls.Add(this.txtHotel);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtRegimen);
@@ -218,7 +252,7 @@
             this.Controls.Add(this.btnIngresar_Consumibles);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnAgregar_Consumible);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.listaConsumibles);
             this.Controls.Add(this.cbxConsumible);
             this.Controls.Add(this.txtCantidad);
             this.Controls.Add(this.txtHabitacion);
@@ -244,7 +278,7 @@
         private System.Windows.Forms.TextBox txtHabitacion;
         private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.ComboBox cbxConsumible;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listaConsumibles;
         private System.Windows.Forms.Button btnAgregar_Consumible;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnIngresar_Consumibles;
@@ -254,5 +288,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtHotel;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ColumnHeader Consumible;
+        private System.Windows.Forms.ColumnHeader Cantidad;
+        private System.Windows.Forms.ColumnHeader Precio;
+        private System.Windows.Forms.Button btnEliminar_Consumible;
     }
 }

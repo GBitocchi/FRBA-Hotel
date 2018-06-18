@@ -401,3 +401,6 @@ C:\Users\Gusbi\Desktop\TP-SUBIR\FRBA-Hotel\src\obj\Debug\FrbaHotel.Menu_Sistema.
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRol.VistaRol.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmUsuario.VistaUsuario.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.Menu_Sistema.VistaHuesped.resources
+C:\Users\Germa\Desktop\FRBA-Hotel\src\bin\Debug\FrbaHotel.exe.config
+C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.exe
+C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.pdb
