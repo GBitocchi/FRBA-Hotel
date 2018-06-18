@@ -10,7 +10,47 @@ using System.Configuration;
 using Microsoft.SqlServer.Server;
 
 namespace FrbaHotel
-{
+{   
+    class DataBase
+    {
+        public static SqlConnection conectarBD()
+        {
+            SqlConnection Con = new SqlConnection(@"Data Source=localhost\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
+
+            Con.Open();
+
+            return Con;
+        }
+
+        public static DataSet realizarConsulta(string consulta)
+        {
+            SqlConnection Con = conectarBD();
+
+            DataSet DS = new DataSet();
+            SqlDataAdapter DP = new SqlDataAdapter(consulta, Con);
+
+            DP.Fill(DS);
+
+            Con.Close();
+
+            return DS;
+        }
+
+        public static void procedureBD(string procedure)
+        {
+            SqlConnection Con = conectarBD();
+            SqlDataAdapter DP = new SqlDataAdapter(procedure, Con);
+            DP.SelectCommand.ExecuteNonQuery();
+            Con.Close();
+        }
+
+
+        public static DateTime fechaSistema()
+        {
+            return DateTime.ParseExact(ConfigurationManager.AppSettings["fechaSistema"], "yyyy-MM-dd hh:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+        }
+    }
+
     public class Funcionality
     {
         public decimal Funcionalidades { get; set; }
@@ -65,45 +105,6 @@ namespace FrbaHotel
                 sqlRow.SetDecimal(0, cust.Hoteles);
                 yield return sqlRow;
             }
-        }
-    }  
-    
-    class DataBase
-    {      
-        public static SqlConnection conectarBD()
-        {
-            SqlConnection Con = new SqlConnection(@"Data Source=localhost\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
-            
-            Con.Open();
-           
-            return Con;
-        }
-
-        public static DataSet realizarConsulta(string consulta)
-        {
-            SqlConnection Con = conectarBD();
-
-            DataSet DS = new DataSet();
-            SqlDataAdapter DP = new SqlDataAdapter(consulta, Con);
-
-            DP.Fill(DS);
-
-            Con.Close();
-
-            return DS;
-        }
-
-        public static void procedureBD(string procedure) 
-        {
-            SqlConnection Con = conectarBD();
-            SqlDataAdapter DP = new SqlDataAdapter(procedure, Con);
-            DP.SelectCommand.ExecuteNonQuery();
-            Con.Close();
-        }
-
-        public static DateTime fechaSistema()
-        {
-            return DateTime.ParseExact(ConfigurationManager.AppSettings["fechaSistema"], "yyyy-MM-dd hh:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
         }
     }
 }

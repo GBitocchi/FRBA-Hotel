@@ -58,10 +58,10 @@ namespace FrbaHotel.Login
             lblErrorAutentificacion.Visible = false;
             lblErrorUser.Visible = false;
             lblErrorPW.Visible = false;
-            
+
             progressBar1.Visible = true;
             progressBar1.PerformStep();
-            
+
             if (txtUser.Text == "" && txtPW.Text == "")
             {
                 progressBar1.Visible = false;
@@ -86,12 +86,12 @@ namespace FrbaHotel.Login
                 try
                 {
                     progressBar1.PerformStep();
-                    
+
                     string autentificacion = string.Format("SELECT usur_username, usur_intentos, usur_password, usur_habilitado FROM CAIA_UNLIMITED.Usuario WHERE usur_username = '{0}'", txtUser.Text.Trim());
 
                     SqlConnection autentificacionConnection = DataBase.conectarBD();
 
-                    DataSet dsAutentificacion = new DataSet();                 
+                    DataSet dsAutentificacion = new DataSet();
 
                     SqlDataAdapter dpAutentificacion = new SqlDataAdapter(autentificacion, autentificacionConnection);
 
@@ -121,7 +121,7 @@ namespace FrbaHotel.Login
                             DataSet dsRolesUser = DataBase.realizarConsulta(rolesUser);
 
                             progressBar1.PerformStep();
-                            progressBar1.Visible = false;                        
+                            progressBar1.Visible = false;
 
                             this.Hide();
 
@@ -183,7 +183,7 @@ namespace FrbaHotel.Login
                             SystemSounds.Beep.Play();
                             lblErrorAutentificacion.Visible = true;
                         }
-                    }    
+                    }
                     else
                     {
                         autentificacionConnection.Close();
