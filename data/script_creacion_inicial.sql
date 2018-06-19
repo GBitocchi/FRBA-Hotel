@@ -865,7 +865,7 @@ as
 								join CAIA_UNLIMITED.Reserva R on (R.rese_codigo = X.habi_rese_codigo)
 								join CAIA_UNLIMITED.Reserva_Cancelada C on (C.reca_rese = R.rese_codigo)
 	GROUP BY H.hote_id, hote_nombre
-	ORDER BY COUNT(*)
+	ORDER BY COUNT(*) desc
 	  
 go
 
