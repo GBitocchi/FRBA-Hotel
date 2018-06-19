@@ -26,11 +26,12 @@ namespace FrbaHotel.AbmFacturacion
             {
                 ejecutarStoredProcedure();
                 this.Hide();
-                new PagoRealizado().Show();
+                MessageBox.Show("Pago realizado correctamente.", "Pago realizado", MessageBoxButtons.OK);
+                new EstadiasAFacturar().Show();
             }
             catch
             {
-                new ErrorDePago().Show();
+                MessageBox.Show("No se pudo llevar a cabo el pago.", "Pago erroneo", MessageBoxButtons.OK);
             }
         }
 
@@ -38,10 +39,10 @@ namespace FrbaHotel.AbmFacturacion
         {
             string total = DataBase.realizarConsulta("select fact_total from CAIA_UNLIMITED.Factura where fact_nro=" + numeroFactura).Tables[0].Rows[0][0].ToString();
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand agregarPago = new SqlCommand("sp_AlmacenarPagoEfectivo", db);
+            SqlCommand agregarPago = new SqlCommand("CAIA_UNLIMITED.sp_AlmacenarPagoEfectivo", db);
             agregarPago.CommandType = CommandType.StoredProcedure;
-            agregarPago.Parameters.AddWithValue("@monto", total);
-            agregarPago.Parameters.AddWithValue("@factura_numero", numeroFactura);
+            agregarPago.Parameters.AddWithValue("@monto", Convert.ToDouble(total));
+            agregarPago.Parameters.AddWithValue("@numero_factura", numeroFactura);
             agregarPago.ExecuteNonQuery();
             db.Close();
         }

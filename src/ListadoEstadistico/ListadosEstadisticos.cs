@@ -22,7 +22,7 @@ namespace FrbaHotel.ListadoEstadistico
         {
             if (DataBase.realizarConsulta("select * from CAIA_UNLIMITED.vw_MasCancelada").Tables[0].Rows.Count == 0)
             {
-                new DatosInsuficientes().Show();
+                MessageBox.Show("Datos insuficientes para llevar a cabo el listado.", "Datos insuficientes", MessageBoxButtons.OK);
             }
             else
             {
@@ -35,7 +35,7 @@ namespace FrbaHotel.ListadoEstadistico
         {
             if (DataBase.realizarConsulta("select * from CAIA_UNLIMITED.vw_MasFacturacion").Tables[0].Rows.Count == 0)
             {
-                new DatosInsuficientes().Show();
+                MessageBox.Show("Datos insuficientes para llevar a cabo el listado.", "Datos insuficientes", MessageBoxButtons.OK);
             }
             else
             {
@@ -48,7 +48,7 @@ namespace FrbaHotel.ListadoEstadistico
         {
             if (DataBase.realizarConsulta("select * from CAIA_UNLIMITED.vw_MasMantenimiento").Tables[0].Rows.Count == 0)
             {
-                new DatosInsuficientes().Show();
+                MessageBox.Show("Datos insuficientes para llevar a cabo el listado.", "Datos insuficientes", MessageBoxButtons.OK);
             }
             else
             {
@@ -61,7 +61,7 @@ namespace FrbaHotel.ListadoEstadistico
         {
             if (DataBase.realizarConsulta("select * from CAIA_UNLIMITED.vw_MasOcupada").Tables[0].Rows.Count == 0)
             {
-                new DatosInsuficientes().Show();
+                MessageBox.Show("Datos insuficientes para llevar a cabo el listado.", "Datos insuficientes", MessageBoxButtons.OK);
             }
             else
             {
@@ -74,7 +74,7 @@ namespace FrbaHotel.ListadoEstadistico
         {
             if (DataBase.realizarConsulta("select * from CAIA_UNLIMITED.vw_MasPuntos").Tables[0].Rows.Count == 0)
             {
-                new DatosInsuficientes().Show();
+                MessageBox.Show("Datos insuficientes para llevar a cabo el listado.", "Datos insuficientes", MessageBoxButtons.OK);
             }
             else
             {

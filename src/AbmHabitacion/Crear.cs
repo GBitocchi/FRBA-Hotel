@@ -35,14 +35,16 @@ namespace FrbaHotel.AbmHabitacion
         private bool constatarCampos()
         {
             int aux;
-            if (txtNro_habitacion.Text.Trim() == "")
+            if (txtNro_habitacion.Text.Trim() == "" || !int.TryParse(txtNro_habitacion.Text.Trim(), out aux))
             {
                 lblErrorNroHab.Visible = true;
+                MessageBox.Show("El numero de habitacion debe ser numero.", "Campos invalidos", MessageBoxButtons.OK);
                 return false;
             }
             else if (txtPiso.Text.Trim() == "" || !int.TryParse(txtPiso.Text.Trim(), out aux))
             {
                 lblErrorPiso.Visible = true;
+                MessageBox.Show("El numero de piso debe ser numero.", "Campos invalidos", MessageBoxButtons.OK);
                 return false;
             }
             else if (txtUbicacion.Text.Trim() == "")
@@ -65,12 +67,12 @@ namespace FrbaHotel.AbmHabitacion
                 try
                 {
                     ejecutarStoredProcedure();
-                    new HabitacionCreada().Show();
+                    MessageBox.Show("Habitacion creada exitosamente.", "Creacion exitosa", MessageBoxButtons.OK);
                     limpiarCampos();
                 }
                 catch
                 {
-                    new HabitacionExistente().Show();
+                    MessageBox.Show("Habitacion ya existente.", "Creacion erronea", MessageBoxButtons.OK);
                 }  
             }
         }

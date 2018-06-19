@@ -43,16 +43,13 @@ namespace FrbaHotel.AbmFacturacion
                     {
                         ejecutarStoredProcedure();
                         this.Hide();
-                        new PagoRealizado().Show();
+                        MessageBox.Show("Pago realizado correctamente.", "Pago realizado", MessageBoxButtons.OK);
+                        new EstadiasAFacturar().Show();
                     }
                     catch
                     {
-                        new DatosTarjeta().Show();
+                        MessageBox.Show("No se pudo llevar a cabo el pago.", "Pago erroneo", MessageBoxButtons.OK);
                     }
-                }
-                else
-                {
-                    new DatosTarjeta().Show();
                 }
             }
         }
@@ -82,6 +79,7 @@ namespace FrbaHotel.AbmFacturacion
 
         private bool completo()
         {
+            int o;
             if (txtNombre.Text.Trim() == "")
             {
                 lblNombre.Visible = true;
@@ -94,8 +92,18 @@ namespace FrbaHotel.AbmFacturacion
             {
                 lblNumero.Visible = true;
             }
-            else if (txtCodigo.Text.Trim() == "")
+            else if(!int.TryParse(txtNroTarjeta.Text.Trim(), out o))
             {
+                MessageBox.Show("El numero de tarjeta debe ser numero.", "Campo invalido", MessageBoxButtons.OK);
+                lblNumero.Visible = true;
+            }
+            else if (txtCodigo.Text.Trim() == "")
+            { 
+                lblCodigo.Visible = true;
+            }
+            else if (!int.TryParse(txtCodigo.Text.Trim(), out o))
+            {
+                MessageBox.Show("El codigo de seguridad debe ser numero.", "Pago realizado", MessageBoxButtons.OK);
                 lblCodigo.Visible = true;
             }
             else if (txtBanco.Text.Trim() == "")
@@ -116,6 +124,7 @@ namespace FrbaHotel.AbmFacturacion
         private void btnAtras_Click(object sender, EventArgs e)
         {
             this.Hide();
+            new MedioDePago(numeroFactura).Show();
         }
     }
 }

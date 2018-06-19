@@ -69,18 +69,6 @@
     <Compile Include="AbmCliente\Modificar.designer.cs">
       <DependentUpon>Modificar.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmFacturacion\DatosTarjeta.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmFacturacion\DatosTarjeta.Designer.cs">
-      <DependentUpon>DatosTarjeta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmFacturacion\ErrorDePago.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmFacturacion\ErrorDePago.Designer.cs">
-      <DependentUpon>ErrorDePago.cs</DependentUpon>
-    </Compile>
     <Compile Include="AbmFacturacion\EstadiasAFacturar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,18 +80,6 @@
     </Compile>
     <Compile Include="AbmFacturacion\Facturacion.Designer.cs">
       <DependentUpon>Facturacion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmFacturacion\FacturaInvalida.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmFacturacion\FacturaInvalida.Designer.cs">
-      <DependentUpon>FacturaInvalida.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmFacturacion\FacturaYaPagada.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmFacturacion\FacturaYaPagada.Designer.cs">
-      <DependentUpon>FacturaYaPagada.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmFacturacion\MedioDePago.cs">
       <SubType>Form</SubType>
@@ -117,12 +93,6 @@
     <Compile Include="AbmFacturacion\PagarTarjeta.Designer.cs">
       <DependentUpon>PagarTarjeta.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmFacturacion\PagoRealizado.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmFacturacion\PagoRealizado.Designer.cs">
-      <DependentUpon>PagoRealizado.cs</DependentUpon>
-    </Compile>
     <Compile Include="AbmHabitacion\BajaHabitacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,30 +104,6 @@
     </Compile>
     <Compile Include="AbmHabitacion\Crear.Designer.cs">
       <DependentUpon>Crear.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmHabitacion\EstadoCambiado.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmHabitacion\EstadoCambiado.Designer.cs">
-      <DependentUpon>EstadoCambiado.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmHabitacion\HabitacionCreada.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmHabitacion\HabitacionCreada.Designer.cs">
-      <DependentUpon>HabitacionCreada.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmHabitacion\HabitacionExistente.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmHabitacion\HabitacionExistente.Designer.cs">
-      <DependentUpon>HabitacionExistente.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmHabitacion\HabitacionModificada.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmHabitacion\HabitacionModificada.Designer.cs">
-      <DependentUpon>HabitacionModificada.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmHabitacion\MenuHabitacion.cs">
       <SubType>Form</SubType>
@@ -273,12 +219,6 @@
     </Compile>
     <Compile Include="GenerarModificacionReserva\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ListadoEstadistico\DatosInsuficientes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ListadoEstadistico\DatosInsuficientes.Designer.cs">
-      <DependentUpon>DatosInsuficientes.cs</DependentUpon>
     </Compile>
     <Compile Include="ListadoEstadistico\ListadosEstadisticos.cs">
       <SubType>Form</SubType>
@@ -396,23 +336,11 @@
     <EmbeddedResource Include="AbmCliente\Modificar.resx">
       <DependentUpon>Modificar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmFacturacion\DatosTarjeta.resx">
-      <DependentUpon>DatosTarjeta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmFacturacion\ErrorDePago.resx">
-      <DependentUpon>ErrorDePago.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AbmFacturacion\EstadiasAFacturar.resx">
       <DependentUpon>EstadiasAFacturar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmFacturacion\Facturacion.resx">
       <DependentUpon>Facturacion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmFacturacion\FacturaInvalida.resx">
-      <DependentUpon>FacturaInvalida.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmFacturacion\FacturaYaPagada.resx">
-      <DependentUpon>FacturaYaPagada.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmFacturacion\MedioDePago.resx">
       <DependentUpon>MedioDePago.cs</DependentUpon>
@@ -420,26 +348,11 @@
     <EmbeddedResource Include="AbmFacturacion\PagarTarjeta.resx">
       <DependentUpon>PagarTarjeta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmFacturacion\PagoRealizado.resx">
-      <DependentUpon>PagoRealizado.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AbmHabitacion\BajaHabitacion.resx">
       <DependentUpon>BajaHabitacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHabitacion\Crear.resx">
       <DependentUpon>Crear.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmHabitacion\EstadoCambiado.resx">
-      <DependentUpon>EstadoCambiado.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmHabitacion\HabitacionCreada.resx">
-      <DependentUpon>HabitacionCreada.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmHabitacion\HabitacionExistente.resx">
-      <DependentUpon>HabitacionExistente.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmHabitacion\HabitacionModificada.resx">
-      <DependentUpon>HabitacionModificada.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHabitacion\MenuHabitacion.resx">
       <DependentUpon>MenuHabitacion.cs</DependentUpon>
@@ -488,9 +401,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ListadoEstadistico\DatosInsuficientes.resx">
-      <DependentUpon>DatosInsuficientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListadoEstadistico\ListadosEstadisticos.resx">
       <DependentUpon>ListadosEstadisticos.cs</DependentUpon>

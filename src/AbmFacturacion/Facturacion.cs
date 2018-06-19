@@ -120,12 +120,12 @@ namespace FrbaHotel.AbmFacturacion
                 }
                 else
                 {
-                    new FacturaYaPagada().Show();
+                    MessageBox.Show("La factura ya se encuentra pagada.", "Factura pagada", MessageBoxButtons.OK);
                 }
             }
             catch
             {
-                new FacturaInvalida().Show();
+                MessageBox.Show("No se puede facturar.", "Facturacion erronea", MessageBoxButtons.OK);
             }
         }
 
