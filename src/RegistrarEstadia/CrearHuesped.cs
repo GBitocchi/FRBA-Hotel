@@ -222,5 +222,10 @@ namespace FrbaHotel.RegistrarEstadia
         {
             txtNacimiento.Text = calendario.SelectionStart.ToShortDateString();
         }
+
+        private void btnSeleccionar_Click_1(object sender, EventArgs e)
+        {
+            txtNacimiento.Text = calendario.SelectionStart.ToShortDateString();
+        }
     }
 }

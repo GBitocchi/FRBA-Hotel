@@ -26,12 +26,13 @@ namespace FrbaHotel.RegistrarEstadia
 
                 if (DataBase.realizarConsulta(codigoIngresado).Tables[0].Rows.Count == 0)
                 {
-                    this.Hide();
-                    new Registrar(txtCodigo_Reserva.Text).Show();
+                    MessageBox.Show("El codigo ingresado no es correcto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
                 }
                 else
                 {
-                    MessageBox.Show("El codigo ingresado no es correcto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Hide();
+                    new Registrar(txtCodigo_Reserva.Text).Show();
                 }
             }
         }

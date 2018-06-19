@@ -70,6 +70,7 @@
             this.btnSeleccionar.TabIndex = 320;
             this.btnSeleccionar.Text = "Seleccionar fecha";
             this.btnSeleccionar.UseVisualStyleBackColor = true;
+            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click_1);
             // 
             // calendario
             // 

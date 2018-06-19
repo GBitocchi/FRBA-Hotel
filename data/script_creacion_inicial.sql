@@ -1187,3 +1187,20 @@ BEGIN
 	values (@codigo_reserva,@motivo,@fecha_cancelacion,@usuario)
 END
 GO 
+
+------------Registrar estadia
+
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_RegistrarIngreso](@fecha_inicio datetime, @usuario nvarchar(255),@codigo_reserva numeric(18,0))
+AS
+BEGIN
+	insert into CAIA_UNLIMITED.Estadia(esta_fecha_inicio,rese_codigo,usur_checkin)
+	values (@fecha_inicio,@codigo_reserva,@usuario)
+END
+GO
+
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_RegistrarEgreso](@cantidad_noche numeric(18,0), @usuario nvarchar(255))
+AS
+BEGIN
+	insert into CAIA_UNLIMITED.Estadia(esta_cantidad_noches,usur_checkout)
+	values (@cantidad_noche,@usuario)
+END

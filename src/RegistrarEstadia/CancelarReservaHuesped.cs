@@ -16,7 +16,7 @@ namespace FrbaHotel.RegistrarEstadia
         public CancelarReservaHuesped(string username, string codigoReserva)
         {
             InitializeComponent();
-            cbxUsuario.SelectedValue="Recepcion";
+            cbxUsuario.SelectedIndex=1;
             txtUsername.Text = username;
             txtNumero_Reserva.Text = codigoReserva;
             txtNumero_Reserva.Enabled = false;
@@ -142,6 +142,11 @@ namespace FrbaHotel.RegistrarEstadia
             {
                 txtMail.Enabled = false;
             }
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            txtCancelacion.Text = calendario.SelectionStart.ToShortDateString();
         }
     }
 }

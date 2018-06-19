@@ -37,10 +37,6 @@
             this.txtMail = new System.Windows.Forms.TextBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.gbxHuesped = new System.Windows.Forms.GroupBox();
-            this.listaHuesped = new System.Windows.Forms.ListView();
-            this.Mail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Tipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Numero = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnIngresar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -51,6 +47,10 @@
             this.calendario = new System.Windows.Forms.MonthCalendar();
             this.txtFecha = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.listaHuesped = new System.Windows.Forms.ListView();
+            this.Email = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Nro = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Tipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gbxHuesped.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -68,7 +68,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 56);
+            this.label2.Location = new System.Drawing.Point(15, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(108, 13);
             this.label2.TabIndex = 1;
@@ -77,7 +77,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 130);
+            this.label3.Location = new System.Drawing.Point(15, 130);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(26, 13);
             this.label3.TabIndex = 2;
@@ -86,7 +86,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 92);
+            this.label4.Location = new System.Drawing.Point(15, 92);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(107, 13);
             this.label4.TabIndex = 3;
@@ -94,21 +94,21 @@
             // 
             // txtTipo
             // 
-            this.txtTipo.Location = new System.Drawing.Point(158, 53);
+            this.txtTipo.Location = new System.Drawing.Point(157, 53);
             this.txtTipo.Name = "txtTipo";
             this.txtTipo.Size = new System.Drawing.Size(168, 20);
             this.txtTipo.TabIndex = 4;
             // 
             // txtNumero
             // 
-            this.txtNumero.Location = new System.Drawing.Point(158, 89);
+            this.txtNumero.Location = new System.Drawing.Point(157, 89);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(168, 20);
             this.txtNumero.TabIndex = 5;
             // 
             // txtMail
             // 
-            this.txtMail.Location = new System.Drawing.Point(158, 127);
+            this.txtMail.Location = new System.Drawing.Point(157, 127);
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(168, 20);
             this.txtMail.TabIndex = 6;
@@ -116,7 +116,7 @@
             // btnAceptar
             // 
             this.btnAceptar.Enabled = false;
-            this.btnAceptar.Location = new System.Drawing.Point(115, 164);
+            this.btnAceptar.Location = new System.Drawing.Point(114, 164);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(99, 26);
             this.btnAceptar.TabIndex = 8;
@@ -137,22 +137,10 @@
             this.gbxHuesped.Controls.Add(this.txtTipo);
             this.gbxHuesped.Location = new System.Drawing.Point(36, 256);
             this.gbxHuesped.Name = "gbxHuesped";
-            this.gbxHuesped.Size = new System.Drawing.Size(648, 208);
+            this.gbxHuesped.Size = new System.Drawing.Size(648, 224);
             this.gbxHuesped.TabIndex = 9;
             this.gbxHuesped.TabStop = false;
             this.gbxHuesped.Text = "Datos huesped";
-            // 
-            // listaHuesped
-            // 
-            this.listaHuesped.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Mail,
-            this.Tipo,
-            this.Numero});
-            this.listaHuesped.Location = new System.Drawing.Point(350, 43);
-            this.listaHuesped.Name = "listaHuesped";
-            this.listaHuesped.Size = new System.Drawing.Size(284, 147);
-            this.listaHuesped.TabIndex = 9;
-            this.listaHuesped.UseCompatibleStateImageBehavior = false;
             // 
             // groupBox2
             // 
@@ -227,6 +215,7 @@
             this.btnSeleccionar.TabIndex = 298;
             this.btnSeleccionar.Text = "Seleccionar fecha";
             this.btnSeleccionar.UseVisualStyleBackColor = true;
+            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
             // 
             // calendario
             // 
@@ -250,6 +239,35 @@
             this.label10.Size = new System.Drawing.Size(37, 13);
             this.label10.TabIndex = 295;
             this.label10.Text = "Fecha";
+            // 
+            // listaHuesped
+            // 
+            this.listaHuesped.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Email,
+            this.Nro,
+            this.Tipo});
+            this.listaHuesped.Location = new System.Drawing.Point(341, 49);
+            this.listaHuesped.Margin = new System.Windows.Forms.Padding(2);
+            this.listaHuesped.Name = "listaHuesped";
+            this.listaHuesped.Size = new System.Drawing.Size(300, 154);
+            this.listaHuesped.TabIndex = 108;
+            this.listaHuesped.UseCompatibleStateImageBehavior = false;
+            this.listaHuesped.View = System.Windows.Forms.View.Details;
+            // 
+            // Email
+            // 
+            this.Email.Text = "Email";
+            this.Email.Width = 146;
+            // 
+            // Nro
+            // 
+            this.Nro.Text = "Nro";
+            this.Nro.Width = 89;
+            // 
+            // Tipo
+            // 
+            this.Tipo.Text = "Tipo";
+            this.Tipo.Width = 147;
             // 
             // Registrar
             // 
@@ -279,10 +297,6 @@
         private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.GroupBox gbxHuesped;
-        private System.Windows.Forms.ListView listaHuesped;
-        private System.Windows.Forms.ColumnHeader Mail;
-        private System.Windows.Forms.ColumnHeader Tipo;
-        private System.Windows.Forms.ColumnHeader Numero;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox cbxRegistrar;
         private System.Windows.Forms.Button btnSeleccionar;
@@ -293,5 +307,9 @@
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnIngresar;
+        private System.Windows.Forms.ListView listaHuesped;
+        private System.Windows.Forms.ColumnHeader Email;
+        private System.Windows.Forms.ColumnHeader Nro;
+        private System.Windows.Forms.ColumnHeader Tipo;
     }
 }

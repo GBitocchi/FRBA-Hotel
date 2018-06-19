@@ -56,6 +56,9 @@
             "Huesped",
             "Recepcion"});
             this.cbxUsuario.FormattingEnabled = true;
+            this.cbxUsuario.Items.AddRange(new object[] {
+            "Huesped",
+            "Recepcion"});
             this.cbxUsuario.Location = new System.Drawing.Point(176, 153);
             this.cbxUsuario.Name = "cbxUsuario";
             this.cbxUsuario.Size = new System.Drawing.Size(173, 21);
@@ -171,6 +174,7 @@
             this.btnSeleccionar.TabIndex = 312;
             this.btnSeleccionar.Text = "Seleccionar fecha";
             this.btnSeleccionar.UseVisualStyleBackColor = true;
+            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
             // 
             // calendario
             // 

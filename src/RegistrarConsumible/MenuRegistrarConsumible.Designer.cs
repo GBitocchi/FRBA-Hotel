@@ -36,10 +36,6 @@
             this.txtHabitacion = new System.Windows.Forms.TextBox();
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.cbxConsumible = new System.Windows.Forms.ComboBox();
-            this.listaConsumibles = new System.Windows.Forms.ListView();
-            this.Consumible = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Cantidad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Precio = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnAgregar_Consumible = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnIngresar_Consumibles = new System.Windows.Forms.Button();
@@ -50,6 +46,10 @@
             this.txtHotel = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnEliminar_Consumible = new System.Windows.Forms.Button();
+            this.listaConsumibles = new System.Windows.Forms.ListView();
+            this.Consumible = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Cantidad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Precio = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // label1
@@ -117,31 +117,6 @@
             this.cbxConsumible.Name = "cbxConsumible";
             this.cbxConsumible.Size = new System.Drawing.Size(214, 21);
             this.cbxConsumible.TabIndex = 9;
-            // 
-            // listaConsumibles
-            // 
-            this.listaConsumibles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Consumible,
-            this.Cantidad,
-            this.Precio});
-            this.listaConsumibles.Location = new System.Drawing.Point(32, 267);
-            this.listaConsumibles.Name = "listaConsumibles";
-            this.listaConsumibles.Size = new System.Drawing.Size(315, 133);
-            this.listaConsumibles.TabIndex = 10;
-            this.listaConsumibles.UseCompatibleStateImageBehavior = false;
-            this.listaConsumibles.SelectedIndexChanged += new System.EventHandler(this.listaConsumibles_SelectedIndexChanged);
-            // 
-            // Consumible
-            // 
-            this.Consumible.Text = "Consumible";
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.Text = "Cantidad";
-            // 
-            // Precio
-            // 
-            this.Precio.Text = "Precio";
             // 
             // btnAgregar_Consumible
             // 
@@ -237,11 +212,41 @@
             this.btnEliminar_Consumible.UseVisualStyleBackColor = true;
             this.btnEliminar_Consumible.Click += new System.EventHandler(this.btnEliminar_Consumible_Click);
             // 
+            // listaConsumibles
+            // 
+            this.listaConsumibles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Consumible,
+            this.Cantidad,
+            this.Precio});
+            this.listaConsumibles.Location = new System.Drawing.Point(37, 253);
+            this.listaConsumibles.Margin = new System.Windows.Forms.Padding(2);
+            this.listaConsumibles.Name = "listaConsumibles";
+            this.listaConsumibles.Size = new System.Drawing.Size(310, 154);
+            this.listaConsumibles.TabIndex = 108;
+            this.listaConsumibles.UseCompatibleStateImageBehavior = false;
+            this.listaConsumibles.View = System.Windows.Forms.View.Details;
+            // 
+            // Consumible
+            // 
+            this.Consumible.Text = "Consumible";
+            this.Consumible.Width = 138;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.Text = "Cantidad";
+            this.Cantidad.Width = 97;
+            // 
+            // Precio
+            // 
+            this.Precio.Text = "Precio";
+            this.Precio.Width = 70;
+            // 
             // MenuRegistrarConsumible
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(534, 469);
+            this.Controls.Add(this.listaConsumibles);
             this.Controls.Add(this.btnEliminar_Consumible);
             this.Controls.Add(this.txtHotel);
             this.Controls.Add(this.label7);
@@ -252,7 +257,6 @@
             this.Controls.Add(this.btnIngresar_Consumibles);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnAgregar_Consumible);
-            this.Controls.Add(this.listaConsumibles);
             this.Controls.Add(this.cbxConsumible);
             this.Controls.Add(this.txtCantidad);
             this.Controls.Add(this.txtHabitacion);
@@ -278,7 +282,6 @@
         private System.Windows.Forms.TextBox txtHabitacion;
         private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.ComboBox cbxConsumible;
-        private System.Windows.Forms.ListView listaConsumibles;
         private System.Windows.Forms.Button btnAgregar_Consumible;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnIngresar_Consumibles;
@@ -288,9 +291,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtHotel;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnEliminar_Consumible;
+        private System.Windows.Forms.ListView listaConsumibles;
         private System.Windows.Forms.ColumnHeader Consumible;
         private System.Windows.Forms.ColumnHeader Cantidad;
         private System.Windows.Forms.ColumnHeader Precio;
-        private System.Windows.Forms.Button btnEliminar_Consumible;
     }
 }
