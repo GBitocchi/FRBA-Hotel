@@ -191,6 +191,10 @@ namespace FrbaHotel.AbmHotel
             {
                 lblDireccion.Visible = true;
             }
+            else if (cbCantidadEstrellas.SelectedItem.ToString() == "")
+            {
+                lblEstrellas.Visible = true;
+            }
             else if (txtCiudad.Text.Trim() == "")
             {
                 lblCiudad.Visible = true;

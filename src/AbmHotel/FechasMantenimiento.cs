@@ -44,10 +44,8 @@ namespace FrbaHotel.AbmHotel
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            fechaInicio = dtInicio.Value.ToString("yyyy-MM-dd hh:mm:ss");
-            fechaFin = dtFin.Value.ToString("yyyy-MM-dd hh:mm:ss");
-            Console.WriteLine(dtInicio.Value.ToString());
-            Console.WriteLine(dtFin.Value.ToString());
+            fechaInicio = dtInicio.Value.ToString("yyyyMMdd");
+            fechaFin = dtFin.Value.ToString("yyyyMMdd");
             if (dtFin.Value >= dtInicio.Value)
             {
                 string consultarPorReservas = queryReservas();
@@ -59,8 +57,8 @@ namespace FrbaHotel.AbmHotel
                     {
                         ejecutarStoredProcedure();
                         txtFechasIncorrectas.Visible = false;
-                        new HotelBajaExitosa().Show();
                         this.Hide();
+                        new HotelBajaExitosa().Show();
                     }
                     else
                     {
@@ -83,15 +81,17 @@ namespace FrbaHotel.AbmHotel
 
         private string queryReservas()
         {
-            string consultarPorReservas = string.Format("select * from CAIA_UNLIMITED.Reserva where hote_id = {0} and ((DATEDIFF(day, rese_fecha_desde,convert(datetime, '{1}', 121)) >= 0 and DATEDIFF(day, rese_fecha_desde, convert(datetime, '{1}', 121)) <= DATEDIFF(day, rese_fecha_desde, DATEADD(day, rese_cantidad_noches, rese_fecha_desde))) or (DATEDIFF(day, rese_fecha_desde, convert(datetime, '{2}', 121)) >= 0 and DATEDIFF(day, rese_fecha_desde, convert(datetime, '{2}', 121)) <= DATEDIFF(day, rese_fecha_desde, DATEADD(day, rese_cantidad_noches, rese_fecha_desde))) or (DATEDIFF(day, mant_fecha_inicio, '{1}') <= 0 and DATEDIFF(day, mant_fecha_fin, '{2}') >=0))",
+            string consultarPorReservas = string.Format("select * from CAIA_UNLIMITED.Reserva join CAIA_UNLIMITED.Habitacion_X_Reserva on (habi_rese_codigo = rese_codigo) where habi_rese_id = {0} and ((DATEDIFF(day, rese_fecha_desde,convert(datetime, '{1}', 121)) >= 0 and DATEDIFF(day, rese_fecha_desde, convert(datetime, '{1}', 121)) <= DATEDIFF(day, rese_fecha_desde, DATEADD(day, rese_cantidad_noches, rese_fecha_desde))) or (DATEDIFF(day, rese_fecha_desde, convert(datetime, '{2}', 121)) >= 0 and DATEDIFF(day, rese_fecha_desde, convert(datetime, '{2}', 121)) <= DATEDIFF(day, rese_fecha_desde, DATEADD(day, rese_cantidad_noches, rese_fecha_desde))) or (DATEDIFF(day, rese_fecha_desde, '{1}') <= 0 and DATEDIFF(day, DATEADD(day, rese_cantidad_noches, rese_fecha_desde), '{2}') >=0))",
             hotelID, fechaInicio, fechaFin);
             return consultarPorReservas;
         }
 
         private string queryOtrosMantenimientos()
         {
+            Console.WriteLine("Entre");
             string otrosMantenimientos = string.Format("select * from CAIA_UNLIMITED.Mantenimiento where hote_id = {0} and ((DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{1}', 121)) >= 0 and DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{1}', 121)) <= DATEDIFF(day, mant_fecha_inicio, mant_fecha_fin)) or (DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{2}', 121)) >= 0 and DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{2}', 121)) <= DATEDIFF(day, mant_fecha_inicio, mant_fecha_fin)) or (DATEDIFF(day, mant_fecha_inicio, '{1}') <= 0 and DATEDIFF(day, mant_fecha_fin, '{2}') >=0))",
                 hotelID, fechaInicio, fechaFin);
+            Console.WriteLine("Sali");
             return otrosMantenimientos;
         }
 

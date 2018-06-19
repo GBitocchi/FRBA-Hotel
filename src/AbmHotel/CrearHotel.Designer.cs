@@ -299,6 +299,7 @@
             // 
             // cbEstrellas
             // 
+            this.cbEstrellas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEstrellas.FormattingEnabled = true;
             this.cbEstrellas.Items.AddRange(new object[] {
             "1 estrella",
@@ -310,7 +311,6 @@
             this.cbEstrellas.Name = "cbEstrellas";
             this.cbEstrellas.Size = new System.Drawing.Size(223, 21);
             this.cbEstrellas.TabIndex = 13;
-            this.cbEstrellas.Text = "Cantidad de estrellas...";
             // 
             // txtCiudad
             // 

@@ -110,6 +110,7 @@
             // 
             // cbCantidadEstrellas
             // 
+            this.cbCantidadEstrellas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCantidadEstrellas.FormattingEnabled = true;
             this.cbCantidadEstrellas.Items.AddRange(new object[] {
             "1 estrella",
