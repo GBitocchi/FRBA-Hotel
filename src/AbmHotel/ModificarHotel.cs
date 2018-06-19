@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace FrbaHotel.AbmHotel
         {
             InitializeComponent();
             hotel_id = hotelId;
-            string consultaHotel = string.Format("select hote_nombre as 'Nombre hotel', hote_mail as 'Mail', hote_cant_estrellas as 'Cantidad de estrellas', dire_telefono as 'Telefono', dire_dom_calle as 'Calle', dire_nro_calle as 'Numero de calle', dire_ciudad as 'Ciudad', dire_pais as 'Pais' from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) where hote_id = {0}", hotel_id);
+            string consultaHotel = string.Format("select hote_nombre as 'Nombre hotel', hote_mail as 'Mail', hote_cant_estrellas as 'Cantidad de estrellas', dire_telefono as 'Telefono', dire_dom_calle as 'Calle', dire_nro_calle as 'Numero de calle', dire_ciudad as 'Ciudad', dire_pais as 'Pais', hote_fecha_creacion as 'Fecha' from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) where hote_id = {0}", hotel_id);
             DataTable hotel = DataBase.realizarConsulta(consultaHotel).Tables[0];
             cargarTextBoxes(hotel);
             dgRegimenes.DataSource = DataBase.realizarConsulta("select regi_codigo, regi_descripcion, regi_precio_base, 1 as 'Habilitado' from CAIA_UNLIMITED.Regimen join CAIA_UNLIMITED.Regimen_X_Hotel on (regi_codigo = regi_hote_codigo) join CAIA_UNLIMITED.Hotel on (hote_id = regi_hote_id) where hote_id =" + hotel_id + "union select regi_codigo, regi_descripcion, regi_precio_base, 0 as 'Habilitado' from CAIA_UNLIMITED.Regimen R where not exists(select regi_codigo from CAIA_UNLIMITED.Regimen_X_Hotel X where R.regi_codigo = X.regi_hote_codigo and regi_hote_id =" + hotel_id + ")" ).Tables[0];
@@ -38,6 +39,7 @@ namespace FrbaHotel.AbmHotel
             lblTelefono.Visible = false;
             lblRegimenes.Visible = false;
             lblFecha.Visible = false;
+            lblEstrellas.Visible = false;
         }
 
         private void valoresViejos()
@@ -62,6 +64,14 @@ namespace FrbaHotel.AbmHotel
             txtNumero.Text = hotel.Rows[0][5].ToString();
             txtCiudad.Text = hotel.Rows[0][6].ToString();
             txtPais.Text = hotel.Rows[0][7].ToString();
+            if (hotel.Rows[0][8].ToString() == "")
+            {
+                dtFechaCreacion.Value = DataBase.fechaSistema();
+            }
+            else
+            {
+                dtFechaCreacion.Value = Convert.ToDateTime(hotel.Rows[0][8].ToString());
+            }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -92,7 +102,7 @@ namespace FrbaHotel.AbmHotel
             {
                 if (!dgRegimenes.SelectedRows.Contains(regimen) && regimen.Cells[3].Value.ToString() == "1")
                 {
-                    if (DataBase.realizarConsulta("select * from CAIA_UNLIMITED.Reserva R join CAIA_UNLIMITED.Hotel H on (H.hote_id = R.hote_id) join CAIA_UNLIMITED.Regimen E on (E.regi_codigo = R.regi_codigo) where H.hote_id =" + hotel_id + " and E.regi_codigo =" + regimen.Cells[0].Value.ToString()).Tables[0].Rows.Count == 0)
+                    if (DataBase.realizarConsulta("select * from CAIA_UNLIMITED.Reserva R join CAIA_UNLIMITED.Habitacion_X_Reserva X on (X.habi_rese_codigo = R.rese_codigo) join CAIA_UNLIMITED.Hotel H on (H.hote_id = X.habi_rese_id) join CAIA_UNLIMITED.Regimen E on (E.regi_codigo = R.regi_codigo) where H.hote_id =" + hotel_id + " and E.regi_codigo =" + regimen.Cells[0].Value.ToString()).Tables[0].Rows.Count != 0)
                     {
                         return false;
                     }
@@ -106,7 +116,7 @@ namespace FrbaHotel.AbmHotel
             SqlConnection db = DataBase.conectarBD();
             SqlCommand modificarHotel = new SqlCommand("CAIA_UNLIMITED.sp_ModificarHotel", db);
             modificarHotel.CommandType = CommandType.StoredProcedure;
-            modificarHotel.Parameters.AddWithValue("@idHotel", hotel_id);
+            modificarHotel.Parameters.AddWithValue("@idHotel", Convert.ToInt32(hotel_id));
             modificarHotel.Parameters.AddWithValue("@nombre_hotel", txtNombreHotel.Text.Trim());
             modificarHotel.Parameters.AddWithValue("@mail", txtMail.Text.Trim());
             modificarHotel.Parameters.AddWithValue("@estrellas", cbCantidadEstrellas.SelectedIndex + 1);
@@ -115,7 +125,7 @@ namespace FrbaHotel.AbmHotel
             modificarHotel.Parameters.AddWithValue("@numero_calle", Int32.Parse(txtNumero.Text.Trim()));
             modificarHotel.Parameters.AddWithValue("@ciudad", txtCiudad.Text.Trim());
             modificarHotel.Parameters.AddWithValue("@pais", txtPais.Text.Trim());
-            modificarHotel.Parameters.AddWithValue("@fecha", dtFechaCreacion.Value.ToString("yyyy-MM-dd hh:mm:ss"));
+            modificarHotel.Parameters.AddWithValue("@fecha", dtFechaCreacion.Value.ToString("yyyyMMdd"));
             modificarHotel.ExecuteNonQuery();
             SqlCommand eliminarRegimenes = new SqlCommand("CAIA_UNLIMITED.sp_EliminarRegimenes", db);
             eliminarRegimenes.CommandType = CommandType.StoredProcedure;
@@ -144,7 +154,7 @@ namespace FrbaHotel.AbmHotel
         private bool modificacionesEnRegimenes()
         {
             bool hayModificaciones = false;
-            foreach (DataGridViewRow regimen in dgRegimenes.Rows)
+            foreach (DataGridViewRow regimen in dgRegimenes.SelectedRows)
             {
                 if (dgRegimenes.SelectedRows.Contains(regimen) && regimen.Cells[3].Value.ToString() == "1")
                 {
@@ -189,13 +199,13 @@ namespace FrbaHotel.AbmHotel
             {
                 lblPais.Visible = true;
             }
-            else if (dgRegimenes.SelectedRows.Count == 0)
-            {
-                lblRegimenes.Visible = true;
-            }
             else if (dtFechaCreacion.Value > DataBase.fechaSistema())
             {
                 lblFecha.Visible = true;
+            }
+            else if (dgRegimenes.SelectedRows.Count == 0)
+            {
+                lblRegimenes.Visible = true;
             }
             else
             {

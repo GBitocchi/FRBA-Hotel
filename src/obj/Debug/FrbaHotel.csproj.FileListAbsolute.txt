@@ -470,3 +470,9 @@ C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.csproj.GenerateResourc
 C:\Users\Germa\Desktop\FRBA-Hotel\src\bin\Debug\FrbaHotel.exe
 C:\Users\Germa\Desktop\FRBA-Hotel\src\bin\Debug\FrbaHotel.pdb
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.CancelarReserva.MenuCancelarReserva.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.CancelarReserva.MenuCancelarReserva.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.RegistrarEstadia.CancelarReservaHuesped.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.RegistrarEstadia.CrearHuesped.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.RegistrarEstadia.MenuRegistrarEstadia.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.RegistrarEstadia.Registrar.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.RegistrarEstadia.RegistrarCheckIn.resources

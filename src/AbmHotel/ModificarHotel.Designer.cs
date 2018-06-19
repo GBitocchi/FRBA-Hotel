@@ -58,6 +58,7 @@
             this.dtFechaCreacion = new System.Windows.Forms.DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
+            this.lblEstrellas = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgRegimenes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -139,7 +140,7 @@
             // 
             this.dgRegimenes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgRegimenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgRegimenes.Location = new System.Drawing.Point(70, 371);
+            this.dgRegimenes.Location = new System.Drawing.Point(70, 328);
             this.dgRegimenes.Name = "dgRegimenes";
             this.dgRegimenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgRegimenes.Size = new System.Drawing.Size(481, 150);
@@ -219,7 +220,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(66, 348);
+            this.label9.Location = new System.Drawing.Point(66, 305);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(139, 20);
             this.label9.TabIndex = 18;
@@ -228,7 +229,7 @@
             // btnAtras
             // 
             this.btnAtras.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAtras.Location = new System.Drawing.Point(454, 527);
+            this.btnAtras.Location = new System.Drawing.Point(454, 484);
             this.btnAtras.Name = "btnAtras";
             this.btnAtras.Size = new System.Drawing.Size(97, 34);
             this.btnAtras.TabIndex = 20;
@@ -239,7 +240,7 @@
             // btnModificar
             // 
             this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.Location = new System.Drawing.Point(351, 527);
+            this.btnModificar.Location = new System.Drawing.Point(351, 484);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(97, 34);
             this.btnModificar.TabIndex = 21;
@@ -318,7 +319,7 @@
             this.lblRegimenes.AutoSize = true;
             this.lblRegimenes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRegimenes.ForeColor = System.Drawing.Color.Red;
-            this.lblRegimenes.Location = new System.Drawing.Point(557, 371);
+            this.lblRegimenes.Location = new System.Drawing.Point(557, 328);
             this.lblRegimenes.Name = "lblRegimenes";
             this.lblRegimenes.Size = new System.Drawing.Size(138, 20);
             this.lblRegimenes.TabIndex = 28;
@@ -352,11 +353,23 @@
             this.lblFecha.TabIndex = 32;
             this.lblFecha.Text = "*Fecha de creacion incorrecta";
             // 
+            // lblEstrellas
+            // 
+            this.lblEstrellas.AutoSize = true;
+            this.lblEstrellas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstrellas.ForeColor = System.Drawing.Color.Red;
+            this.lblEstrellas.Location = new System.Drawing.Point(557, 194);
+            this.lblEstrellas.Name = "lblEstrellas";
+            this.lblEstrellas.Size = new System.Drawing.Size(210, 20);
+            this.lblEstrellas.TabIndex = 33;
+            this.lblEstrellas.Text = "*Faltan cantidad de estrellas";
+            // 
             // ModificarHotel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(787, 515);
+            this.ClientSize = new System.Drawing.Size(787, 543);
+            this.Controls.Add(this.lblEstrellas);
             this.Controls.Add(this.lblFecha);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.dtFechaCreacion);
@@ -427,5 +440,6 @@
         private System.Windows.Forms.DateTimePicker dtFechaCreacion;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lblFecha;
+        private System.Windows.Forms.Label lblEstrellas;
     }
 }

@@ -131,12 +131,12 @@ namespace FrbaHotel.AbmHotel
             agregarHotel.Parameters.AddWithValue("@numero_calle", Int32.Parse(txtNumero.Text.Trim()));
             agregarHotel.Parameters.AddWithValue("@ciudad", txtCiudad.Text.Trim());
             agregarHotel.Parameters.AddWithValue("@pais", txtPais.Text.Trim());
-            agregarHotel.Parameters.AddWithValue("@fecha", dtFechaCreacion.Value.ToString("yyyy-MM-dd hh:mm:ss"));
+            agregarHotel.Parameters.AddWithValue("@fecha", dtFechaCreacion.Value.ToString("yyyyMMdd"));
             agregarHotel.ExecuteNonQuery();
             string id_hotel = ObtenerIDHotel();
             foreach (DataGridViewRow regimen in dgRegimenes.SelectedRows)
             {
-                SqlCommand agregarRegimenHotel = new SqlCommand("CAIA_UNLIMITED.sp_RegimenXHotel", db);
+                SqlCommand agregarRegimenHotel = new SqlCommand("CAIA_UNLIMITED.sp_AgregarRegimenXHotel", db);
                 agregarRegimenHotel.CommandType = CommandType.StoredProcedure;
                 agregarRegimenHotel.Parameters.AddWithValue("@codigo_regimen", regimen.Cells[0].Value.ToString());
                 agregarRegimenHotel.Parameters.AddWithValue("@id_hotel", id_hotel);
