@@ -42,6 +42,8 @@ namespace FrbaHotel.AbmHotel
             else if (txtTelefono.Text.Trim() == "" || !int.TryParse(txtTelefono.Text.Trim(), out aux))
             {
                 lblTelefono.Visible = true;
+                MessageBox.Show("El numero de telefono debe ser un numero", "Campo invalido", MessageBoxButtons.OK);
+                return false;
             }
             else if (txtDireccion.Text.Trim() == "")
             {
@@ -50,10 +52,8 @@ namespace FrbaHotel.AbmHotel
             else if (txtNumero.Text.Trim() == "" || !int.TryParse(txtNumero.Text.Trim(), out aux))
             {
                 lblDireccion.Visible = true;
-            }
-            else if (cbEstrellas.SelectedItem.ToString() == "Cantidad de estrellas...")
-            {
-                lblEstrellas.Visible = true;
+                MessageBox.Show("El numero de calle debe ser un numero", "Campo invalido", MessageBoxButtons.OK);
+                return false;
             }
             else if (txtCiudad.Text.Trim() == "")
             {
@@ -75,6 +75,7 @@ namespace FrbaHotel.AbmHotel
             {
                 return true;
             }
+            MessageBox.Show("Por favor complete los campos que quedaron vacios.", "Campos incompletos", MessageBoxButtons.OK);
             return false;
         }
 
@@ -84,6 +85,7 @@ namespace FrbaHotel.AbmHotel
             ocultarErrores();
             MostrarDG();
             dtFechaCreacion.Value = DataBase.fechaSistema();
+            cbEstrellas.SelectedIndex = 0;
         }
 
         private void ocultarErrores()
@@ -108,12 +110,12 @@ namespace FrbaHotel.AbmHotel
                 if (DataBase.realizarConsulta(existencia_direccion).Tables[0].Rows.Count == 0)
                 {
                     ejecutarStoredProcedure();
-                    new HotelCreado().Show();
+                    MessageBox.Show("Hotel creado correctamente.", "Creacion correcta", MessageBoxButtons.OK); 
                     reiniciarVista();
                 }
                 else
                 {
-                    new DirecccionExistente().Show();
+                    MessageBox.Show("La direccion ya existe.", "Error de direccion", MessageBoxButtons.OK);
                 }
             }
         }
@@ -154,6 +156,8 @@ namespace FrbaHotel.AbmHotel
             txtNombreHotel.Clear();
             txtPais.Clear();
             txtTelefono.Clear();
+            dtFechaCreacion.Value = DataBase.fechaSistema();
+            cbEstrellas.SelectedIndex = 0;
             ocultarErrores();
         }
 

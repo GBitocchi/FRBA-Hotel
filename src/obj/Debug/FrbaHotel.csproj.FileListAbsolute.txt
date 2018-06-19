@@ -305,17 +305,10 @@ C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHabitacion.M
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHabitacion.MenuModificacion.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.BajaHotel.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.CrearHotel.resources
-C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.DirecccionExistente.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.FechasMantenimiento.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.FiltrarHotel.resources
-C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.HayMantenimientos.resources
-C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.HayReservas.resources
-C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.HotelCreado.resources
-C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.HotelExistente.resources
-C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.HotelModificado.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.MenuHotel.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.ModificarHotel.resources
-C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.ReservasParaRegimen.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRegimen.Crear.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRegimen.MenuModificarDarDeBaja.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRegimen.MenuRegimen.resources

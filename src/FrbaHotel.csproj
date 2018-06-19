@@ -177,23 +177,11 @@
     <Compile Include="AbmHotel\BajaHotel.Designer.cs">
       <DependentUpon>BajaHotel.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmHotel\CampoInvalido.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmHotel\CampoInvalido.Designer.cs">
-      <DependentUpon>CampoInvalido.cs</DependentUpon>
-    </Compile>
     <Compile Include="AbmHotel\CrearHotel.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AbmHotel\CrearHotel.Designer.cs">
       <DependentUpon>CrearHotel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmHotel\DirecccionExistente.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmHotel\DirecccionExistente.Designer.cs">
-      <DependentUpon>DirecccionExistente.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmHotel\FechasMantenimiento.cs">
       <SubType>Form</SubType>
@@ -207,42 +195,6 @@
     <Compile Include="AbmHotel\FiltrarHotel.Designer.cs">
       <DependentUpon>FiltrarHotel.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmHotel\HayMantenimientos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmHotel\HayMantenimientos.Designer.cs">
-      <DependentUpon>HayMantenimientos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmHotel\HayReservas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmHotel\HayReservas.Designer.cs">
-      <DependentUpon>HayReservas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmHotel\HotelBajaExitosa.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmHotel\HotelBajaExitosa.Designer.cs">
-      <DependentUpon>HotelBajaExitosa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmHotel\HotelCreado.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmHotel\HotelCreado.Designer.cs">
-      <DependentUpon>HotelCreado.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmHotel\HotelExistente.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmHotel\HotelExistente.Designer.cs">
-      <DependentUpon>HotelExistente.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmHotel\HotelModificado.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmHotel\HotelModificado.Designer.cs">
-      <DependentUpon>HotelModificado.cs</DependentUpon>
-    </Compile>
     <Compile Include="AbmHotel\MenuHotel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -254,12 +206,6 @@
     </Compile>
     <Compile Include="AbmHotel\ModificarHotel.Designer.cs">
       <DependentUpon>ModificarHotel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmHotel\ReservasParaRegimen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmHotel\ReservasParaRegimen.Designer.cs">
-      <DependentUpon>ReservasParaRegimen.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRegimen\Crear.cs">
       <SubType>Form</SubType>
@@ -507,38 +453,17 @@
     <EmbeddedResource Include="AbmHotel\CrearHotel.resx">
       <DependentUpon>CrearHotel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmHotel\DirecccionExistente.resx">
-      <DependentUpon>DirecccionExistente.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\FechasMantenimiento.resx">
       <DependentUpon>FechasMantenimiento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\FiltrarHotel.resx">
       <DependentUpon>FiltrarHotel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmHotel\HayMantenimientos.resx">
-      <DependentUpon>HayMantenimientos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmHotel\HayReservas.resx">
-      <DependentUpon>HayReservas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmHotel\HotelCreado.resx">
-      <DependentUpon>HotelCreado.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmHotel\HotelExistente.resx">
-      <DependentUpon>HotelExistente.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmHotel\HotelModificado.resx">
-      <DependentUpon>HotelModificado.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\MenuHotel.resx">
       <DependentUpon>MenuHotel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\ModificarHotel.resx">
       <DependentUpon>ModificarHotel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmHotel\ReservasParaRegimen.resx">
-      <DependentUpon>ReservasParaRegimen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRegimen\Crear.resx">
       <DependentUpon>Crear.cs</DependentUpon>

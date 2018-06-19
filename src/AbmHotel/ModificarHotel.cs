@@ -81,19 +81,43 @@ namespace FrbaHotel.AbmHotel
             {
                 if (hayModificaciones())
                 {
-                    if (reservasPorRegimen())
+                    if (direccionExistente())
                     {
-                        ejecutarStoredProcedure();
-                        new HotelModificado().Show();
-                        this.Hide();
+                        if (reservasPorRegimen())
+                        {
+                            ejecutarStoredProcedure();
+                            MessageBox.Show("Hotel modificado correctamente.", "Modificacion exitosa", MessageBoxButtons.OK);
+                            this.Hide();
+                            new FiltrarHotel().Show();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Hay reservas para los regimenes eliminados.", "Error de modificacion", MessageBoxButtons.OK);
+                        }
                     }
                     else
                     {
-                        new ReservasParaRegimen().Show();
+                        MessageBox.Show("Direccion ya existente.", "Error de modificacion", MessageBoxButtons.OK);
                     }
                 }
 
             }
+        }
+
+        private bool cambioDireccion()
+        {
+            return (txtDireccion.Text.Trim() != direccionVieja && txtNumero.Text.Trim() != numeroViejo && txtCiudad.Text.Trim() != ciudadVieja && txtPais.Text.Trim() != paisViejo);  
+        }
+
+        private bool direccionExistente()
+        {
+            if (cambioDireccion())
+            {
+                string consulta = string.Format("select * from CAIA_UNLIMITED.Direccion where dire_dom_calle = '{0}' and dire_nro_calle = '{1}' and dire_ciudad = '{2}' and dire_pais = '{3}'",
+               txtDireccion.Text.Trim(), txtNumero.Text.Trim(), txtCiudad.Text.Trim(), txtPais.Text.Trim());
+                return DataBase.realizarConsulta(consulta).Tables[0].Rows.Count == 0;
+            }
+            return true;
         }
 
         private bool reservasPorRegimen()
@@ -181,7 +205,9 @@ namespace FrbaHotel.AbmHotel
             }
             else if (txtTelefono.Text.Trim() == "" || !int.TryParse(txtTelefono.Text.Trim(), out aux))
             {
+                MessageBox.Show("El numero de telefono debe ser un numero.", "Campos invalidos", MessageBoxButtons.OK);
                 lblTelefono.Visible = true;
+                return false;
             }
             else if (txtDireccion.Text.Trim() == "")
             {
@@ -189,7 +215,9 @@ namespace FrbaHotel.AbmHotel
             }
             else if (txtNumero.Text.Trim() == "" || !int.TryParse(txtNumero.Text.Trim(), out aux))
             {
+                MessageBox.Show("El numero de calle debe ser un numero.", "Campos invalidos", MessageBoxButtons.OK);
                 lblDireccion.Visible = true;
+                return false;
             }
             else if (cbCantidadEstrellas.SelectedItem.ToString() == "")
             {

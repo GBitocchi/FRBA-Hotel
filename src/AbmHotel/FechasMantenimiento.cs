@@ -57,24 +57,25 @@ namespace FrbaHotel.AbmHotel
                     {
                         ejecutarStoredProcedure();
                         txtFechasIncorrectas.Visible = false;
+                        MessageBox.Show("Baja de hotel exitosa.", "Baja exitosa", MessageBoxButtons.OK);
                         this.Hide();
-                        new HotelBajaExitosa().Show();
+                        new BajaHotel().Show();
                     }
                     else
                     {
-                        new HayMantenimientos().Show();
+                        MessageBox.Show("Hay mantenimientos en ese periodo de tiempo.", "Fechas incorrectas", MessageBoxButtons.OK);
                         txtFechasIncorrectas.Visible = false;
                     }
                 }
                 else
                 {
-                    new HayReservas().Show();
+                    MessageBox.Show("Hay reservas para ese periodo de tiempo.", "Baja erronea", MessageBoxButtons.OK);
                     txtFechasIncorrectas.Visible = false;
                 }
             }
             else
             {
-                new CampoInvalido().Show();
+                MessageBox.Show("Las fechas son incorrectas.", "Campos invalidos", MessageBoxButtons.OK);
                 txtFechasIncorrectas.Visible = true;
             }
         }

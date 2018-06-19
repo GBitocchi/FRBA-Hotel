@@ -75,7 +75,7 @@ namespace FrbaHotel.AbmHotel
                 }
                 else
                 {
-                    new CampoInvalido().Show();
+                    MessageBox.Show("Las cantidad estrellas debe ser un numero.", "Campo invalido", MessageBoxButtons.OK);
                     return "";
                 }
             }
