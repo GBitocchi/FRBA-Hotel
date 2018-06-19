@@ -24,7 +24,7 @@ namespace FrbaHotel.AbmFacturacion
             cargarCampos(codigoEstadia);
             if (DataBase.realizarConsulta("select esta_codigo from CAIA_UNLIMITED.Factura where esta_codigo =" + codigoEstadia).Tables[0].Rows.Count == 0)
             {
-                
+                txtNroFactura.Text = DataBase.realizarConsulta("select max(fact_nro)+1 from CAIA_UNLIMITED.Factura").Tables[0].Rows[0][0].ToString();
                 double totalAFacturar = 0;
                 if ("All inclusive" != DataBase.realizarConsulta("select regi_descripcion from CAIA_UNLIMITED.Regimen R join CAIA_UNLIMITED.Reserva H on (R.regi_codigo = H.regi_codigo) join CAIA_UNLIMITED.Estadia E on (E.rese_codigo = H.rese_codigo) where esta_codigo =" + codigoEstadia).ToString().Trim())
                 {
@@ -102,17 +102,10 @@ namespace FrbaHotel.AbmFacturacion
             {
                 if (!existe)
                 {
-                    if (txtNroFactura.Text.Trim() != "")
-                    {
-                        ejecutarStoredProcedure();
-                        this.Hide();
-                        new MedioDePago(txtNroFactura.Text.Trim()).Show();
-                    }
-                    else
-                    {
-                        lblNroFactura.Visible = true;
-                    }
-                      }
+                    ejecutarStoredProcedure();
+                    this.Hide();
+                    new MedioDePago(txtNroFactura.Text.Trim()).Show();
+                }
                 else if (DataBase.realizarConsulta("select pago_codigo from CAIA_UNLIMITED.Factura where pago_codigo IS NOT NULL AND fact_nro =" + txtNroFactura.Text.Trim()).Tables[0].Rows.Count == 0)
                 {
                     this.Hide();

@@ -52,6 +52,7 @@
             // 
             this.txtNroFactura.Location = new System.Drawing.Point(435, 25);
             this.txtNroFactura.Name = "txtNroFactura";
+            this.txtNroFactura.ReadOnly = true;
             this.txtNroFactura.Size = new System.Drawing.Size(100, 20);
             this.txtNroFactura.TabIndex = 0;
             // 
