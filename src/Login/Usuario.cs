@@ -115,7 +115,7 @@ namespace FrbaHotel.Login
                             dsAutentificacion.Tables[0].AcceptChanges();
                             autentificacionConnection.Close();
 
-                            string hotelesUser = string.Format("SELECT h.hote_id as Hotel, h.hote_nombre as HotelNombre FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on u.usur_username = uh.usur_hote_username JOIN CAIA_UNLIMITED.Hotel h on h.hote_id = uh.usur_hote_id WHERE u.usur_username = '{0}'", txtUser.Text.Trim());
+                            string hotelesUser = string.Format("SELECT h.hote_id as Hotel, h.hote_nombre as HotelNombre,CONCAT(hote_id, '-', hote_nombre) as HotelCompuesto FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on u.usur_username = uh.usur_hote_username JOIN CAIA_UNLIMITED.Hotel h on h.hote_id = uh.usur_hote_id WHERE u.usur_username = '{0}'", txtUser.Text.Trim());
                             DataSet dsHotelesUser = DataBase.realizarConsulta(hotelesUser);
                             string rolesUser = string.Format("SELECT r.rol_codigo as Rol, r.rol_nombre as RolNombre FROM CAIA_UNLIMITED.Rol r JOIN CAIA_UNLIMITED.Rol_X_Usuario ru on ru.rol_usur_codigo = r.rol_codigo JOIN CAIA_UNLIMITED.Usuario u on u.usur_username = ru.rol_usur_username WHERE u.usur_username = '{0}' AND r.rol_estado = 1 ", txtUser.Text.Trim());
                             DataSet dsRolesUser = DataBase.realizarConsulta(rolesUser);
@@ -142,7 +142,7 @@ namespace FrbaHotel.Login
                                 }
                                 else
                                 {
-                                    new VistaSistema((decimal)dsHotelesUser.Tables[0].Rows[0]["Hotel"], (decimal)dsRolesUser.Tables[0].Rows[0]["Rol"]).Show();
+                                    new VistaSistema((decimal)dsHotelesUser.Tables[0].Rows[0]["Hotel"], (decimal)dsRolesUser.Tables[0].Rows[0]["Rol"],txtUser.Text.Trim()).Show();
                                 }
                             }
                         }

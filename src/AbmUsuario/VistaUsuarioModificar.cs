@@ -17,9 +17,10 @@ namespace FrbaHotel.AbmUsuario
 {
     public partial class VistaUsuarioModificar : Form
     {
-        DataGridViewCellCollection _usuarioAModificar;
+        DataGridView _usuarioAModificar;
         DataSet _dsRoles;
         DataSet _dsHoteles;
+        decimal direccion;
 
         private byte[] encryptPassword(string password)
         {
@@ -82,8 +83,8 @@ namespace FrbaHotel.AbmUsuario
             listBoxDialogHoteles.Items.Clear();
             listBoxDialogRoles.Items.Clear();
         }
-
-        public VistaUsuarioModificar(DataGridViewCellCollection usuarioAModificar)
+      
+        public VistaUsuarioModificar(DataGridView usuarioAModificar,DataGridViewCellEventArgs e,decimal hotel)
         {
             InitializeComponent();
             limpiarErrores();
@@ -93,6 +94,57 @@ namespace FrbaHotel.AbmUsuario
             cargarComboBoxHotel();
             lblDialogBloqMayus.Visible = false;
             this._usuarioAModificar = usuarioAModificar;
+            this.direccion = Convert.ToDecimal(usuarioAModificar.Rows[e.RowIndex].Cells["idDireccion"].Value.ToString());
+            textBoxDialogUser.Text = usuarioAModificar.Rows[e.RowIndex].Cells["NombreDeUsuario"].Value.ToString();
+            bool habilitado = (bool)usuarioAModificar.Rows[e.RowIndex].Cells["Habilitado"].Value;
+            if (habilitado)
+            {
+                radioButtonHabilitado.Select();
+            }
+            else
+            {
+                radioButtonDeshabilitado.Select();
+            }
+            textBoxDialogUsername.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Nombre"].Value.ToString();
+            textBoxDialogSurname.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Apellido"].Value.ToString();
+            textBoxDialogDocumentType.Text = usuarioAModificar.Rows[e.RowIndex].Cells["TipoDocumento"].Value.ToString();
+            textBoxDialogDocument.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Documento"].Value.ToString();
+            monthCalendarDialog.SetDate(Convert.ToDateTime(usuarioAModificar.Rows[e.RowIndex].Cells["Nacimiento"].Value.ToString()));
+            textBoxDialogBirthday.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Nacimiento"].Value.ToString();
+            textBoxDialogMail.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Mail"].Value.ToString();
+            textBoxDialogTelefono.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Telefono"].Value.ToString();
+            textBoxDialogBlock.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Calle"].Value.ToString();
+            textBoxDialogBlockNumber.Text = usuarioAModificar.Rows[e.RowIndex].Cells["NumeroCalle"].Value.ToString();
+            textBoxDialogPiso.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Piso"].Value.ToString();
+            textBoxDialogDepartamento.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Departamento"].Value.ToString();
+            textBoxDialogCity.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Ciudad"].Value.ToString();
+            textBoxDialogCountry.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Pais"].Value.ToString();
+            textBoxDialogNacionality.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Pais"].Value.ToString();
+
+            string queryUser = string.Format("SELECT r.rol_nombre as Rol, CONCAT(h.hote_id, '-', h.hote_nombre) as Hotel FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on uh.usur_hote_username = u.usur_username JOIN CAIA_UNLIMITED.Hotel h on h.hote_id = uh.usur_hote_id JOIN CAIA_UNLIMITED.Rol_X_Usuario ru on ru.rol_usur_username = u.usur_username JOIN CAIA_UNLIMITED.Rol r on ru.rol_usur_codigo = r.rol_codigo WHERE u.usur_username = '{0}' AND h.hote_id = '{1}'", usuarioAModificar.Rows[e.RowIndex].Cells["NombreDeUsuario"].Value.ToString(),hotel);
+            DataSet dsInfoUser = DataBase.realizarConsulta(queryUser);
+            
+            foreach (DataRow unRol in dsInfoUser.Tables[0].Rows)
+            {
+                listBoxDialogRoles.Items.Add((string)unRol["Rol"]);
+            }
+
+            if (listBoxDialogRoles.Items.Count > 0)
+            {
+                listBoxDialogRoles.SelectedIndex = 0;
+                listBoxDialogRoles.Sorted = true;
+            }
+
+            foreach (DataRow unHotel in dsInfoUser.Tables[0].Rows)
+            {
+                listBoxDialogHoteles.Items.Add((string)unHotel["Hotel"]);
+            }
+
+            if (listBoxDialogHoteles.Items.Count > 0)
+            {
+                listBoxDialogHoteles.SelectedIndex = 0;
+                listBoxDialogHoteles.Sorted = true;
+            }
         }
 
         private void VistaUsuarioModificar_Load(object sender, EventArgs e)
@@ -114,6 +166,7 @@ namespace FrbaHotel.AbmUsuario
 
         private void cargarComboBoxRol()
         {
+            comboBoxDialogRole.Items.Clear();
             string roles = "SELECT rol_codigo, rol_nombre FROM CAIA_UNLIMITED.Rol";
             DataSet dsRoles = DataBase.realizarConsulta(roles);
             this._dsRoles = dsRoles;
@@ -130,6 +183,7 @@ namespace FrbaHotel.AbmUsuario
 
         private void cargarComboBoxHotel()
         {
+            comboBoxDialogHoteles.Items.Clear();
             string hoteles = "SELECT hote_id, CONCAT(hote_id, '-', hote_nombre) as Hotel FROM CAIA_UNLIMITED.Hotel";
             DataSet dsHoteles = DataBase.realizarConsulta(hoteles);
             this._dsHoteles = dsHoteles;
@@ -157,7 +211,10 @@ namespace FrbaHotel.AbmUsuario
         {
             if (comboBoxDialogRole.SelectedItem != null)
             {
-                listBoxDialogRoles.Items.Add(comboBoxDialogRole.SelectedItem);
+                if (!listBoxDialogRoles.Items.Contains(comboBoxDialogRole.SelectedItem))
+                {
+                    listBoxDialogRoles.Items.Add(comboBoxDialogRole.SelectedItem);
+                }
                 listBoxDialogRoles.SelectedIndex = 0;
                 comboBoxDialogRole.Items.Remove(comboBoxDialogRole.SelectedItem);
                 if (comboBoxDialogRole.Items.Count > 0)
@@ -184,7 +241,10 @@ namespace FrbaHotel.AbmUsuario
         {
             if (comboBoxDialogHoteles.SelectedItem != null)
             {
-                listBoxDialogHoteles.Items.Add(comboBoxDialogHoteles.SelectedItem);
+                if (!listBoxDialogHoteles.Items.Contains(comboBoxDialogHoteles.SelectedItem))
+                {
+                    listBoxDialogHoteles.Items.Add(comboBoxDialogHoteles.SelectedItem);
+                }
                 listBoxDialogHoteles.SelectedIndex = 0;
                 comboBoxDialogHoteles.Items.Remove(comboBoxDialogHoteles.SelectedItem);
                 if (comboBoxDialogHoteles.Items.Count > 0)
@@ -225,7 +285,6 @@ namespace FrbaHotel.AbmUsuario
         private void buttonDialogGuardar_Click(object sender, EventArgs e)
         {
             limpiarErrores();
-
             DateTime Result;
             int parsedValue;
             DateTimeFormatInfo info = new DateTimeFormatInfo();
@@ -354,6 +413,7 @@ namespace FrbaHotel.AbmUsuario
                     SqlConnection createConnection = DataBase.conectarBD();
                     SqlCommand insertCommand = new SqlCommand("[CAIA_UNLIMITED].sp_ModificarUsuarios", createConnection);
                     insertCommand.CommandType = CommandType.StoredProcedure;
+                    insertCommand.Parameters.AddWithValue("@idDireccion", this.direccion);
                     insertCommand.Parameters.AddWithValue("@username", textBoxDialogUser.Text.Trim());
                     insertCommand.Parameters.AddWithValue("@password", encryptPassword(textBoxDialogPW.Text.Trim()));
                     insertCommand.Parameters.AddWithValue("@name", textBoxDialogUsername.Text.Trim());
@@ -442,6 +502,11 @@ namespace FrbaHotel.AbmUsuario
                     MessageBox.Show(errorDB.Message);
                 }
             }
+        }
+
+        private void monthCalendarDialog_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            textBoxDialogBirthday.Text = monthCalendarDialog.SelectionStart.ToShortDateString();
         }
     }
 }

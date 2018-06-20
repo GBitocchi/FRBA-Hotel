@@ -338,9 +338,9 @@
             this.lblErrorNumberValue.ForeColor = System.Drawing.Color.Red;
             this.lblErrorNumberValue.Location = new System.Drawing.Point(31, 736);
             this.lblErrorNumberValue.Name = "lblErrorNumberValue";
-            this.lblErrorNumberValue.Size = new System.Drawing.Size(452, 16);
+            this.lblErrorNumberValue.Size = new System.Drawing.Size(473, 16);
             this.lblErrorNumberValue.TabIndex = 61;
-            this.lblErrorNumberValue.Text = "*No puede ingresar valores numericos en los campos marcados";
+            this.lblErrorNumberValue.Text = "*No puede ingresar valores no numericos en los campos marcados";
             // 
             // lblErrorDateFormat
             // 

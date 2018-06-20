@@ -51,6 +51,11 @@ namespace FrbaHotel
         }
     }
 
+    public class Habitacionalities
+    {
+        public decimal Habitacion { get; set; }
+    }
+
     public class Funcionality
     {
         public decimal Funcionalidades { get; set; }
@@ -64,6 +69,20 @@ namespace FrbaHotel
     public class Hotelities
     {
         public decimal Hoteles { get; set; }
+    }
+
+    public class HabitacionalitiesCollection : List<Habitacionalities>, IEnumerable<SqlDataRecord>
+    {
+        IEnumerator<SqlDataRecord> IEnumerable<SqlDataRecord>.GetEnumerator()
+        {
+            var sqlRow = new SqlDataRecord(new SqlMetaData("Habitacion", SqlDbType.Decimal));
+
+            foreach (Habitacionalities cust in this)
+            {
+                sqlRow.SetDecimal(0, cust.Habitacion);
+                yield return sqlRow;
+            }
+        }
     }
 
     public class FuncionalityCollection : List<Funcionality>, IEnumerable<SqlDataRecord>

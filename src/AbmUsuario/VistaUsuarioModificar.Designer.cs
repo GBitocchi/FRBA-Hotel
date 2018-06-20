@@ -112,9 +112,9 @@
             this.lblErrorDialogNumericValue.ForeColor = System.Drawing.Color.Red;
             this.lblErrorDialogNumericValue.Location = new System.Drawing.Point(19, 754);
             this.lblErrorDialogNumericValue.Name = "lblErrorDialogNumericValue";
-            this.lblErrorDialogNumericValue.Size = new System.Drawing.Size(452, 16);
+            this.lblErrorDialogNumericValue.Size = new System.Drawing.Size(473, 16);
             this.lblErrorDialogNumericValue.TabIndex = 123;
-            this.lblErrorDialogNumericValue.Text = "*No puede ingresar valores numericos en los campos marcados";
+            this.lblErrorDialogNumericValue.Text = "*No puede ingresar valores no numericos en los campos marcados";
             // 
             // lblErrorDialogDateFormat
             // 
@@ -693,6 +693,7 @@
             this.monthCalendarDialog.Location = new System.Drawing.Point(659, 313);
             this.monthCalendarDialog.Name = "monthCalendarDialog";
             this.monthCalendarDialog.TabIndex = 62;
+            this.monthCalendarDialog.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarDialog_DateChanged);
             // 
             // label36
             // 

@@ -63,7 +63,7 @@ namespace FrbaHotel.Login
         private void btnGuest_Click(object sender, EventArgs e)
         {         
             this.Hide();          
-            new VistaHuesped().Show();
+            new VistaSistema().Show();
         }
     }
 }

@@ -214,11 +214,29 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="GenerarModificacionReserva\Form1.cs">
+    <Compile Include="GenerarModificacionReserva\BuscarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GenerarModificacionReserva\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="GenerarModificacionReserva\BuscarCliente.Designer.cs">
+      <DependentUpon>BuscarCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\GenerarReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\GenerarReserva.Designer.cs">
+      <DependentUpon>GenerarReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\ModificarReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\ModificarReserva.Designer.cs">
+      <DependentUpon>ModificarReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\VariantesRegimenes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\VariantesRegimenes.Designer.cs">
+      <DependentUpon>VariantesRegimenes.cs</DependentUpon>
     </Compile>
     <Compile Include="ListadoEstadistico\ListadosEstadisticos.cs">
       <SubType>Form</SubType>
@@ -279,12 +297,6 @@
     </Compile>
     <Compile Include="Login\Usuario.Designer.cs">
       <DependentUpon>Usuario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Menu Sistema\VistaHuesped.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Menu Sistema\VistaHuesped.Designer.cs">
-      <DependentUpon>VistaHuesped.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu Sistema\VistaSistema.cs">
       <SubType>Form</SubType>
@@ -393,6 +405,9 @@
     <EmbeddedResource Include="AbmRol\VistaRol.resx">
       <DependentUpon>VistaRol.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmRol\VistaRolModificar.resx">
+      <DependentUpon>VistaRolModificar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmUsuario\VistaUsuario.resx">
       <DependentUpon>VistaUsuario.cs</DependentUpon>
     </EmbeddedResource>
@@ -401,6 +416,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\GenerarReserva.resx">
+      <DependentUpon>GenerarReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\ModificarReserva.resx">
+      <DependentUpon>ModificarReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListadoEstadistico\ListadosEstadisticos.resx">
       <DependentUpon>ListadosEstadisticos.cs</DependentUpon>
@@ -431,9 +452,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Usuario.resx">
       <DependentUpon>Usuario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Menu Sistema\VistaHuesped.resx">
-      <DependentUpon>VistaHuesped.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu Sistema\VistaSistema.resx">
       <DependentUpon>VistaSistema.cs</DependentUpon>

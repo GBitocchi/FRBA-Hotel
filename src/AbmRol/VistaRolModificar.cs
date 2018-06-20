@@ -135,6 +135,7 @@ namespace FrbaHotel.AbmRol
                         SqlCommand insertCommand = new SqlCommand("[CAIA_UNLIMITED].sp_ModificarRol", rolCreateConnection);
                         insertCommand.CommandType = CommandType.StoredProcedure;                      
                         insertCommand.Parameters.AddWithValue("@codigo_rol", (decimal)(dsRolCodigo.Tables[0].Rows[0]["rol_codigo"]));
+                        insertCommand.Parameters.AddWithValue("@nombre_rol", txbRolNombre.Text.Trim());
                         if (rbActivated.Checked)
                         {
                             insertCommand.Parameters.AddWithValue("@estado_rol", true);

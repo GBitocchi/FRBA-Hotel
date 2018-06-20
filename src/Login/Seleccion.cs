@@ -39,7 +39,7 @@ namespace FrbaHotel.Login
             cbHoteles.Items.Clear();
             foreach (DataRow unHotel in this.dsHotelesUser.Tables[0].Rows)
             {
-                cbHoteles.Items.Add(Convert.ToString((decimal)unHotel["Hotel"]));
+                cbHoteles.Items.Add(Convert.ToString((string)unHotel["HotelCompuesto"]));
             }
             if (cbHoteles.Items.Count > 0)
             {
@@ -95,20 +95,38 @@ namespace FrbaHotel.Login
         {
             if (this.dsHotelesUser != null)
             {
-                this.idHotel = Convert.ToDecimal(cbHoteles.Text);
+                for (int i = 0; i < this.dsHotelesUser.Tables[0].Rows.Count; i++)
+                {
+                    if (((string)(this.dsHotelesUser.Tables[0].Rows[i]["HotelCompuesto"])) == cbHoteles.Text)
+                    {
+                        this.idHotel = (decimal)this.dsHotelesUser.Tables[0].Rows[i]["Hotel"];
+                    }
+                }              
 
                 if ((this.dsRolesUser.Tables[0].Rows.Count) > 1)
                 {
-                    this.rolCodigo = Convert.ToDecimal(cbRoles.Text);
+                    for (int i = 0; i < this.dsRolesUser.Tables[0].Rows.Count; i++)
+                    {
+                        if (((string)(this.dsRolesUser.Tables[0].Rows[i]["RolNombre"])) == cbRoles.Text)
+                        {
+                            this.rolCodigo = (decimal)this.dsRolesUser.Tables[0].Rows[i]["Rol"];
+                        }
+                    }   
                 }
             }
             else
             {
-                this.rolCodigo = Convert.ToDecimal(cbRoles.Text);
+                for (int i = 0; i < this.dsRolesUser.Tables[0].Rows.Count; i++)
+                {
+                    if (((string)(this.dsRolesUser.Tables[0].Rows[i]["RolNombre"])) == cbRoles.Text)
+                    {
+                        this.rolCodigo = (decimal)this.dsRolesUser.Tables[0].Rows[i]["Rol"];
+                    }
+                }   
             }
 
             this.Hide();
-            new VistaSistema(this.idHotel,this.rolCodigo).Show();
+            new VistaSistema(this.idHotel, this.rolCodigo, this.nombreUsuario).Show();
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -142,6 +160,18 @@ namespace FrbaHotel.Login
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Application.Exit();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new Usuario().Show();
         }
     }
 }

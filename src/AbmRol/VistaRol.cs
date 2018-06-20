@@ -177,7 +177,7 @@ namespace FrbaHotel.AbmRol
                 {
                     try{
                         SqlConnection rolCreateConnection = DataBase.conectarBD();
-                        SqlCommand insertCommand = new SqlCommand("[CAIA_UNLIMITED].sp_CrearPoli", rolCreateConnection);  
+                        SqlCommand insertCommand = new SqlCommand("[CAIA_UNLIMITED].sp_CrearRol", rolCreateConnection);  
                         insertCommand.CommandType = CommandType.StoredProcedure;
                         insertCommand.Parameters.AddWithValue("@nombre_rol", tbNombreRol.Text.Trim());
                         insertCommand.Parameters.AddWithValue("@estado_rol", true);
