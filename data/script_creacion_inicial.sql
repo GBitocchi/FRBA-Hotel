@@ -1162,7 +1162,7 @@ END
 GO
 CREATE TYPE [CAIA_UNLIMITED].HabitacionesLista AS TABLE ( Habitacion numeric(18,0))
 GO
-CREATE PROCEDURE [CAIA_UNLIMITED].[sp_CrearReserva] (@hotel numeric(18,0),@fechaRealizacion datetime,@fechaDesde datetime,@cantidadNoches numeric(18,0),@regimen numeric(18,0),@estado nvarchar(255),@lista_Habitaciones HabitacionesLista READONLY)
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_CrearReservaHuesped] (@usuarioCreacion nvarchar(255),@hotel numeric(18,0),@fechaRealizacion datetime,@fechaDesde datetime,@cantidadNoches numeric(18,0),@regimen numeric(18,0),@estado nvarchar(255),@lista_Habitaciones HabitacionesLista READONLY)
 AS
 BEGIN	
   SET NOCOUNT ON;
@@ -1173,10 +1173,10 @@ BEGIN
     IF @trancount = 0
       BEGIN TRANSACTION
       ELSE
-        SAVE TRANSACTION sp_CrearReserva;
+        SAVE TRANSACTION sp_CrearReservaHuesped;
 	SET @returnreserva = (SELECT MAX(rese_codigo) FROM CAIA_UNLIMITED.Reserva)+1	
-    	insert into CAIA_UNLIMITED.Reserva (rese_codigo,rese_fecha_realizacion,rese_fecha_desde,rese_cantidad_noches,esre_codigo,regi_codigo)
-	values(@returnreserva,convert(datetime,@fechaRealizacion,120),convert(datetime,@fechaDesde,120),@cantidadNoches,(SELECT esre_codigo FROM CAIA_UNLIMITED.Estado_Reserva WHERE esre_detalle = @estado),@regimen)	
+    	insert into CAIA_UNLIMITED.Reserva (rese_codigo,rese_usur_creacion,rese_fecha_realizacion,rese_fecha_desde,rese_cantidad_noches,esre_codigo,regi_codigo)
+	values(@returnreserva,CONCAT(@usuarioCreacion,@returnreserva),convert(datetime,@fechaRealizacion,120),convert(datetime,@fechaDesde,120),@cantidadNoches,(SELECT esre_codigo FROM CAIA_UNLIMITED.Estado_Reserva WHERE esre_detalle = @estado),@regimen)	
 	insert into CAIA_UNLIMITED.Habitacion_X_Reserva(habi_rese_numero,habi_rese_id,habi_rese_codigo)
 	SELECT Habitacion, @hotel,@returnreserva FROM @lista_Habitaciones
     lbexit:
@@ -1198,14 +1198,57 @@ BEGIN
     IF @xstate = 1 AND @trancount = 0
       ROLLBACK
     IF @xstate = 1 AND @trancount > 0
-      ROLLBACK TRANSACTION sp_CrearReserva;
+      ROLLBACK TRANSACTION sp_CrearReservaHuesped;
 
-    RAISERROR ('sp_CrearReserva: %d: %s', 16, 1, @error, @message);
+    RAISERROR ('sp_CrearReservaHuesped: %d: %s', 16, 1, @error, @message);
   END CATCH
  RETURN @returnreserva 
 END
 GO
-CREATE PROCEDURE [CAIA_UNLIMITED].[sp_ModificarReserva] (@codigoReserva numeric(18,0),@hotel numeric(18,0),@fechaRealizacion datetime,@fechaDesde datetime,@cantidadNoches numeric(18,0),@regimen numeric(18,0),@estado nvarchar(255),@lista_Habitaciones HabitacionesLista READONLY)
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_CrearReservaUsuario] (@usuarioCreacion nvarchar(255),@hotel numeric(18,0),@fechaRealizacion datetime,@fechaDesde datetime,@cantidadNoches numeric(18,0),@regimen numeric(18,0),@estado nvarchar(255),@lista_Habitaciones HabitacionesLista READONLY)
+AS
+BEGIN	
+  SET NOCOUNT ON;
+  DECLARE @trancount int;
+  DECLARE @returnreserva numeric(18,0);
+  SET @trancount = @@trancount;
+  BEGIN TRY
+    IF @trancount = 0
+      BEGIN TRANSACTION
+      ELSE
+        SAVE TRANSACTION sp_CrearReservaUsuario;
+	SET @returnreserva = (SELECT MAX(rese_codigo) FROM CAIA_UNLIMITED.Reserva)+1	
+    	insert into CAIA_UNLIMITED.Reserva (rese_codigo,rese_usur_creacion,rese_fecha_realizacion,rese_fecha_desde,rese_cantidad_noches,esre_codigo,regi_codigo)
+	values(@returnreserva,@usuarioCreacion,convert(datetime,@fechaRealizacion,120),convert(datetime,@fechaDesde,120),@cantidadNoches,(SELECT esre_codigo FROM CAIA_UNLIMITED.Estado_Reserva WHERE esre_detalle = @estado),@regimen)	
+	insert into CAIA_UNLIMITED.Habitacion_X_Reserva(habi_rese_numero,habi_rese_id,habi_rese_codigo)
+	SELECT Habitacion, @hotel,@returnreserva FROM @lista_Habitaciones
+    lbexit:
+      IF @trancount = 0
+      COMMIT;	
+  END TRY
+  BEGIN CATCH
+    DECLARE @error int,
+            @message varchar(4000),
+            @xstate int;
+
+    SELECT
+      @error = ERROR_NUMBER(),
+      @message = ERROR_MESSAGE(),
+      @xstate = XACT_STATE();
+
+    IF @xstate = -1
+      ROLLBACK;
+    IF @xstate = 1 AND @trancount = 0
+      ROLLBACK
+    IF @xstate = 1 AND @trancount > 0
+      ROLLBACK TRANSACTION sp_CrearReservaUsuario;
+
+    RAISERROR ('sp_CrearReservaUsuario: %d: %s', 16, 1, @error, @message);
+  END CATCH
+ RETURN @returnreserva 
+END
+GO
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_ModificarReservaUsuario] (@usuarioModificacion nvarchar(255),@codigoReserva numeric(18,0),@hotel numeric(18,0),@fechaRealizacion datetime,@fechaDesde datetime,@cantidadNoches numeric(18,0),@regimen numeric(18,0),@estado nvarchar(255),@lista_Habitaciones HabitacionesLista READONLY)
 AS
 BEGIN	
   SET NOCOUNT ON;
@@ -1215,11 +1258,11 @@ BEGIN
     IF @trancount = 0
       BEGIN TRANSACTION
       ELSE
-        SAVE TRANSACTION sp_ModificarReserva;
+        SAVE TRANSACTION sp_ModificarReservaUsuario;
 
 	DELETE FROM CAIA_UNLIMITED.Habitacion_X_Reserva
 	WHERE habi_rese_codigo = @codigoReserva
-	update CAIA_UNLIMITED.Reserva set rese_fecha_realizacion = convert(datetime,@fechaRealizacion,120),rese_fecha_desde = convert(datetime,@fechaDesde,120),rese_cantidad_noches = @cantidadNoches,esre_codigo = (SELECT esre_codigo FROM CAIA_UNLIMITED.Estado_Reserva WHERE esre_detalle = @estado),regi_codigo = @regimen
+	update CAIA_UNLIMITED.Reserva set rese_fecha_realizacion = convert(datetime,@fechaRealizacion,120), rese_usur_modificacion = @usuarioModificacion,rese_fecha_desde = convert(datetime,@fechaDesde,120),rese_cantidad_noches = @cantidadNoches,esre_codigo = (SELECT esre_codigo FROM CAIA_UNLIMITED.Estado_Reserva WHERE esre_detalle = @estado),regi_codigo = @regimen
 	WHERE rese_codigo = @codigoReserva
 
 	insert into CAIA_UNLIMITED.Habitacion_X_Reserva(habi_rese_numero,habi_rese_id,habi_rese_codigo)
@@ -1244,9 +1287,55 @@ BEGIN
     IF @xstate = 1 AND @trancount = 0
       ROLLBACK
     IF @xstate = 1 AND @trancount > 0
-      ROLLBACK TRANSACTION sp_ModificarReserva;
+      ROLLBACK TRANSACTION sp_ModificarReservaUsuario;
 
-    RAISERROR ('sp_ModificarReserva: %d: %s', 16, 1, @error, @message);
+    RAISERROR ('sp_ModificarReservaUsuario: %d: %s', 16, 1, @error, @message);
+  END CATCH
+END
+
+GO
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_ModificarReservaHuesped] (@usuarioModificacion nvarchar(255),@codigoReserva numeric(18,0),@hotel numeric(18,0),@fechaRealizacion datetime,@fechaDesde datetime,@cantidadNoches numeric(18,0),@regimen numeric(18,0),@estado nvarchar(255),@lista_Habitaciones HabitacionesLista READONLY)
+AS
+BEGIN	
+  SET NOCOUNT ON;
+  DECLARE @trancount int;
+  SET @trancount = @@trancount;
+  BEGIN TRY
+    IF @trancount = 0
+      BEGIN TRANSACTION
+      ELSE
+        SAVE TRANSACTION sp_ModificarReservaHuesped;
+
+	DELETE FROM CAIA_UNLIMITED.Habitacion_X_Reserva
+	WHERE habi_rese_codigo = @codigoReserva
+	update CAIA_UNLIMITED.Reserva set rese_fecha_realizacion = convert(datetime,@fechaRealizacion,120),rese_usur_modificacion = CONCAT(@usuarioModificacion,@codigoReserva),rese_fecha_desde = convert(datetime,@fechaDesde,120),rese_cantidad_noches = @cantidadNoches,esre_codigo = (SELECT esre_codigo FROM CAIA_UNLIMITED.Estado_Reserva WHERE esre_detalle = @estado),regi_codigo = @regimen
+	WHERE rese_codigo = @codigoReserva
+
+	insert into CAIA_UNLIMITED.Habitacion_X_Reserva(habi_rese_numero,habi_rese_id,habi_rese_codigo)
+	SELECT Habitacion, @hotel,@codigoReserva FROM @lista_Habitaciones
+
+    lbexit:
+      IF @trancount = 0
+      COMMIT;
+  END TRY
+  BEGIN CATCH
+    DECLARE @error int,
+            @message varchar(4000),
+            @xstate int;
+
+    SELECT
+      @error = ERROR_NUMBER(),
+      @message = ERROR_MESSAGE(),
+      @xstate = XACT_STATE();
+
+    IF @xstate = -1
+      ROLLBACK;
+    IF @xstate = 1 AND @trancount = 0
+      ROLLBACK
+    IF @xstate = 1 AND @trancount > 0
+      ROLLBACK TRANSACTION sp_ModificarReservaHuesped;
+
+    RAISERROR ('sp_ModificarReservaHuesped: %d: %s', 16, 1, @error, @message);
   END CATCH
 END
 
