@@ -12,11 +12,11 @@ Trabajo Práctico de Gestion de Datos - 1C2018 - FRBA-Hotel
 - [X] ABM Login y Seguridad
 - [X] ABM Usuario
 - [X] ABM Rol
-- [ ] ABM Cancelar Reserva
-- [ ] ABM Huesped
+- [X] ABM Cancelar Reserva
+- [X] ABM Huesped
 - [ ] ABM Estadia
-- [ ] ABM Consumible
-- [ ] ABM Regimen
+- [X] ABM Consumible
+- [X] ABM Regimen
 - [X] ABM Reserva
 
 ## Otras cosas
