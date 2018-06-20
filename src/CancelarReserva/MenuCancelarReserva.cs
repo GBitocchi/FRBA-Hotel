@@ -153,7 +153,7 @@ namespace FrbaHotel.CancelarReserva
         private void ejecutarStoredProcedureCancelarReserva()
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand cancelarReserva = new SqlCommand("CAIA_UNLIMITED.sp_CancelarResev", db);
+            SqlCommand cancelarReserva = new SqlCommand("CAIA_UNLIMITED.sp_CancelarReserva", db);
             cancelarReserva.CommandType = CommandType.StoredProcedure;
             cancelarReserva.Parameters.AddWithValue("@codigo_Reserva", txtNumero_Reserva.Text.Trim());
             cancelarReserva.Parameters.AddWithValue("@motivo", txtMotivo.Text.Trim());
@@ -176,11 +176,8 @@ namespace FrbaHotel.CancelarReserva
              DataTable fecha = DataBase.realizarConsulta(consultaFecha).Tables[0];
              string fechaIngresoReserva = fecha.Rows[0][0].ToString();
 
-             DateTime fechaInicio = Convert.ToDateTime(fechaIngresoReserva);
-             /*TimeSpan diferencia = DataBase.fechaSistema() - fechaInicio; */
-             TimeSpan diferencia = Convert.ToDateTime(txtCancelacion.Text) - fechaInicio;
-
-             if (diferencia.Days > 1 )
+             
+             if (DateTime.Parse(fechaIngresoReserva)==DateTime.Parse(txtCancelacion.Text.Trim()) )
              {
                  return false;
              }

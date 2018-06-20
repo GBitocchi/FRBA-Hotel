@@ -62,11 +62,7 @@ namespace FrbaHotel.AbmCliente
                 lblNro.Visible = true;
                 return false;
             }                    
-            if (txtNacimiento.Text.Trim() == "")
-            {
-                lblNacimiento.Visible = true;
-                return false;
-            }
+            
             if (txtNacionalidad.Text.Trim() == "")
             {
                 lblNacionalidad.Visible = true;
@@ -202,22 +198,38 @@ namespace FrbaHotel.AbmCliente
         private void ejecutarStoredProcedureCrear()
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand crearCliente = new SqlCommand("CAIA_UNLIMITED.sp_CrearHuesped", db);
+            SqlCommand crearCliente = new SqlCommand("CAIA_UNLIMITED.sp_CrearHuesp", db);
             crearCliente.CommandType = CommandType.StoredProcedure;
             crearCliente.Parameters.AddWithValue("@nombre", txtNombre.Text.Trim());
             crearCliente.Parameters.AddWithValue("@apellido", txtApellido.Text.Trim());
             crearCliente.Parameters.AddWithValue("@documento", txtNumero_Identificacion.Text.Trim());
             crearCliente.Parameters.AddWithValue("@tipo", txtTipo_Identificacion.Text.Trim());
             crearCliente.Parameters.AddWithValue("@mail", txtEmail.Text.Trim());
-            crearCliente.Parameters.AddWithValue("@fecha_nacimiento", DateTime.Parse(txtNacimiento.Text));
+            if (txtNacimiento.Text.Trim() != "")
+            {
+                crearCliente.Parameters.AddWithValue("@fecha_nacimiento", DateTime.Parse(txtNacimiento.Text));
+            }
+            else
+            {
+                crearCliente.Parameters.AddWithValue("@fecha_nacimiento",txtNacimiento.Text);
+            }
             crearCliente.Parameters.AddWithValue("@nacionalidad", txtNacionalidad.Text.Trim());
             crearCliente.Parameters.AddWithValue("@calle", txtCalle.Text.Trim());
             crearCliente.Parameters.AddWithValue("@calle_nro", txtCalle_Nro.Text.Trim());
-            crearCliente.Parameters.AddWithValue("@piso",Int32.Parse(txtPiso.Text.Trim()));
+            if (txtPiso.Text.Trim() == "")
+            {
+                crearCliente.Parameters.AddWithValue("@piso", DBNull.Value);               
+            }
+            else
+            {
+                crearCliente.Parameters.AddWithValue("@piso", Convert.ToInt32(txtPiso.Text.Trim()));
+            }
+           
+
             crearCliente.Parameters.AddWithValue("@dpto", txtDpto.Text.Trim());
             crearCliente.Parameters.AddWithValue("@ciudad", txtCiudad.Text.Trim());
             crearCliente.Parameters.AddWithValue("@pais", txtPais.Text.Trim());
-            crearCliente.Parameters.AddWithValue("@telefono", Int32.Parse(txtTelefono.Text.Trim()));
+            crearCliente.Parameters.AddWithValue("@telefono", txtTelefono.Text.Trim());
             crearCliente.ExecuteNonQuery();
             db.Close();
         }
