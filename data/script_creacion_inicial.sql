@@ -249,7 +249,7 @@ go
 create table CAIA_UNLIMITED.Estadia(
 	esta_codigo numeric(18,0) identity(0,1) not null,
 	esta_fecha_inicio datetime not null,
-	esta_cantidad_noches numeric(18,0) not null,
+	esta_fecha_fin datetime null,
 	rese_codigo numeric(18,0) not null,
 	usur_checkin nvarchar(255),
 	usur_checkout nvarchar(255)
@@ -550,10 +550,10 @@ from gd_esquema.Maestra join CAIA_UNLIMITED.Direccion on (dire_dom_calle = Clien
 															dire_dpto = Cliente_Depto)
 
 --Estadia
-insert into CAIA_UNLIMITED.Estadia (esta_fecha_inicio, esta_cantidad_noches, rese_codigo)
-select distinct Estadia_Fecha_Inicio, Estadia_Cant_Noches, rese_codigo
+insert into CAIA_UNLIMITED.Estadia (esta_fecha_inicio, esta_fecha_fin, rese_codigo)
+select distinct Estadia_Fecha_Inicio, DATEADD(day,Estadia_Cant_Noches, Estadia_Fecha_Inicio), rese_codigo
 from gd_esquema.Maestra join CAIA_UNLIMITED.Reserva on (Reserva_Codigo = rese_codigo)
-where Estadia_Cant_Noches is not null
+where Estadia_Fecha_Inicio is not null
 
 --Factura
 insert into CAIA_UNLIMITED.Factura (fact_nro, fact_fecha, fact_total, esta_codigo, hues_documento, hues_mail)
