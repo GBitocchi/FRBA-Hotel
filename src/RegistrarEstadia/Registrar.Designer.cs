@@ -37,6 +37,10 @@
             this.txtMail = new System.Windows.Forms.TextBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.gbxHuesped = new System.Windows.Forms.GroupBox();
+            this.listaHuesped = new System.Windows.Forms.ListView();
+            this.Email = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Nro = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Tipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnIngresar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -47,10 +51,6 @@
             this.calendario = new System.Windows.Forms.MonthCalendar();
             this.txtFecha = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.listaHuesped = new System.Windows.Forms.ListView();
-            this.Email = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Nro = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Tipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gbxHuesped.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -115,7 +115,6 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Enabled = false;
             this.btnAceptar.Location = new System.Drawing.Point(114, 164);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(99, 26);
@@ -141,6 +140,35 @@
             this.gbxHuesped.TabIndex = 9;
             this.gbxHuesped.TabStop = false;
             this.gbxHuesped.Text = "Datos huesped";
+            // 
+            // listaHuesped
+            // 
+            this.listaHuesped.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Email,
+            this.Nro,
+            this.Tipo});
+            this.listaHuesped.Location = new System.Drawing.Point(341, 49);
+            this.listaHuesped.Margin = new System.Windows.Forms.Padding(2);
+            this.listaHuesped.Name = "listaHuesped";
+            this.listaHuesped.Size = new System.Drawing.Size(300, 154);
+            this.listaHuesped.TabIndex = 108;
+            this.listaHuesped.UseCompatibleStateImageBehavior = false;
+            this.listaHuesped.View = System.Windows.Forms.View.Details;
+            // 
+            // Email
+            // 
+            this.Email.Text = "Email";
+            this.Email.Width = 146;
+            // 
+            // Nro
+            // 
+            this.Nro.Text = "Nro";
+            this.Nro.Width = 89;
+            // 
+            // Tipo
+            // 
+            this.Tipo.Text = "Tipo";
+            this.Tipo.Width = 147;
             // 
             // groupBox2
             // 
@@ -239,35 +267,6 @@
             this.label10.Size = new System.Drawing.Size(37, 13);
             this.label10.TabIndex = 295;
             this.label10.Text = "Fecha";
-            // 
-            // listaHuesped
-            // 
-            this.listaHuesped.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Email,
-            this.Nro,
-            this.Tipo});
-            this.listaHuesped.Location = new System.Drawing.Point(341, 49);
-            this.listaHuesped.Margin = new System.Windows.Forms.Padding(2);
-            this.listaHuesped.Name = "listaHuesped";
-            this.listaHuesped.Size = new System.Drawing.Size(300, 154);
-            this.listaHuesped.TabIndex = 108;
-            this.listaHuesped.UseCompatibleStateImageBehavior = false;
-            this.listaHuesped.View = System.Windows.Forms.View.Details;
-            // 
-            // Email
-            // 
-            this.Email.Text = "Email";
-            this.Email.Width = 146;
-            // 
-            // Nro
-            // 
-            this.Nro.Text = "Nro";
-            this.Nro.Width = 89;
-            // 
-            // Tipo
-            // 
-            this.Tipo.Text = "Tipo";
-            this.Tipo.Width = 147;
             // 
             // Registrar
             // 

@@ -28,55 +28,48 @@ namespace FrbaHotel.RegistrarEstadia
         {
             if (txtApellido.Text.Trim() == "")
             {
+                lblApellido.Visible = true;
                 return false;
             }
-            if (txtNombre.Text.Trim()=="")
+            if (txtNombre.Text.Trim() == "")
             {
-                return false;
-            } 
-            if (txtNumero_Identificacion.Text.Trim()=="")
-            {
-                return false;
-            } 
-            if (txtTipo_Identificacion.Text.Trim()=="")
-            {
-                return false;
-            } 
-            if (txtEmail.Text.Trim()=="")
-            {
-                return false;
-            } 
-          
-            if (txtCalle.Text.Trim()=="")
-            {
-                return false;
-            } 
-            if (txtCalle_Nro.Text.Trim()=="")
-            {
-                return false;
-            } 
-            if (txtPiso.Text.Trim()=="")
-            {
-                return false;
-            } 
-            if (txtDpto.Text.Trim()=="")
-            {
-                return false;
-            } 
-            if (txtCiudad.Text.Trim()=="")
-            {
+                lblNombre.Visible = true;
                 return false;
             }
-            if (txtPais.Text.Trim()== "")
+            if (txtNumero_Identificacion.Text.Trim() == "")
             {
+                lblIdentificacion.Visible = true;
                 return false;
-            } 
-            if (txtTelefono.Text.Trim()=="")
+            }
+            if (txtTipo_Identificacion.Text.Trim() == "")
             {
+                lblTipo.Visible = true;
+                return false;
+            }
+            if (txtEmail.Text.Trim() == "")
+            {
+                lblMail.Visible = true;
+                return false;
+            }
+
+            if (txtCalle.Text.Trim() == "")
+            {
+                lblCalle.Visible = true;
+                return false;
+            }
+            if (txtCalle_Nro.Text.Trim() == "")
+            {
+                lblNro.Visible = true;
                 return false;
             }
             if (txtNacimiento.Text.Trim() == "")
             {
+                lblNacimiento.Visible = true;
+                return false;
+            }
+            if (txtNacionalidad.Text.Trim() == "")
+            {
+                lblNacionalidad.Visible = true;
                 return false;
             }
             return true;
@@ -103,6 +96,7 @@ namespace FrbaHotel.RegistrarEstadia
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
+            reestrablecerLabels();
             if (camposCompletos())
             {
                 if (camposValidos())
@@ -117,9 +111,8 @@ namespace FrbaHotel.RegistrarEstadia
                             if (DataBase.realizarConsulta(documento_ingresado).Tables[0].Rows.Count == 0)
                             {
                                 ejecutarStoredProcedureCrear();
-                                MessageBox.Show("Cliente " + txtNombre.Text.Trim() + " ingresado correctamente.", "Insertado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Cliente " + txtNombre.Text.Trim() + " ingresado correctamente.", "Ingresado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 this.Hide();
-                                new Registrar(codigoReserva).Show();
                             }
                             else
                             {
@@ -132,15 +125,29 @@ namespace FrbaHotel.RegistrarEstadia
                         }
                     }
                 }
-                                
+
             }
             else
             {
-                MessageBox.Show("Complete todo los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Complete todo los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
 
         }
+
+        private void reestrablecerLabels()
+        {
+            lblApellido.Visible = false;
+            lblNombre.Visible = false;
+            lblIdentificacion.Visible = false;
+            lblTipo.Visible = false;
+            lblNacimiento.Visible = false;
+            lblNacionalidad.Visible = false;
+            lblMail.Visible = false;
+            lblCalle.Visible = false;
+            lblNro.Visible = false;
+        }
+
 
         private bool formatoMailCorrecto()
         {
@@ -164,40 +171,38 @@ namespace FrbaHotel.RegistrarEstadia
                 return false;
 
             }
-            else if (!System.Text.RegularExpressions.Regex.IsMatch(txtTelefono.Text, @"^\d+$"))
+            if (txtTelefono.Text != "")
             {
-                MessageBox.Show("Solo se permiten valores numericos en el telefono", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                if (!System.Text.RegularExpressions.Regex.IsMatch(txtTelefono.Text, @"^\d+$"))
+                {
+                    MessageBox.Show("Solo se permiten valores numericos en el telefono", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
 
+                }
             }
-            else if (!System.Text.RegularExpressions.Regex.IsMatch(txtCalle_Nro.Text, @"^\d+$"))
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtCalle_Nro.Text, @"^\d+$"))
             {
                 MessageBox.Show("Solo se permiten valores numericos en el numero de calle", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
 
             }
-            else if (!System.Text.RegularExpressions.Regex.IsMatch(txtDpto.Text, @"^\d+$"))
+            if (txtPiso.Text != "")
             {
-                MessageBox.Show("Solo se permiten valores numericos en el dpto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                if (!System.Text.RegularExpressions.Regex.IsMatch(txtPiso.Text, @"^\d+$"))
+                {
+                    MessageBox.Show("Solo se permiten valores numericos en el piso", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
 
-            }
-            else if (!System.Text.RegularExpressions.Regex.IsMatch(txtPiso.Text, @"^\d+$"))
-            {
-                MessageBox.Show("Solo se permiten valores numericos en el piso", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+            return true;
 
-            }
-            else
-            {
-                return true;
-            }
         }
 
         private void ejecutarStoredProcedureCrear()
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand crearCliente = new SqlCommand("sp_CrearHuesped", db);
+            SqlCommand crearCliente = new SqlCommand("CAIA_UNLIMITED.sp_CrearHuesped", db);
             crearCliente.CommandType = CommandType.StoredProcedure;
             crearCliente.Parameters.AddWithValue("@nombre", txtNombre.Text.Trim());
             crearCliente.Parameters.AddWithValue("@apellido", txtApellido.Text.Trim());
@@ -215,13 +220,9 @@ namespace FrbaHotel.RegistrarEstadia
             crearCliente.Parameters.AddWithValue("@telefono", txtTelefono.Text.Trim());
             crearCliente.ExecuteNonQuery();
             db.Close();
-        }  
-                
-
-        private void btnSeleccionar_Click(object sender, EventArgs e)
-        {
-            txtNacimiento.Text = calendario.SelectionStart.ToShortDateString();
         }
+
+       
 
         private void btnSeleccionar_Click_1(object sender, EventArgs e)
         {

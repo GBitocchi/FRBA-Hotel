@@ -21,18 +21,27 @@ namespace FrbaHotel.RegistrarEstadia
         {
             if (camposValidos())
             {
+                string codigoCanceladoIngresado = String.Format("SELECT reca_rese FROM CAIA_UNLIMITED.Reserva_Cancelada WHERE reca_rese = '{0}'", txtCodigo_Reserva.Text.Trim());
 
-                string codigoIngresado = String.Format("SELECT rese_codigo FROM CAIA_UNLIMITED.Reserva WHERE rese_codigo = '{0}'", txtCodigo_Reserva.Text.Trim());
-
-                if (DataBase.realizarConsulta(codigoIngresado).Tables[0].Rows.Count == 0)
+                if (DataBase.realizarConsulta(codigoCanceladoIngresado).Tables[0].Rows.Count == 0)
                 {
-                    MessageBox.Show("El codigo ingresado no es correcto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    
+
+                    string codigoIngresado = String.Format("SELECT rese_codigo FROM CAIA_UNLIMITED.Reserva WHERE rese_codigo = '{0}'", txtCodigo_Reserva.Text.Trim());
+
+                    if (DataBase.realizarConsulta(codigoIngresado).Tables[0].Rows.Count == 0)
+                    {
+                        MessageBox.Show("El codigo ingresado no es correcto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
+                    else
+                    {
+                        this.Hide();
+                        new Registrar(txtCodigo_Reserva.Text).Show();
+                    }
                 }
                 else
                 {
-                    this.Hide();
-                    new Registrar(txtCodigo_Reserva.Text).Show();
+                    MessageBox.Show("Esta reserva fue cancelada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

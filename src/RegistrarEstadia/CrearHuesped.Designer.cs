@@ -60,6 +60,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.lblNro = new System.Windows.Forms.Label();
+            this.lblNacionalidad = new System.Windows.Forms.Label();
+            this.lblCalle = new System.Windows.Forms.Label();
+            this.lblApellido = new System.Windows.Forms.Label();
+            this.lblIdentificacion = new System.Windows.Forms.Label();
+            this.lblTipo = new System.Windows.Forms.Label();
+            this.lblNacimiento = new System.Windows.Forms.Label();
+            this.lblMail = new System.Windows.Forms.Label();
+            this.lblNombre = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnSeleccionar
@@ -326,11 +335,128 @@
             this.label2.TabIndex = 288;
             this.label2.Text = "Nuevo clientes";
             // 
+            // lblNro
+            // 
+            this.lblNro.AutoSize = true;
+            this.lblNro.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNro.ForeColor = System.Drawing.Color.Maroon;
+            this.lblNro.Location = new System.Drawing.Point(620, 103);
+            this.lblNro.Name = "lblNro";
+            this.lblNro.Size = new System.Drawing.Size(17, 24);
+            this.lblNro.TabIndex = 329;
+            this.lblNro.Text = "*";
+            this.lblNro.Visible = false;
+            // 
+            // lblNacionalidad
+            // 
+            this.lblNacionalidad.AutoSize = true;
+            this.lblNacionalidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNacionalidad.ForeColor = System.Drawing.Color.Maroon;
+            this.lblNacionalidad.Location = new System.Drawing.Point(621, 58);
+            this.lblNacionalidad.Name = "lblNacionalidad";
+            this.lblNacionalidad.Size = new System.Drawing.Size(17, 24);
+            this.lblNacionalidad.TabIndex = 328;
+            this.lblNacionalidad.Text = "*";
+            this.lblNacionalidad.Visible = false;
+            // 
+            // lblCalle
+            // 
+            this.lblCalle.AutoSize = true;
+            this.lblCalle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCalle.ForeColor = System.Drawing.Color.Maroon;
+            this.lblCalle.Location = new System.Drawing.Point(426, 105);
+            this.lblCalle.Name = "lblCalle";
+            this.lblCalle.Size = new System.Drawing.Size(17, 24);
+            this.lblCalle.TabIndex = 327;
+            this.lblCalle.Text = "*";
+            this.lblCalle.Visible = false;
+            // 
+            // lblApellido
+            // 
+            this.lblApellido.AutoSize = true;
+            this.lblApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblApellido.ForeColor = System.Drawing.Color.Maroon;
+            this.lblApellido.Location = new System.Drawing.Point(333, 103);
+            this.lblApellido.Name = "lblApellido";
+            this.lblApellido.Size = new System.Drawing.Size(17, 24);
+            this.lblApellido.TabIndex = 326;
+            this.lblApellido.Text = "*";
+            this.lblApellido.Visible = false;
+            // 
+            // lblIdentificacion
+            // 
+            this.lblIdentificacion.AutoSize = true;
+            this.lblIdentificacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIdentificacion.ForeColor = System.Drawing.Color.Maroon;
+            this.lblIdentificacion.Location = new System.Drawing.Point(334, 145);
+            this.lblIdentificacion.Name = "lblIdentificacion";
+            this.lblIdentificacion.Size = new System.Drawing.Size(17, 24);
+            this.lblIdentificacion.TabIndex = 325;
+            this.lblIdentificacion.Text = "*";
+            this.lblIdentificacion.Visible = false;
+            // 
+            // lblTipo
+            // 
+            this.lblTipo.AutoSize = true;
+            this.lblTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTipo.ForeColor = System.Drawing.Color.Maroon;
+            this.lblTipo.Location = new System.Drawing.Point(333, 186);
+            this.lblTipo.Name = "lblTipo";
+            this.lblTipo.Size = new System.Drawing.Size(17, 24);
+            this.lblTipo.TabIndex = 324;
+            this.lblTipo.Text = "*";
+            this.lblTipo.Visible = false;
+            // 
+            // lblNacimiento
+            // 
+            this.lblNacimiento.AutoSize = true;
+            this.lblNacimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNacimiento.ForeColor = System.Drawing.Color.Maroon;
+            this.lblNacimiento.Location = new System.Drawing.Point(333, 266);
+            this.lblNacimiento.Name = "lblNacimiento";
+            this.lblNacimiento.Size = new System.Drawing.Size(17, 24);
+            this.lblNacimiento.TabIndex = 323;
+            this.lblNacimiento.Text = "*";
+            this.lblNacimiento.Visible = false;
+            // 
+            // lblMail
+            // 
+            this.lblMail.AutoSize = true;
+            this.lblMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMail.ForeColor = System.Drawing.Color.Maroon;
+            this.lblMail.Location = new System.Drawing.Point(333, 224);
+            this.lblMail.Name = "lblMail";
+            this.lblMail.Size = new System.Drawing.Size(17, 24);
+            this.lblMail.TabIndex = 322;
+            this.lblMail.Text = "*";
+            this.lblMail.Visible = false;
+            // 
+            // lblNombre
+            // 
+            this.lblNombre.AutoSize = true;
+            this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombre.ForeColor = System.Drawing.Color.Maroon;
+            this.lblNombre.Location = new System.Drawing.Point(333, 61);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(17, 24);
+            this.lblNombre.TabIndex = 321;
+            this.lblNombre.Text = "*";
+            this.lblNombre.Visible = false;
+            // 
             // CrearHuesped
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(649, 502);
+            this.Controls.Add(this.lblNro);
+            this.Controls.Add(this.lblNacionalidad);
+            this.Controls.Add(this.lblCalle);
+            this.Controls.Add(this.lblApellido);
+            this.Controls.Add(this.lblIdentificacion);
+            this.Controls.Add(this.lblTipo);
+            this.Controls.Add(this.lblNacimiento);
+            this.Controls.Add(this.lblMail);
+            this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.calendario);
             this.Controls.Add(this.txtNacimiento);
@@ -404,5 +530,14 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblNro;
+        private System.Windows.Forms.Label lblNacionalidad;
+        private System.Windows.Forms.Label lblCalle;
+        private System.Windows.Forms.Label lblApellido;
+        private System.Windows.Forms.Label lblIdentificacion;
+        private System.Windows.Forms.Label lblTipo;
+        private System.Windows.Forms.Label lblNacimiento;
+        private System.Windows.Forms.Label lblMail;
+        private System.Windows.Forms.Label lblNombre;
     }
 }

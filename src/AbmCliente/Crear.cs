@@ -28,55 +28,48 @@ namespace FrbaHotel.AbmCliente
         {
             if (txtApellido.Text.Trim() == "")
             {
+                lblApellido.Visible = true;
                 return false;
             }
             if (txtNombre.Text.Trim()=="")
             {
+                lblNombre.Visible = true;
                 return false;
             } 
             if (txtNumero_Identificacion.Text.Trim()=="")
             {
+                lblIdentificacion.Visible = true;
                 return false;
             } 
             if (txtTipo_Identificacion.Text.Trim()=="")
             {
+                lblTipo.Visible = true;
                 return false;
             } 
             if (txtEmail.Text.Trim()=="")
             {
+                lblMail.Visible = true;
                 return false;
             } 
           
             if (txtCalle.Text.Trim()=="")
             {
+                lblCalle.Visible = true;
                 return false;
             } 
             if (txtCalle_Nro.Text.Trim()=="")
             {
+                lblNro.Visible = true;
                 return false;
-            } 
-            if (txtPiso.Text.Trim()=="")
-            {
-                return false;
-            } 
-            if (txtDpto.Text.Trim()=="")
-            {
-                return false;
-            } 
-            if (txtCiudad.Text.Trim()=="")
-            {
-                return false;
-            }
-            if (txtPais.Text.Trim()== "")
-            {
-                return false;
-            } 
-            if (txtTelefono.Text.Trim()=="")
-            {
-                return false;
-            }
+            }                    
             if (txtNacimiento.Text.Trim() == "")
             {
+                lblNacimiento.Visible = true;
+                return false;
+            }
+            if (txtNacionalidad.Text.Trim() == "")
+            {
+                lblNacionalidad.Visible = true;
                 return false;
             }
             return true;
@@ -103,6 +96,7 @@ namespace FrbaHotel.AbmCliente
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
+            reestrablecerLabels();
             if (camposCompletos())
             {
                 if (camposValidos())
@@ -141,6 +135,19 @@ namespace FrbaHotel.AbmCliente
 
         }
 
+        private void reestrablecerLabels()
+        {
+            lblApellido.Visible = false;
+            lblNombre.Visible = false;
+            lblIdentificacion.Visible = false;
+            lblTipo.Visible = false;
+            lblNacimiento.Visible = false;
+            lblNacionalidad.Visible = false;
+            lblMail.Visible = false;
+            lblCalle.Visible = false;
+            lblNro.Visible = false;
+        }
+
 
         private bool formatoMailCorrecto()
         {
@@ -163,38 +170,39 @@ namespace FrbaHotel.AbmCliente
                 MessageBox.Show("Solo se permiten valores numericos en el numero de identificacion","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 return false;
 
-            } else if (!System.Text.RegularExpressions.Regex.IsMatch(txtTelefono.Text, @"^\d+$"))
+            }
+            if (txtTelefono.Text != "")
             {
-                MessageBox.Show("Solo se permiten valores numericos en el telefono","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                return false;
+                if (!System.Text.RegularExpressions.Regex.IsMatch(txtTelefono.Text, @"^\d+$"))
+                {
+                    MessageBox.Show("Solo se permiten valores numericos en el telefono", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
 
-            } else if (!System.Text.RegularExpressions.Regex.IsMatch(txtCalle_Nro.Text, @"^\d+$"))
+                }
+            }
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtCalle_Nro.Text, @"^\d+$"))
             {
-                MessageBox.Show("Solo se permiten valores numericos en el numero de calle","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                return false;
-
-            } else if (!System.Text.RegularExpressions.Regex.IsMatch(txtDpto.Text, @"^\d+$"))
-            {
-                MessageBox.Show("Solo se permiten valores numericos en el dpto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Solo se permiten valores numericos en el numero de calle", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
 
             }
-            else if (!System.Text.RegularExpressions.Regex.IsMatch(txtPiso.Text, @"^\d+$"))
+            if (txtPiso.Text != "")
             {
-                MessageBox.Show("Solo se permiten valores numericos en el piso", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-
+                if (!System.Text.RegularExpressions.Regex.IsMatch(txtPiso.Text, @"^\d+$"))
+                {
+                    MessageBox.Show("Solo se permiten valores numericos en el piso", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
-            else
-            {
+            
                 return true;
-            }
+            
         }
 
         private void ejecutarStoredProcedureCrear()
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand crearCliente = new SqlCommand("sp_CrearHuesped", db);
+            SqlCommand crearCliente = new SqlCommand("CAIA_UNLIMITED.sp_CrearHuesped", db);
             crearCliente.CommandType = CommandType.StoredProcedure;
             crearCliente.Parameters.AddWithValue("@nombre", txtNombre.Text.Trim());
             crearCliente.Parameters.AddWithValue("@apellido", txtApellido.Text.Trim());
@@ -205,11 +213,11 @@ namespace FrbaHotel.AbmCliente
             crearCliente.Parameters.AddWithValue("@nacionalidad", txtNacionalidad.Text.Trim());
             crearCliente.Parameters.AddWithValue("@calle", txtCalle.Text.Trim());
             crearCliente.Parameters.AddWithValue("@calle_nro", txtCalle_Nro.Text.Trim());
-            crearCliente.Parameters.AddWithValue("@piso", txtPiso.Text.Trim());
+            crearCliente.Parameters.AddWithValue("@piso",Int32.Parse(txtPiso.Text.Trim()));
             crearCliente.Parameters.AddWithValue("@dpto", txtDpto.Text.Trim());
             crearCliente.Parameters.AddWithValue("@ciudad", txtCiudad.Text.Trim());
             crearCliente.Parameters.AddWithValue("@pais", txtPais.Text.Trim());
-            crearCliente.Parameters.AddWithValue("@telefono", txtTelefono.Text.Trim());
+            crearCliente.Parameters.AddWithValue("@telefono", Int32.Parse(txtTelefono.Text.Trim()));
             crearCliente.ExecuteNonQuery();
             db.Close();
         }
@@ -226,6 +234,21 @@ namespace FrbaHotel.AbmCliente
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
             txtNacimiento.Text = calendario.SelectionStart.ToShortDateString();
+        }
+
+        private void lblNombre_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblApellido_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Crear_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

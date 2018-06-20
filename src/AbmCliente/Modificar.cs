@@ -86,7 +86,7 @@ namespace FrbaHotel.AbmCliente
         private void ejecutarStoredProcedureModificar() 
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand crearCliente = new SqlCommand("sp_ModificarHues", db);
+            SqlCommand crearCliente = new SqlCommand("CAIA_UNLIMITED.sp_ModificarHues", db);
             crearCliente.CommandType = CommandType.StoredProcedure;
             crearCliente.Parameters.AddWithValue("@nombre", txtNombre.Text.Trim());
             crearCliente.Parameters.AddWithValue("@apellido", txtApellido.Text.Trim());
@@ -128,66 +128,57 @@ namespace FrbaHotel.AbmCliente
         {
             if (txtApellido.Text.Trim() == "")
             {
+                lblApellido.Visible = true;
                 return false;
             }
             if (txtNombre.Text.Trim() == "")
             {
+                lblNombre.Visible = true;
                 return false;
             }
             if (txtDni.Text.Trim() == "")
             {
+                lblIdentificacion.Visible = true;
                 return false;
             }
             if (txtTipo.Text.Trim() == "")
             {
+                lblTipo.Visible = true;
                 return false;
             }
             if (txtEmail.Text.Trim() == "")
             {
+                lblMail.Visible = true;
                 return false;
             }
-            if (txtNacimiento.Text.Trim() == "")
-            {
-                return false;
-            }
-            if (txtNacimiento.Text.Trim() == "")
-            {
-                return false;
-            }
+
             if (txtCalle.Text.Trim() == "")
             {
+                lblCalle.Visible = true;
                 return false;
             }
             if (txtCalle_Nro.Text.Trim() == "")
             {
+                lblNro.Visible = true;
                 return false;
             }
-            if (txtPiso.Text.Trim() == "")
+            if (txtNacimiento.Text.Trim() == "")
             {
+                lblNacimiento.Visible = true;
                 return false;
             }
-            if (txtDpto.Text.Trim() == "")
+            if (txtNacionalidad.Text.Trim() == "")
             {
-                return false;
-            }
-            if (txtCiudad.Text.Trim() == "")
-            {
-                return false;
-            }
-            if (txtPais.Text.Trim() == "")
-            {
-                return false;
-            }
-            if (txtTelefono.Text.Trim() == "")
-            {
+                lblNacionalidad.Visible = true;
                 return false;
             }
             return true;
-           
+            
         }
 
         private void btnModificar_Cliente_Click(object sender, EventArgs e)
         {
+            reestrablecerLabels();
             if (estaCompleto())
             {
                 if (hayModificaciones())
@@ -216,6 +207,19 @@ namespace FrbaHotel.AbmCliente
 
         }
 
+        private void reestrablecerLabels()
+        {
+            lblApellido.Visible = false;
+            lblNombre.Visible = false;
+            lblIdentificacion.Visible = false;
+            lblTipo.Visible = false;
+            lblNacimiento.Visible = false;
+            lblNacionalidad.Visible = false;
+            lblMail.Visible = false;
+            lblCalle.Visible = false;
+            lblNro.Visible = false;
+        }
+
         private bool formatoMailCorrecto()
         {
             Regex expEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
@@ -238,34 +242,34 @@ namespace FrbaHotel.AbmCliente
                 return false;
 
             }
-            else if (!System.Text.RegularExpressions.Regex.IsMatch(txtTelefono.Text, @"^\d+$"))
+            if (txtTelefono.Text != "")
             {
-                MessageBox.Show("Solo se permiten valores numericos en el telefono", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                if (!System.Text.RegularExpressions.Regex.IsMatch(txtTelefono.Text, @"^\d+$"))
+                {
+                    MessageBox.Show("Solo se permiten valores numericos en el telefono", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
 
+                }
             }
-            else if (!System.Text.RegularExpressions.Regex.IsMatch(txtCalle_Nro.Text, @"^\d+$"))
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtCalle_Nro.Text, @"^\d+$"))
             {
                 MessageBox.Show("Solo se permiten valores numericos en el numero de calle", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
 
             }
-            else if (!System.Text.RegularExpressions.Regex.IsMatch(txtDpto.Text, @"^\d+$"))
+           
+            if (txtPiso.Text != "")
             {
-                MessageBox.Show("Solo se permiten valores numericos en el dpto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                if (!System.Text.RegularExpressions.Regex.IsMatch(txtPiso.Text, @"^\d+$"))
+                {
+                    MessageBox.Show("Solo se permiten valores numericos en el piso", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
 
+                }
             }
-            else if (!System.Text.RegularExpressions.Regex.IsMatch(txtPiso.Text, @"^\d+$"))
-            {
-                MessageBox.Show("Solo se permiten valores numericos en el piso", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-
-            }
-            else
-            {
+            
                 return true;
-            }
+            
         }
 
 
@@ -287,9 +291,9 @@ namespace FrbaHotel.AbmCliente
         private void ejecutarStoredProcedureDarDeBaja() 
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand crearCliente = new SqlCommand("sp_BajaHues", db);
+            SqlCommand crearCliente = new SqlCommand("CAIA_UNLIMITED.sp_BajaHues", db);
             crearCliente.CommandType = CommandType.StoredProcedure;
-            crearCliente.Parameters.AddWithValue("@mail", txtEmail.Text.Trim());
+            crearCliente.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
             crearCliente.ExecuteNonQuery();
             db.Close();
         }

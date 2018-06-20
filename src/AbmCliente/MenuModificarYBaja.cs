@@ -41,11 +41,11 @@ namespace FrbaHotel.AbmCliente
             string consulta;
             if (txtNombre.Text.Trim() == "" && txtEmail.Text.Trim() == "" && txtApellido.Text.Trim() == "" && txtNro_Identificacion.Text.Trim() == ""  && txtTipo_Identificacion.Text.Trim() == "")
             {
-                consulta = "select hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as'DNI', hues_documento_tipo as 'Tipo', hues_mail as 'E-Mail', hues_nacimiento as 'Fecha de nacimiento', hues_nacionalidad as 'Nacionalidad', dire_dom_calle as 'Calle', dire_nro_calle as 'Nro', dire_piso as 'Piso', dire_dpto as 'Dpto', dire_ciudad as 'Ciudad',dire_pais as 'Pais', dire_telefono as 'Telefono' from CAIA_UNLIMITED.Huesped H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id)";
+                consulta = "select hues_mail as 'E-Mail', hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as'DNI', hues_documento_tipo as 'Tipo'  from CAIA_UNLIMITED.Huesped H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id)";
             }
             else
             {
-                consulta = "select hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as'DNI', hues_documento_tipo as 'Tipo', hues_mail as 'E-Mail', hues_nacimiento as 'Fecha de nacimiento', hues_nacionalidad as 'Nacionalidad', dire_dom_calle as 'Calle', dire_nro_calle as 'Nro', dire_piso as 'Piso', dire_dpto as 'Dpto', dire_ciudad as 'Ciudad',dire_pais as 'Pais', dire_telefono as 'Telefono' from CAIA_UNLIMITED.Huesped H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) where ";
+                consulta = "select hues_mail as 'E-Mail', hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as'DNI', hues_documento_tipo as 'Tipo'  from CAIA_UNLIMITED.Huesped H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) where ";
                 bool hayOtro = false;
                 if (txtNombre.Text.Trim() != "")
                 {
@@ -106,30 +106,38 @@ namespace FrbaHotel.AbmCliente
 
         private bool formatoMailCorrecto()
         {
-            Regex expEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            if (!expEmail.IsMatch(txtEmail.Text))
+            if (txtEmail.Text != "")
             {
-                MessageBox.Show("Formato de mail ingresado incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                Regex expEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                if (!expEmail.IsMatch(txtEmail.Text))
+                {
+                    MessageBox.Show("Formato de mail ingresado incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
-            else
-            {
-                return true;
-            }
+            return true;
         }
 
         private bool camposValidos()
         {
-            if (!System.Text.RegularExpressions.Regex.IsMatch(txtNro_Identificacion.Text, @"^\d+$"))
+            if( txtNro_Identificacion.Text != "")
             {
-                MessageBox.Show("Solo se permiten valores numericos en el numero de identificacion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                if (!System.Text.RegularExpressions.Regex.IsMatch(txtNro_Identificacion.Text, @"^\d+$")  )
+                {
+                    MessageBox.Show("Solo se permiten valores numericos en el numero de identificacion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
 
+                }
+                else
+                {
+                    return true;
+                }
             }
-            else 
-            {
-                return true;
-            }
+            return true;
         }
 
 
@@ -144,6 +152,21 @@ namespace FrbaHotel.AbmCliente
         {
             this.Hide();
             new MenuClientes().Show();
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtNombre.Clear();
+            txtApellido.Clear();
+            txtEmail.Clear();
+            txtNro_Identificacion.Clear();
+            txtTipo_Identificacion.Clear();
+        }
+
+        private void btnReestablecer_Click(object sender, EventArgs e)
+        {
+            DataSet huespedes = DataBase.realizarConsulta("select hues_mail as 'Mail', hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as 'Documento', hues_documento_tipo as 'Tipo'  from CAIA_UNLIMITED.Huesped");
+            dgClientes.DataSource = huespedes.Tables[0];
         }
 
     }

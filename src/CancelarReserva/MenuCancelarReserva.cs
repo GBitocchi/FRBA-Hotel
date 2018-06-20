@@ -49,7 +49,8 @@ namespace FrbaHotel.CancelarReserva
                                     else
                                     {
                                         ejecutarStoredProcedureCancelarReserva();
-                                        
+                                        limpiarFormulario();
+                                        MessageBox.Show("Reserva cancelada", "Cancelada", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
                                 }
 
@@ -70,6 +71,11 @@ namespace FrbaHotel.CancelarReserva
                                 else
                                 {
                                     ejecutarStoredProcedureCancelarReserva();
+
+                                    limpiarFormulario();
+
+                                    MessageBox.Show("Reserva cancelada", "Cancelada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        
                                     
                                 }
                             }
@@ -87,6 +93,16 @@ namespace FrbaHotel.CancelarReserva
             {
                 MessageBox.Show("Complete todo los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void limpiarFormulario()
+        {
+            txtCancelacion.Clear();
+            txtUsername.Clear();
+            txtMail.Clear();
+            txtMotivo.Clear();
+            txtNumero_Reserva.Clear();
+            cbxUsuario.SelectedIndex = 0;
         }
 
 
@@ -137,7 +153,7 @@ namespace FrbaHotel.CancelarReserva
         private void ejecutarStoredProcedureCancelarReserva()
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand cancelarReserva = new SqlCommand("sp_CancelarResev", db);
+            SqlCommand cancelarReserva = new SqlCommand("CAIA_UNLIMITED.sp_CancelarResev", db);
             cancelarReserva.CommandType = CommandType.StoredProcedure;
             cancelarReserva.Parameters.AddWithValue("@codigo_Reserva", txtNumero_Reserva.Text.Trim());
             cancelarReserva.Parameters.AddWithValue("@motivo", txtMotivo.Text.Trim());

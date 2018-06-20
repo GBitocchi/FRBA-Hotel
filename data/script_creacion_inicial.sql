@@ -109,6 +109,7 @@ if OBJECT_ID('[CAIA_UNLIMITED].[Consumible]', 'U') is not null
 drop table CAIA_UNLIMITED.Consumible
 go
 
+
 create table CAIA_UNLIMITED.Mantenimiento(
 	mant_fecha_inicio datetime not null,
 	mant_fecha_fin datetime not null,
@@ -1198,9 +1199,9 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE [CAIA_UNLIMITED].[sp_RegistrarEgreso](@cantidad_noche numeric(18,0), @usuario nvarchar(255))
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_RegistrarEgreso](@fecha_egreso numeric(18,0), @usuario nvarchar(255))
 AS
 BEGIN
-	insert into CAIA_UNLIMITED.Estadia(esta_cantidad_noches,usur_checkout)
-	values (@cantidad_noche,@usuario)
+	insert into CAIA_UNLIMITED.Estadia(esta_fecha_fin,usur_checkout)
+	values (@fecha_egreso,@usuario)
 END

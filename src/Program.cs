@@ -2,6 +2,7 @@
 using FrbaHotel.AbmHabitacion;
 using FrbaHotel.AbmHotel;
 using FrbaHotel.ListadoEstadistico;
+using FrbaHotel.AbmCliente;
 using FrbaHotel.Login;
 using FrbaHotel.RegistrarEstadia;
 using System;
@@ -22,7 +23,7 @@ namespace FrbaHotel
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);         
-            Application.Run(new ListadosEstadisticos());       
+            Application.Run(new MenuClientes());       
         }
     }
 }

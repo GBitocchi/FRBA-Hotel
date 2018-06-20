@@ -80,7 +80,7 @@ namespace FrbaHotel.RegistrarConsumible
 
                     if (DataBase.realizarConsulta(codigoEstadiaIngresado).Tables[0].Rows.Count == 0)
                     {
-                        MessageBox.Show("El codigo estadia es incorrecto.");
+                        MessageBox.Show("El codigo estadia es incorrecto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
@@ -151,21 +151,37 @@ namespace FrbaHotel.RegistrarConsumible
                 foreach (ListViewItem eachItem in listaConsumibles.Items)
                 {
                     
-                    string consultaCodigo = string.Format("select cons_codigo from CAIA_UNLIMITED.Consumible where cons_descripcion='{0}' and cons_precio='{1}'", eachItem.SubItems[0].Text.Trim(), eachItem.SubItems[2].Text.Trim());
+                    string consultaCodigo = string.Format("select cons_codigo from CAIA_UNLIMITED.Consumible where cons_descripcion='{0}' and cons_precio='{1}'", eachItem.SubItems[0].Text.Trim(), Convert.ToDouble(eachItem.SubItems[2].Text.Trim()));
                     DataTable codigoObtenido = DataBase.realizarConsulta(consultaCodigo).Tables[0];
                     string codigoConsumible = codigoObtenido.Rows[0][0].ToString();
 
-                    SqlCommand registrarConsumible = new SqlCommand("sp_RegistrarConsumible", db);
+                    SqlCommand registrarConsumible = new SqlCommand("CAIA_UNLIMITED.sp_RegistrarConsumible", db);
                     registrarConsumible.CommandType = CommandType.StoredProcedure;
                     registrarConsumible.Parameters.AddWithValue("@codigo_Estadia", txtCodigo_Estadia.Text.Trim());
                     registrarConsumible.Parameters.AddWithValue("@codigo_Consumible", codigoConsumible);
 
                     registrarConsumible.ExecuteNonQuery();
 
+                    limpiarFormulario();
+
+                    MessageBox.Show("Consumibles registrados correctamente", "Registrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 }
                 db.Close();
             }
         }
+
+        private void limpiarFormulario()
+        {
+            txtCodigo_Estadia.Clear();
+                    txtCantidad.Clear();
+                    txtHabitacion.Clear();
+                    txtHotel.Clear();
+                    txtRegimen.Clear();
+                    cbxConsumible.SelectedIndex = 0;
+                    listaConsumibles.Items.Clear();
+        }
+
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {

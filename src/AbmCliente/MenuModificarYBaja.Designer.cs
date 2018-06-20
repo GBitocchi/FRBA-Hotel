@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.Filtros = new System.Windows.Forms.GroupBox();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.txtTipo_Identificacion = new System.Windows.Forms.TextBox();
             this.btnFiltrar = new System.Windows.Forms.Button();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -42,7 +43,7 @@
             this.Nombre = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.dgClientes = new System.Windows.Forms.DataGridView();
-            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnReestablecer = new System.Windows.Forms.Button();
             this.Filtros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgClientes)).BeginInit();
             this.SuspendLayout();
@@ -67,6 +68,16 @@
             this.Filtros.TabIndex = 0;
             this.Filtros.TabStop = false;
             this.Filtros.Text = "Filtros";
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(340, 144);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(134, 28);
+            this.btnLimpiar.TabIndex = 10;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // txtTipo_Identificacion
             // 
@@ -160,7 +171,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(274, 433);
+            this.btnCancelar.Location = new System.Drawing.Point(182, 433);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(149, 38);
             this.btnCancelar.TabIndex = 4;
@@ -181,20 +192,22 @@
             this.dgClientes.TabIndex = 5;
             this.dgClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgClientes_CellContentClick);
             // 
-            // btnLimpiar
+            // btnReestablecer
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(340, 144);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(134, 28);
-            this.btnLimpiar.TabIndex = 10;
-            this.btnLimpiar.Text = "Limpiar";
-            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnReestablecer.Location = new System.Drawing.Point(414, 433);
+            this.btnReestablecer.Name = "btnReestablecer";
+            this.btnReestablecer.Size = new System.Drawing.Size(149, 38);
+            this.btnReestablecer.TabIndex = 6;
+            this.btnReestablecer.Text = "Reestablecer tabla";
+            this.btnReestablecer.UseVisualStyleBackColor = true;
+            this.btnReestablecer.Click += new System.EventHandler(this.btnReestablecer_Click);
             // 
             // MenuModificarYBaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 488);
+            this.Controls.Add(this.btnReestablecer);
             this.Controls.Add(this.dgClientes);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.Filtros);
@@ -224,5 +237,6 @@
         private System.Windows.Forms.DataGridView dgClientes;
         private System.Windows.Forms.TextBox txtTipo_Identificacion;
         private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnReestablecer;
     }
 }
