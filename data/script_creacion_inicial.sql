@@ -186,6 +186,8 @@ create table CAIA_UNLIMITED.Reserva(
 	rese_fecha_realizacion datetime not null,
 	rese_fecha_desde datetime not null,
 	rese_cantidad_noches numeric(18,0) not null,
+	rese_usur_creacion nvarchar(255),
+	rese_usur_modificacion nvarchar(255),
 	esre_codigo numeric(18,0),
 	regi_codigo numeric(18,0) not null
 )
