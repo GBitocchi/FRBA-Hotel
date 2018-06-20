@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +18,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         bool existeCliente = false;
         string mail;
         decimal documento;
+        string username;
         DateTime fechaElegidaInicio;
         decimal regimen;
         DataSet dsHoteles;
@@ -131,7 +132,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             cargarComboBoxHoteles();         
         }
 
-        public GenerarReserva(decimal _hotel)
+        public GenerarReserva(decimal _hotel, string _username)
         {
             InitializeComponent();
             listBoxTipoHabitacion.Items.Clear();
@@ -141,6 +142,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             cargarComboBoxTipoHabitacion();
             this.hotel = _hotel;
             this.guest = false;
+            this.username = _username;
             comboHoteles.Visible = false;
             lblHotel.Visible = false;
             btnSeleccionarHotel.Visible = false;
@@ -779,8 +781,19 @@ namespace FrbaHotel.GenerarModificacionReserva
             if (existeCliente)
             {
                 SqlConnection createConnection = DataBase.conectarBD();
-                SqlCommand insertCommand = new SqlCommand("[CAIA_UNLIMITED].sp_CrearReserva", createConnection);
-                insertCommand.CommandType = CommandType.StoredProcedure;
+                SqlCommand insertCommand;
+                if (guest)
+                {
+                    insertCommand = new SqlCommand("[CAIA_UNLIMITED].sp_CrearReservaHuesped", createConnection);
+                    insertCommand.CommandType = CommandType.StoredProcedure;
+                    insertCommand.Parameters.AddWithValue("@usuarioCreacion", "Guest");
+                }
+                else
+                {
+                    insertCommand = new SqlCommand("[CAIA_UNLIMITED].sp_CrearReservaUsuario", createConnection);
+                    insertCommand.CommandType = CommandType.StoredProcedure;
+                    insertCommand.Parameters.AddWithValue("@usuarioCreacion", this.username);
+                }
                 insertCommand.Parameters.AddWithValue("@hotel", this.hotel);
                 insertCommand.Parameters.AddWithValue("@fechaRealizacion", DateTime.Now);
                 insertCommand.Parameters.AddWithValue("@fechaDesde", fechaElegidaInicio);
@@ -862,8 +875,19 @@ namespace FrbaHotel.GenerarModificacionReserva
                 else
                 {
                     SqlConnection createConnection = DataBase.conectarBD();
-                    SqlCommand insertCommand = new SqlCommand("[CAIA_UNLIMITED].sp_CrearReserva", createConnection);
-                    insertCommand.CommandType = CommandType.StoredProcedure;
+                    SqlCommand insertCommand;
+                    if (guest)
+                    {
+                        insertCommand = new SqlCommand("[CAIA_UNLIMITED].sp_CrearReservaHuesped", createConnection);
+                        insertCommand.CommandType = CommandType.StoredProcedure;
+                        insertCommand.Parameters.AddWithValue("@usuarioCreacion", "Guest");
+                    }
+                    else
+                    {
+                        insertCommand = new SqlCommand("[CAIA_UNLIMITED].sp_CrearReservaUsuario", createConnection);
+                        insertCommand.CommandType = CommandType.StoredProcedure;
+                        insertCommand.Parameters.AddWithValue("@usuarioCreacion", this.username);
+                    }
                     insertCommand.Parameters.AddWithValue("@hotel", this.hotel);
                     insertCommand.Parameters.AddWithValue("@fechaRealizacion", DateTime.Now);
                     insertCommand.Parameters.AddWithValue("@fechaDesde", fechaElegidaInicio);
