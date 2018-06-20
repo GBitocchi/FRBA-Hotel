@@ -887,7 +887,7 @@ as
 									join CAIA_UNLIMITED.Habitacion_X_Reserva X on (X.habi_rese_id = H.hote_id and X.habi_rese_numero = A.habi_numero)
 									join CAIA_UNLIMITED.Estadia E on (X.habi_rese_codigo = E.rese_codigo)
 	group by A.habi_numero, A.hote_id, A.habi_piso, A.habi_frente
-	order by sum(E.esta_cantidad_noches), count(*) desc
+	order by sum(DATEDIFF(day, E.esta_fecha_inicio, E.esta_fecha_fin)), count(*) desc
 go
 
 create view CAIA_UNLIMITED.vw_MasPuntos

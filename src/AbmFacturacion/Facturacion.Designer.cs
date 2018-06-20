@@ -45,6 +45,8 @@
             this.txtPrecioRegimen = new System.Windows.Forms.TextBox();
             this.txtPorcentual = new System.Windows.Forms.TextBox();
             this.lblNroFactura = new System.Windows.Forms.Label();
+            this.txtNochesReserva = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgConsumibles)).BeginInit();
             this.SuspendLayout();
             // 
@@ -110,7 +112,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(19, 354);
+            this.label4.Location = new System.Drawing.Point(19, 381);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 20);
             this.label4.TabIndex = 6;
@@ -118,7 +120,7 @@
             // 
             // txtTotal
             // 
-            this.txtTotal.Location = new System.Drawing.Point(435, 354);
+            this.txtTotal.Location = new System.Drawing.Point(435, 381);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(100, 20);
@@ -127,7 +129,7 @@
             // btnPagar
             // 
             this.btnPagar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPagar.Location = new System.Drawing.Point(357, 380);
+            this.btnPagar.Location = new System.Drawing.Point(357, 407);
             this.btnPagar.Name = "btnPagar";
             this.btnPagar.Size = new System.Drawing.Size(86, 39);
             this.btnPagar.TabIndex = 2;
@@ -138,7 +140,7 @@
             // btnAtras
             // 
             this.btnAtras.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAtras.Location = new System.Drawing.Point(449, 380);
+            this.btnAtras.Location = new System.Drawing.Point(449, 407);
             this.btnAtras.Name = "btnAtras";
             this.btnAtras.Size = new System.Drawing.Size(86, 39);
             this.btnAtras.TabIndex = 3;
@@ -160,7 +162,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(18, 281);
+            this.label6.Location = new System.Drawing.Point(18, 305);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(136, 20);
             this.label6.TabIndex = 11;
@@ -170,7 +172,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(19, 307);
+            this.label7.Location = new System.Drawing.Point(19, 331);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(180, 20);
             this.label7.TabIndex = 12;
@@ -186,7 +188,7 @@
             // 
             // txtPrecioRegimen
             // 
-            this.txtPrecioRegimen.Location = new System.Drawing.Point(435, 281);
+            this.txtPrecioRegimen.Location = new System.Drawing.Point(435, 307);
             this.txtPrecioRegimen.Name = "txtPrecioRegimen";
             this.txtPrecioRegimen.ReadOnly = true;
             this.txtPrecioRegimen.Size = new System.Drawing.Size(100, 20);
@@ -194,7 +196,7 @@
             // 
             // txtPorcentual
             // 
-            this.txtPorcentual.Location = new System.Drawing.Point(435, 307);
+            this.txtPorcentual.Location = new System.Drawing.Point(435, 333);
             this.txtPorcentual.Name = "txtPorcentual";
             this.txtPorcentual.ReadOnly = true;
             this.txtPorcentual.Size = new System.Drawing.Size(100, 20);
@@ -211,11 +213,31 @@
             this.lblNroFactura.TabIndex = 17;
             this.lblNroFactura.Text = "*Falta numero de factura";
             // 
+            // txtNochesReserva
+            // 
+            this.txtNochesReserva.Location = new System.Drawing.Point(435, 281);
+            this.txtNochesReserva.Name = "txtNochesReserva";
+            this.txtNochesReserva.ReadOnly = true;
+            this.txtNochesReserva.Size = new System.Drawing.Size(100, 20);
+            this.txtNochesReserva.TabIndex = 19;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(18, 279);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(233, 20);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "Cantidad de noches reservadas";
+            // 
             // Facturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(738, 443);
+            this.ClientSize = new System.Drawing.Size(738, 487);
+            this.Controls.Add(this.txtNochesReserva);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.lblNroFactura);
             this.Controls.Add(this.txtPorcentual);
             this.Controls.Add(this.txtPrecioRegimen);
@@ -260,5 +282,7 @@
         private System.Windows.Forms.TextBox txtPrecioRegimen;
         private System.Windows.Forms.TextBox txtPorcentual;
         private System.Windows.Forms.Label lblNroFactura;
+        private System.Windows.Forms.TextBox txtNochesReserva;
+        private System.Windows.Forms.Label label8;
     }
 }
