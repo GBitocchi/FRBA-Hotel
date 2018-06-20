@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -70,7 +70,7 @@ namespace FrbaHotel.Menu_Sistema
         {
             if (!guest)
             {
-                new GenerarReserva(this.idHotel).ShowDialog();
+                new GenerarReserva(this.idHotel,this.nombreUsuario).ShowDialog();
                 this.Show();
             }
             else
@@ -84,7 +84,7 @@ namespace FrbaHotel.Menu_Sistema
         {
             if (!guest)
             {
-                new ModificarReserva(this.idHotel).ShowDialog();
+                new ModificarReserva(this.idHotel,this.nombreUsuario).ShowDialog();
                 this.Show();
             }
             else
