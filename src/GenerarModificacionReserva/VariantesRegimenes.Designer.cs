@@ -52,7 +52,7 @@
             this.dgvRegimenes.Name = "dgvRegimenes";
             this.dgvRegimenes.ReadOnly = true;
             this.dgvRegimenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRegimenes.Size = new System.Drawing.Size(1030, 805);
+            this.dgvRegimenes.Size = new System.Drawing.Size(1031, 376);
             this.dgvRegimenes.TabIndex = 4;
             this.dgvRegimenes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegimenes_CellContentClick_1);
             // 
@@ -60,8 +60,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(1102, 946);
+            this.ClientSize = new System.Drawing.Size(1102, 498);
             this.Controls.Add(this.dgvRegimenes);
             this.Controls.Add(this.label1);
             this.Name = "VariantesRegimenes";

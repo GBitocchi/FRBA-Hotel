@@ -1047,7 +1047,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1164, 967);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.tabControl1);

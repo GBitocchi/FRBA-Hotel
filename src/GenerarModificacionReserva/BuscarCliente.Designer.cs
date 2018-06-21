@@ -114,7 +114,7 @@
             this.dgvBuscarClientes.Name = "dgvBuscarClientes";
             this.dgvBuscarClientes.ReadOnly = true;
             this.dgvBuscarClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvBuscarClientes.Size = new System.Drawing.Size(1030, 697);
+            this.dgvBuscarClientes.Size = new System.Drawing.Size(1030, 385);
             this.dgvBuscarClientes.TabIndex = 8;
             this.dgvBuscarClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBuscarClientes_CellContentClick);
             // 
@@ -144,8 +144,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(1061, 950);
+            this.ClientSize = new System.Drawing.Size(1061, 631);
             this.Controls.Add(this.btnSeleccionarNumeroIdentificacion);
             this.Controls.Add(this.btnMail);
             this.Controls.Add(this.dgvBuscarClientes);

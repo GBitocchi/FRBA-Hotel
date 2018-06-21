@@ -52,7 +52,7 @@
             // cbHoteles
             // 
             this.cbHoteles.FormattingEnabled = true;
-            this.cbHoteles.Location = new System.Drawing.Point(444, 360);
+            this.cbHoteles.Location = new System.Drawing.Point(352, 284);
             this.cbHoteles.Margin = new System.Windows.Forms.Padding(6);
             this.cbHoteles.Name = "cbHoteles";
             this.cbHoteles.Size = new System.Drawing.Size(238, 32);
@@ -72,7 +72,7 @@
             // 
             this.lblHotelSeleccion.AutoSize = true;
             this.lblHotelSeleccion.BackColor = System.Drawing.Color.Transparent;
-            this.lblHotelSeleccion.Location = new System.Drawing.Point(418, 315);
+            this.lblHotelSeleccion.Location = new System.Drawing.Point(326, 239);
             this.lblHotelSeleccion.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblHotelSeleccion.Name = "lblHotelSeleccion";
             this.lblHotelSeleccion.Size = new System.Drawing.Size(295, 24);
@@ -83,9 +83,9 @@
             // pictureBox2
             // 
             this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
-            this.pictureBox2.Location = new System.Drawing.Point(778, 57);
+            this.pictureBox2.Location = new System.Drawing.Point(788, 57);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(269, 295);
+            this.pictureBox2.Size = new System.Drawing.Size(259, 231);
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
             // 
@@ -93,7 +93,7 @@
             // 
             this.lblRolSeleccion.AutoSize = true;
             this.lblRolSeleccion.BackColor = System.Drawing.Color.Transparent;
-            this.lblRolSeleccion.Location = new System.Drawing.Point(429, 450);
+            this.lblRolSeleccion.Location = new System.Drawing.Point(337, 374);
             this.lblRolSeleccion.Name = "lblRolSeleccion";
             this.lblRolSeleccion.Size = new System.Drawing.Size(273, 24);
             this.lblRolSeleccion.TabIndex = 4;
@@ -102,7 +102,7 @@
             // cbRoles
             // 
             this.cbRoles.FormattingEnabled = true;
-            this.cbRoles.Location = new System.Drawing.Point(444, 508);
+            this.cbRoles.Location = new System.Drawing.Point(352, 432);
             this.cbRoles.Name = "cbRoles";
             this.cbRoles.Size = new System.Drawing.Size(238, 32);
             this.cbRoles.TabIndex = 5;
@@ -110,8 +110,8 @@
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(666, 576);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(574, 500);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(99, 38);
             this.button1.TabIndex = 6;
@@ -121,8 +121,8 @@
             // 
             // button2
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(927, 817);
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(926, 588);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(84, 35);
             this.button2.TabIndex = 7;
@@ -132,8 +132,8 @@
             // 
             // button3
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(76, 817);
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(75, 588);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(82, 35);
             this.button3.TabIndex = 8;
@@ -148,7 +148,7 @@
             this.usuarioToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1078, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1063, 24);
             this.menuStrip1.TabIndex = 11;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -195,7 +195,7 @@
             this.lblWelcome.AutoSize = true;
             this.lblWelcome.BackColor = System.Drawing.Color.Transparent;
             this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWelcome.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.lblWelcome.ForeColor = System.Drawing.SystemColors.Desktop;
             this.lblWelcome.Location = new System.Drawing.Point(1, 94);
             this.lblWelcome.Name = "lblWelcome";
             this.lblWelcome.Size = new System.Drawing.Size(379, 73);
@@ -206,8 +206,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1078, 900);
+            this.ClientSize = new System.Drawing.Size(1063, 643);
             this.Controls.Add(this.lblWelcome);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);

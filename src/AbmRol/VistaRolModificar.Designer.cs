@@ -51,9 +51,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(833, 39);
+            this.pictureBox1.Location = new System.Drawing.Point(776, 28);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(289, 289);
+            this.pictureBox1.Size = new System.Drawing.Size(270, 289);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -62,8 +62,8 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label1.Location = new System.Drawing.Point(109, 60);
+            this.label1.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label1.Location = new System.Drawing.Point(54, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(418, 73);
             this.label1.TabIndex = 1;
@@ -75,7 +75,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label2.Location = new System.Drawing.Point(102, 178);
+            this.label2.Location = new System.Drawing.Point(75, 125);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(301, 42);
             this.label2.TabIndex = 2;
@@ -84,7 +84,7 @@
             // txbRolNombre
             // 
             this.txbRolNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbRolNombre.Location = new System.Drawing.Point(381, 251);
+            this.txbRolNombre.Location = new System.Drawing.Point(354, 198);
             this.txbRolNombre.Name = "txbRolNombre";
             this.txbRolNombre.Size = new System.Drawing.Size(341, 31);
             this.txbRolNombre.TabIndex = 3;
@@ -96,7 +96,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label3.Location = new System.Drawing.Point(102, 315);
+            this.label3.Location = new System.Drawing.Point(75, 262);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(286, 42);
             this.label3.TabIndex = 4;
@@ -107,7 +107,7 @@
             this.rbActivated.AutoSize = true;
             this.rbActivated.BackColor = System.Drawing.Color.Transparent;
             this.rbActivated.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbActivated.Location = new System.Drawing.Point(351, 401);
+            this.rbActivated.Location = new System.Drawing.Point(324, 348);
             this.rbActivated.Name = "rbActivated";
             this.rbActivated.Size = new System.Drawing.Size(121, 29);
             this.rbActivated.TabIndex = 5;
@@ -121,7 +121,7 @@
             this.rbDeactivated.AutoSize = true;
             this.rbDeactivated.BackColor = System.Drawing.Color.Transparent;
             this.rbDeactivated.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbDeactivated.Location = new System.Drawing.Point(602, 401);
+            this.rbDeactivated.Location = new System.Drawing.Point(575, 348);
             this.rbDeactivated.Name = "rbDeactivated";
             this.rbDeactivated.Size = new System.Drawing.Size(160, 29);
             this.rbDeactivated.TabIndex = 6;
@@ -133,7 +133,7 @@
             // btnLimpiar
             // 
             this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(141, 764);
+            this.btnLimpiar.Location = new System.Drawing.Point(139, 697);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(94, 46);
             this.btnLimpiar.TabIndex = 7;
@@ -144,7 +144,7 @@
             // btnGuardar
             // 
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Location = new System.Drawing.Point(908, 764);
+            this.btnGuardar.Location = new System.Drawing.Point(906, 697);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(91, 46);
             this.btnGuardar.TabIndex = 8;
@@ -155,7 +155,7 @@
             // listBoxFuncionalidades
             // 
             this.listBoxFuncionalidades.FormattingEnabled = true;
-            this.listBoxFuncionalidades.Location = new System.Drawing.Point(625, 506);
+            this.listBoxFuncionalidades.Location = new System.Drawing.Point(598, 453);
             this.listBoxFuncionalidades.Name = "listBoxFuncionalidades";
             this.listBoxFuncionalidades.Size = new System.Drawing.Size(259, 225);
             this.listBoxFuncionalidades.TabIndex = 9;
@@ -166,7 +166,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label4.Location = new System.Drawing.Point(102, 452);
+            this.label4.Location = new System.Drawing.Point(75, 399);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(318, 42);
             this.label4.TabIndex = 10;
@@ -176,7 +176,7 @@
             // comboBoxFuncionalidades
             // 
             this.comboBoxFuncionalidades.FormattingEnabled = true;
-            this.comboBoxFuncionalidades.Location = new System.Drawing.Point(136, 529);
+            this.comboBoxFuncionalidades.Location = new System.Drawing.Point(109, 476);
             this.comboBoxFuncionalidades.Name = "comboBoxFuncionalidades";
             this.comboBoxFuncionalidades.Size = new System.Drawing.Size(241, 21);
             this.comboBoxFuncionalidades.TabIndex = 11;
@@ -184,7 +184,7 @@
             // btnAñadirFuncionalidad
             // 
             this.btnAñadirFuncionalidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAñadirFuncionalidad.Location = new System.Drawing.Point(443, 527);
+            this.btnAñadirFuncionalidad.Location = new System.Drawing.Point(416, 474);
             this.btnAñadirFuncionalidad.Name = "btnAñadirFuncionalidad";
             this.btnAñadirFuncionalidad.Size = new System.Drawing.Size(84, 41);
             this.btnAñadirFuncionalidad.TabIndex = 12;
@@ -195,7 +195,7 @@
             // btnQuitarFuncionalidad
             // 
             this.btnQuitarFuncionalidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnQuitarFuncionalidad.Location = new System.Drawing.Point(443, 598);
+            this.btnQuitarFuncionalidad.Location = new System.Drawing.Point(416, 545);
             this.btnQuitarFuncionalidad.Name = "btnQuitarFuncionalidad";
             this.btnQuitarFuncionalidad.Size = new System.Drawing.Size(84, 43);
             this.btnQuitarFuncionalidad.TabIndex = 13;
@@ -209,7 +209,7 @@
             this.lblErrorNombreRol.BackColor = System.Drawing.Color.Transparent;
             this.lblErrorNombreRol.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorNombreRol.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorNombreRol.Location = new System.Drawing.Point(136, 257);
+            this.lblErrorNombreRol.Location = new System.Drawing.Point(109, 204);
             this.lblErrorNombreRol.Name = "lblErrorNombreRol";
             this.lblErrorNombreRol.Size = new System.Drawing.Size(214, 25);
             this.lblErrorNombreRol.TabIndex = 14;
@@ -221,7 +221,7 @@
             this.lblErrorFuncionalidad.BackColor = System.Drawing.Color.Transparent;
             this.lblErrorFuncionalidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorFuncionalidad.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorFuncionalidad.Location = new System.Drawing.Point(88, 686);
+            this.lblErrorFuncionalidad.Location = new System.Drawing.Point(61, 633);
             this.lblErrorFuncionalidad.Name = "lblErrorFuncionalidad";
             this.lblErrorFuncionalidad.Size = new System.Drawing.Size(501, 25);
             this.lblErrorFuncionalidad.TabIndex = 16;
@@ -231,9 +231,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1154, 845);
+            this.ClientSize = new System.Drawing.Size(1064, 760);
             this.Controls.Add(this.lblErrorFuncionalidad);
             this.Controls.Add(this.lblErrorNombreRol);
             this.Controls.Add(this.btnQuitarFuncionalidad);

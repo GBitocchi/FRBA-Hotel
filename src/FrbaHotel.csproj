@@ -387,17 +387,26 @@
     <EmbeddedResource Include="AbmUsuario\VistaUsuario.resx">
       <DependentUpon>VistaUsuario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmUsuario\VistaUsuarioModificar.resx">
+      <DependentUpon>VistaUsuarioModificar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CancelarReserva\MenuCancelarReserva.resx">
       <DependentUpon>MenuCancelarReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\BuscarCliente.resx">
+      <DependentUpon>BuscarCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\GenerarReserva.resx">
       <DependentUpon>GenerarReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\ModificarReserva.resx">
       <DependentUpon>ModificarReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\VariantesRegimenes.resx">
+      <DependentUpon>VariantesRegimenes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListadoEstadistico\MasCanceladas.resx">
       <DependentUpon>MasCanceladas.cs</DependentUpon>

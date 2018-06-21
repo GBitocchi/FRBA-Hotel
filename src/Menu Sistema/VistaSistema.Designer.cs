@@ -42,17 +42,14 @@
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stripRol = new System.Windows.Forms.ToolStripMenuItem();
             this.administrarRolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnSalir = new System.Windows.Forms.Button();
-            this.btnVolver = new System.Windows.Forms.Button();
             this.stripHotel = new System.Windows.Forms.ToolStripMenuItem();
             this.crearHotelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarHotelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bajaHotelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stripHabitacion = new System.Windows.Forms.ToolStripMenuItem();
             this.crearHabitacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bajaDeHabitacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarHabitacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bajaDeHabitacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stripFacturar = new System.Windows.Forms.ToolStripMenuItem();
             this.stripListado = new System.Windows.Forms.ToolStripMenuItem();
             this.masTiempoFueraDeServiicoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,6 +57,9 @@
             this.habitacionesMasOcupadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesConMasPuntosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mayorFacturacionDeConsumiblesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.btnVolver = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -67,7 +67,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(485, 278);
+            this.pictureBox1.Location = new System.Drawing.Point(469, 188);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(264, 257);
             this.pictureBox1.TabIndex = 0;
@@ -75,6 +75,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stripReserva,
             this.stripUsuario,
@@ -85,7 +86,7 @@
             this.stripListado});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1194, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1179, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -177,40 +178,6 @@
             this.administrarRolesToolStripMenuItem.Text = "Administrar Roles";
             this.administrarRolesToolStripMenuItem.Click += new System.EventHandler(this.administrarRolesToolStripMenuItem_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(143, 142);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(999, 108);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "FRBA-HOTEL System";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.Location = new System.Drawing.Point(1058, 744);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(84, 32);
-            this.btnSalir.TabIndex = 3;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
-            // 
-            // btnVolver
-            // 
-            this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVolver.Location = new System.Drawing.Point(38, 744);
-            this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(84, 32);
-            this.btnVolver.TabIndex = 4;
-            this.btnVolver.Text = "Volver";
-            this.btnVolver.UseVisualStyleBackColor = true;
-            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
-            // 
             // stripHotel
             // 
             this.stripHotel.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -220,6 +187,7 @@
             this.stripHotel.Name = "stripHotel";
             this.stripHotel.Size = new System.Drawing.Size(48, 20);
             this.stripHotel.Text = "Hotel";
+            this.stripHotel.Visible = false;
             // 
             // crearHotelToolStripMenuItem
             // 
@@ -251,6 +219,7 @@
             this.stripHabitacion.Name = "stripHabitacion";
             this.stripHabitacion.Size = new System.Drawing.Size(88, 20);
             this.stripHabitacion.Text = "Habitaciones";
+            this.stripHabitacion.Visible = false;
             // 
             // crearHabitacionToolStripMenuItem
             // 
@@ -259,13 +228,6 @@
             this.crearHabitacionToolStripMenuItem.Text = "Crear habitacion";
             this.crearHabitacionToolStripMenuItem.Click += new System.EventHandler(this.crearHabitacionToolStripMenuItem_Click);
             // 
-            // bajaDeHabitacionToolStripMenuItem
-            // 
-            this.bajaDeHabitacionToolStripMenuItem.Name = "bajaDeHabitacionToolStripMenuItem";
-            this.bajaDeHabitacionToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.bajaDeHabitacionToolStripMenuItem.Text = "Baja de habitacion";
-            this.bajaDeHabitacionToolStripMenuItem.Click += new System.EventHandler(this.bajaDeHabitacionToolStripMenuItem_Click);
-            // 
             // modificarHabitacionToolStripMenuItem
             // 
             this.modificarHabitacionToolStripMenuItem.Name = "modificarHabitacionToolStripMenuItem";
@@ -273,11 +235,19 @@
             this.modificarHabitacionToolStripMenuItem.Text = "Modificar habitacion";
             this.modificarHabitacionToolStripMenuItem.Click += new System.EventHandler(this.modificarHabitacionToolStripMenuItem_Click);
             // 
+            // bajaDeHabitacionToolStripMenuItem
+            // 
+            this.bajaDeHabitacionToolStripMenuItem.Name = "bajaDeHabitacionToolStripMenuItem";
+            this.bajaDeHabitacionToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.bajaDeHabitacionToolStripMenuItem.Text = "Baja de habitacion";
+            this.bajaDeHabitacionToolStripMenuItem.Click += new System.EventHandler(this.bajaDeHabitacionToolStripMenuItem_Click);
+            // 
             // stripFacturar
             // 
             this.stripFacturar.Name = "stripFacturar";
             this.stripFacturar.Size = new System.Drawing.Size(62, 20);
             this.stripFacturar.Text = "Facturar";
+            this.stripFacturar.Visible = false;
             this.stripFacturar.Click += new System.EventHandler(this.stripFacturar_Click);
             // 
             // stripListado
@@ -291,6 +261,7 @@
             this.stripListado.Name = "stripListado";
             this.stripListado.Size = new System.Drawing.Size(116, 20);
             this.stripListado.Text = "Listado estadistico";
+            this.stripListado.Visible = false;
             // 
             // masTiempoFueraDeServiicoToolStripMenuItem
             // 
@@ -327,12 +298,46 @@
             this.mayorFacturacionDeConsumiblesToolStripMenuItem.Text = "Mayor facturacion de consumibles";
             this.mayorFacturacionDeConsumiblesToolStripMenuItem.Click += new System.EventHandler(this.mayorFacturacionDeConsumiblesToolStripMenuItem_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(97, 60);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(999, 108);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "FRBA-HOTEL System";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.Location = new System.Drawing.Point(1055, 476);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(84, 32);
+            this.btnSalir.TabIndex = 3;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
+            // btnVolver
+            // 
+            this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVolver.Location = new System.Drawing.Point(72, 476);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(84, 32);
+            this.btnVolver.TabIndex = 4;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
             // VistaSistema
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1194, 749);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(1179, 547);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.label1);

@@ -47,7 +47,7 @@ namespace FrbaHotel.Menu_Sistema
                 }
                 else if (unaFuncionalidad["Funcionalidades"].ToString() == "ABM_USUARIO")
                 {
-                    stripUsuario.Visible = false;
+                    stripUsuario.Visible = true;
                 }
                 else if (unaFuncionalidad["Funcionalidades"].ToString() == "ABM_HOTEL")
                 {
