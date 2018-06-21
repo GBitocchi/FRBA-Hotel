@@ -299,7 +299,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                                     SqlCommand commDisponibles = new SqlCommand(queryHabitacionDisponible, connection);
                                     Int32 countDisponibles = Convert.ToInt32(commDisponibles.ExecuteScalar());
                                     connection.Close();
-                                    if (countDisponibles < 1)
+                                    if (countDisponibles < 1 || j>=countDisponibles)
                                     {
                                         MessageBox.Show("No hay habitaciones disponibles de " + tipitoHabitacion + " en las fechas especificadas");
                                         return;
@@ -421,7 +421,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                                     SqlCommand commDisponibles = new SqlCommand(queryHabitacionDisponible, connection);
                                     Int32 countDisponibles = Convert.ToInt32(commDisponibles.ExecuteScalar());
                                     connection.Close();
-                                    if (countDisponibles < 1)
+                                    if (countDisponibles < 1 || j>=countDisponibles)
                                     {
                                         MessageBox.Show("No hay habitaciones disponibles de " + tipitoHabitacion + " en las fechas especificadas");
                                         return;
@@ -553,7 +553,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                                 SqlCommand commDisponibles = new SqlCommand(queryHabitacionDisponible, connection);
                                 Int32 countDisponibles = Convert.ToInt32(commDisponibles.ExecuteScalar());
                                 connection.Close();
-                                if (countDisponibles < 1)
+                                if (countDisponibles < 1 || j>=countDisponibles)
                                 {
                                     MessageBox.Show("No hay habitaciones disponibles de " + tipitoHabitacion + " en las fechas especificadas");
                                     return;
@@ -675,7 +675,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                             SqlCommand commDisponibles = new SqlCommand(queryHabitacionDisponible, connection);
                             Int32 countDisponibles = Convert.ToInt32(commDisponibles.ExecuteScalar());
                             connection.Close();
-                            if (countDisponibles < 1)
+                            if (countDisponibles < 1 || j>=countDisponibles)
                             {
                                 MessageBox.Show("No hay habitaciones disponibles de " + tipitoHabitacion + " en las fechas especificadas");
                                 return;
