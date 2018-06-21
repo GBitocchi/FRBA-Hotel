@@ -254,8 +254,6 @@ namespace FrbaHotel.GenerarModificacionReserva
 
                             string fechaDisponibleHotel = string.Format("SELECT hote_fecha_inicio as FechaInicio, hote_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
                             DataSet dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel);
-                            DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
-                            DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());
                             DateTime fechaElegidaInicio = calendarInicio.SelectionStart;
                             DateTime fechaElegidaFin = calendarFin.SelectionStart;
                             string fechaInicio = fechaElegidaInicio.ToString("yyyy-MM-dd HH:mm:ss");
@@ -263,13 +261,17 @@ namespace FrbaHotel.GenerarModificacionReserva
                             TimeSpan difference = fechaElegidaFin - fechaElegidaInicio;
                             this.difference = difference;
                             this.fechaElegidaInicio = fechaElegidaInicio;
-
-                            if (((DateTime.Compare(fechaElegidaInicio, fechaInicioHotel)) < 0) || ((DateTime.Compare(fechaElegidaFin, fechaFinHotel)) > 0))
+                            if (!DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"]) && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaFin"]))
                             {
-                                MessageBox.Show("El Hotel no esta abierto entre las fechas elegidas. Por favor, seleccione otras.");
+                                DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
+                                DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());
+                                if (((DateTime.Compare(fechaElegidaInicio, fechaInicioHotel)) < 0) || ((DateTime.Compare(fechaElegidaFin, fechaFinHotel)) > 0))
+                                {
+                                    MessageBox.Show("El Hotel no esta abierto entre las fechas elegidas. Por favor, seleccione otras.");
+                                    return;
+                                }
                             }
-                            else
-                            {
+                            
                                 string queryRegimen = string.Format("SELECT regi_precio_base as Precio FROM CAIA_UNLIMITED.Regimen where regi_codigo = '{0}'", regimen);
                                 string queryEstrella = string.Format("SELECT hote_recarga_estrella as Recarga FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
                                 DataSet dsPrecioRegimen = DataBase.realizarConsulta(queryRegimen);
@@ -365,15 +367,13 @@ namespace FrbaHotel.GenerarModificacionReserva
                                 btnConfirmarPaso.Visible = true;
                                 labelFechaInicio.Visible = false;
                                 labelFechaFin.Visible = false;
-                            }
+                            
                         }
                     }
                         else
                         {
                             string fechaDisponibleHotel = string.Format("SELECT hote_fecha_inicio as FechaInicio, hote_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
                             DataSet dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel);
-                            DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
-                            DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());
                             DateTime fechaElegidaInicio = calendarInicio.SelectionStart;
                             DateTime fechaElegidaFin = calendarFin.SelectionStart;
                             string fechaInicio = fechaElegidaInicio.ToString("yyyy-MM-dd HH:mm:ss");
@@ -382,12 +382,18 @@ namespace FrbaHotel.GenerarModificacionReserva
                             this.difference = difference;
                             this.fechaElegidaInicio = fechaElegidaInicio;
 
-                            if (((DateTime.Compare(fechaElegidaInicio, fechaInicioHotel)) < 0) || ((DateTime.Compare(fechaElegidaFin, fechaFinHotel)) > 0))
+                            if (!DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"]) && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaFin"]))
                             {
-                                MessageBox.Show("El Hotel no esta abierto entre las fechas elegidas. Por favor, seleccione otras.");
+                                DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
+                                DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());
+                                if (((DateTime.Compare(fechaElegidaInicio, fechaInicioHotel)) < 0) || ((DateTime.Compare(fechaElegidaFin, fechaFinHotel)) > 0))
+                                {
+                                    MessageBox.Show("El Hotel no esta abierto entre las fechas elegidas. Por favor, seleccione otras.");
+                                    return;
+                                }
                             }
-                            else
-                            {
+                            
+                            
                                 string queryRegimen = string.Format("SELECT regi_precio_base as Precio FROM CAIA_UNLIMITED.Regimen where regi_codigo = '{0}'", regimen);
                                 string queryEstrella = string.Format("SELECT hote_recarga_estrella as Recarga FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
                                 DataSet dsPrecioRegimen = DataBase.realizarConsulta(queryRegimen);
@@ -483,7 +489,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                                 btnConfirmarPaso.Visible = true;
                                 labelFechaInicio.Visible = false;
                                 labelFechaFin.Visible = false;
-                            }
+                            
                     }
             }
             else
@@ -500,8 +506,6 @@ namespace FrbaHotel.GenerarModificacionReserva
 
                         string fechaDisponibleHotel = string.Format("SELECT hote_fecha_inicio as FechaInicio, hote_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
                         DataSet dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel);
-                        DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
-                        DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());
                         DateTime fechaElegidaInicio = calendarInicio.SelectionStart;
                         DateTime fechaElegidaFin = calendarFin.SelectionStart;
                         string fechaInicio = fechaElegidaInicio.ToString("yyyy-MM-dd HH:mm:ss");
@@ -510,12 +514,18 @@ namespace FrbaHotel.GenerarModificacionReserva
                         this.difference = difference;
                         this.fechaElegidaInicio = fechaElegidaInicio;
 
-                        if (((DateTime.Compare(fechaElegidaInicio, fechaInicioHotel)) < 0) || ((DateTime.Compare(fechaElegidaFin, fechaFinHotel)) > 0))
+                        if (!DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"]) && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaFin"]))
                         {
-                            MessageBox.Show("El Hotel no esta abierto entre las fechas elegidas. Por favor, seleccione otras.");
+                            DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
+                            DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());
+                            if (((DateTime.Compare(fechaElegidaInicio, fechaInicioHotel)) < 0) || ((DateTime.Compare(fechaElegidaFin, fechaFinHotel)) > 0))
+                            {
+                                MessageBox.Show("El Hotel no esta abierto entre las fechas elegidas. Por favor, seleccione otras.");
+                                return;
+                            }
                         }
-                        else
-                        {
+                        
+                        
                             string queryRegimen = string.Format("SELECT regi_precio_base as Precio FROM CAIA_UNLIMITED.Regimen where regi_codigo = '{0}'", regimen);
                             string queryEstrella = string.Format("SELECT hote_recarga_estrella as Recarga FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
                             DataSet dsPrecioRegimen = DataBase.realizarConsulta(queryRegimen);
@@ -612,29 +622,32 @@ namespace FrbaHotel.GenerarModificacionReserva
                             labelFechaInicio.Visible = false;
                             labelFechaFin.Visible = false;
                         }
-                    }
+                    
                 }
                 else
                 {
                     string fechaDisponibleHotel = string.Format("SELECT hote_fecha_inicio as FechaInicio, hote_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
-                    DataTable dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel).Tables[0];
-                    string fechainicio = dsFechasHotel.Rows[0][0].ToString();
-                    DateTime fechaInicioHotel = DateTime.Parse(fechainicio);
-                    DateTime fechaFinHotel = DateTime.Parse(dsFechasHotel.Rows[0][1].ToString());
+                    DataSet dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel);
                     DateTime fechaElegidaInicio = calendarInicio.SelectionStart;
-                    this.fechaElegidaInicio = fechaElegidaInicio;
                     DateTime fechaElegidaFin = calendarFin.SelectionStart;
                     string fechaInicio = fechaElegidaInicio.ToString("yyyy-MM-dd HH:mm:ss");
                     string fechaFin = fechaElegidaFin.ToString("yyyy-MM-dd HH:mm:ss");
                     TimeSpan difference = fechaElegidaFin - fechaElegidaInicio;
                     this.difference = difference;
+                    this.fechaElegidaInicio = fechaElegidaInicio;
 
-                    if (((DateTime.Compare(fechaElegidaInicio, fechaInicioHotel)) < 0) || ((DateTime.Compare(fechaElegidaFin, fechaFinHotel)) > 0))
+                    if (!DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"]) && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaFin"]))
                     {
-                        MessageBox.Show("El Hotel no esta abierto entre las fechas elegidas. Por favor, seleccione otras.");
+                        DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
+                        DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());
+                        if (((DateTime.Compare(fechaElegidaInicio, fechaInicioHotel)) < 0) || ((DateTime.Compare(fechaElegidaFin, fechaFinHotel)) > 0))
+                        {
+                            MessageBox.Show("El Hotel no esta abierto entre las fechas elegidas. Por favor, seleccione otras.");
+                            return;
+                        }
                     }
-                    else
-                    {
+                    
+                    
                         string queryRegimen = string.Format("SELECT regi_precio_base as Precio FROM CAIA_UNLIMITED.Regimen where regi_codigo = '{0}'", regimen);
                         string queryEstrella = string.Format("SELECT hote_recarga_estrella as Recarga FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
                         DataSet dsPrecioRegimen = DataBase.realizarConsulta(queryRegimen);
@@ -730,7 +743,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                         btnConfirmarPaso.Visible = true;
                         labelFechaInicio.Visible = false;
                         labelFechaFin.Visible = false;
-                    }
+                    
                 }
             }
 
