@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.AbmHabitacion
 {
-    public partial class Crear : Form
+    public partial class CrearHabitacion : Form
     {
         string hotel_id;
-        public Crear(string hotelId)
+        public CrearHabitacion(string hotelId)
         {
             InitializeComponent();
             lblErrorDesc.Visible = false;
@@ -121,7 +121,6 @@ namespace FrbaHotel.AbmHabitacion
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new MenuHabitacion(hotel_id).Show();
         }
     }
 }

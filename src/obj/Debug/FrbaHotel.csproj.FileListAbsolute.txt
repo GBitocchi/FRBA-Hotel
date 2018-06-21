@@ -383,7 +383,6 @@ C:\Users\Gusbi\Desktop\TP-SUBIR\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmUsuario.Vi
 C:\Users\Gusbi\Desktop\TP-SUBIR\FRBA-Hotel\src\obj\Debug\FrbaHotel.Menu_Sistema.VistaHuesped.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRol.VistaRol.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmUsuario.VistaUsuario.resources
-C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.Menu_Sistema.VistaHuesped.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\bin\Debug\FrbaHotel.exe.config
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.exe
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.pdb
@@ -552,3 +551,7 @@ C:\Users\Gusbi\Desktop\Robbie\FRBA-Hotel\src\obj\Debug\FrbaHotel.RegistrarEstadi
 C:\Users\Gusbi\Desktop\Robbie\FRBA-Hotel\src\obj\Debug\FrbaHotel.RegistrarEstadia.Registrar.resources
 C:\Users\Gusbi\Desktop\Robbie\FRBA-Hotel\src\obj\Debug\FrbaHotel.RegistrarEstadia.RegistrarCheckIn.resources
 C:\Users\Gusbi\Desktop\Robbie\FRBA-Hotel\src\obj\Debug\FrbaHotel.csproj.GenerateResource.Cache
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRol.VistaRolModificar.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.GenerarModificacionReserva.GenerarReserva.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.GenerarModificacionReserva.ModificarReserva.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHabitacion.CrearHabitacion.resources

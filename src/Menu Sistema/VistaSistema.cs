@@ -11,6 +11,10 @@ using FrbaHotel.GenerarModificacionReserva;
 using FrbaHotel.Login;
 using FrbaHotel.AbmUsuario;
 using FrbaHotel.AbmRol;
+using FrbaHotel.AbmHotel;
+using FrbaHotel.AbmHabitacion;
+using FrbaHotel.AbmFacturacion;
+using FrbaHotel.ListadoEstadistico;
 
 namespace FrbaHotel.Menu_Sistema
 {
@@ -44,6 +48,18 @@ namespace FrbaHotel.Menu_Sistema
                 else if (unaFuncionalidad["Funcionalidades"].ToString() == "ABM_USUARIO")
                 {
                     stripUsuario.Visible = false;
+                }
+                else if (unaFuncionalidad["Funcionalidades"].ToString() == "ABM_HOTEL")
+                {
+                    stripHotel.Visible = true;
+                }
+                else if (unaFuncionalidad["Funcionalidades"].ToString() == "ABM_HABITACION")
+                {
+                    stripHabitacion.Visible = true;
+                }
+                else if (unaFuncionalidad["Funcionalidades"].ToString() == "FACTURAR")
+                {
+                    stripFacturar.Visible = true;
                 }
             }
         }
@@ -133,6 +149,78 @@ namespace FrbaHotel.Menu_Sistema
         private void reservaToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void crearHotelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new CrearHotel().ShowDialog();
+            this.Show();
+        }
+
+        private void modificarHotelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FiltrarHotel().ShowDialog();
+            this.Show();
+        }
+
+        private void bajaHotelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new BajaHotel().ShowDialog();
+            this.Show();
+        }
+
+        private void crearHabitacionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new CrearHabitacion(Convert.ToString(idHotel)).ShowDialog();
+            this.Show();
+        }
+
+        private void bajaDeHabitacionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new BajaHabitacion(Convert.ToString(idHotel)).ShowDialog();
+            this.Show();
+        }
+
+        private void modificarHabitacionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new MenuModificacion(Convert.ToString(idHotel)).ShowDialog();
+            this.Show();
+        }
+
+        private void stripFacturar_Click(object sender, EventArgs e)
+        {
+            new EstadiasAFacturar().ShowDialog();
+            this.Show();
+        }
+
+        private void masTiempoFueraDeServiicoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new MasMantenimiento().ShowDialog();
+            this.Show();
+        }
+
+        private void masReservasCanceladasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new MasCanceladas().ShowDialog();
+            this.Show();
+        }
+
+        private void habitacionesMasOcupadasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new MasOcupadas().ShowDialog();
+            this.Show();
+        }
+
+        private void clientesConMasPuntosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new MasPuntosCliente().ShowDialog();
+            this.Show();
+        }
+
+        private void mayorFacturacionDeConsumiblesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new MayorFacturacionConsumibles().ShowDialog();
+            this.Show();
         }
     }
 }

@@ -86,7 +86,6 @@ namespace FrbaHotel.AbmHotel
         private void btnAtras_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new MenuHotel().Show();
         }
 
         private void dgHoteles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

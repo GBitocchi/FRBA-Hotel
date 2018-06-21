@@ -99,17 +99,11 @@
     <Compile Include="AbmHabitacion\BajaHabitacion.Designer.cs">
       <DependentUpon>BajaHabitacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmHabitacion\Crear.cs">
+    <Compile Include="AbmHabitacion\CrearHabitacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmHabitacion\Crear.Designer.cs">
-      <DependentUpon>Crear.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmHabitacion\MenuHabitacion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmHabitacion\MenuHabitacion.Designer.cs">
-      <DependentUpon>MenuHabitacion.cs</DependentUpon>
+    <Compile Include="AbmHabitacion\CrearHabitacion.Designer.cs">
+      <DependentUpon>CrearHabitacion.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmHabitacion\MenuModificacion.cs">
       <SubType>Form</SubType>
@@ -140,12 +134,6 @@
     </Compile>
     <Compile Include="AbmHotel\FiltrarHotel.Designer.cs">
       <DependentUpon>FiltrarHotel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmHotel\MenuHotel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmHotel\MenuHotel.Designer.cs">
-      <DependentUpon>MenuHotel.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmHotel\ModificarHotel.cs">
       <SubType>Form</SubType>
@@ -237,12 +225,6 @@
     </Compile>
     <Compile Include="GenerarModificacionReserva\VariantesRegimenes.Designer.cs">
       <DependentUpon>VariantesRegimenes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ListadoEstadistico\ListadosEstadisticos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ListadoEstadistico\ListadosEstadisticos.Designer.cs">
-      <DependentUpon>ListadosEstadisticos.cs</DependentUpon>
     </Compile>
     <Compile Include="ListadoEstadistico\MasCanceladas.cs">
       <SubType>Form</SubType>
@@ -363,11 +345,8 @@
     <EmbeddedResource Include="AbmHabitacion\BajaHabitacion.resx">
       <DependentUpon>BajaHabitacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmHabitacion\Crear.resx">
-      <DependentUpon>Crear.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmHabitacion\MenuHabitacion.resx">
-      <DependentUpon>MenuHabitacion.cs</DependentUpon>
+    <EmbeddedResource Include="AbmHabitacion\CrearHabitacion.resx">
+      <DependentUpon>CrearHabitacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHabitacion\MenuModificacion.resx">
       <DependentUpon>MenuModificacion.cs</DependentUpon>
@@ -383,9 +362,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\FiltrarHotel.resx">
       <DependentUpon>FiltrarHotel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmHotel\MenuHotel.resx">
-      <DependentUpon>MenuHotel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\ModificarHotel.resx">
       <DependentUpon>ModificarHotel.cs</DependentUpon>
@@ -422,9 +398,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\ModificarReserva.resx">
       <DependentUpon>ModificarReserva.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ListadoEstadistico\ListadosEstadisticos.resx">
-      <DependentUpon>ListadosEstadisticos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListadoEstadistico\MasCanceladas.resx">
       <DependentUpon>MasCanceladas.cs</DependentUpon>

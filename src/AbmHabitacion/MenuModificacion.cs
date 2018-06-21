@@ -32,7 +32,6 @@ namespace FrbaHotel.AbmHabitacion
                 ejecutarStoredProcedure();
                 MessageBox.Show("Habitacion modificada correctamente.", "Modificacion exitosa", MessageBoxButtons.OK);
                 this.Hide();
-                new MenuHabitacion(hotel_id).Show();
             }
             catch
             {
@@ -67,7 +66,6 @@ namespace FrbaHotel.AbmHabitacion
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new MenuHabitacion(hotel_id).Show();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)

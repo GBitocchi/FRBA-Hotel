@@ -22,7 +22,6 @@ namespace FrbaHotel.ListadoEstadistico
         private void btnAtras_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new ListadosEstadisticos().Show();
         }
     }
 }

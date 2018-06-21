@@ -30,7 +30,6 @@ namespace FrbaHotel.AbmHabitacion
         private void btnAtras_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new MenuHabitacion(hotel_id).Show();
         }
 
         private void btnBaja_Click(object sender, EventArgs e)
