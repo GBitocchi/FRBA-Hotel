@@ -1587,9 +1587,11 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE [CAIA_UNLIMITED].[sp_RegistrarEgreso](@fecha_egreso numeric(18,0), @usuario nvarchar(255))
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_RegistrarEgres](@fecha_egreso datetime, @usuario nvarchar(255),@estadia_Id numeric (18,0))
 AS
 BEGIN
-	insert into CAIA_UNLIMITED.Estadia(esta_fecha_fin,usur_checkout)
-	values (@fecha_egreso,@usuario)
+	update CAIA_UNLIMITED.Estadia 
+	set esta_fecha_fin=@fecha_egreso, usur_checkout= @usuario where esta_codigo = @estadia_Id
+
+	
 END

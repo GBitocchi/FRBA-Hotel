@@ -1,4 +1,4 @@
-﻿using FrbaHotel.AbmFacturacion;
+﻿using FrbaHotel.GenerarModificacionReserva;
 using FrbaHotel.AbmHabitacion;
 using FrbaHotel.AbmHotel;
 using FrbaHotel.ListadoEstadistico;
@@ -23,7 +23,7 @@ namespace FrbaHotel
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);         
-            Application.Run(new Inicio());       
+            Application.Run(new MenuRegistrarEstadia());       
         }
     }
 }

@@ -129,7 +129,8 @@ namespace FrbaHotel.GenerarModificacionReserva
             listBoxTipoHabitacion.Items.Clear();
             limpiarErrores();
             limpiarTextBox();
-            cargarComboBoxHoteles();         
+            cargarComboBoxHoteles();
+            
         }
 
         public GenerarReserva(decimal _hotel, string _username)
@@ -616,9 +617,10 @@ namespace FrbaHotel.GenerarModificacionReserva
                 else
                 {
                     string fechaDisponibleHotel = string.Format("SELECT hote_fecha_inicio as FechaInicio, hote_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
-                    DataSet dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel);
-                    DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
-                    DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());
+                    DataTable dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel).Tables[0];
+                    string fechainicio = dsFechasHotel.Rows[0][0].ToString();
+                    DateTime fechaInicioHotel = DateTime.Parse(fechainicio);
+                    DateTime fechaFinHotel = DateTime.Parse(dsFechasHotel.Rows[0][1].ToString());
                     DateTime fechaElegidaInicio = calendarInicio.SelectionStart;
                     this.fechaElegidaInicio = fechaElegidaInicio;
                     DateTime fechaElegidaFin = calendarFin.SelectionStart;

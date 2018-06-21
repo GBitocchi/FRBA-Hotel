@@ -423,7 +423,6 @@ C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.Login.cambioContraseñ
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.Login.Inicio.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.Login.Seleccion.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.Login.Usuario.resources
-C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.Menu_Sistema.VistaHuesped.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.Menu_Sistema.VistaSistema.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.Properties.Resources.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.RegistrarConsumible.MenuRegistrarConsumible.resources
@@ -496,3 +495,6 @@ C:\Users\Gusbi\Desktop\TP-FINALIZADO\FRBA-Hotel\src\obj\Debug\FrbaHotel.csproj.G
 C:\Users\Gusbi\Desktop\TP-FINALIZADO\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRol.VistaRolModificar.resources
 C:\Users\Gusbi\Desktop\TP-FINALIZADO\FRBA-Hotel\src\obj\Debug\FrbaHotel.GenerarModificacionReserva.GenerarReserva.resources
 C:\Users\Gusbi\Desktop\TP-FINALIZADO\FRBA-Hotel\src\obj\Debug\FrbaHotel.GenerarModificacionReserva.ModificarReserva.resources
+C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRol.VistaRolModificar.resources
+C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.GenerarModificacionReserva.GenerarReserva.resources
+C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.GenerarModificacionReserva.ModificarReserva.resources

@@ -119,52 +119,60 @@ namespace FrbaHotel.RegistrarEstadia
                 {
                     if (usuarioCorrecto())
                     {
-                        if (listaHuesped.Items.Count != 0)
-                        {
+                        
                             if (cbxRegistrar.SelectedItem.ToString() == "Ingreso")
                             {
-                                string consultaFecha = string.Format("select rese_fecha_desde as 'Fecha inicio' from CAIA_UNLIMITED.Reserva where rese_codigo='{0}'", codigoReserva);
-                                DataTable fecha = DataBase.realizarConsulta(consultaFecha).Tables[0];
-                                string fechaIngresoReserva = fecha.Rows[0][0].ToString();
-
-
-                                int resultado = DateTime.Compare(DateTime.Parse(txtFecha.Text), DateTime.Parse(fechaIngresoReserva));
-                                if (DateTime.Parse(fechaIngresoReserva) == DateTime.Parse(txtFecha.Text.Trim()) )
+                                if (listaHuesped.Items.Count != 0)
                                 {
-                                    ejecutarStoredProcedureRegistrarCheckIn();
-                                }
-                                else if (DateTime.Parse(fechaIngresoReserva) > DateTime.Parse(txtFecha.Text.Trim()))
-                                {
-                                    MessageBox.Show("Ingreso anticipado a la fecha de ingreso establecido en la reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    string consultaFecha = string.Format("select rese_fecha_desde as 'Fecha inicio' from CAIA_UNLIMITED.Reserva where rese_codigo='{0}'", codigoReserva);
+                                    DataTable fecha = DataBase.realizarConsulta(consultaFecha).Tables[0];
+                                    string fechaIngresoReserva = fecha.Rows[0][0].ToString();
+                                    //
+                                    //UTILIIZAR FECHA ACTUAL
+                                    int resultado = DateTime.Compare(DateTime.Parse(txtFecha.Text), DateTime.Parse(fechaIngresoReserva));
+                                    if (DateTime.Parse(fechaIngresoReserva) == DateTime.Parse(txtFecha.Text.Trim()) )
+                                    {
+                                        ejecutarStoredProcedureRegistrarCheckIn();
+                                        MessageBox.Show("Fecha de ingreso de reserva registrada correctamente", "Registrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        limpiarTodo();
+                                    }
+                                    else if (DateTime.Parse(fechaIngresoReserva) > DateTime.Parse(txtFecha.Text.Trim()))
+                                    {
+                                        MessageBox.Show("Ingreso anticipado a la fecha de ingreso establecido en la reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Ingreso posterior a la fecha establecida, perdida de reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        this.Hide();
+                                        new CancelarReservaHuesped(txtUsuario.Text.Trim(), codigoReserva).Show();
+                                    }
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Ingreso posterior a la fecha establecida, perdida de reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    this.Hide();
-                                    new CancelarReservaHuesped(txtUsuario.Text.Trim(), codigoReserva).Show();
+                                    MessageBox.Show("Ingrese los datos de los huespedes.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else if (cbxRegistrar.SelectedItem.ToString() == "Egreso")
                             {
                                 if (verificarSiYaRegistroIngreso())
                                 {
-                                    string consutaIdEstadia = string.Format("select esta_codigo from CAIA_UNLIMITED.Estadia where esta_codigo='{0}'", codigoReserva);
+                                    string consutaIdEstadia = string.Format("select esta_codigo from CAIA_UNLIMITED.Estadia where rese_codigo='{0}'", codigoReserva);
                                     DataTable idObtenido = DataBase.realizarConsulta(consutaIdEstadia).Tables[0];
                                     string idEstadia = idObtenido.Rows[0][0].ToString();
 
 
                                     ejecutarStoredProcedureRegistrarCheckOut(idEstadia);
+                                    MessageBox.Show("Fecha de egreso de reserva registrada correctamente", "Registrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    limpiarTodo();
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Debe ingresar el ingreso de la estadia primero.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                                    MessageBox.Show("Debe ingresar el ingreso de la estadia primero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Ingrese los datos de los huespedes.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                            
+
+                       
                     }
                     else
                     {
@@ -185,6 +193,20 @@ namespace FrbaHotel.RegistrarEstadia
 
         }
 
+
+        private void limpiarTodo()
+        {
+            txtUsuario.Clear();
+            txtFecha.Clear();
+            btnIngresar.Enabled = true;
+            gbxHuesped.Enabled = true;
+            txtUsuario.Enabled = true;
+            txtMail.Clear();
+            txtTipo.Clear();
+            txtNumero.Clear();
+            listaHuesped.Clear();
+            cbxRegistrar.SelectedIndex = -1;
+        }
         private bool esUsuario()
         {
             string usernameIngresado = String.Format("SELECT usur_username FROM CAIA_UNLIMITED.Usuario  WHERE usur_username='{0}'", txtUsuario.Text.Trim());
@@ -239,6 +261,7 @@ namespace FrbaHotel.RegistrarEstadia
             SqlConnection db = DataBase.conectarBD();
             SqlCommand crearIngreso = new SqlCommand("CAIA_UNLIMITED.sp_RegistrarIngreso", db);
             crearIngreso.CommandType = CommandType.StoredProcedure;
+            //AGREGAR FECHA ACTUAL
             crearIngreso.Parameters.AddWithValue("@fecha_Inicio", DateTime.Parse(txtFecha.Text.Trim()));
             crearIngreso.Parameters.AddWithValue("@usuario", txtUsuario.Text.Trim());
             crearIngreso.Parameters.AddWithValue("@codigo_reserva", codigoReserva);
@@ -248,9 +271,11 @@ namespace FrbaHotel.RegistrarEstadia
 
         private void ejecutarStoredProcedureRegistrarCheckOut(string idEstadia)
         {
+
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand crearEgreso = new SqlCommand("CAIA_UNLIMITED.sp_RegistrarEgreso", db);
+            SqlCommand crearEgreso = new SqlCommand("CAIA_UNLIMITED.sp_RegistrarEgres", db);
             crearEgreso.CommandType = CommandType.StoredProcedure;
+            //AGREGAR FECHA ACTUAL
             crearEgreso.Parameters.AddWithValue("@fecha_egreso", DateTime.Parse(txtFecha.Text.Trim()));
             crearEgreso.Parameters.AddWithValue("@usuario", txtUsuario.Text.Trim());
             crearEgreso.Parameters.AddWithValue("@estadia_Id", idEstadia);
@@ -262,40 +287,51 @@ namespace FrbaHotel.RegistrarEstadia
         private void cbxRegistrar_SelectedIndexChanged(object sender, EventArgs e)
         {
             limpiarRegistroEstadia();
-            if (cbxRegistrar.SelectedItem.ToString() == "Egreso")
+            if (cbxRegistrar.SelectedIndex != -1)
             {
-                gbxHuesped.Enabled = false;
-                verificarSiYaRegistrEgreso();
-            }
-            else
-            {
-                /*
-                if (verificarSiYaRegistroIngreso())
+                if (cbxRegistrar.SelectedItem.ToString() == "Egreso")
                 {
-                    string fechaIngresoBuscada = String.Format("select esta_fecha_inicio FROM CAIA_UNLIMITED.Estadia where rese_codigo='{0}'", codigoReserva);
-                    DataTable fechaIngresoObtenida = DataBase.realizarConsulta(fechaIngresoBuscada).Tables[0];
-                    string fechaIngreso = fechaIngresoObtenida.Rows[0][0].ToString();
-                    txtFecha.Text = fechaIngreso;
-
-                    string usuarioBuscado = String.Format("select usur_checkin FROM CAIA_UNLIMITED.Estadia where rese_codigo='{0}'", codigoReserva);
-                    DataTable usuarioEncontrado = DataBase.realizarConsulta(usuarioBuscado).Tables[0];
-                    string usuario = usuarioEncontrado.Rows[0][0].ToString();
-                    txtUsuario.Text = usuario;
-                 
-                    btnIngresar.Enabled = false;
                     gbxHuesped.Enabled = false;
-                    txtUsuario.Enabled = false;
+                    verificarSiYaRegistroEgreso();
                 }
-                 * */
+                else
+                {
+
+                    if (verificarSiYaRegistroIngreso())
+                    {
+                        string fechaIngresoBuscada = String.Format("select esta_fecha_inicio FROM CAIA_UNLIMITED.Estadia where rese_codigo='{0}'", codigoReserva);
+                        DataTable fechaIngresoObtenida = DataBase.realizarConsulta(fechaIngresoBuscada).Tables[0];
+                        string fechaIngreso = fechaIngresoObtenida.Rows[0][0].ToString();
+                        txtFecha.Text = fechaIngreso;
+
+                        string usuarioBuscado = String.Format("select usur_checkin FROM CAIA_UNLIMITED.Estadia where rese_codigo='{0}'", codigoReserva);
+                        DataTable usuarioEncontrado = DataBase.realizarConsulta(usuarioBuscado).Tables[0];
+                        string usuario = usuarioEncontrado.Rows[0][0].ToString();
+                        txtUsuario.Text = usuario;
+
+                        btnIngresar.Enabled = false;
+                        gbxHuesped.Enabled = false;
+                        txtUsuario.Enabled = false;
+                    }
+                    btnAceptar.Enabled = true;
+
+                }
             }
         }
 
-        private void verificarSiYaRegistrEgreso()
+        private void verificarSiYaRegistroEgreso()
         {
             string fechaEgresoBuscada = String.Format("select esta_fecha_fin FROM CAIA_UNLIMITED.Estadia where rese_codigo='{0}'", codigoReserva);
-
-            if (DataBase.realizarConsulta(fechaEgresoBuscada).Tables[0].Rows.Count != 0)
+            string fecha=DataBase.realizarConsulta(fechaEgresoBuscada).Tables[0].Rows.ToString();
+            
+            //ARREGLAR
+            if (  fecha == "" && fecha == "System.Data.DataRowCollection")
             {
+               
+            }
+            else
+            {
+
                 DataTable fechaEgresoObtenida = DataBase.realizarConsulta(fechaEgresoBuscada).Tables[0];
                 string fechaEgreso = fechaEgresoObtenida.Rows[0][0].ToString();
                 txtFecha.Text = fechaEgreso;

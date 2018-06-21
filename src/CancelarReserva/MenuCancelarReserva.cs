@@ -157,6 +157,7 @@ namespace FrbaHotel.CancelarReserva
             cancelarReserva.CommandType = CommandType.StoredProcedure;
             cancelarReserva.Parameters.AddWithValue("@codigo_Reserva", txtNumero_Reserva.Text.Trim());
             cancelarReserva.Parameters.AddWithValue("@motivo", txtMotivo.Text.Trim());
+            //FECHA ACTUAL
             cancelarReserva.Parameters.AddWithValue("@fecha_cancelacion", DateTime.Parse(txtCancelacion.Text));
             if (cbxUsuario.SelectedItem.ToString() == "Huesped")
             {
@@ -176,7 +177,7 @@ namespace FrbaHotel.CancelarReserva
              DataTable fecha = DataBase.realizarConsulta(consultaFecha).Tables[0];
              string fechaIngresoReserva = fecha.Rows[0][0].ToString();
 
-             
+             //FECHA ACTUAL
              if (DateTime.Parse(fechaIngresoReserva)==DateTime.Parse(txtCancelacion.Text.Trim()) )
              {
                  return false;

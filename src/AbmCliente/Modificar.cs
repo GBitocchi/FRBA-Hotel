@@ -93,11 +93,25 @@ namespace FrbaHotel.AbmCliente
             crearCliente.Parameters.AddWithValue("@documento", txtDni.Text.Trim());
             crearCliente.Parameters.AddWithValue("@tipo", txtTipo.Text.Trim());
             crearCliente.Parameters.AddWithValue("@mail", txtEmail.Text.Trim());
-            crearCliente.Parameters.AddWithValue("@fecha_nacimiento", DateTime.Parse(txtNacimiento.Text));
+            if (txtNacimiento.Text.Trim() != "")
+            {
+                crearCliente.Parameters.AddWithValue("@fecha_nacimiento", DateTime.Parse(txtNacimiento.Text));
+            }
+            else
+            {
+                crearCliente.Parameters.AddWithValue("@fecha_nacimiento", txtNacimiento.Text);
+            }
             crearCliente.Parameters.AddWithValue("@nacionalidad", txtNacionalidad.Text.Trim());
             crearCliente.Parameters.AddWithValue("@calle", txtCalle.Text.Trim());
             crearCliente.Parameters.AddWithValue("@calle_nro", txtCalle_Nro.Text.Trim());
-            crearCliente.Parameters.AddWithValue("@piso", txtPiso.Text.Trim());
+            if (txtPiso.Text.Trim() == "")
+            {
+                crearCliente.Parameters.AddWithValue("@piso", DBNull.Value);
+            }
+            else
+            {
+                crearCliente.Parameters.AddWithValue("@piso", Convert.ToInt32(txtPiso.Text.Trim()));
+            }
             crearCliente.Parameters.AddWithValue("@dpto", txtDpto.Text.Trim());
             crearCliente.Parameters.AddWithValue("@ciudad", txtCiudad.Text.Trim());
             crearCliente.Parameters.AddWithValue("@pais", txtPais.Text.Trim());
@@ -161,12 +175,7 @@ namespace FrbaHotel.AbmCliente
             {
                 lblNro.Visible = true;
                 return false;
-            }
-            if (txtNacimiento.Text.Trim() == "")
-            {
-                lblNacimiento.Visible = true;
-                return false;
-            }
+            }            
             if (txtNacionalidad.Text.Trim() == "")
             {
                 lblNacionalidad.Visible = true;
