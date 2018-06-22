@@ -321,11 +321,11 @@ namespace FrbaHotel.RegistrarEstadia
 
         private void verificarSiYaRegistroEgreso()
         {
-            string fechaEgresoBuscada = String.Format("select esta_fecha_fin FROM CAIA_UNLIMITED.Estadia where rese_codigo='{0}'", codigoReserva);
-            string fecha=DataBase.realizarConsulta(fechaEgresoBuscada).Tables[0].Rows.ToString();
+            string fechaEgresoBuscada = String.Format("select esta_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Estadia where rese_codigo='{0}'", codigoReserva);
+            DataSet fecha=DataBase.realizarConsulta(fechaEgresoBuscada);
             
             //ARREGLAR
-            if (  fecha == "" && fecha == "System.Data.DataRowCollection")
+            if ( DBNull.Value.Equals(fecha.Tables[0].Rows[0]["FechaFin"]))
             {
                
             }
@@ -376,6 +376,12 @@ namespace FrbaHotel.RegistrarEstadia
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
             txtFecha.Text = calendario.SelectionStart.ToShortDateString();
+        }
+
+        private void btnVolver_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            new MenuRegistrarEstadia();
         }
     }
 }

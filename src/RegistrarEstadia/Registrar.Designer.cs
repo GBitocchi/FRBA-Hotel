@@ -51,6 +51,7 @@
             this.calendario = new System.Windows.Forms.MonthCalendar();
             this.txtFecha = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.btnVolver = new System.Windows.Forms.Button();
             this.gbxHuesped.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -269,11 +270,22 @@
             this.label10.TabIndex = 295;
             this.label10.Text = "Fecha";
             // 
+            // btnVolver
+            // 
+            this.btnVolver.Location = new System.Drawing.Point(299, 489);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(143, 39);
+            this.btnVolver.TabIndex = 11;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click_1);
+            // 
             // Registrar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(724, 519);
+            this.ClientSize = new System.Drawing.Size(724, 540);
+            this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.gbxHuesped);
             this.Name = "Registrar";
@@ -311,5 +323,6 @@
         private System.Windows.Forms.ColumnHeader Email;
         private System.Windows.Forms.ColumnHeader Nro;
         private System.Windows.Forms.ColumnHeader Tipo;
+        private System.Windows.Forms.Button btnVolver;
     }
 }

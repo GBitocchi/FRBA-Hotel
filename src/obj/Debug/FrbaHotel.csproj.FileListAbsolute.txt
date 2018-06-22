@@ -396,14 +396,11 @@ C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmFacturacion.Factura
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmFacturacion.MedioDePago.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmFacturacion.PagarTarjeta.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHabitacion.BajaHabitacion.resources
-C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHabitacion.Crear.resources
-C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHabitacion.MenuHabitacion.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHabitacion.MenuModificacion.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.BajaHotel.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.CrearHotel.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.FechasMantenimiento.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.FiltrarHotel.resources
-C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.MenuHotel.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.ModificarHotel.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRegimen.Crear.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRegimen.MenuModificarDarDeBaja.resources
@@ -412,7 +409,6 @@ C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRegimen.Modificacio
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRol.VistaRol.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmUsuario.VistaUsuario.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.Form1.resources
-C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.ListadoEstadistico.ListadosEstadisticos.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.ListadoEstadistico.MasCanceladas.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.ListadoEstadistico.MasMantenimiento.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.ListadoEstadistico.MasOcupadas.resources
@@ -609,3 +605,7 @@ C:\Users\Gusbi\Desktop\Seminare\FRBA-Hotel\src\obj\Debug\FrbaHotel.pdb
 C:\Users\Gusbi\Desktop\Seminare\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmUsuario.VistaUsuarioModificar.resources
 C:\Users\Gusbi\Desktop\Seminare\FRBA-Hotel\src\obj\Debug\FrbaHotel.GenerarModificacionReserva.BuscarCliente.resources
 C:\Users\Gusbi\Desktop\Seminare\FRBA-Hotel\src\obj\Debug\FrbaHotel.GenerarModificacionReserva.VariantesRegimenes.resources
+C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHabitacion.CrearHabitacion.resources
+C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmUsuario.VistaUsuarioModificar.resources
+C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.GenerarModificacionReserva.BuscarCliente.resources
+C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.GenerarModificacionReserva.VariantesRegimenes.resources
