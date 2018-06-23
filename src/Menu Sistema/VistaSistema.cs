@@ -15,6 +15,7 @@ using FrbaHotel.AbmHotel;
 using FrbaHotel.AbmHabitacion;
 using FrbaHotel.AbmFacturacion;
 using FrbaHotel.ListadoEstadistico;
+using System.Data.SqlClient;
 
 namespace FrbaHotel.Menu_Sistema
 {
@@ -31,6 +32,8 @@ namespace FrbaHotel.Menu_Sistema
             this.idHotel = _idHotel;
             this.codigoRol = _codigoRol;
             this.nombreUsuario = _nombreUsuario;
+
+            habilitarHoteles();
 
             string queryFuncionalidadesUsuario = string.Format("SELECT f.func_detalle as Funcionalidades FROM CAIA_UNLIMITED.Funcionalidad f JOIN CAIA_UNLIMITED.Funcionalidad_X_Rol fr on fr.func_rol_codigo_func = f.func_codigo WHERE fr.func_rol_codigo_rol = '{0}'", _codigoRol);
             DataSet dsFuncionalidadesUsuario = DataBase.realizarConsulta(queryFuncionalidadesUsuario);
@@ -62,6 +65,16 @@ namespace FrbaHotel.Menu_Sistema
                     stripFacturar.Visible = true;
                 }
             }
+        }
+
+        private static void habilitarHoteles()
+        {
+            SqlConnection db = DataBase.conectarBD();
+            SqlCommand altaHoteles = new SqlCommand("CAIA_UNLIMITED.sp_AltaHotel", db);
+            altaHoteles.CommandType = CommandType.StoredProcedure;
+            altaHoteles.Parameters.AddWithValue("@fecha", DataBase.fechaSistema());
+            altaHoteles.ExecuteNonQuery();
+            db.Close();
         }
 
         public VistaSistema()
