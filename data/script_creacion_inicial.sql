@@ -386,7 +386,6 @@ alter table CAIA_UNLIMITED.Reserva
 	references CAIA_UNLIMITED.Estado_Reserva (esre_codigo),
 	constraint FK_Reserva_Regimen foreign key (regi_codigo)
 	references CAIA_UNLIMITED.Regimen (regi_codigo)
-	on update cascade
 go
 
 alter table CAIA_UNLIMITED.Estadia
@@ -480,7 +479,8 @@ go
 alter table CAIA_UNLIMITED.Habitacion_X_Reserva
 	add constraint PK_Habitacion_X_Reserva primary key (habi_rese_numero, habi_rese_id, habi_rese_codigo),
 	constraint FK_HabitacionReserva_Habi foreign key (habi_rese_id, habi_rese_numero)
-	references CAIA_UNLIMITED.Habitacion (hote_id, habi_numero),
+	references CAIA_UNLIMITED.Habitacion (hote_id, habi_numero)
+	on update cascade,
 	constraint FK_HabitacionReserva_Rese foreign key (habi_rese_codigo)
 	references CAIA_UNLIMITED.Reserva (rese_codigo)
 go
