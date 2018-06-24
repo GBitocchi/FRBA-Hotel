@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -123,10 +123,10 @@ namespace FrbaHotel.AbmUsuario
             limpiarErrores();
             cargarComboBoxRol();
             cargarComboBoxHotel();
-            string viewModificacion = string.Format("SELECT u.usur_username as NombreDeUsuario, u.usur_habilitado as Habilitado, u.usur_nombre as Nombre, u.usur_apellido as Apellido, u.usur_documento_tipo as TipoDocumento, u.usur_documento Documento, u.usur_nacimiento as Nacimiento, u.usur_mail as Mail, d.dire_id as idDireccion, d.dire_pais as Pais, d.dire_telefono as Telefono, d.dire_dom_calle as Calle, d.dire_nro_calle as NumeroCalle, d.dire_piso Piso, d.dire_dpto as Departamento, d.dire_ciudad as Ciudad FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on (u.usur_username = uh.usur_hote_username AND uh.usur_hote_id = '{0}') JOIN CAIA_UNLIMITED.Direccion d on d.dire_id = u.dire_id", this.idHotel);
+            string viewModificacion = string.Format("SELECT * FROM (SELECT u.usur_username as NombreDeUsuario, u.usur_habilitado as Habilitado, u.usur_nombre as Nombre, u.usur_apellido as Apellido, u.usur_documento_tipo as TipoDocumento, u.usur_documento Documento, u.usur_nacimiento as Nacimiento, u.usur_mail as Mail, d.dire_id as idDireccion, d.dire_pais as Pais, d.dire_telefono as Telefono, d.dire_dom_calle as Calle, d.dire_nro_calle as NumeroCalle, d.dire_piso Piso, d.dire_dpto as Departamento, d.dire_ciudad as Ciudad,ROW_NUMBER() OVER(PARTITION BY u.usur_username ORDER BY u.usur_username DESC) rn FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on (u.usur_username = uh.usur_hote_username AND uh.usur_hote_id = '{0}') JOIN CAIA_UNLIMITED.Direccion d on (d.dire_id = u.dire_id OR d.dire_id IS NULL OR u.dire_id IS NULL)) a WHERE rn = 1", this.idHotel);
             DataSet dsViewModificacion = DataBase.realizarConsulta(viewModificacion);
             dataGridViewModificarUsuarios.DataSource = dsViewModificacion.Tables[0];
-            string viewEliminar = string.Format("SELECT u.usur_username as NombreDeUsuario, u.usur_habilitado as Habilitado, u.usur_nombre as Nombre, u.usur_apellido as Apellido, u.usur_documento_tipo as TipoDocumento, u.usur_documento Documento, u.usur_nacimiento as Nacimiento, u.usur_mail as Mail, d.dire_id as idDireccion, d.dire_pais as Pais, d.dire_telefono as Telefono, d.dire_dom_calle as Calle, d.dire_nro_calle as NumeroCalle, d.dire_piso Piso, d.dire_dpto as Departamento, d.dire_ciudad as Ciudad FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on (u.usur_username = uh.usur_hote_username AND uh.usur_hote_id = '{0}') JOIN CAIA_UNLIMITED.Direccion d on d.dire_id = u.dire_id WHERE u.usur_habilitado = 1", this.idHotel);
+            string viewEliminar = string.Format("SELECT * FROM (SELECT u.usur_username as NombreDeUsuario, u.usur_habilitado as Habilitado, u.usur_nombre as Nombre, u.usur_apellido as Apellido, u.usur_documento_tipo as TipoDocumento, u.usur_documento Documento, u.usur_nacimiento as Nacimiento, u.usur_mail as Mail, d.dire_id as idDireccion, d.dire_pais as Pais, d.dire_telefono as Telefono, d.dire_dom_calle as Calle, d.dire_nro_calle as NumeroCalle, d.dire_piso Piso, d.dire_dpto as Departamento, d.dire_ciudad as Ciudad,ROW_NUMBER() OVER(PARTITION BY u.usur_username ORDER BY u.usur_username DESC) rn FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on (u.usur_username = uh.usur_hote_username AND uh.usur_hote_id = '{0}') JOIN CAIA_UNLIMITED.Direccion d on (d.dire_id = u.dire_id OR d.dire_id IS NULL OR u.dire_id IS NULL) WHERE u.usur_habilitado = 1) a WHERE rn = 1", this.idHotel);
             DataSet dsViewEliminar = DataBase.realizarConsulta(viewEliminar);
             dataGridViewEliminarUsuarios.DataSource = dsViewEliminar.Tables[0];
             DataGridViewButtonColumn botonModificar = new DataGridViewButtonColumn();
@@ -708,10 +708,10 @@ namespace FrbaHotel.AbmUsuario
                 if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
                 {
                     new VistaUsuarioModificar(dataGridViewModificarUsuarios,e,this.idHotel).ShowDialog();
-                    string viewModificacion = string.Format("SELECT u.usur_username as NombreDeUsuario, u.usur_habilitado as Habilitado, u.usur_nombre as Nombre, u.usur_apellido as Apellido, u.usur_documento_tipo as TipoDocumento, u.usur_documento Documento, u.usur_nacimiento as Nacimiento, u.usur_mail as Mail, d.dire_id as idDireccion, d.dire_pais as Pais, d.dire_telefono as Telefono, d.dire_dom_calle as Calle, d.dire_nro_calle as NumeroCalle, d.dire_piso Piso, d.dire_dpto as Departamento, d.dire_ciudad as Ciudad FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on (u.usur_username = uh.usur_hote_username AND uh.usur_hote_id = '{0}') JOIN CAIA_UNLIMITED.Direccion d on d.dire_id = u.dire_id", this.idHotel);
+                    string viewModificacion = string.Format("SELECT * FROM (SELECT u.usur_username as NombreDeUsuario, u.usur_habilitado as Habilitado, u.usur_nombre as Nombre, u.usur_apellido as Apellido, u.usur_documento_tipo as TipoDocumento, u.usur_documento Documento, u.usur_nacimiento as Nacimiento, u.usur_mail as Mail, d.dire_id as idDireccion, d.dire_pais as Pais, d.dire_telefono as Telefono, d.dire_dom_calle as Calle, d.dire_nro_calle as NumeroCalle, d.dire_piso Piso, d.dire_dpto as Departamento, d.dire_ciudad as Ciudad,ROW_NUMBER() OVER(PARTITION BY u.usur_username ORDER BY u.usur_username DESC) rn FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on (u.usur_username = uh.usur_hote_username AND uh.usur_hote_id = '{0}') JOIN CAIA_UNLIMITED.Direccion d on (d.dire_id = u.dire_id OR d.dire_id IS NULL OR u.dire_id IS NULL)) a WHERE rn = 1", this.idHotel);
                     DataSet dsViewModificacion = DataBase.realizarConsulta(viewModificacion);
                     dataGridViewModificarUsuarios.DataSource = dsViewModificacion.Tables[0];
-                    string viewEliminar = string.Format("SELECT u.usur_username as NombreDeUsuario, u.usur_habilitado as Habilitado, u.usur_nombre as Nombre, u.usur_apellido as Apellido, u.usur_documento_tipo as TipoDocumento, u.usur_documento Documento, u.usur_nacimiento as Nacimiento, u.usur_mail as Mail, d.dire_id as idDireccion, d.dire_pais as Pais, d.dire_telefono as Telefono, d.dire_dom_calle as Calle, d.dire_nro_calle as NumeroCalle, d.dire_piso Piso, d.dire_dpto as Departamento, d.dire_ciudad as Ciudad FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on (u.usur_username = uh.usur_hote_username AND uh.usur_hote_id = '{0}') JOIN CAIA_UNLIMITED.Direccion d on d.dire_id = u.dire_id WHERE u.usur_habilitado = 1", this.idHotel);
+                    string viewEliminar = string.Format("SELECT * FROM (SELECT u.usur_username as NombreDeUsuario, u.usur_habilitado as Habilitado, u.usur_nombre as Nombre, u.usur_apellido as Apellido, u.usur_documento_tipo as TipoDocumento, u.usur_documento Documento, u.usur_nacimiento as Nacimiento, u.usur_mail as Mail, d.dire_id as idDireccion, d.dire_pais as Pais, d.dire_telefono as Telefono, d.dire_dom_calle as Calle, d.dire_nro_calle as NumeroCalle, d.dire_piso Piso, d.dire_dpto as Departamento, d.dire_ciudad as Ciudad,ROW_NUMBER() OVER(PARTITION BY u.usur_username ORDER BY u.usur_username DESC) rn FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on (u.usur_username = uh.usur_hote_username AND uh.usur_hote_id = '{0}') JOIN CAIA_UNLIMITED.Direccion d on (d.dire_id = u.dire_id OR d.dire_id IS NULL OR u.dire_id IS NULL) WHERE u.usur_habilitado = 1) a WHERE rn = 1", this.idHotel);
                     DataSet dsViewEliminar = DataBase.realizarConsulta(viewEliminar);
                     dataGridViewEliminarUsuarios.DataSource = dsViewEliminar.Tables[0];
                     this.Show();
@@ -732,22 +732,45 @@ namespace FrbaHotel.AbmUsuario
                 {
                     string usuarioNombre = dataGridViewEliminarUsuarios.Rows[e.RowIndex].Cells["NombreDeUsuario"].Value.ToString();
                     string usuarioMail = dataGridViewEliminarUsuarios.Rows[e.RowIndex].Cells["Mail"].Value.ToString();
-                    decimal usuarioDocumento = Decimal.Parse(dataGridViewEliminarUsuarios.Rows[e.RowIndex].Cells["Documento"].Value.ToString());
                     SqlConnection createConnection = DataBase.conectarBD();
                     SqlCommand insertCommand = new SqlCommand("[CAIA_UNLIMITED].sp_EliminarUsuarios", createConnection);
                     insertCommand.CommandType = CommandType.StoredProcedure;
-                    insertCommand.Parameters.AddWithValue("@username", usuarioNombre);
-                    insertCommand.Parameters.AddWithValue("@mail", usuarioMail);
-                    insertCommand.Parameters.AddWithValue("@documento", usuarioDocumento);        
+                    if (dataGridViewEliminarUsuarios.Rows[e.RowIndex].Cells["Documento"].Value.ToString() == "")
+                    {
+                        insertCommand.Parameters.AddWithValue("@documento", DBNull.Value);        
+                    }
+                    else
+                    {
+                        decimal usuarioDocumento = Decimal.Parse(dataGridViewEliminarUsuarios.Rows[e.RowIndex].Cells["Documento"].Value.ToString());
+                        insertCommand.Parameters.AddWithValue("@documento", usuarioDocumento);
+                    }
+
+                    if (usuarioMail == "")
+                    {
+                        insertCommand.Parameters.AddWithValue("@mail", DBNull.Value);
+                    }
+                    else
+                    {
+                        insertCommand.Parameters.AddWithValue("@mail", usuarioMail);   
+                    }
+
+                    if (usuarioNombre == "")
+                    {
+                        insertCommand.Parameters.AddWithValue("@username", DBNull.Value);
+                    }
+                    else
+                    {
+                        insertCommand.Parameters.AddWithValue("@username", usuarioNombre); 
+                    }                                          
                     insertCommand.ExecuteNonQuery();
                     createConnection.Close();
-                    string viewModificacion = string.Format("SELECT u.usur_username as NombreDeUsuario, u.usur_habilitado as Habilitado, u.usur_nombre as Nombre, u.usur_apellido as Apellido, u.usur_documento_tipo as TipoDocumento, u.usur_documento Documento, u.usur_nacimiento as Nacimiento, u.usur_mail as Mail, d.dire_id as idDireccion, d.dire_pais as Pais, d.dire_telefono as Telefono, d.dire_dom_calle as Calle, d.dire_nro_calle as NumeroCalle, d.dire_piso Piso, d.dire_dpto as Departamento, d.dire_ciudad as Ciudad FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on (u.usur_username = uh.usur_hote_username AND uh.usur_hote_id = '{0}') JOIN CAIA_UNLIMITED.Direccion d on d.dire_id = u.dire_id", this.idHotel);
+                    string viewModificacion = string.Format("SELECT * FROM (SELECT u.usur_username as NombreDeUsuario, u.usur_habilitado as Habilitado, u.usur_nombre as Nombre, u.usur_apellido as Apellido, u.usur_documento_tipo as TipoDocumento, u.usur_documento Documento, u.usur_nacimiento as Nacimiento, u.usur_mail as Mail, d.dire_id as idDireccion, d.dire_pais as Pais, d.dire_telefono as Telefono, d.dire_dom_calle as Calle, d.dire_nro_calle as NumeroCalle, d.dire_piso Piso, d.dire_dpto as Departamento, d.dire_ciudad as Ciudad,ROW_NUMBER() OVER(PARTITION BY u.usur_username ORDER BY u.usur_username DESC) rn FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on (u.usur_username = uh.usur_hote_username AND uh.usur_hote_id = '{0}') JOIN CAIA_UNLIMITED.Direccion d on (d.dire_id = u.dire_id OR d.dire_id IS NULL OR u.dire_id IS NULL)) a WHERE rn = 1", this.idHotel);
                     DataSet dsViewModificacion = DataBase.realizarConsulta(viewModificacion);
                     dataGridViewModificarUsuarios.DataSource = dsViewModificacion.Tables[0];
-                    string viewEliminar = string.Format("SELECT u.usur_username as NombreDeUsuario, u.usur_habilitado as Habilitado, u.usur_nombre as Nombre, u.usur_apellido as Apellido, u.usur_documento_tipo as TipoDocumento, u.usur_documento Documento, u.usur_nacimiento as Nacimiento, u.usur_mail as Mail, d.dire_id as idDireccion, d.dire_pais as Pais, d.dire_telefono as Telefono, d.dire_dom_calle as Calle, d.dire_nro_calle as NumeroCalle, d.dire_piso Piso, d.dire_dpto as Departamento, d.dire_ciudad as Ciudad FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on (u.usur_username = uh.usur_hote_username AND uh.usur_hote_id = '{0}') JOIN CAIA_UNLIMITED.Direccion d on d.dire_id = u.dire_id WHERE u.usur_habilitado = 1", this.idHotel);
+                    string viewEliminar = string.Format("SELECT * FROM (SELECT u.usur_username as NombreDeUsuario, u.usur_habilitado as Habilitado, u.usur_nombre as Nombre, u.usur_apellido as Apellido, u.usur_documento_tipo as TipoDocumento, u.usur_documento Documento, u.usur_nacimiento as Nacimiento, u.usur_mail as Mail, d.dire_id as idDireccion, d.dire_pais as Pais, d.dire_telefono as Telefono, d.dire_dom_calle as Calle, d.dire_nro_calle as NumeroCalle, d.dire_piso Piso, d.dire_dpto as Departamento, d.dire_ciudad as Ciudad,ROW_NUMBER() OVER(PARTITION BY u.usur_username ORDER BY u.usur_username DESC) rn FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on (u.usur_username = uh.usur_hote_username AND uh.usur_hote_id = '{0}') JOIN CAIA_UNLIMITED.Direccion d on (d.dire_id = u.dire_id OR d.dire_id IS NULL OR u.dire_id IS NULL) WHERE u.usur_habilitado = 1) a WHERE rn = 1", this.idHotel);
                     DataSet dsViewEliminar = DataBase.realizarConsulta(viewEliminar);
                     dataGridViewEliminarUsuarios.DataSource = dsViewEliminar.Tables[0];
-                    MessageBox.Show("Rol eliminado exitosamente!");
+                    MessageBox.Show("Usuario eliminado exitosamente!");
                 }
             }
             catch (IndexOutOfRangeException ioree)
