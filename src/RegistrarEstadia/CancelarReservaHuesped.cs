@@ -158,7 +158,7 @@ namespace FrbaHotel.RegistrarEstadia
         private void ejecutarStoredProcedureCancelarReserva()
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand cancelarReserva = new SqlCommand("CAIA_UNLIMITED.sp_CancelarResev", db);
+            SqlCommand cancelarReserva = new SqlCommand("CAIA_UNLIMITED.sp_CancelarReserva", db);
             cancelarReserva.CommandType = CommandType.StoredProcedure;
             cancelarReserva.Parameters.AddWithValue("@codigo_Reserva", txtNumero_Reserva.Text.Trim());
             cancelarReserva.Parameters.AddWithValue("@motivo", txtMotivo.Text.Trim());

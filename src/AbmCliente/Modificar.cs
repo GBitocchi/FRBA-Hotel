@@ -86,7 +86,7 @@ namespace FrbaHotel.AbmCliente
         private void ejecutarStoredProcedureModificar() 
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand crearCliente = new SqlCommand("CAIA_UNLIMITED.sp_ModificarHues", db);
+            SqlCommand crearCliente = new SqlCommand("CAIA_UNLIMITED.sp_ModificarHuesped", db);
             crearCliente.CommandType = CommandType.StoredProcedure;
             crearCliente.Parameters.AddWithValue("@nombre", txtNombre.Text.Trim());
             crearCliente.Parameters.AddWithValue("@apellido", txtApellido.Text.Trim());
@@ -300,7 +300,7 @@ namespace FrbaHotel.AbmCliente
         private void ejecutarStoredProcedureDarDeBaja() 
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand crearCliente = new SqlCommand("CAIA_UNLIMITED.sp_BajaHues", db);
+            SqlCommand crearCliente = new SqlCommand("CAIA_UNLIMITED.sp_BajaHuesped", db);
             crearCliente.CommandType = CommandType.StoredProcedure;
             crearCliente.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
             crearCliente.ExecuteNonQuery();

@@ -276,7 +276,7 @@ namespace FrbaHotel.RegistrarEstadia
         {
 
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand crearEgreso = new SqlCommand("CAIA_UNLIMITED.sp_RegistrarEgres", db);
+            SqlCommand crearEgreso = new SqlCommand("CAIA_UNLIMITED.sp_RegistrarEgreso", db);
             crearEgreso.CommandType = CommandType.StoredProcedure;
             //AGREGAR FECHA ACTUAL
             crearEgreso.Parameters.AddWithValue("@fecha_egreso", DateTime.Parse(txtFecha.Text.Trim()));

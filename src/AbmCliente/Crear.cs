@@ -198,7 +198,7 @@ namespace FrbaHotel.AbmCliente
         private void ejecutarStoredProcedureCrear()
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand crearCliente = new SqlCommand("CAIA_UNLIMITED.sp_CrearHuesp", db);
+            SqlCommand crearCliente = new SqlCommand("CAIA_UNLIMITED.sp_CrearHuesped", db);
             crearCliente.CommandType = CommandType.StoredProcedure;
             crearCliente.Parameters.AddWithValue("@nombre", txtNombre.Text.Trim());
             crearCliente.Parameters.AddWithValue("@apellido", txtApellido.Text.Trim());

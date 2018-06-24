@@ -486,9 +486,7 @@ alter table CAIA_UNLIMITED.Habitacion_X_Reserva
 go
 
 alter table CAIA_UNLIMITED.Reserva_Cancelada
-	add constraint FK_ReservaCancelada_Usuario foreign key (reca_usuario)
-	references CAIA_UNLIMITED.Usuario (usur_username),
-	constraint FK_ReservaCancelada_Reserva foreign key (reca_rese)
+	add constraint FK_ReservaCancelada_Reserva foreign key (reca_rese)
 	references CAIA_UNLIMITED.Reserva (rese_codigo)
 go
 
@@ -801,7 +799,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE [CAIA_UNLIMITED].[sp_BajaHues] (@email nvarchar(255))
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_BajaHuesped] (@email nvarchar(255))
 AS
 BEGIN	
 	update CAIA_UNLIMITED.Huesped 
@@ -810,7 +808,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE [CAIA_UNLIMITED].[sp_ModificarHues] (@nombre nvarchar(255), @apellido nvarchar(255), @documento numeric(18,0), @tipo nvarchar(3), @mail nvarchar(255), @fecha_nacimiento datetime,@nacionalidad nvarchar(255),@calle nvarchar(255),@calle_nro numeric(18,0),@piso numeric(18,0),@dpto nvarchar(50),@ciudad nvarchar(255),@pais nvarchar(255), @telefono nvarchar(20),@estado bit)
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_ModificarHuesped] (@nombre nvarchar(255), @apellido nvarchar(255), @documento numeric(18,0), @tipo nvarchar(3), @mail nvarchar(255), @fecha_nacimiento datetime,@nacionalidad nvarchar(255),@calle nvarchar(255),@calle_nro numeric(18,0),@piso numeric(18,0),@dpto nvarchar(50),@ciudad nvarchar(255),@pais nvarchar(255), @telefono nvarchar(20),@estado bit)
 AS
 BEGIN
 	update CAIA_UNLIMITED.Direccion 
@@ -1587,7 +1585,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE [CAIA_UNLIMITED].[sp_RegistrarEgres](@fecha_egreso datetime, @usuario nvarchar(255),@estadia_Id numeric (18,0))
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_RegistrarEgreso](@fecha_egreso datetime, @usuario nvarchar(255),@estadia_Id numeric (18,0))
 AS
 BEGIN
 	update CAIA_UNLIMITED.Estadia 
