@@ -46,8 +46,6 @@
             this.lblResumenReserva = new System.Windows.Forms.Label();
             this.btnCheckear = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
-            this.lblFechaInicio = new System.Windows.Forms.Label();
-            this.lblFechaFin = new System.Windows.Forms.Label();
             this.lblErrorPaso1 = new System.Windows.Forms.Label();
             this.lblerrorfechas = new System.Windows.Forms.Label();
             this.lblHotel = new System.Windows.Forms.Label();
@@ -272,24 +270,6 @@
             this.btnLimpiar.UseVisualStyleBackColor = false;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
-            // lblFechaInicio
-            // 
-            this.lblFechaInicio.AutoSize = true;
-            this.lblFechaInicio.Location = new System.Drawing.Point(284, 468);
-            this.lblFechaInicio.Name = "lblFechaInicio";
-            this.lblFechaInicio.Size = new System.Drawing.Size(10, 13);
-            this.lblFechaInicio.TabIndex = 349;
-            this.lblFechaInicio.Text = " ";
-            // 
-            // lblFechaFin
-            // 
-            this.lblFechaFin.AutoSize = true;
-            this.lblFechaFin.Location = new System.Drawing.Point(597, 466);
-            this.lblFechaFin.Name = "lblFechaFin";
-            this.lblFechaFin.Size = new System.Drawing.Size(10, 13);
-            this.lblFechaFin.TabIndex = 350;
-            this.lblFechaFin.Text = " ";
-            // 
             // lblErrorPaso1
             // 
             this.lblErrorPaso1.AutoSize = true;
@@ -425,8 +405,6 @@
             this.groupBox1.Controls.Add(this.lblHotel);
             this.groupBox1.Controls.Add(this.lblerrorfechas);
             this.groupBox1.Controls.Add(this.lblErrorPaso1);
-            this.groupBox1.Controls.Add(this.lblFechaFin);
-            this.groupBox1.Controls.Add(this.lblFechaInicio);
             this.groupBox1.Controls.Add(this.btnLimpiar);
             this.groupBox1.Controls.Add(this.btnCheckear);
             this.groupBox1.Controls.Add(this.lblResumenReserva);
@@ -882,8 +860,6 @@
         private System.Windows.Forms.Label lblResumenReserva;
         private System.Windows.Forms.Button btnCheckear;
         private System.Windows.Forms.Button btnLimpiar;
-        private System.Windows.Forms.Label lblFechaInicio;
-        private System.Windows.Forms.Label lblFechaFin;
         private System.Windows.Forms.Label lblErrorPaso1;
         private System.Windows.Forms.Label lblerrorfechas;
         private System.Windows.Forms.Label lblHotel;

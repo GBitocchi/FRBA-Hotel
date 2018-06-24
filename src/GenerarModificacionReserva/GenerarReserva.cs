@@ -28,7 +28,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void cargarComboBoxRegimenes()
         {
-            string regimenes = string.Format("SELECT DISTINCT r.regi_descripcion as Descripcion, r.regi_codigo as Codigo FROM CAIA_UNLIMITED.Regimen r JOIN CAIA_UNLIMITED.Regimen_X_Hotel rh on r.regi_codigo = rh.regi_hote_codigo JOIN CAIA_UNLIMITED.Hotel h on h.hote_id = rh.regi_hote_id WHERE h.hote_id = '{0}' AND r.regi_estado = 1",this.hotel);
+            string regimenes = string.Format("SELECT DISTINCT r.regi_descripcion as Descripcion, r.regi_codigo as Codigo FROM CAIA_UNLIMITED.Regimen r JOIN CAIA_UNLIMITED.Regimen_X_Hotel rh on r.regi_codigo = rh.regi_hote_codigo JOIN CAIA_UNLIMITED.Hotel h on h.hote_id = rh.regi_hote_id WHERE h.hote_id = '{0}' AND r.regi_estado = 1", this.hotel);
             DataSet dsRegimenes = DataBase.realizarConsulta(regimenes);
             this.dsRegimenes = dsRegimenes;
             foreach (DataRow unRegimen in dsRegimenes.Tables[0].Rows)
@@ -59,7 +59,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void cargarComboBoxTipoHabitacion()
         {
-            string tiposHabitaciones = string.Format("SELECT DISTINCT thab_descripcion as Descripcion FROM CAIA_UNLIMITED.Tipo_Habitacion th JOIN CAIA_UNLIMITED.Habitacion h on h.thab_codigo = th.thab_codigo WHERE h.hote_id = '{0}'",this.hotel);
+            string tiposHabitaciones = string.Format("SELECT DISTINCT thab_descripcion as Descripcion FROM CAIA_UNLIMITED.Tipo_Habitacion th JOIN CAIA_UNLIMITED.Habitacion h on h.thab_codigo = th.thab_codigo WHERE h.hote_id = '{0}'", this.hotel);
             DataSet dsTiposHabitaciones = DataBase.realizarConsulta(tiposHabitaciones);
 
             foreach (DataRow unTipo in dsTiposHabitaciones.Tables[0].Rows)
@@ -120,9 +120,9 @@ namespace FrbaHotel.GenerarModificacionReserva
             lblErrorFechaFin.Visible = false;
             lblErrorFechaInicio.Visible = false;
             lblErrorTelefono.Visible = false;
-            lbllistBoxNoItem.Visible = false;  
+            lbllistBoxNoItem.Visible = false;
         }
-        
+
         public GenerarReserva()
         {
             InitializeComponent();
@@ -130,7 +130,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             limpiarErrores();
             limpiarTextBox();
             cargarComboBoxHoteles();
-            
+
         }
 
         public GenerarReserva(decimal _hotel, string _username)
@@ -149,7 +149,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             btnSeleccionarHotel.Visible = false;
             textBoxHotel.Visible = false;
             lblErrorHotel.Visible = false;
-        }     
+        }
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
@@ -178,7 +178,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-                    }
+        }
 
         private void label31_Click(object sender, EventArgs e)
         {
@@ -193,7 +193,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             cbxRegimenEstadia.Items.Clear();
             cbxTipoHabitacion.Items.Clear();
             limpiarErrores();
-            limpiarTextBox();          
+            limpiarTextBox();
             if (guest)
             {
                 cargarComboBoxHoteles();
@@ -210,12 +210,12 @@ namespace FrbaHotel.GenerarModificacionReserva
             if (cbxRegimenEstadia.SelectedItem != null)
             {
                 txbRegimen.Text = cbxRegimenEstadia.SelectedItem.ToString();
-                
-                for(int i=0; i<this.dsRegimenes.Tables[0].Rows.Count;i++)
+
+                for (int i = 0; i < this.dsRegimenes.Tables[0].Rows.Count; i++)
                 {
                     if (((string)(this.dsRegimenes.Tables[0].Rows[i]["Descripcion"])) == cbxRegimenEstadia.SelectedItem.ToString())
                     {
-                        this.regimen =  (decimal)this.dsRegimenes.Tables[0].Rows[i]["Codigo"];
+                        this.regimen = (decimal)this.dsRegimenes.Tables[0].Rows[i]["Codigo"];
                     }
                 }
             }
@@ -242,258 +242,6 @@ namespace FrbaHotel.GenerarModificacionReserva
             }
             else if (guest)
             {
-                    if (txbRegimen.Text.Trim() == "")
-                    {
-                        this.Hide();
-                        VariantesRegimenes variantes = new VariantesRegimenes(this.hotel);
-                        variantes.ShowDialog();
-                        this.Show();
-                        if (variantes.eligioRegimen)
-                        {
-                            this.regimen = variantes.regimenElegido;
-
-                            string fechaDisponibleHotel = string.Format("SELECT hote_fecha_inicio as FechaInicio, hote_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
-                            DataSet dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel);
-                            DateTime fechaElegidaInicio = calendarInicio.SelectionStart;
-                            DateTime fechaElegidaFin = calendarFin.SelectionStart;
-                            string fechaInicio = fechaElegidaInicio.ToString("yyyy-MM-dd HH:mm:ss");
-                            string fechaFin = fechaElegidaFin.ToString("yyyy-MM-dd HH:mm:ss");
-                            TimeSpan difference = fechaElegidaFin - fechaElegidaInicio;
-                            this.difference = difference;
-                            this.fechaElegidaInicio = fechaElegidaInicio;
-                            if (!DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"]) && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaFin"]))
-                            {
-                                DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
-                                DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());
-                                if (((DateTime.Compare(fechaElegidaInicio, fechaInicioHotel)) < 0) || ((DateTime.Compare(fechaElegidaFin, fechaFinHotel)) > 0))
-                                {
-                                    MessageBox.Show("El Hotel no esta abierto entre las fechas elegidas. Por favor, seleccione otras.");
-                                    return;
-                                }
-                            }
-                            
-                                string queryRegimen = string.Format("SELECT regi_precio_base as Precio FROM CAIA_UNLIMITED.Regimen where regi_codigo = '{0}'", regimen);
-                                string queryEstrella = string.Format("SELECT hote_recarga_estrella as Recarga FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
-                                DataSet dsPrecioRegimen = DataBase.realizarConsulta(queryRegimen);
-                                DataSet dsRecarga = DataBase.realizarConsulta(queryEstrella);
-                                decimal costoTotal = 0;
-                                string msg = "";
-                                HabitacionalitiesCollection lh = new HabitacionalitiesCollection();
-                                string anterior = "No especificado";
-                                string queryNumeroHabitacion;
-                                int j = 1;
-
-                                foreach (string tipitoHabitacion in listBoxTipoHabitacion.Items)
-                                {
-                                    if (tipitoHabitacion == anterior)
-                                    {
-                                        j++;
-                                    }
-                                    else
-                                    {
-                                        anterior = tipitoHabitacion;
-                                        j = 1;
-                                    }
-                                    string queryHabitacionDisponible = string.Format("SELECT COUNT(*) FROM (SELECT DISTINCT h.habi_numero,h.habi_piso FROM CAIA_UNLIMITED.Tipo_Habitacion th JOIN CAIA_UNLIMITED.Habitacion h on h.thab_codigo = th.thab_codigo JOIN CAIA_UNLIMITED.Habitacion_X_Reserva hr on (hr.habi_rese_id = h.hote_id) JOIN CAIA_UNLIMITED.Reserva r on (r.rese_codigo = hr.habi_rese_codigo) WHERE h.hote_id = '{0}' AND h.habi_habilitado = 1 AND th.thab_descripcion = '{1}' AND (r.rese_fecha_desde not between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)) AND (dateadd(dd,r.rese_cantidad_noches,r.rese_fecha_desde) not between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120))) t2", this.hotel, tipitoHabitacion, fechaInicio, fechaFin);
-                                    SqlConnection connection = DataBase.conectarBD();
-                                    SqlCommand commDisponibles = new SqlCommand(queryHabitacionDisponible, connection);
-                                    Int32 countDisponibles = Convert.ToInt32(commDisponibles.ExecuteScalar());
-                                    connection.Close();
-                                    if (countDisponibles < 1 || j>=countDisponibles)
-                                    {
-                                        MessageBox.Show("No hay habitaciones disponibles de " + tipitoHabitacion + " en las fechas especificadas");
-                                        return;
-                                    }
-                                    queryNumeroHabitacion = string.Format("SELECT TOP " + countDisponibles.ToString() + " t2.HabitacionNumero FROM (SELECT DISTINCT h.habi_numero as HabitacionNumero,h.habi_piso as HabitacionPiso FROM CAIA_UNLIMITED.Tipo_Habitacion th JOIN CAIA_UNLIMITED.Habitacion h on h.thab_codigo = th.thab_codigo JOIN CAIA_UNLIMITED.Habitacion_X_Reserva hr on (hr.habi_rese_id = h.hote_id) JOIN CAIA_UNLIMITED.Reserva r on (r.rese_codigo = hr.habi_rese_codigo) WHERE h.hote_id = '{0}' AND h.habi_habilitado = 1 AND th.thab_descripcion = '{1}' AND (r.rese_fecha_desde not between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)) AND (dateadd(dd,r.rese_cantidad_noches,r.rese_fecha_desde) not between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120))) t2", this.hotel, tipitoHabitacion, fechaInicio, fechaFin);
-                                    DataSet dsNumeroHabitacion = DataBase.realizarConsulta(queryNumeroHabitacion);
-                                    lh.Add(new Habitacionalities { Habitacion = ((decimal)(dsNumeroHabitacion.Tables[0].Rows[j][0])) });
-                                    string queryTipitoHabitacion = string.Format("SELECT TOP 1 thab_porcentual as PrecioHabitacion FROM CAIA_UNLIMITED.Tipo_Habitacion where thab_descripcion = '{0}'", tipitoHabitacion);
-                                    DataSet dsTipitoHabitacion = DataBase.realizarConsulta(queryTipitoHabitacion);
-                                    decimal costoUnaHabitacion = ((decimal)dsTipitoHabitacion.Tables[0].Rows[0]["PrecioHabitacion"] * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
-                                    msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de '{0}' \n", costoUnaHabitacion));
-                                    costoTotal = costoTotal + costoUnaHabitacion;
-                                }
-
-                                this.lh = lh;
-
-                                MessageBox.Show(msg);
-
-                                if (MessageBox.Show("El costo total de la reserva es de " + costoTotal.ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
-                                {
-                                    return;
-                                }
-
-                                cargarComboBoxTipoDocumento();
-                                lblNombre.Visible = true;
-                                textBoxNombre.Visible = true;
-                                lblApellido.Visible = true;
-                                textBoxApellido.Visible = true;
-                                lblMail.Visible = true;
-                                textBoxMail.Visible = true; ;
-                                lblDocumento.Visible = true;
-                                textBoxDocumento.Visible = true;
-                                lblTipoDocumentoCliente.Visible = true;
-                                comboBoxTipoDocumentoCliente.Visible = true;
-                                lblDireccion.Visible = true;
-                                textBoxDireccion.Visible = true;
-                                lblTelefono.Visible = true;
-                                textBoxTelefono.Visible = true;
-                                lblNumeroDireccion.Visible = true;
-                                textBoxNumeroDireccion.Visible = true;
-                                lblCity.Visible = true;
-                                textBoxCiudad.Visible = true;
-                                lblPais.Visible = true;
-                                textBoxPais.Visible = true;
-                                buttonBuscarCliente.Visible = true;
-                                btnCheckear.Visible = false;
-                                btnConfirmarPaso.Enabled = true;
-                                calendarInicio.Visible = false;
-                                calendarFin.Visible = false;
-                                lblFechaFin.Visible = false;
-                                lblFechaFin.Visible = false;
-                                labelRegimen.Visible = false;
-                                txbRegimen.Visible = false;
-                                cbxRegimenEstadia.Visible = false;
-                                btnRegimenSeleccionar.Visible = false;
-                                btnAgregar.Visible = false;
-                                btnQuitar.Visible = false;
-                                listBoxTipoHabitacion.Visible = false;
-                                labelTpoHabitacion.Visible = false;
-                                lblHotel.Visible = false;
-                                cbxTipoHabitacion.Visible = false;
-                                btnSeleccionarHotel.Visible = false;
-                                comboHoteles.Visible = false;
-                                textBoxHotel.Visible = false;
-                                btnConfirmarPaso.Visible = true;
-                                labelFechaInicio.Visible = false;
-                                labelFechaFin.Visible = false;
-                            
-                        }
-                    }
-                        else
-                        {
-                            string fechaDisponibleHotel = string.Format("SELECT hote_fecha_inicio as FechaInicio, hote_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
-                            DataSet dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel);
-                            DateTime fechaElegidaInicio = calendarInicio.SelectionStart;
-                            DateTime fechaElegidaFin = calendarFin.SelectionStart;
-                            string fechaInicio = fechaElegidaInicio.ToString("yyyy-MM-dd HH:mm:ss");
-                            string fechaFin = fechaElegidaFin.ToString("yyyy-MM-dd HH:mm:ss");
-                            TimeSpan difference = fechaElegidaFin - fechaElegidaInicio;
-                            this.difference = difference;
-                            this.fechaElegidaInicio = fechaElegidaInicio;
-
-                            if (!DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"]) && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaFin"]))
-                            {
-                                DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
-                                DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());
-                                if (((DateTime.Compare(fechaElegidaInicio, fechaInicioHotel)) < 0) || ((DateTime.Compare(fechaElegidaFin, fechaFinHotel)) > 0))
-                                {
-                                    MessageBox.Show("El Hotel no esta abierto entre las fechas elegidas. Por favor, seleccione otras.");
-                                    return;
-                                }
-                            }
-                            
-                            
-                                string queryRegimen = string.Format("SELECT regi_precio_base as Precio FROM CAIA_UNLIMITED.Regimen where regi_codigo = '{0}'", regimen);
-                                string queryEstrella = string.Format("SELECT hote_recarga_estrella as Recarga FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
-                                DataSet dsPrecioRegimen = DataBase.realizarConsulta(queryRegimen);
-                                DataSet dsRecarga = DataBase.realizarConsulta(queryEstrella);
-                                decimal costoTotal = 0;
-                                string msg = "";
-                                HabitacionalitiesCollection lh = new HabitacionalitiesCollection();
-                                string anterior = "No especificado";
-                                string queryNumeroHabitacion;
-                                int j = 1;                                
-
-                                foreach (string tipitoHabitacion in listBoxTipoHabitacion.Items)
-                                {
-                                    if (tipitoHabitacion == anterior)
-                                    {                                    
-                                        j++;
-                                    }
-                                    else
-                                    {
-                                        anterior = tipitoHabitacion;
-                                        j = 1;
-                                    }
-                                    string queryHabitacionDisponible = string.Format("SELECT COUNT(*) FROM (SELECT DISTINCT h.habi_numero,h.habi_piso FROM CAIA_UNLIMITED.Tipo_Habitacion th JOIN CAIA_UNLIMITED.Habitacion h on h.thab_codigo = th.thab_codigo JOIN CAIA_UNLIMITED.Habitacion_X_Reserva hr on (hr.habi_rese_id = h.hote_id) JOIN CAIA_UNLIMITED.Reserva r on (r.rese_codigo = hr.habi_rese_codigo) WHERE h.hote_id = '{0}' AND h.habi_habilitado = 1 AND th.thab_descripcion = '{1}' AND (r.rese_fecha_desde not between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)) AND (dateadd(dd,r.rese_cantidad_noches,r.rese_fecha_desde) not between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120))) t2", this.hotel, tipitoHabitacion, fechaInicio, fechaFin);
-                                    SqlConnection connection = DataBase.conectarBD();
-                                    SqlCommand commDisponibles = new SqlCommand(queryHabitacionDisponible, connection);
-                                    Int32 countDisponibles = Convert.ToInt32(commDisponibles.ExecuteScalar());
-                                    connection.Close();
-                                    if (countDisponibles < 1 || j>=countDisponibles)
-                                    {
-                                        MessageBox.Show("No hay habitaciones disponibles de " + tipitoHabitacion + " en las fechas especificadas");
-                                        return;
-                                    }
-                                    queryNumeroHabitacion = string.Format("SELECT TOP " + countDisponibles.ToString() + " t2.HabitacionNumero FROM (SELECT DISTINCT h.habi_numero as HabitacionNumero,h.habi_piso as HabitacionPiso FROM CAIA_UNLIMITED.Tipo_Habitacion th JOIN CAIA_UNLIMITED.Habitacion h on h.thab_codigo = th.thab_codigo JOIN CAIA_UNLIMITED.Habitacion_X_Reserva hr on (hr.habi_rese_id = h.hote_id) JOIN CAIA_UNLIMITED.Reserva r on (r.rese_codigo = hr.habi_rese_codigo) WHERE h.hote_id = '{0}' AND h.habi_habilitado = 1 AND th.thab_descripcion = '{1}' AND (r.rese_fecha_desde not between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)) AND (dateadd(dd,r.rese_cantidad_noches,r.rese_fecha_desde) not between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120))) t2", this.hotel, tipitoHabitacion, fechaInicio, fechaFin);
-                                    DataSet dsNumeroHabitacion = DataBase.realizarConsulta(queryNumeroHabitacion);
-                                    lh.Add(new Habitacionalities { Habitacion = ((decimal)(dsNumeroHabitacion.Tables[0].Rows[j][0])) });
-                                    string queryTipitoHabitacion = string.Format("SELECT TOP 1 thab_porcentual as PrecioHabitacion FROM CAIA_UNLIMITED.Tipo_Habitacion where thab_descripcion = '{0}'", tipitoHabitacion);
-                                    DataSet dsTipitoHabitacion = DataBase.realizarConsulta(queryTipitoHabitacion);
-                                    decimal costoUnaHabitacion = ((decimal)dsTipitoHabitacion.Tables[0].Rows[0]["PrecioHabitacion"] * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
-                                    msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de '{0}' \n", costoUnaHabitacion));
-                                    costoTotal = costoTotal + costoUnaHabitacion;
-                                }
-
-                                this.lh = lh;                                
-
-                                MessageBox.Show(msg);
-
-                                if (MessageBox.Show("El costo total de la reserva es de " + costoTotal.ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
-                                {
-                                    return;
-                                }
-
-                                cargarComboBoxTipoDocumento();
-                                lblNombre.Visible = true;
-                                textBoxNombre.Visible = true;
-                                lblApellido.Visible = true;
-                                textBoxApellido.Visible = true;
-                                lblMail.Visible = true;
-                                textBoxMail.Visible = true; ;
-                                lblDocumento.Visible = true;
-                                textBoxDocumento.Visible = true;
-                                lblTipoDocumentoCliente.Visible = true;
-                                comboBoxTipoDocumentoCliente.Visible = true;
-                                lblDireccion.Visible = true;
-                                textBoxDireccion.Visible = true;
-                                lblTelefono.Visible = true;
-                                textBoxTelefono.Visible = true;
-                                lblNumeroDireccion.Visible = true;
-                                textBoxNumeroDireccion.Visible = true;
-                                lblCity.Visible = true;
-                                textBoxCiudad.Visible = true;
-                                lblPais.Visible = true;
-                                textBoxPais.Visible = true;
-                                buttonBuscarCliente.Visible = true;
-                                btnCheckear.Visible = false;
-                                btnConfirmarPaso.Enabled = true;
-                                calendarInicio.Visible = false;
-                                calendarFin.Visible = false;
-                                lblFechaFin.Visible = false;
-                                lblFechaFin.Visible = false;
-                                labelRegimen.Visible = false;
-                                txbRegimen.Visible = false;
-                                cbxRegimenEstadia.Visible = false;
-                                btnRegimenSeleccionar.Visible = false;
-                                btnAgregar.Visible = false;
-                                btnQuitar.Visible = false;
-                                listBoxTipoHabitacion.Visible = false;
-                                labelTpoHabitacion.Visible = false;
-                                lblHotel.Visible = false;
-                                cbxTipoHabitacion.Visible = false;
-                                btnSeleccionarHotel.Visible = false;
-                                comboHoteles.Visible = false;
-                                textBoxHotel.Visible = false;
-                                btnConfirmarPaso.Visible = true;
-                                labelFechaInicio.Visible = false;
-                                labelFechaFin.Visible = false;
-                            
-                    }
-            }
-            else
-            {
                 if (txbRegimen.Text.Trim() == "")
                 {
                     this.Hide();
@@ -502,7 +250,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                     this.Show();
                     if (variantes.eligioRegimen)
                     {
-                        decimal regimen = variantes.regimenElegido;
+                        this.regimen = variantes.regimenElegido;
 
                         string fechaDisponibleHotel = string.Format("SELECT hote_fecha_inicio as FechaInicio, hote_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
                         DataSet dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel);
@@ -513,7 +261,6 @@ namespace FrbaHotel.GenerarModificacionReserva
                         TimeSpan difference = fechaElegidaFin - fechaElegidaInicio;
                         this.difference = difference;
                         this.fechaElegidaInicio = fechaElegidaInicio;
-
                         if (!DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"]) && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaFin"]))
                         {
                             DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
@@ -524,130 +271,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                                 return;
                             }
                         }
-                        
-                        
-                            string queryRegimen = string.Format("SELECT regi_precio_base as Precio FROM CAIA_UNLIMITED.Regimen where regi_codigo = '{0}'", regimen);
-                            string queryEstrella = string.Format("SELECT hote_recarga_estrella as Recarga FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
-                            DataSet dsPrecioRegimen = DataBase.realizarConsulta(queryRegimen);
-                            DataSet dsRecarga = DataBase.realizarConsulta(queryEstrella);
-                            decimal costoTotal = 0;
-                            string msg = "";
-                            HabitacionalitiesCollection lh = new HabitacionalitiesCollection();
-                            string anterior = "No especificado";
-                            string queryNumeroHabitacion;
-                            int j = 1;
 
-                            foreach (string tipitoHabitacion in listBoxTipoHabitacion.Items)
-                            {
-                                if (tipitoHabitacion == anterior)
-                                {
-                                    j++;
-                                }
-                                else
-                                {
-                                    anterior = tipitoHabitacion;
-                                    j = 1;
-                                }
-                                string queryHabitacionDisponible = string.Format("SELECT COUNT(*) FROM (SELECT DISTINCT h.habi_numero,h.habi_piso FROM CAIA_UNLIMITED.Tipo_Habitacion th JOIN CAIA_UNLIMITED.Habitacion h on h.thab_codigo = th.thab_codigo JOIN CAIA_UNLIMITED.Habitacion_X_Reserva hr on (hr.habi_rese_id = h.hote_id) JOIN CAIA_UNLIMITED.Reserva r on (r.rese_codigo = hr.habi_rese_codigo) WHERE h.hote_id = '{0}' AND h.habi_habilitado = 1 AND th.thab_descripcion = '{1}' AND (r.rese_fecha_desde not between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)) AND (dateadd(dd,r.rese_cantidad_noches,r.rese_fecha_desde) not between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120))) t2", this.hotel, tipitoHabitacion, fechaInicio, fechaFin);
-                                SqlConnection connection = DataBase.conectarBD();
-                                SqlCommand commDisponibles = new SqlCommand(queryHabitacionDisponible, connection);
-                                Int32 countDisponibles = Convert.ToInt32(commDisponibles.ExecuteScalar());
-                                connection.Close();
-                                if (countDisponibles < 1 || j>=countDisponibles)
-                                {
-                                    MessageBox.Show("No hay habitaciones disponibles de " + tipitoHabitacion + " en las fechas especificadas");
-                                    return;
-                                }
-                                queryNumeroHabitacion = string.Format("SELECT TOP " + countDisponibles.ToString() + " t2.HabitacionNumero FROM (SELECT DISTINCT h.habi_numero as HabitacionNumero,h.habi_piso as HabitacionPiso FROM CAIA_UNLIMITED.Tipo_Habitacion th JOIN CAIA_UNLIMITED.Habitacion h on h.thab_codigo = th.thab_codigo JOIN CAIA_UNLIMITED.Habitacion_X_Reserva hr on (hr.habi_rese_id = h.hote_id) JOIN CAIA_UNLIMITED.Reserva r on (r.rese_codigo = hr.habi_rese_codigo) WHERE h.hote_id = '{0}' AND h.habi_habilitado = 1 AND th.thab_descripcion = '{1}' AND (r.rese_fecha_desde not between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)) AND (dateadd(dd,r.rese_cantidad_noches,r.rese_fecha_desde) not between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120))) t2", this.hotel, tipitoHabitacion, fechaInicio, fechaFin);
-                                DataSet dsNumeroHabitacion = DataBase.realizarConsulta(queryNumeroHabitacion);
-                                lh.Add(new Habitacionalities { Habitacion = ((decimal)(dsNumeroHabitacion.Tables[0].Rows[j][0])) });
-                                string queryTipitoHabitacion = string.Format("SELECT TOP 1 thab_porcentual as PrecioHabitacion FROM CAIA_UNLIMITED.Tipo_Habitacion where thab_descripcion = '{0}'", tipitoHabitacion);
-                                DataSet dsTipitoHabitacion = DataBase.realizarConsulta(queryTipitoHabitacion);
-                                decimal costoUnaHabitacion = ((decimal)dsTipitoHabitacion.Tables[0].Rows[0]["PrecioHabitacion"] * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
-                                msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de '{0}' \n", costoUnaHabitacion));
-                                costoTotal = costoTotal + costoUnaHabitacion;
-                            }
-
-                            this.lh = lh;
-
-                            MessageBox.Show(msg);
-
-                            if (MessageBox.Show("El costo total de la reserva es de " + costoTotal.ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
-                            {
-                                return;
-                            }
-
-                            cargarComboBoxTipoDocumento();
-                            lblNombre.Visible = true;
-                            textBoxNombre.Visible = true;
-                            lblApellido.Visible = true;
-                            textBoxApellido.Visible = true;
-                            lblMail.Visible = true;
-                            textBoxMail.Visible = true; ;
-                            lblDocumento.Visible = true;
-                            textBoxDocumento.Visible = true;
-                            lblTipoDocumentoCliente.Visible = true;
-                            comboBoxTipoDocumentoCliente.Visible = true;
-                            lblDireccion.Visible = true;
-                            textBoxDireccion.Visible = true;
-                            lblTelefono.Visible = true;
-                            textBoxTelefono.Visible = true;
-                            lblNumeroDireccion.Visible = true;
-                            textBoxNumeroDireccion.Visible = true;
-                            lblCity.Visible = true;
-                            textBoxCiudad.Visible = true;
-                            lblPais.Visible = true;
-                            textBoxPais.Visible = true;
-                            buttonBuscarCliente.Visible = true;
-                            btnCheckear.Visible = false;
-                            btnConfirmarPaso.Enabled = true;
-                            calendarInicio.Visible = false;
-                            calendarFin.Visible = false;
-                            lblFechaFin.Visible = false;
-                            lblFechaFin.Visible = false;
-                            labelRegimen.Visible = false;
-                            txbRegimen.Visible = false;
-                            cbxRegimenEstadia.Visible = false;
-                            btnRegimenSeleccionar.Visible = false;
-                            btnAgregar.Visible = false;
-                            btnQuitar.Visible = false;
-                            listBoxTipoHabitacion.Visible = false;
-                            labelTpoHabitacion.Visible = false;
-                            lblHotel.Visible = false;
-                            cbxTipoHabitacion.Visible = false;
-                            btnSeleccionarHotel.Visible = false;
-                            comboHoteles.Visible = false;
-                            textBoxHotel.Visible = false;
-                            btnConfirmarPaso.Visible = true;
-                            labelFechaInicio.Visible = false;
-                            labelFechaFin.Visible = false;
-                        }
-                    
-                }
-                else
-                {
-                    string fechaDisponibleHotel = string.Format("SELECT hote_fecha_inicio as FechaInicio, hote_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
-                    DataSet dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel);
-                    DateTime fechaElegidaInicio = calendarInicio.SelectionStart;
-                    DateTime fechaElegidaFin = calendarFin.SelectionStart;
-                    string fechaInicio = fechaElegidaInicio.ToString("yyyy-MM-dd HH:mm:ss");
-                    string fechaFin = fechaElegidaFin.ToString("yyyy-MM-dd HH:mm:ss");
-                    TimeSpan difference = fechaElegidaFin - fechaElegidaInicio;
-                    this.difference = difference;
-                    this.fechaElegidaInicio = fechaElegidaInicio;
-
-                    if (!DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"]) && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaFin"]))
-                    {
-                        DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
-                        DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());
-                        if (((DateTime.Compare(fechaElegidaInicio, fechaInicioHotel)) < 0) || ((DateTime.Compare(fechaElegidaFin, fechaFinHotel)) > 0))
-                        {
-                            MessageBox.Show("El Hotel no esta abierto entre las fechas elegidas. Por favor, seleccione otras.");
-                            return;
-                        }
-                    }
-                    
-                    
                         string queryRegimen = string.Format("SELECT regi_precio_base as Precio FROM CAIA_UNLIMITED.Regimen where regi_codigo = '{0}'", regimen);
                         string queryEstrella = string.Format("SELECT hote_recarga_estrella as Recarga FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
                         DataSet dsPrecioRegimen = DataBase.realizarConsulta(queryRegimen);
@@ -670,19 +294,19 @@ namespace FrbaHotel.GenerarModificacionReserva
                                 anterior = tipitoHabitacion;
                                 j = 1;
                             }
-                            string queryHabitacionDisponible = string.Format("SELECT COUNT(*) FROM (SELECT DISTINCT h.habi_numero,h.habi_piso FROM CAIA_UNLIMITED.Tipo_Habitacion th JOIN CAIA_UNLIMITED.Habitacion h on h.thab_codigo = th.thab_codigo JOIN CAIA_UNLIMITED.Habitacion_X_Reserva hr on (hr.habi_rese_id = h.hote_id) JOIN CAIA_UNLIMITED.Reserva r on (r.rese_codigo = hr.habi_rese_codigo) WHERE h.hote_id = '{0}' AND h.habi_habilitado = 1 AND th.thab_descripcion = '{1}' AND (r.rese_fecha_desde not between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)) AND (dateadd(dd,r.rese_cantidad_noches,r.rese_fecha_desde) not between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120))) t2", this.hotel, tipitoHabitacion, fechaInicio, fechaFin);
+                            string queryHabitacionDisponible = string.Format("SELECT COUNT(*) FROM (SELECT h.habi_numero FROM CAIA_UNLIMITED.Tipo_Habitacion th JOIN CAIA_UNLIMITED.Habitacion h on h.thab_codigo = th.thab_codigo WHERE h.hote_id = '{0}' AND h.habi_habilitado = 1 AND th.thab_descripcion = '{1}' AND (SELECT COUNT(*) FROM CAIA_UNLIMITED.Habitacion_X_Reserva hr JOIN CAIA_UNLIMITED.Reserva r on (r.rese_codigo = hr.habi_rese_codigo AND h.hote_id = hr.habi_rese_id AND hr.habi_rese_numero = h.habi_numero) WHERE (r.rese_fecha_desde between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)) AND (dateadd(dd,r.rese_cantidad_noches,r.rese_fecha_desde) between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)))=0) t2", this.hotel, tipitoHabitacion, fechaInicio, fechaFin);
                             SqlConnection connection = DataBase.conectarBD();
                             SqlCommand commDisponibles = new SqlCommand(queryHabitacionDisponible, connection);
                             Int32 countDisponibles = Convert.ToInt32(commDisponibles.ExecuteScalar());
                             connection.Close();
-                            if (countDisponibles < 1 || j>=countDisponibles)
+                            if (countDisponibles < 1 || j > countDisponibles)
                             {
                                 MessageBox.Show("No hay habitaciones disponibles de " + tipitoHabitacion + " en las fechas especificadas");
                                 return;
                             }
-                            queryNumeroHabitacion = string.Format("SELECT TOP " + countDisponibles.ToString() + " t2.HabitacionNumero FROM (SELECT DISTINCT h.habi_numero as HabitacionNumero,h.habi_piso as HabitacionPiso FROM CAIA_UNLIMITED.Tipo_Habitacion th JOIN CAIA_UNLIMITED.Habitacion h on h.thab_codigo = th.thab_codigo JOIN CAIA_UNLIMITED.Habitacion_X_Reserva hr on (hr.habi_rese_id = h.hote_id) JOIN CAIA_UNLIMITED.Reserva r on (r.rese_codigo = hr.habi_rese_codigo) WHERE h.hote_id = '{0}' AND h.habi_habilitado = 1 AND th.thab_descripcion = '{1}' AND (r.rese_fecha_desde not between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)) AND (dateadd(dd,r.rese_cantidad_noches,r.rese_fecha_desde) not between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120))) t2", this.hotel, tipitoHabitacion, fechaInicio, fechaFin);
+                            queryNumeroHabitacion = string.Format("SELECT TOP " + countDisponibles.ToString() + " t2.HabitacionNumero FROM (SELECT DISTINCT h.habi_numero as HabitacionNumero,h.habi_piso as HabitacionPiso FROM CAIA_UNLIMITED.Tipo_Habitacion th JOIN CAIA_UNLIMITED.Habitacion h on h.thab_codigo = th.thab_codigo WHERE h.hote_id = '{0}' AND h.habi_habilitado = 1 AND th.thab_descripcion = '{1}' AND (SELECT COUNT(*) FROM CAIA_UNLIMITED.Habitacion_X_Reserva hr JOIN CAIA_UNLIMITED.Reserva r on (r.rese_codigo = hr.habi_rese_codigo AND h.hote_id = hr.habi_rese_id AND hr.habi_rese_numero = h.habi_numero) WHERE (r.rese_fecha_desde between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)) AND (dateadd(dd,r.rese_cantidad_noches,r.rese_fecha_desde) between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)))=0) t2", this.hotel, tipitoHabitacion, fechaInicio, fechaFin);
                             DataSet dsNumeroHabitacion = DataBase.realizarConsulta(queryNumeroHabitacion);
-                            lh.Add(new Habitacionalities { Habitacion = ((decimal)(dsNumeroHabitacion.Tables[0].Rows[j][0])) });
+                            lh.Add(new Habitacionalities { Habitacion = ((decimal)(dsNumeroHabitacion.Tables[0].Rows[j - 1][0])) });
                             string queryTipitoHabitacion = string.Format("SELECT TOP 1 thab_porcentual as PrecioHabitacion FROM CAIA_UNLIMITED.Tipo_Habitacion where thab_descripcion = '{0}'", tipitoHabitacion);
                             DataSet dsTipitoHabitacion = DataBase.realizarConsulta(queryTipitoHabitacion);
                             decimal costoUnaHabitacion = ((decimal)dsTipitoHabitacion.Tables[0].Rows[0]["PrecioHabitacion"] * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
@@ -725,8 +349,6 @@ namespace FrbaHotel.GenerarModificacionReserva
                         btnConfirmarPaso.Enabled = true;
                         calendarInicio.Visible = false;
                         calendarFin.Visible = false;
-                        lblFechaFin.Visible = false;
-                        lblFechaFin.Visible = false;
                         labelRegimen.Visible = false;
                         txbRegimen.Visible = false;
                         cbxRegimenEstadia.Visible = false;
@@ -743,32 +365,402 @@ namespace FrbaHotel.GenerarModificacionReserva
                         btnConfirmarPaso.Visible = true;
                         labelFechaInicio.Visible = false;
                         labelFechaFin.Visible = false;
-                    
+
+                    }
+                }
+                else
+                {
+                    string fechaDisponibleHotel = string.Format("SELECT hote_fecha_inicio as FechaInicio, hote_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
+                    DataSet dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel);
+                    DateTime fechaElegidaInicio = calendarInicio.SelectionStart;
+                    DateTime fechaElegidaFin = calendarFin.SelectionStart;
+                    string fechaInicio = fechaElegidaInicio.ToString("yyyy-MM-dd HH:mm:ss");
+                    string fechaFin = fechaElegidaFin.ToString("yyyy-MM-dd HH:mm:ss");
+                    TimeSpan difference = fechaElegidaFin - fechaElegidaInicio;
+                    this.difference = difference;
+                    this.fechaElegidaInicio = fechaElegidaInicio;
+
+                    if (!DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"]) && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaFin"]))
+                    {
+                        DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
+                        DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());
+                        if (((DateTime.Compare(fechaElegidaInicio, fechaInicioHotel)) < 0) || ((DateTime.Compare(fechaElegidaFin, fechaFinHotel)) > 0))
+                        {
+                            MessageBox.Show("El Hotel no esta abierto entre las fechas elegidas. Por favor, seleccione otras.");
+                            return;
+                        }
+                    }
+
+
+                    string queryRegimen = string.Format("SELECT regi_precio_base as Precio FROM CAIA_UNLIMITED.Regimen where regi_codigo = '{0}'", regimen);
+                    string queryEstrella = string.Format("SELECT hote_recarga_estrella as Recarga FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
+                    DataSet dsPrecioRegimen = DataBase.realizarConsulta(queryRegimen);
+                    DataSet dsRecarga = DataBase.realizarConsulta(queryEstrella);
+                    decimal costoTotal = 0;
+                    string msg = "";
+                    HabitacionalitiesCollection lh = new HabitacionalitiesCollection();
+                    string anterior = "No especificado";
+                    string queryNumeroHabitacion;
+                    int j = 1;
+
+                    foreach (string tipitoHabitacion in listBoxTipoHabitacion.Items)
+                    {
+                        if (tipitoHabitacion == anterior)
+                        {
+                            j++;
+                        }
+                        else
+                        {
+                            anterior = tipitoHabitacion;
+                            j = 1;
+                        }
+                        string queryHabitacionDisponible = string.Format("SELECT COUNT(*) FROM (SELECT h.habi_numero FROM CAIA_UNLIMITED.Tipo_Habitacion th JOIN CAIA_UNLIMITED.Habitacion h on h.thab_codigo = th.thab_codigo WHERE h.hote_id = '{0}' AND h.habi_habilitado = 1 AND th.thab_descripcion = '{1}' AND (SELECT COUNT(*) FROM CAIA_UNLIMITED.Habitacion_X_Reserva hr JOIN CAIA_UNLIMITED.Reserva r on (r.rese_codigo = hr.habi_rese_codigo AND h.hote_id = hr.habi_rese_id AND hr.habi_rese_numero = h.habi_numero) WHERE (r.rese_fecha_desde between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)) AND (dateadd(dd,r.rese_cantidad_noches,r.rese_fecha_desde) between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)))=0) t2", this.hotel, tipitoHabitacion, fechaInicio, fechaFin);
+                        SqlConnection connection = DataBase.conectarBD();
+                        SqlCommand commDisponibles = new SqlCommand(queryHabitacionDisponible, connection);
+                        Int32 countDisponibles = Convert.ToInt32(commDisponibles.ExecuteScalar());
+                        connection.Close();
+                        if (countDisponibles < 1 || j > countDisponibles)
+                        {
+                            MessageBox.Show("No hay habitaciones disponibles de " + tipitoHabitacion + " en las fechas especificadas");
+                            return;
+                        }
+                        queryNumeroHabitacion = string.Format("SELECT TOP " + countDisponibles.ToString() + " t2.HabitacionNumero FROM (SELECT DISTINCT h.habi_numero as HabitacionNumero,h.habi_piso as HabitacionPiso FROM CAIA_UNLIMITED.Tipo_Habitacion th JOIN CAIA_UNLIMITED.Habitacion h on h.thab_codigo = th.thab_codigo WHERE h.hote_id = '{0}' AND h.habi_habilitado = 1 AND th.thab_descripcion = '{1}' AND (SELECT COUNT(*) FROM CAIA_UNLIMITED.Habitacion_X_Reserva hr JOIN CAIA_UNLIMITED.Reserva r on (r.rese_codigo = hr.habi_rese_codigo AND h.hote_id = hr.habi_rese_id AND hr.habi_rese_numero = h.habi_numero) WHERE (r.rese_fecha_desde between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)) AND (dateadd(dd,r.rese_cantidad_noches,r.rese_fecha_desde) between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)))=0) t2", this.hotel, tipitoHabitacion, fechaInicio, fechaFin);
+                        DataSet dsNumeroHabitacion = DataBase.realizarConsulta(queryNumeroHabitacion);
+                        lh.Add(new Habitacionalities { Habitacion = ((decimal)(dsNumeroHabitacion.Tables[0].Rows[j - 1][0])) });
+                        string queryTipitoHabitacion = string.Format("SELECT TOP 1 thab_porcentual as PrecioHabitacion FROM CAIA_UNLIMITED.Tipo_Habitacion where thab_descripcion = '{0}'", tipitoHabitacion);
+                        DataSet dsTipitoHabitacion = DataBase.realizarConsulta(queryTipitoHabitacion);
+                        decimal costoUnaHabitacion = ((decimal)dsTipitoHabitacion.Tables[0].Rows[0]["PrecioHabitacion"] * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                        msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de '{0}' \n", costoUnaHabitacion));
+                        costoTotal = costoTotal + costoUnaHabitacion;
+                    }
+
+                    this.lh = lh;
+
+                    MessageBox.Show(msg);
+
+                    if (MessageBox.Show("El costo total de la reserva es de " + costoTotal.ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                    {
+                        return;
+                    }
+
+                    cargarComboBoxTipoDocumento();
+                    lblNombre.Visible = true;
+                    textBoxNombre.Visible = true;
+                    lblApellido.Visible = true;
+                    textBoxApellido.Visible = true;
+                    lblMail.Visible = true;
+                    textBoxMail.Visible = true; ;
+                    lblDocumento.Visible = true;
+                    textBoxDocumento.Visible = true;
+                    lblTipoDocumentoCliente.Visible = true;
+                    comboBoxTipoDocumentoCliente.Visible = true;
+                    lblDireccion.Visible = true;
+                    textBoxDireccion.Visible = true;
+                    lblTelefono.Visible = true;
+                    textBoxTelefono.Visible = true;
+                    lblNumeroDireccion.Visible = true;
+                    textBoxNumeroDireccion.Visible = true;
+                    lblCity.Visible = true;
+                    textBoxCiudad.Visible = true;
+                    lblPais.Visible = true;
+                    textBoxPais.Visible = true;
+                    buttonBuscarCliente.Visible = true;
+                    btnCheckear.Visible = false;
+                    btnConfirmarPaso.Enabled = true;
+                    calendarInicio.Visible = false;
+                    calendarFin.Visible = false;
+                    labelRegimen.Visible = false;
+                    txbRegimen.Visible = false;
+                    cbxRegimenEstadia.Visible = false;
+                    btnRegimenSeleccionar.Visible = false;
+                    btnAgregar.Visible = false;
+                    btnQuitar.Visible = false;
+                    listBoxTipoHabitacion.Visible = false;
+                    labelTpoHabitacion.Visible = false;
+                    lblHotel.Visible = false;
+                    cbxTipoHabitacion.Visible = false;
+                    btnSeleccionarHotel.Visible = false;
+                    comboHoteles.Visible = false;
+                    textBoxHotel.Visible = false;
+                    btnConfirmarPaso.Visible = true;
+                    labelFechaInicio.Visible = false;
+                    labelFechaFin.Visible = false;
+
+                }
+            }
+            else
+            {
+                if (txbRegimen.Text.Trim() == "")
+                {
+                    this.Hide();
+                    VariantesRegimenes variantes = new VariantesRegimenes(this.hotel);
+                    variantes.ShowDialog();
+                    this.Show();
+                    if (variantes.eligioRegimen)
+                    {
+                        decimal regimen = variantes.regimenElegido;
+
+                        string fechaDisponibleHotel = string.Format("SELECT hote_fecha_inicio as FechaInicio, hote_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
+                        DataSet dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel);
+                        DateTime fechaElegidaInicio = calendarInicio.SelectionStart;
+                        DateTime fechaElegidaFin = calendarFin.SelectionStart;
+                        string fechaInicio = fechaElegidaInicio.ToString("yyyy-MM-dd HH:mm:ss");
+                        string fechaFin = fechaElegidaFin.ToString("yyyy-MM-dd HH:mm:ss");
+                        TimeSpan difference = fechaElegidaFin - fechaElegidaInicio;
+                        this.difference = difference;
+                        this.fechaElegidaInicio = fechaElegidaInicio;
+
+                        if (!DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"]) && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaFin"]))
+                        {
+                            DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
+                            DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());
+                            if (((DateTime.Compare(fechaElegidaInicio, fechaInicioHotel)) < 0) || ((DateTime.Compare(fechaElegidaFin, fechaFinHotel)) > 0))
+                            {
+                                MessageBox.Show("El Hotel no esta abierto entre las fechas elegidas. Por favor, seleccione otras.");
+                                return;
+                            }
+                        }
+
+
+                        string queryRegimen = string.Format("SELECT regi_precio_base as Precio FROM CAIA_UNLIMITED.Regimen where regi_codigo = '{0}'", regimen);
+                        string queryEstrella = string.Format("SELECT hote_recarga_estrella as Recarga FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
+                        DataSet dsPrecioRegimen = DataBase.realizarConsulta(queryRegimen);
+                        DataSet dsRecarga = DataBase.realizarConsulta(queryEstrella);
+                        decimal costoTotal = 0;
+                        string msg = "";
+                        HabitacionalitiesCollection lh = new HabitacionalitiesCollection();
+                        string anterior = "No especificado";
+                        string queryNumeroHabitacion;
+                        int j = 1;
+
+                        foreach (string tipitoHabitacion in listBoxTipoHabitacion.Items)
+                        {
+                            if (tipitoHabitacion == anterior)
+                            {
+                                j++;
+                            }
+                            else
+                            {
+                                anterior = tipitoHabitacion;
+                                j = 1;
+                            }
+                            string queryHabitacionDisponible = string.Format("SELECT COUNT(*) FROM (SELECT h.habi_numero FROM CAIA_UNLIMITED.Tipo_Habitacion th JOIN CAIA_UNLIMITED.Habitacion h on h.thab_codigo = th.thab_codigo WHERE h.hote_id = '{0}' AND h.habi_habilitado = 1 AND th.thab_descripcion = '{1}' AND (SELECT COUNT(*) FROM CAIA_UNLIMITED.Habitacion_X_Reserva hr JOIN CAIA_UNLIMITED.Reserva r on (r.rese_codigo = hr.habi_rese_codigo AND h.hote_id = hr.habi_rese_id AND hr.habi_rese_numero = h.habi_numero) WHERE (r.rese_fecha_desde between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)) AND (dateadd(dd,r.rese_cantidad_noches,r.rese_fecha_desde) between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)))=0) t2", this.hotel, tipitoHabitacion, fechaInicio, fechaFin);
+                            SqlConnection connection = DataBase.conectarBD();
+                            SqlCommand commDisponibles = new SqlCommand(queryHabitacionDisponible, connection);
+                            Int32 countDisponibles = Convert.ToInt32(commDisponibles.ExecuteScalar());
+                            connection.Close();
+                            if (countDisponibles < 1 || j > countDisponibles)
+                            {
+                                MessageBox.Show("No hay habitaciones disponibles de " + tipitoHabitacion + " en las fechas especificadas");
+                                return;
+                            }
+                            queryNumeroHabitacion = string.Format("SELECT TOP " + countDisponibles.ToString() + " t2.HabitacionNumero FROM (SELECT DISTINCT h.habi_numero as HabitacionNumero,h.habi_piso as HabitacionPiso FROM CAIA_UNLIMITED.Tipo_Habitacion th JOIN CAIA_UNLIMITED.Habitacion h on h.thab_codigo = th.thab_codigo WHERE h.hote_id = '{0}' AND h.habi_habilitado = 1 AND th.thab_descripcion = '{1}' AND (SELECT COUNT(*) FROM CAIA_UNLIMITED.Habitacion_X_Reserva hr JOIN CAIA_UNLIMITED.Reserva r on (r.rese_codigo = hr.habi_rese_codigo AND h.hote_id = hr.habi_rese_id AND hr.habi_rese_numero = h.habi_numero) WHERE (r.rese_fecha_desde between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)) AND (dateadd(dd,r.rese_cantidad_noches,r.rese_fecha_desde) between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)))=0) t2", this.hotel, tipitoHabitacion, fechaInicio, fechaFin);
+                            DataSet dsNumeroHabitacion = DataBase.realizarConsulta(queryNumeroHabitacion);
+                            lh.Add(new Habitacionalities { Habitacion = ((decimal)(dsNumeroHabitacion.Tables[0].Rows[j - 1][0])) });
+                            string queryTipitoHabitacion = string.Format("SELECT TOP 1 thab_porcentual as PrecioHabitacion FROM CAIA_UNLIMITED.Tipo_Habitacion where thab_descripcion = '{0}'", tipitoHabitacion);
+                            DataSet dsTipitoHabitacion = DataBase.realizarConsulta(queryTipitoHabitacion);
+                            decimal costoUnaHabitacion = ((decimal)dsTipitoHabitacion.Tables[0].Rows[0]["PrecioHabitacion"] * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                            msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de '{0}' \n", costoUnaHabitacion));
+                            costoTotal = costoTotal + costoUnaHabitacion;
+                        }
+
+                        this.lh = lh;
+
+                        MessageBox.Show(msg);
+
+                        if (MessageBox.Show("El costo total de la reserva es de " + costoTotal.ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                        {
+                            return;
+                        }
+
+                        cargarComboBoxTipoDocumento();
+                        lblNombre.Visible = true;
+                        textBoxNombre.Visible = true;
+                        lblApellido.Visible = true;
+                        textBoxApellido.Visible = true;
+                        lblMail.Visible = true;
+                        textBoxMail.Visible = true; ;
+                        lblDocumento.Visible = true;
+                        textBoxDocumento.Visible = true;
+                        lblTipoDocumentoCliente.Visible = true;
+                        comboBoxTipoDocumentoCliente.Visible = true;
+                        lblDireccion.Visible = true;
+                        textBoxDireccion.Visible = true;
+                        lblTelefono.Visible = true;
+                        textBoxTelefono.Visible = true;
+                        lblNumeroDireccion.Visible = true;
+                        textBoxNumeroDireccion.Visible = true;
+                        lblCity.Visible = true;
+                        textBoxCiudad.Visible = true;
+                        lblPais.Visible = true;
+                        textBoxPais.Visible = true;
+                        buttonBuscarCliente.Visible = true;
+                        btnCheckear.Visible = false;
+                        btnConfirmarPaso.Enabled = true;
+                        calendarInicio.Visible = false;
+                        calendarFin.Visible = false;
+                        labelRegimen.Visible = false;
+                        txbRegimen.Visible = false;
+                        cbxRegimenEstadia.Visible = false;
+                        btnRegimenSeleccionar.Visible = false;
+                        btnAgregar.Visible = false;
+                        btnQuitar.Visible = false;
+                        listBoxTipoHabitacion.Visible = false;
+                        labelTpoHabitacion.Visible = false;
+                        lblHotel.Visible = false;
+                        cbxTipoHabitacion.Visible = false;
+                        btnSeleccionarHotel.Visible = false;
+                        comboHoteles.Visible = false;
+                        textBoxHotel.Visible = false;
+                        btnConfirmarPaso.Visible = true;
+                        labelFechaInicio.Visible = false;
+                        labelFechaFin.Visible = false;
+                    }
+
+                }
+                else
+                {
+                    string fechaDisponibleHotel = string.Format("SELECT hote_fecha_inicio as FechaInicio, hote_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
+                    DataSet dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel);
+                    DateTime fechaElegidaInicio = calendarInicio.SelectionStart;
+                    DateTime fechaElegidaFin = calendarFin.SelectionStart;
+                    string fechaInicio = fechaElegidaInicio.ToString("yyyy-MM-dd HH:mm:ss");
+                    string fechaFin = fechaElegidaFin.ToString("yyyy-MM-dd HH:mm:ss");
+                    TimeSpan difference = fechaElegidaFin - fechaElegidaInicio;
+                    this.difference = difference;
+                    this.fechaElegidaInicio = fechaElegidaInicio;
+
+                    if (!DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"]) && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaFin"]))
+                    {
+                        DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
+                        DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());
+                        if (((DateTime.Compare(fechaElegidaInicio, fechaInicioHotel)) < 0) || ((DateTime.Compare(fechaElegidaFin, fechaFinHotel)) > 0))
+                        {
+                            MessageBox.Show("El Hotel no esta abierto entre las fechas elegidas. Por favor, seleccione otras.");
+                            return;
+                        }
+                    }
+
+
+                    string queryRegimen = string.Format("SELECT regi_precio_base as Precio FROM CAIA_UNLIMITED.Regimen where regi_codigo = '{0}'", regimen);
+                    string queryEstrella = string.Format("SELECT hote_recarga_estrella as Recarga FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
+                    DataSet dsPrecioRegimen = DataBase.realizarConsulta(queryRegimen);
+                    DataSet dsRecarga = DataBase.realizarConsulta(queryEstrella);
+                    decimal costoTotal = 0;
+                    string msg = "";
+                    HabitacionalitiesCollection lh = new HabitacionalitiesCollection();
+                    string anterior = "No especificado";
+                    string queryNumeroHabitacion;
+                    int j = 1;
+
+                    foreach (string tipitoHabitacion in listBoxTipoHabitacion.Items)
+                    {
+                        if (tipitoHabitacion == anterior)
+                        {
+                            j++;
+                        }
+                        else
+                        {
+                            anterior = tipitoHabitacion;
+                            j = 1;
+                        }
+                        string queryHabitacionDisponible = string.Format("SELECT COUNT(*) FROM (SELECT h.habi_numero FROM CAIA_UNLIMITED.Tipo_Habitacion th JOIN CAIA_UNLIMITED.Habitacion h on h.thab_codigo = th.thab_codigo WHERE h.hote_id = '{0}' AND h.habi_habilitado = 1 AND th.thab_descripcion = '{1}' AND (SELECT COUNT(*) FROM CAIA_UNLIMITED.Habitacion_X_Reserva hr JOIN CAIA_UNLIMITED.Reserva r on (r.rese_codigo = hr.habi_rese_codigo AND h.hote_id = hr.habi_rese_id AND hr.habi_rese_numero = h.habi_numero) WHERE (r.rese_fecha_desde between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)) AND (dateadd(dd,r.rese_cantidad_noches,r.rese_fecha_desde) between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)))=0) t2", this.hotel, tipitoHabitacion, fechaInicio, fechaFin);
+                        SqlConnection connection = DataBase.conectarBD();
+                        SqlCommand commDisponibles = new SqlCommand(queryHabitacionDisponible, connection);
+                        Int32 countDisponibles = Convert.ToInt32(commDisponibles.ExecuteScalar());
+                        connection.Close();
+                        if (countDisponibles < 1 || j > countDisponibles)
+                        {
+                            MessageBox.Show("No hay habitaciones disponibles de " + tipitoHabitacion + " en las fechas especificadas");
+                            return;
+                        }
+                        queryNumeroHabitacion = string.Format("SELECT TOP " + countDisponibles.ToString() + " t2.HabitacionNumero FROM (SELECT DISTINCT h.habi_numero as HabitacionNumero,h.habi_piso as HabitacionPiso FROM CAIA_UNLIMITED.Tipo_Habitacion th JOIN CAIA_UNLIMITED.Habitacion h on h.thab_codigo = th.thab_codigo WHERE h.hote_id = '{0}' AND h.habi_habilitado = 1 AND th.thab_descripcion = '{1}' AND (SELECT COUNT(*) FROM CAIA_UNLIMITED.Habitacion_X_Reserva hr JOIN CAIA_UNLIMITED.Reserva r on (r.rese_codigo = hr.habi_rese_codigo AND h.hote_id = hr.habi_rese_id AND hr.habi_rese_numero = h.habi_numero) WHERE (r.rese_fecha_desde between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)) AND (dateadd(dd,r.rese_cantidad_noches,r.rese_fecha_desde) between CONVERT(DATETIME,'{2}',120) AND CONVERT(DATETIME,'{3}',120)))=0) t2", this.hotel, tipitoHabitacion, fechaInicio, fechaFin);
+                        DataSet dsNumeroHabitacion = DataBase.realizarConsulta(queryNumeroHabitacion);
+                        lh.Add(new Habitacionalities { Habitacion = ((decimal)(dsNumeroHabitacion.Tables[0].Rows[j - 1][0])) });
+                        string queryTipitoHabitacion = string.Format("SELECT TOP 1 thab_porcentual as PrecioHabitacion FROM CAIA_UNLIMITED.Tipo_Habitacion where thab_descripcion = '{0}'", tipitoHabitacion);
+                        DataSet dsTipitoHabitacion = DataBase.realizarConsulta(queryTipitoHabitacion);
+                        decimal costoUnaHabitacion = ((decimal)dsTipitoHabitacion.Tables[0].Rows[0]["PrecioHabitacion"] * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                        msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de '{0}' \n", costoUnaHabitacion));
+                        costoTotal = costoTotal + costoUnaHabitacion;
+                    }
+
+                    this.lh = lh;
+
+                    MessageBox.Show(msg);
+
+                    if (MessageBox.Show("El costo total de la reserva es de " + costoTotal.ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                    {
+                        return;
+                    }
+
+                    cargarComboBoxTipoDocumento();
+                    lblNombre.Visible = true;
+                    textBoxNombre.Visible = true;
+                    lblApellido.Visible = true;
+                    textBoxApellido.Visible = true;
+                    lblMail.Visible = true;
+                    textBoxMail.Visible = true; ;
+                    lblDocumento.Visible = true;
+                    textBoxDocumento.Visible = true;
+                    lblTipoDocumentoCliente.Visible = true;
+                    comboBoxTipoDocumentoCliente.Visible = true;
+                    lblDireccion.Visible = true;
+                    textBoxDireccion.Visible = true;
+                    lblTelefono.Visible = true;
+                    textBoxTelefono.Visible = true;
+                    lblNumeroDireccion.Visible = true;
+                    textBoxNumeroDireccion.Visible = true;
+                    lblCity.Visible = true;
+                    textBoxCiudad.Visible = true;
+                    lblPais.Visible = true;
+                    textBoxPais.Visible = true;
+                    buttonBuscarCliente.Visible = true;
+                    btnCheckear.Visible = false;
+                    btnConfirmarPaso.Enabled = true;
+                    calendarInicio.Visible = false;
+                    calendarFin.Visible = false;
+                    labelRegimen.Visible = false;
+                    txbRegimen.Visible = false;
+                    cbxRegimenEstadia.Visible = false;
+                    btnRegimenSeleccionar.Visible = false;
+                    btnAgregar.Visible = false;
+                    btnQuitar.Visible = false;
+                    listBoxTipoHabitacion.Visible = false;
+                    labelTpoHabitacion.Visible = false;
+                    lblHotel.Visible = false;
+                    cbxTipoHabitacion.Visible = false;
+                    btnSeleccionarHotel.Visible = false;
+                    comboHoteles.Visible = false;
+                    textBoxHotel.Visible = false;
+                    btnConfirmarPaso.Visible = true;
+                    labelFechaInicio.Visible = false;
+                    labelFechaFin.Visible = false;
+
                 }
             }
 
 
-            
+
         }
 
         private void btnSeleccionarHotel_Click(object sender, EventArgs e)
         {
             textBoxHotel.Text = comboHoteles.SelectedItem.ToString();
-           for(int i=0; i<this.dsHoteles.Tables[0].Rows.Count;i++)
-           {
-             if (((string)(this.dsHoteles.Tables[0].Rows[i]["Hotel"])) == comboHoteles.SelectedItem.ToString())
-             {
-                  this.hotel = (decimal)this.dsHoteles.Tables[0].Rows[i]["idHotel"];
+            for (int i = 0; i < this.dsHoteles.Tables[0].Rows.Count; i++)
+            {
+                if (((string)(this.dsHoteles.Tables[0].Rows[i]["Hotel"])) == comboHoteles.SelectedItem.ToString())
+                {
+                    this.hotel = (decimal)this.dsHoteles.Tables[0].Rows[i]["idHotel"];
                 }
             }
 
-           listBoxTipoHabitacion.Items.Clear();
-           cbxRegimenEstadia.Text = "";         
-           cbxTipoHabitacion.Text = "";
-           cbxRegimenEstadia.Items.Clear();
-           cbxTipoHabitacion.Items.Clear();
-           cargarComboBoxRegimenes();
-           cargarComboBoxTipoHabitacion();
+            listBoxTipoHabitacion.Items.Clear();
+            cbxRegimenEstadia.Text = "";
+            cbxTipoHabitacion.Text = "";
+            cbxRegimenEstadia.Items.Clear();
+            cbxTipoHabitacion.Items.Clear();
+            cargarComboBoxRegimenes();
+            cargarComboBoxTipoHabitacion();
         }
 
         private void textBoxPais_TextChanged(object sender, EventArgs e)
@@ -810,7 +802,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                     insertCommand.Parameters.AddWithValue("@usuarioCreacion", this.username);
                 }
                 insertCommand.Parameters.AddWithValue("@hotel", this.hotel);
-                insertCommand.Parameters.AddWithValue("@fechaRealizacion", DateTime.Now);
+                insertCommand.Parameters.AddWithValue("@fechaRealizacion", DataBase.fechaSistema());
                 insertCommand.Parameters.AddWithValue("@fechaDesde", fechaElegidaInicio);
                 insertCommand.Parameters.AddWithValue("@cantidadNoches", (decimal)difference.Days);
                 insertCommand.Parameters.AddWithValue("@regimen", regimen);
@@ -904,7 +896,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                         insertCommand.Parameters.AddWithValue("@usuarioCreacion", this.username);
                     }
                     insertCommand.Parameters.AddWithValue("@hotel", this.hotel);
-                    insertCommand.Parameters.AddWithValue("@fechaRealizacion", DateTime.Now);
+                    insertCommand.Parameters.AddWithValue("@fechaRealizacion", DataBase.fechaSistema());
                     insertCommand.Parameters.AddWithValue("@fechaDesde", fechaElegidaInicio);
                     insertCommand.Parameters.AddWithValue("@cantidadNoches", (decimal)difference.Days);
                     insertCommand.Parameters.AddWithValue("@regimen", regimen);

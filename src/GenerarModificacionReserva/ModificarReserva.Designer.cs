@@ -81,8 +81,6 @@
             this.lblHotel = new System.Windows.Forms.Label();
             this.lblerrorfechas = new System.Windows.Forms.Label();
             this.lblErrorPaso1 = new System.Windows.Forms.Label();
-            this.lblFechaFin = new System.Windows.Forms.Label();
-            this.lblFechaInicio = new System.Windows.Forms.Label();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnCheckear = new System.Windows.Forms.Button();
             this.lblResumenReserva = new System.Windows.Forms.Label();
@@ -168,8 +166,6 @@
             this.groupBox1.Controls.Add(this.lblHotel);
             this.groupBox1.Controls.Add(this.lblerrorfechas);
             this.groupBox1.Controls.Add(this.lblErrorPaso1);
-            this.groupBox1.Controls.Add(this.lblFechaFin);
-            this.groupBox1.Controls.Add(this.lblFechaInicio);
             this.groupBox1.Controls.Add(this.btnLimpiar);
             this.groupBox1.Controls.Add(this.btnCheckear);
             this.groupBox1.Controls.Add(this.lblResumenReserva);
@@ -724,24 +720,6 @@
             this.lblErrorPaso1.Text = "*Ya hay una reserva dentro de los dias que ha seleccionado";
             this.lblErrorPaso1.Visible = false;
             // 
-            // lblFechaFin
-            // 
-            this.lblFechaFin.AutoSize = true;
-            this.lblFechaFin.Location = new System.Drawing.Point(591, 500);
-            this.lblFechaFin.Name = "lblFechaFin";
-            this.lblFechaFin.Size = new System.Drawing.Size(10, 13);
-            this.lblFechaFin.TabIndex = 350;
-            this.lblFechaFin.Text = " ";
-            // 
-            // lblFechaInicio
-            // 
-            this.lblFechaInicio.AutoSize = true;
-            this.lblFechaInicio.Location = new System.Drawing.Point(278, 502);
-            this.lblFechaInicio.Name = "lblFechaInicio";
-            this.lblFechaInicio.Size = new System.Drawing.Size(10, 13);
-            this.lblFechaInicio.TabIndex = 349;
-            this.lblFechaInicio.Text = " ";
-            // 
             // btnLimpiar
             // 
             this.btnLimpiar.BackColor = System.Drawing.Color.Yellow;
@@ -970,8 +948,6 @@
         private System.Windows.Forms.Label lblHotel;
         private System.Windows.Forms.Label lblerrorfechas;
         private System.Windows.Forms.Label lblErrorPaso1;
-        private System.Windows.Forms.Label lblFechaFin;
-        private System.Windows.Forms.Label lblFechaInicio;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnCheckear;
         private System.Windows.Forms.Label lblResumenReserva;

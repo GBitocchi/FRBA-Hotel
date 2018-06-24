@@ -15,7 +15,7 @@ namespace FrbaHotel
     {
         public static SqlConnection conectarBD()
         {
-            SqlConnection Con = new SqlConnection(@"Data Source=localhost\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
+            SqlConnection Con = new SqlConnection(ConfigurationManager.AppSettings["conexionSQL"]);
 
             Con.Open();
 

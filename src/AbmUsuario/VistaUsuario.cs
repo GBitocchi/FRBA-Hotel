@@ -12,6 +12,7 @@ using System.Security.Cryptography;
 using FrbaHotel;
 using System.Globalization;
 using System.Web;
+using FrbaHotel.Menu_Sistema;
 
 namespace FrbaHotel.AbmUsuario
 {
@@ -114,7 +115,6 @@ namespace FrbaHotel.AbmUsuario
                 comboBoxHoteles.SelectedIndex = 0;
             }
         }
-        
         public VistaUsuario(decimal _idHotel)
         {
             InitializeComponent();
