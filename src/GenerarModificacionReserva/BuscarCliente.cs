@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -72,9 +72,16 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void btnMail_Click(object sender, EventArgs e)
         {
-            string queryCliente = string.Format("SELECT hues_mail as Mail, hues_nombre as Nombre, hues_apellido as Apellido, hues_documento as Documento, hues_nacionalidad as Nacionalidad, hues_documento_tipo as TipoDocumento, hues_habilitado as Estado FROM CAIA_UNLIMITED.Huesped where hues_mail = '{0}'",textBoxMail.Text.Trim());
-            DataSet dsClientes = DataBase.realizarConsulta(queryCliente);
-            dgvBuscarClientes.DataSource = dsClientes.Tables[0];
+            if (textBoxMail.Text.Trim() != "")
+            {
+                string queryCliente = string.Format("SELECT hues_mail as Mail, hues_nombre as Nombre, hues_apellido as Apellido, hues_documento as Documento, hues_nacionalidad as Nacionalidad, hues_documento_tipo as TipoDocumento, hues_habilitado as Estado FROM CAIA_UNLIMITED.Huesped where hues_mail = '{0}'", textBoxMail.Text.Trim());
+                DataSet dsClientes = DataBase.realizarConsulta(queryCliente);
+                dgvBuscarClientes.DataSource = dsClientes.Tables[0];
+            }
+            else
+            {
+                MessageBox.Show("Tiene que insertar un mail para filtrar con ellos.");
+            }
         }
 
         private void comboBoxTipoDocumento_SelectedIndexChanged(object sender, EventArgs e)
@@ -86,9 +93,17 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void btnSeleccionarNumeroIdentificacion_Click(object sender, EventArgs e)
         {
-            string queryCliente = string.Format("SELECT hues_mail as Mail, hues_nombre as Nombre, hues_apellido as Apellido, hues_documento as Documento, hues_nacionalidad as Nacionalidad, hues_documento_tipo as TipoDocumento, hues_habilitado as Estado FROM CAIA_UNLIMITED.Huesped where hues_documento = '{0}'", textBoxNumeroDocumento.Text.Trim());
-            DataSet dsClientes = DataBase.realizarConsulta(queryCliente);
-            dgvBuscarClientes.DataSource = dsClientes.Tables[0];
-        }
+            if (textBoxNumeroDocumento.Text.Trim() != "")
+            {
+                string queryCliente = string.Format("SELECT hues_mail as Mail, hues_nombre as Nombre, hues_apellido as Apellido, hues_documento as Documento, hues_nacionalidad as Nacionalidad, hues_documento_tipo as TipoDocumento, hues_habilitado as Estado FROM CAIA_UNLIMITED.Huesped where hues_documento = '{0}'", textBoxNumeroDocumento.Text.Trim());
+                DataSet dsClientes = DataBase.realizarConsulta(queryCliente);
+                dgvBuscarClientes.DataSource = dsClientes.Tables[0];
+            }
+            else
+            {
+                MessageBox.Show("Tiene que insertar un numero de identificacion para filtrar con ellos.");
+            }
+       }
     }
 }
+
