@@ -16,7 +16,7 @@ namespace FrbaHotel.AbmFacturacion
         public EstadiasAFacturar(string idHotel)
         {
             InitializeComponent();
-            dgEstadias.DataSource = DataBase.realizarConsulta("select R.rese_codigo as 'Reserva', esta_codigo as 'Codigo', esta_fecha_inicio as 'Fecha de inicio', DATEDIFF(day, esta_fecha_inicio, esta_fecha_fin) as 'Cantidad de noches', habi_rese_id as 'Hotel' from CAIA_UNLIMITED.Estadia E join CAIA_UNLIMITED.Reserva R on (E.rese_codigo = R.rese_codigo) join CAIA_UNLIMITED.Habitacion_X_Reserva on (R.rese_codigo = habi_rese_codigo) where DATEDIFF(day, esta_fecha_fin, convert(datetime, '" + DataBase.fechaSistema().ToString("yyyy-MM-dd hh:mm:ss") + "', 120)) >= 0 and habi_rese_id =" + idHotel + " order by esta_fecha_inicio").Tables[0];
+            dgEstadias.DataSource = DataBase.realizarConsulta("select R.rese_codigo as 'Reserva', esta_codigo as 'Codigo', esta_fecha_inicio as 'Fecha de inicio', DATEDIFF(day, esta_fecha_inicio, esta_fecha_fin) as 'Cantidad de noches', habi_rese_id as 'Hotel' from CAIA_UNLIMITED.Estadia E join CAIA_UNLIMITED.Reserva R on (E.rese_codigo = R.rese_codigo) join CAIA_UNLIMITED.Habitacion_X_Reserva on (R.rese_codigo = habi_rese_codigo) where esta_fecha_fin is not null and habi_rese_id =" + idHotel + " order by esta_fecha_inicio").Tables[0];
         }
 
         private void btnFacturar_Click(object sender, EventArgs e)
