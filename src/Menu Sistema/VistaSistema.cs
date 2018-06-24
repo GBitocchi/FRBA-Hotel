@@ -240,7 +240,6 @@ namespace FrbaHotel.Menu_Sistema
             }
             else
             {
-                this.Hide();
                 MessageBox.Show("No hay datos suficientes para realizar el listado", "Datos insuficientes", MessageBoxButtons.OK);
             }
         }
@@ -254,7 +253,6 @@ namespace FrbaHotel.Menu_Sistema
             }
             else
             {
-                this.Hide();
                 MessageBox.Show("No hay datos suficientes para realizar el listado", "Datos insuficientes", MessageBoxButtons.OK);
             }
         }
@@ -268,7 +266,6 @@ namespace FrbaHotel.Menu_Sistema
             }
             else
             {
-                this.Hide();
                 MessageBox.Show("No hay datos suficientes para realizar el listado", "Datos insuficientes", MessageBoxButtons.OK);
             }
             
