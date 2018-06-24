@@ -25,13 +25,15 @@ namespace FrbaHotel.AbmHabitacion
             dgHabitaciones.DataSource = ds_habitaciones.Tables[0];
         }
 
+
+
         private void ActualizarBD() 
         {
             try
             {
                 ejecutarStoredProcedure();
                 MessageBox.Show("Habitacion modificada correctamente.", "Modificacion exitosa", MessageBoxButtons.OK);
-                this.Hide();
+                limpiarCampos();
             }
             catch
             {
@@ -39,17 +41,25 @@ namespace FrbaHotel.AbmHabitacion
             }
         }
 
+        private void limpiarCampos()
+        {
+            txtNroHabitacion.Clear();
+            txtPiso.Clear();
+            txtUbicacion.Clear();
+            txtDescripcion.Clear();
+        }
+
         private void ejecutarStoredProcedure()
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand modificarHabitacion = new SqlCommand("sp_ModificarHabitacion", db);
+            SqlCommand modificarHabitacion = new SqlCommand("CAIA_UNLIMITED.sp_ModificarHabitacion", db);
             modificarHabitacion.CommandType = CommandType.StoredProcedure;
-            modificarHabitacion.Parameters.AddWithValue("@numero_habitacion", txtNroHabitacion.Text.Trim());
-            modificarHabitacion.Parameters.AddWithValue("@piso", txtPiso.Text.Trim());
+            modificarHabitacion.Parameters.AddWithValue("@numero_habitacion", Convert.ToInt32(txtNroHabitacion.Text.Trim()));
+            modificarHabitacion.Parameters.AddWithValue("@piso", Convert.ToInt32(txtPiso.Text.Trim()));
             modificarHabitacion.Parameters.AddWithValue("@frente", txtUbicacion.Text.Trim());
             modificarHabitacion.Parameters.AddWithValue("@descripcion", txtDescripcion.Text.Trim());
             modificarHabitacion.Parameters.AddWithValue("@viejo_numero", numeroAnterior);
-            modificarHabitacion.Parameters.AddWithValue("@idHotel", hotel_id);
+            modificarHabitacion.Parameters.AddWithValue("@idHotel", Convert.ToInt32(hotel_id));
             modificarHabitacion.ExecuteNonQuery();
             db.Close();
         }

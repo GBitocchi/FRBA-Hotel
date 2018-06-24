@@ -233,31 +233,71 @@ namespace FrbaHotel.Menu_Sistema
 
         private void masTiempoFueraDeServiicoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new MasMantenimiento().ShowDialog();
-            this.Show();
+            if (DataBase.realizarConsulta("select * from CAIA_UNLIMITED.vw_MasMantenimiento").Tables[0].Rows.Count != 0)
+            {
+                new MasMantenimiento().ShowDialog();
+                this.Show();
+            }
+            else
+            {
+                this.Hide();
+                MessageBox.Show("No hay datos suficientes para realizar el listado", "Datos insuficientes", MessageBoxButtons.OK);
+            }
         }
 
         private void masReservasCanceladasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new MasCanceladas().ShowDialog();
-            this.Show();
+            if (DataBase.realizarConsulta("select * from CAIA_UNLIMITED.vw_MasCancelada").Tables[0].Rows.Count != 0)
+            {
+                new MasCanceladas().ShowDialog();
+                this.Show();
+            }
+            else
+            {
+                this.Hide();
+                MessageBox.Show("No hay datos suficientes para realizar el listado", "Datos insuficientes", MessageBoxButtons.OK);
+            }
         }
 
         private void habitacionesMasOcupadasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new MasOcupadas().ShowDialog();
-            this.Show();
+            if (DataBase.realizarConsulta("select * from CAIA_UNLIMITED.vw_MasOcupada").Tables[0].Rows.Count != 0)
+            {
+                new MasOcupadas().ShowDialog();
+                this.Show();
+            }
+            else
+            {
+                this.Hide();
+                MessageBox.Show("No hay datos suficientes para realizar el listado", "Datos insuficientes", MessageBoxButtons.OK);
+            }
+            
         }
 
         private void clientesConMasPuntosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new MasPuntosCliente().ShowDialog();
-            this.Show();
+            if (DataBase.realizarConsulta("select * from CAIA_UNLIMITED.vw_MasPuntos").Tables[0].Rows.Count != 0)
+            {
+                new MasPuntosCliente().ShowDialog();
+                this.Show();
+            }
+            else
+            {
+                MessageBox.Show("No hay datos suficientes para realizar el listado", "Datos insuficientes", MessageBoxButtons.OK);
+            }
         }
 
         private void mayorFacturacionDeConsumiblesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            if (DataBase.realizarConsulta("select * from CAIA_UNLIMITED.vw_MasFacturacion").Tables[0].Rows.Count != 0)
+            {
+                new MayorFacturacionConsumibles().ShowDialog();
+                this.Show();
+            }
+            else
+            {
+                MessageBox.Show("No hay datos suficientes para realizar el listado", "Datos insuficientes", MessageBoxButtons.OK);
+            }
         }
 
         private void VistaSistema_Load(object sender, EventArgs e)

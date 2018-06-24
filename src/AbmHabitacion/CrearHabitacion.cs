@@ -82,14 +82,14 @@ namespace FrbaHotel.AbmHabitacion
         private void ejecutarStoredProcedure()
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand crearHabitacion = new SqlCommand("sp_CrearHabitacion", db);
+            SqlCommand crearHabitacion = new SqlCommand("CAIA_UNLIMITED.sp_CrearHabitacion", db);
             crearHabitacion.CommandType = CommandType.StoredProcedure;
-            crearHabitacion.Parameters.AddWithValue("@numero_habitacion", txtNro_habitacion.Text.Trim());
-            crearHabitacion.Parameters.AddWithValue("@piso", txtPiso.Text.Trim());
+            crearHabitacion.Parameters.AddWithValue("@numero_habitacion", Convert.ToInt32(txtNro_habitacion.Text.Trim()));
+            crearHabitacion.Parameters.AddWithValue("@piso", Convert.ToInt32(txtPiso.Text.Trim()));
             crearHabitacion.Parameters.AddWithValue("@frente", txtUbicacion.Text.Trim());
             crearHabitacion.Parameters.AddWithValue("@descripcion", txtDescripcion.Text.Trim());
-            crearHabitacion.Parameters.AddWithValue("@tipo", obtenerCodigo());
-            crearHabitacion.Parameters.AddWithValue("@idHotel", hotel_id);
+            crearHabitacion.Parameters.AddWithValue("@tipo", Convert.ToInt32(obtenerCodigo()));
+            crearHabitacion.Parameters.AddWithValue("@idHotel", Convert.ToInt32(hotel_id));
             crearHabitacion.ExecuteNonQuery();
             db.Close();
         }
