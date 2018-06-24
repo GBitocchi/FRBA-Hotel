@@ -19,6 +19,8 @@ namespace FrbaHotel.RegistrarEstadia
         {
             InitializeComponent();
             codigoReserva = cod;
+
+            //txtFecha.Text = Convert.ToString(DataBase.fechaSistema());
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -129,7 +131,7 @@ namespace FrbaHotel.RegistrarEstadia
                                     string fechaIngresoReserva = fecha.Rows[0][0].ToString();
                                     //
                                     //UTILIIZAR FECHA ACTUAL
-                                    int resultado = DateTime.Compare(DateTime.Parse(txtFecha.Text), DateTime.Parse(fechaIngresoReserva));
+                                   // int resultado = DateTime.Compare(DateTime.Parse(txtFecha.Text), DateTime.Parse(fechaIngresoReserva));
                                     if (DateTime.Parse(fechaIngresoReserva) == DateTime.Parse(txtFecha.Text.Trim()) )
                                     {
                                         ejecutarStoredProcedureRegistrarCheckIn();
@@ -324,7 +326,6 @@ namespace FrbaHotel.RegistrarEstadia
             string fechaEgresoBuscada = String.Format("select esta_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Estadia where rese_codigo='{0}'", codigoReserva);
             DataSet fecha=DataBase.realizarConsulta(fechaEgresoBuscada);
             
-            //ARREGLAR
             if ( DBNull.Value.Equals(fecha.Tables[0].Rows[0]["FechaFin"]))
             {
                

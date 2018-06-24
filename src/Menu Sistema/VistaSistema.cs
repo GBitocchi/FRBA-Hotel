@@ -15,7 +15,12 @@ using FrbaHotel.AbmHotel;
 using FrbaHotel.AbmHabitacion;
 using FrbaHotel.AbmFacturacion;
 using FrbaHotel.ListadoEstadistico;
+using FrbaHotel.CancelarReserva;
+using FrbaHotel.AbmCliente;
+using FrbaHotel.RegistrarConsumible;
+using FrbaHotel.RegistrarEstadia;
 using System.Data.SqlClient;
+
 
 namespace FrbaHotel.Menu_Sistema
 {
@@ -233,6 +238,47 @@ namespace FrbaHotel.Menu_Sistema
         private void mayorFacturacionDeConsumiblesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new MayorFacturacionConsumibles().ShowDialog();
+            this.Show();
+        }
+
+        private void VistaSistema_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cancelarReservaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new MenuCancelarReserva().ShowDialog();
+            this.Show();
+        }
+
+        private void crearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Crear().ShowDialog();
+            this.Show();
+        }
+
+        private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new MenuModificarYBaja().ShowDialog();
+            this.Show();
+        }
+
+        private void darDeBajaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new MenuModificarYBaja().ShowDialog();
+            this.Show();
+        }
+
+        private void registrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new MenuRegistrarEstadia().ShowDialog();
+            this.Show();
+        }
+
+        private void registrarConsumiblesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new MenuRegistrarConsumible().ShowDialog();
             this.Show();
         }
     }

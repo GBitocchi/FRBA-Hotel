@@ -60,6 +60,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
+            this.huespedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.crearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.darDeBajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.estadiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registrarConsumiblesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -77,13 +84,15 @@
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.estadiaToolStripMenuItem,
             this.stripReserva,
             this.stripUsuario,
             this.stripRol,
             this.stripHotel,
             this.stripHabitacion,
             this.stripFacturar,
-            this.stripListado});
+            this.stripListado,
+            this.huespedToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1179, 24);
@@ -121,6 +130,7 @@
             this.cancelarReservaToolStripMenuItem.Name = "cancelarReservaToolStripMenuItem";
             this.cancelarReservaToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.cancelarReservaToolStripMenuItem.Text = "Cancelar Reserva";
+            this.cancelarReservaToolStripMenuItem.Click += new System.EventHandler(this.cancelarReservaToolStripMenuItem_Click);
             // 
             // stripUsuario
             // 
@@ -244,6 +254,8 @@
             // 
             // stripFacturar
             // 
+            this.stripFacturar.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.registrarConsumiblesToolStripMenuItem});
             this.stripFacturar.Name = "stripFacturar";
             this.stripFacturar.Size = new System.Drawing.Size(62, 20);
             this.stripFacturar.Text = "Facturar";
@@ -332,6 +344,61 @@
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
+            // huespedToolStripMenuItem
+            // 
+            this.huespedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.crearToolStripMenuItem,
+            this.modificarToolStripMenuItem,
+            this.darDeBajaToolStripMenuItem});
+            this.huespedToolStripMenuItem.Name = "huespedToolStripMenuItem";
+            this.huespedToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.huespedToolStripMenuItem.Text = "Huesped";
+            this.huespedToolStripMenuItem.Visible = false;
+            // 
+            // crearToolStripMenuItem
+            // 
+            this.crearToolStripMenuItem.Name = "crearToolStripMenuItem";
+            this.crearToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.crearToolStripMenuItem.Text = "Crear";
+            this.crearToolStripMenuItem.Click += new System.EventHandler(this.crearToolStripMenuItem_Click);
+            // 
+            // modificarToolStripMenuItem
+            // 
+            this.modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
+            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.modificarToolStripMenuItem.Text = "Modificar";
+            this.modificarToolStripMenuItem.Click += new System.EventHandler(this.modificarToolStripMenuItem_Click);
+            // 
+            // darDeBajaToolStripMenuItem
+            // 
+            this.darDeBajaToolStripMenuItem.Name = "darDeBajaToolStripMenuItem";
+            this.darDeBajaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.darDeBajaToolStripMenuItem.Text = "Dar de baja";
+            this.darDeBajaToolStripMenuItem.Click += new System.EventHandler(this.darDeBajaToolStripMenuItem_Click);
+            // 
+            // estadiaToolStripMenuItem
+            // 
+            this.estadiaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.registrarToolStripMenuItem});
+            this.estadiaToolStripMenuItem.Name = "estadiaToolStripMenuItem";
+            this.estadiaToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.estadiaToolStripMenuItem.Text = "Estadia";
+            this.estadiaToolStripMenuItem.Visible = false;
+            // 
+            // registrarToolStripMenuItem
+            // 
+            this.registrarToolStripMenuItem.Name = "registrarToolStripMenuItem";
+            this.registrarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.registrarToolStripMenuItem.Text = "Registrar";
+            this.registrarToolStripMenuItem.Click += new System.EventHandler(this.registrarToolStripMenuItem_Click);
+            // 
+            // registrarConsumiblesToolStripMenuItem
+            // 
+            this.registrarConsumiblesToolStripMenuItem.Name = "registrarConsumiblesToolStripMenuItem";
+            this.registrarConsumiblesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.registrarConsumiblesToolStripMenuItem.Text = "Registrar Consumibles";
+            this.registrarConsumiblesToolStripMenuItem.Click += new System.EventHandler(this.registrarConsumiblesToolStripMenuItem_Click);
+            // 
             // VistaSistema
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -346,6 +413,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "VistaSistema";
             this.Text = "Menu principal";
+            this.Load += new System.EventHandler(this.VistaSistema_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -387,5 +455,12 @@
         private System.Windows.Forms.ToolStripMenuItem habitacionesMasOcupadasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clientesConMasPuntosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mayorFacturacionDeConsumiblesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem huespedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem crearToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modificarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem darDeBajaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem estadiaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem registrarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem registrarConsumiblesToolStripMenuItem;
     }
 }
