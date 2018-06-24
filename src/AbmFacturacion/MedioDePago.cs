@@ -48,8 +48,8 @@ namespace FrbaHotel.AbmFacturacion
 
         private void btnTarjeta_Click(object sender, EventArgs e)
         {
+            new PagarTarjeta(numeroFactura).ShowDialog();
             this.Hide();
-            new PagarTarjeta(numeroFactura).Show();
         }
     }
 }

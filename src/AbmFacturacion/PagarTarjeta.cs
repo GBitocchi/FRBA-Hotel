@@ -123,7 +123,6 @@ namespace FrbaHotel.AbmFacturacion
         private void btnAtras_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new MedioDePago(numeroFactura).Show();
         }
     }
 }

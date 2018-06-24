@@ -101,12 +101,10 @@ namespace FrbaHotel.AbmFacturacion
                 {
                     ejecutarStoredProcedure();
                     new MedioDePago(txtNroFactura.Text.Trim()).ShowDialog();
-                    this.Hide();
                 }
                 else if (DataBase.realizarConsulta("select pago_codigo from CAIA_UNLIMITED.Factura where pago_codigo IS NOT NULL AND fact_nro =" + txtNroFactura.Text.Trim()).Tables[0].Rows.Count == 0)
                 {
                     new MedioDePago(txtNroFactura.Text.Trim()).ShowDialog();
-                    this.Hide();
                 }
                 else
                 {
