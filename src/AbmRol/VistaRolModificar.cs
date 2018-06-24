@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -166,7 +166,7 @@ namespace FrbaHotel.AbmRol
             {
                 comboBoxFuncionalidades.Items.Add(listBoxFuncionalidades.SelectedItem);
                 comboBoxFuncionalidades.Sorted = true;
-                comboBoxFuncionalidades.Items.Remove(listBoxFuncionalidades.SelectedItem);
+                listBoxFuncionalidades.Items.Remove(listBoxFuncionalidades.SelectedItem);
                 comboBoxFuncionalidades.SelectedIndex = 0;
                 if (listBoxFuncionalidades.Items.Count > 0)
                     listBoxFuncionalidades.SelectedIndex = 0;
