@@ -69,6 +69,22 @@ namespace FrbaHotel.Menu_Sistema
                 {
                     stripFacturar.Visible = true;
                 }
+                else if (unaFuncionalidad["Funcionalidades"].ToString() == "ABM_CLIENTE")
+                {
+                    stripHuesped.Visible = true;
+                }
+                else if (unaFuncionalidad["Funcionalidades"].ToString() == "ESTADIA")
+                {
+                    stripEstadia.Visible = true;
+                }
+                else if (unaFuncionalidad["Funcionalidades"].ToString() == "CANCELAR_RESERVA")
+                {
+                    stripCancelar_Reserva.Visible = true;
+                }
+                else if (unaFuncionalidad["Funcionalidades"].ToString() == "CONSUMIBLES")
+                {
+                    stripConsumibles.Visible = true;
+                }
             }
         }
 
@@ -237,8 +253,7 @@ namespace FrbaHotel.Menu_Sistema
 
         private void mayorFacturacionDeConsumiblesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new MayorFacturacionConsumibles().ShowDialog();
-            this.Show();
+            
         }
 
         private void VistaSistema_Load(object sender, EventArgs e)
@@ -276,10 +291,18 @@ namespace FrbaHotel.Menu_Sistema
             this.Show();
         }
 
-        private void registrarConsumiblesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void registrarToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             new MenuRegistrarConsumible().ShowDialog();
             this.Show();
         }
+
+        private void stripCancelar_Reserva_Click(object sender, EventArgs e)
+        {
+            new MenuCancelarReserva().ShowDialog();
+            this.Show();
+        }
+
+        
     }
 }
