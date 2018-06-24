@@ -170,8 +170,8 @@ namespace FrbaHotel.Menu_Sistema
 
         private void administrarRolesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new VistaRol().ShowDialog();
-            this.Show();
+            this.Hide();
+            new VistaRol(this.idHotel, this.codigoRol, this.nombreUsuario).Show();  
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
