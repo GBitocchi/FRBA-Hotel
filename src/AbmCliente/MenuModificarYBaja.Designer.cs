@@ -41,7 +41,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.dgClientes = new System.Windows.Forms.DataGridView();
             this.btnReestablecer = new System.Windows.Forms.Button();
             this.Filtros.SuspendLayout();
@@ -169,16 +168,6 @@
             this.Nombre.TabIndex = 0;
             this.Nombre.Text = "Nombre";
             // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Location = new System.Drawing.Point(182, 433);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(149, 38);
-            this.btnCancelar.TabIndex = 4;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
             // dgClientes
             // 
             this.dgClientes.AllowUserToAddRows = false;
@@ -194,7 +183,7 @@
             // 
             // btnReestablecer
             // 
-            this.btnReestablecer.Location = new System.Drawing.Point(414, 433);
+            this.btnReestablecer.Location = new System.Drawing.Point(284, 438);
             this.btnReestablecer.Name = "btnReestablecer";
             this.btnReestablecer.Size = new System.Drawing.Size(149, 38);
             this.btnReestablecer.TabIndex = 6;
@@ -209,7 +198,6 @@
             this.ClientSize = new System.Drawing.Size(734, 488);
             this.Controls.Add(this.btnReestablecer);
             this.Controls.Add(this.dgClientes);
-            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.Filtros);
             this.Name = "MenuModificarYBaja";
             this.Text = "Clientes";
@@ -233,7 +221,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnFiltrar;
-        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.DataGridView dgClientes;
         private System.Windows.Forms.TextBox txtTipo_Identificacion;
         private System.Windows.Forms.Button btnLimpiar;

@@ -56,7 +56,6 @@
             this.txtCalle_Nro = new System.Windows.Forms.TextBox();
             this.txtDpto = new System.Windows.Forms.TextBox();
             this.btnCrear = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.txtPais = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.txtNacimiento = new System.Windows.Forms.TextBox();
@@ -294,23 +293,13 @@
             // 
             // btnCrear
             // 
-            this.btnCrear.Location = new System.Drawing.Point(458, 327);
+            this.btnCrear.Location = new System.Drawing.Point(457, 347);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(148, 34);
             this.btnCrear.TabIndex = 27;
             this.btnCrear.Text = "Crear";
             this.btnCrear.UseVisualStyleBackColor = true;
             this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Location = new System.Drawing.Point(458, 410);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(148, 34);
-            this.btnCancelar.TabIndex = 28;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // txtPais
             // 
@@ -479,7 +468,6 @@
             this.Controls.Add(this.txtNacimiento);
             this.Controls.Add(this.txtPais);
             this.Controls.Add(this.label16);
-            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnCrear);
             this.Controls.Add(this.txtDpto);
             this.Controls.Add(this.txtCalle_Nro);
@@ -545,7 +533,6 @@
         private System.Windows.Forms.TextBox txtCalle_Nro;
         private System.Windows.Forms.TextBox txtDpto;
         private System.Windows.Forms.Button btnCrear;
-        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TextBox txtPais;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtNacimiento;

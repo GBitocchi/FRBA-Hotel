@@ -36,7 +36,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtMotivo = new System.Windows.Forms.RichTextBox();
             this.btnAceptar = new System.Windows.Forms.Button();
-            this.btnVolver = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtMail = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -112,22 +111,13 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(378, 409);
+            this.btnAceptar.Location = new System.Drawing.Point(210, 414);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(114, 39);
+            this.btnAceptar.Size = new System.Drawing.Size(189, 39);
             this.btnAceptar.TabIndex = 301;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
-            // 
-            // btnVolver
-            // 
-            this.btnVolver.Location = new System.Drawing.Point(160, 409);
-            this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(114, 39);
-            this.btnVolver.TabIndex = 302;
-            this.btnVolver.Text = "Volver";
-            this.btnVolver.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -221,7 +211,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.txtMotivo);
             this.Controls.Add(this.label1);
@@ -251,7 +240,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox txtMotivo;
         private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.Label label2;
