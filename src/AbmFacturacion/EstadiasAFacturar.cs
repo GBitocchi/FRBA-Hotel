@@ -13,10 +13,10 @@ namespace FrbaHotel.AbmFacturacion
 {
     public partial class EstadiasAFacturar : Form
     {
-        public EstadiasAFacturar()
+        public EstadiasAFacturar(string idHotel)
         {
             InitializeComponent();
-            dgEstadias.DataSource = DataBase.realizarConsulta("select R.rese_codigo as 'Reserva', esta_codigo as 'Codigo', esta_fecha_inicio as 'Fecha de inicio', DATEDIFF(day, esta_fecha_inicio, esta_fecha_fin) as 'Cantidad de noches', habi_rese_id as 'Hotel' from CAIA_UNLIMITED.Estadia E join CAIA_UNLIMITED.Reserva R on (E.rese_codigo = R.rese_codigo) join CAIA_UNLIMITED.Habitacion_X_Reserva on (R.rese_codigo = habi_rese_codigo) where DATEDIFF(day, esta_fecha_fin, convert(datetime, '" + DataBase.fechaSistema().ToString("yyyy-MM-dd hh:mm:ss") + "', 121)) >= 0 order by esta_fecha_inicio").Tables[0];
+            dgEstadias.DataSource = DataBase.realizarConsulta("select R.rese_codigo as 'Reserva', esta_codigo as 'Codigo', esta_fecha_inicio as 'Fecha de inicio', DATEDIFF(day, esta_fecha_inicio, esta_fecha_fin) as 'Cantidad de noches', habi_rese_id as 'Hotel' from CAIA_UNLIMITED.Estadia E join CAIA_UNLIMITED.Reserva R on (E.rese_codigo = R.rese_codigo) join CAIA_UNLIMITED.Habitacion_X_Reserva on (R.rese_codigo = habi_rese_codigo) where DATEDIFF(day, esta_fecha_fin, convert(datetime, '" + DataBase.fechaSistema().ToString("yyyy-MM-dd hh:mm:ss") + "', 120)) >= 0 and habi_rese_id =" + idHotel + " order by esta_fecha_inicio").Tables[0];
         }
 
         private void btnFacturar_Click(object sender, EventArgs e)
@@ -24,8 +24,8 @@ namespace FrbaHotel.AbmFacturacion
             if (dgEstadias.Rows.Count > 1)
             {
                 string codigoEstadia = dgEstadias.SelectedRows[0].Cells[1].Value.ToString();
-                new Facturacion(codigoEstadia).Show();
-                this.Hide();
+                new Facturacion(codigoEstadia).ShowDialog();
+                this.Show();
             }
             
         }
@@ -33,7 +33,6 @@ namespace FrbaHotel.AbmFacturacion
         private void btnAtras_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new VistaSistema().Show();
         }
     }
 }

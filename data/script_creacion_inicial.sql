@@ -652,7 +652,7 @@ BEGIN
 											dire_telefono)
 	values (@ciudad, @pais, @calle, @numero_calle, @hote_telefono)
 	insert into CAIA_UNLIMITED.Hotel (hote_nombre, hote_mail, hote_cant_estrellas, hote_habilitado, hote_fecha_creacion, dire_id, hote_recarga_estrella)
-	values (@nombre_hotel, @mail, @estrellas, 1, convert(datetime, @fecha, 121), (select dire_id from CAIA_UNLIMITED.Direccion
+	values (@nombre_hotel, @mail, @estrellas, 1, convert(datetime, @fecha, 120), (select dire_id from CAIA_UNLIMITED.Direccion
 												where dire_telefono = @hote_telefono and
 												dire_dom_calle = @calle and dire_ciudad = @ciudad
 												and dire_pais = @pais and dire_nro_calle = @numero_calle), 10)		
@@ -682,7 +682,7 @@ AS
 BEGIN	
 	update CAIA_UNLIMITED.Hotel set hote_habilitado = 0 where hote_id = @id_hotel
 	insert into CAIA_UNLIMITED.Mantenimiento (hote_id, mant_fecha_inicio, mant_fecha_fin, mant_descripcion)
-	values (@id_hotel, convert(datetime, @fecha_inicio, 121), convert(datetime, @fecha_fin, 121), @descripcion)			
+	values (@id_hotel, convert(datetime, @fecha_inicio, 120), convert(datetime, @fecha_fin, 120), @descripcion)			
 END
 GO
 
@@ -698,7 +698,7 @@ BEGIN
 						where hote_id = @idHotel)
 
 	update CAIA_UNLIMITED.Hotel
-	set hote_nombre = @nombre_hotel, hote_mail = @mail, hote_cant_estrellas = @estrellas, hote_fecha_creacion = convert(datetime, @fecha, 121)
+	set hote_nombre = @nombre_hotel, hote_mail = @mail, hote_cant_estrellas = @estrellas, hote_fecha_creacion = convert(datetime, @fecha, 120)
 	where hote_id = @idHotel
 END
 GO
@@ -708,7 +708,7 @@ AS
 BEGIN 
 	update CAIA_UNLIMITED.Hotel
 	set hote_habilitado = 1
-	where hote_id in (select H.hote_id from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Mantenimiento M on (M.hote_id = H.hote_id) where DATEDIFF(day, M.mant_fecha_fin, convert(datetime, @fecha, 121)) >= 0)  
+	where hote_id in (select H.hote_id from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Mantenimiento M on (M.hote_id = H.hote_id) where DATEDIFF(day, M.mant_fecha_fin, convert(datetime, @fecha, 120)) >= 0)  
 END
 GO
 
@@ -743,7 +743,7 @@ CREATE PROCEDURE [CAIA_UNLIMITED].[sp_AlmacenarFactura] (@numero numeric(18,0), 
 AS
 BEGIN
 	insert into CAIA_UNLIMITED.Factura (fact_nro, fact_total, fact_fecha, esta_codigo, hues_mail, hues_documento)
-	values (@numero, @total, convert(datetime, convert(datetime, @fecha, 121), 121), @estadia, @mail, @documento)
+	values (@numero, @total, convert(datetime,  @fecha, 120), @estadia, @mail, @documento)
 END
 GO
 
@@ -766,7 +766,7 @@ AS
 BEGIN
 	insert into CAIA_UNLIMITED.Pago (pago_nombre, pago_apellido, pago_nro_tarjeta, pago_codigo_seguridad,
 										pago_banco, pago_fecha_vencimiento, pago_monto)
-	values (@nombre, @apellido, @numero_tarjeta, @codigo_seguridad, @banco, convert(datetime, @fecha_vencimiento, 121), @monto)
+	values (@nombre, @apellido, @numero_tarjeta, @codigo_seguridad, @banco, convert(datetime, @fecha_vencimiento, 120), @monto)
 	update CAIA_UNLIMITED.Factura set pago_codigo = SCOPE_IDENTITY()
 	where fact_nro = @numero_factura
 END

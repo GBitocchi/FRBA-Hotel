@@ -41,8 +41,6 @@ namespace FrbaHotel.AbmFacturacion
                 existe = true;
                 cargarFacturaExistente(codigoEstadia);
             }
-            lblNroFactura.Visible = false;
-            
         }
 
         private double cantidadPersonas()
@@ -97,7 +95,6 @@ namespace FrbaHotel.AbmFacturacion
 
         private void btnPagar_Click(object sender, EventArgs e)
         {
-            lblNroFactura.Visible = false;
             try
             {
                 if (!existe)
@@ -149,7 +146,6 @@ namespace FrbaHotel.AbmFacturacion
         private void btnAtras_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new EstadiasAFacturar().Show();
         }
     }
 }
