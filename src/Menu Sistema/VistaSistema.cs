@@ -69,6 +69,10 @@ namespace FrbaHotel.Menu_Sistema
                 {
                     stripFacturar.Visible = true;
                 }
+                else if (unaFuncionalidad["Funcionalidades"].ToString() == "LISTADO_ESTADISTICO")
+                {
+                    stripListado.Visible = true;
+                }
                 else if (unaFuncionalidad["Funcionalidades"].ToString() == "ABM_CLIENTE")
                 {
                     stripHuesped.Visible = true;

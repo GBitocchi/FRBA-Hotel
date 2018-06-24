@@ -25,8 +25,8 @@ namespace FrbaHotel.AbmFacturacion
             try
             {
                 ejecutarStoredProcedure();
-                this.Hide();
                 MessageBox.Show("Pago realizado correctamente.", "Pago realizado", MessageBoxButtons.OK);
+                this.Hide();
             }
             catch
             {
