@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnSeleccionar = new System.Windows.Forms.Button();
-            this.calendario = new System.Windows.Forms.MonthCalendar();
             this.txtCancelacion = new System.Windows.Forms.TextBox();
             this.txtNumero_Reserva = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -51,27 +49,12 @@
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnSeleccionar
-            // 
-            this.btnSeleccionar.Location = new System.Drawing.Point(443, 213);
-            this.btnSeleccionar.Name = "btnSeleccionar";
-            this.btnSeleccionar.Size = new System.Drawing.Size(109, 26);
-            this.btnSeleccionar.TabIndex = 297;
-            this.btnSeleccionar.Text = "Seleccionar fecha";
-            this.btnSeleccionar.UseVisualStyleBackColor = true;
-            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
-            // 
-            // calendario
-            // 
-            this.calendario.Location = new System.Drawing.Point(402, 39);
-            this.calendario.Name = "calendario";
-            this.calendario.TabIndex = 296;
-            // 
             // txtCancelacion
             // 
             this.txtCancelacion.Enabled = false;
             this.txtCancelacion.Location = new System.Drawing.Point(190, 99);
             this.txtCancelacion.Name = "txtCancelacion";
+            this.txtCancelacion.ReadOnly = true;
             this.txtCancelacion.Size = new System.Drawing.Size(173, 20);
             this.txtCancelacion.TabIndex = 295;
             // 
@@ -243,8 +226,6 @@
             this.Controls.Add(this.txtMotivo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.btnSeleccionar);
-            this.Controls.Add(this.calendario);
             this.Controls.Add(this.txtCancelacion);
             this.Controls.Add(this.txtNumero_Reserva);
             this.Controls.Add(this.label10);
@@ -262,8 +243,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnSeleccionar;
-        private System.Windows.Forms.MonthCalendar calendario;
         private System.Windows.Forms.TextBox txtCancelacion;
         private System.Windows.Forms.TextBox txtNumero_Reserva;
         private System.Windows.Forms.Label label10;

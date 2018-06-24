@@ -17,7 +17,7 @@ namespace FrbaHotel.CancelarReserva
         public MenuCancelarReserva()
         {
             InitializeComponent();
-            //txtCancelacion.Text = Convert.ToString(DataBase.fechaSistema());
+            txtCancelacion.Text = Convert.ToString(DataBase.fechaSistema());
         }
 
         private void label2_Click(object sender, EventArgs e)

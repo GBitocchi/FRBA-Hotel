@@ -20,7 +20,8 @@ namespace FrbaHotel.RegistrarEstadia
             InitializeComponent();
             codigoReserva = cod;
 
-            //txtFecha.Text = Convert.ToString(DataBase.fechaSistema());
+            txtFecha.Text = Convert.ToString(DataBase.fechaSistema());
+
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)

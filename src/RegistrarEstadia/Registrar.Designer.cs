@@ -47,8 +47,6 @@
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cbxRegistrar = new System.Windows.Forms.ComboBox();
-            this.btnSeleccionar = new System.Windows.Forms.Button();
-            this.calendario = new System.Windows.Forms.MonthCalendar();
             this.txtFecha = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.btnVolver = new System.Windows.Forms.Button();
@@ -179,8 +177,6 @@
             this.groupBox2.Controls.Add(this.txtUsuario);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.cbxRegistrar);
-            this.groupBox2.Controls.Add(this.btnSeleccionar);
-            this.groupBox2.Controls.Add(this.calendario);
             this.groupBox2.Controls.Add(this.txtFecha);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Location = new System.Drawing.Point(36, 12);
@@ -237,34 +233,19 @@
             this.cbxRegistrar.TabIndex = 299;
             this.cbxRegistrar.SelectedIndexChanged += new System.EventHandler(this.cbxRegistrar_SelectedIndexChanged);
             // 
-            // btnSeleccionar
-            // 
-            this.btnSeleccionar.Location = new System.Drawing.Point(473, 190);
-            this.btnSeleccionar.Name = "btnSeleccionar";
-            this.btnSeleccionar.Size = new System.Drawing.Size(109, 26);
-            this.btnSeleccionar.TabIndex = 298;
-            this.btnSeleccionar.Text = "Seleccionar fecha";
-            this.btnSeleccionar.UseVisualStyleBackColor = true;
-            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
-            // 
-            // calendario
-            // 
-            this.calendario.Location = new System.Drawing.Point(428, 16);
-            this.calendario.Name = "calendario";
-            this.calendario.TabIndex = 297;
-            // 
             // txtFecha
             // 
             this.txtFecha.Enabled = false;
-            this.txtFecha.Location = new System.Drawing.Point(158, 138);
+            this.txtFecha.Location = new System.Drawing.Point(158, 135);
             this.txtFecha.Name = "txtFecha";
+            this.txtFecha.ReadOnly = true;
             this.txtFecha.Size = new System.Drawing.Size(173, 20);
             this.txtFecha.TabIndex = 296;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(33, 141);
+            this.label10.Location = new System.Drawing.Point(33, 138);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(37, 13);
             this.label10.TabIndex = 295;
@@ -311,8 +292,6 @@
         private System.Windows.Forms.GroupBox gbxHuesped;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox cbxRegistrar;
-        private System.Windows.Forms.Button btnSeleccionar;
-        private System.Windows.Forms.MonthCalendar calendario;
         private System.Windows.Forms.TextBox txtFecha;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label6;
