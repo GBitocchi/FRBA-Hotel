@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -109,8 +109,11 @@ namespace FrbaHotel.AbmUsuario
             textBoxDialogSurname.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Apellido"].Value.ToString();
             textBoxDialogDocumentType.Text = usuarioAModificar.Rows[e.RowIndex].Cells["TipoDocumento"].Value.ToString();
             textBoxDialogDocument.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Documento"].Value.ToString();
-            monthCalendarDialog.SetDate(Convert.ToDateTime(usuarioAModificar.Rows[e.RowIndex].Cells["Nacimiento"].Value.ToString()));
-            textBoxDialogBirthday.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Nacimiento"].Value.ToString();
+            if (usuarioAModificar.Rows[e.RowIndex].Cells["Nacimiento"].Value.ToString() != "")
+            {
+                monthCalendarDialog.SetDate(Convert.ToDateTime(usuarioAModificar.Rows[e.RowIndex].Cells["Nacimiento"].Value.ToString()));
+                textBoxDialogBirthday.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Nacimiento"].Value.ToString();
+            }
             textBoxDialogMail.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Mail"].Value.ToString();
             textBoxDialogTelefono.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Telefono"].Value.ToString();
             textBoxDialogBlock.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Calle"].Value.ToString();
