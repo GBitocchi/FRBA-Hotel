@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,12 +9,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FrbaHotel;
+using FrbaHotel.Menu_Sistema;
 
 namespace FrbaHotel.AbmRol
 {
     public partial class VistaRol : Form
     {
         DataSet _dsFuncionalidades;
+        decimal _idHotel;
+        decimal _codigoRol;
+        string _nombreUsuario;
 
         private void cargarFuncionalidades()
         {
@@ -32,10 +36,13 @@ namespace FrbaHotel.AbmRol
             }
         }
         
-        public VistaRol()
+        public VistaRol(decimal idHotel, decimal codigoRol, string nombreUsuario)
         {
             InitializeComponent();
             lblErrorFuncionalidad.Visible = false;
+            this._idHotel = idHotel;
+            this._codigoRol = codigoRol;
+            this._nombreUsuario = nombreUsuario;
             lblErrorNombreRol.Visible = false;
             cargarFuncionalidades();
             string roles = "SELECT rol_codigo as Codigo, rol_nombre as Nombre, rol_estado as Estado FROM CAIA_UNLIMITED.Rol";
@@ -102,7 +109,8 @@ namespace FrbaHotel.AbmRol
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            this.Hide();
+            new VistaSistema(this._idHotel, this._codigoRol, this._nombreUsuario).Show();
         }
 
         private void btnAñadir_Click(object sender, EventArgs e)
