@@ -375,11 +375,6 @@ namespace FrbaHotel.RegistrarEstadia
         }
 
 
-        private void btnSeleccionar_Click(object sender, EventArgs e)
-        {
-            txtFecha.Text = calendario.SelectionStart.ToShortDateString();
-        }
-
         private void btnVolver_Click_1(object sender, EventArgs e)
         {
             this.Hide();

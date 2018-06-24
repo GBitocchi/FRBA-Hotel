@@ -793,7 +793,7 @@ BEGIN
 											dire_telefono,dire_piso,dire_dpto)
 	values (@ciudad, @pais, @calle, @calle_nro, @telefono,@piso,@dpto)
 	insert into CAIA_UNLIMITED.Huesped (hues_mail,hues_nombre,hues_apellido,hues_documento,hues_nacionalidad,hues_nacimiento,hues_documento_tipo,hues_habilitado,dire_id)
-	values(@mail, @nombre,@apellido,@documento,@nacionalidad,@fecha_nacimiento, @tipo,1,(select dire_id from CAIA_UNLIMITED.Direccion
+	values(@mail, @nombre,@apellido,@documento,@nacionalidad,convert(datetime,@fecha_nacimiento,120), @tipo,1,(select dire_id from CAIA_UNLIMITED.Direccion
 												where dire_telefono = @telefono and
 												dire_dom_calle = @calle and dire_ciudad = @ciudad
 												and dire_pais = @pais and dire_nro_calle = @calle_nro and dire_piso=@piso and dire_dpto=@dpto))
@@ -820,7 +820,7 @@ BEGIN
 						where hues_mail = @mail)
 
 	update CAIA_UNLIMITED.Huesped
-	set hues_mail = @mail,hues_nombre=@nombre,hues_apellido=@apellido,hues_documento=@documento,hues_nacionalidad=@nacionalidad,hues_nacimiento=@fecha_nacimiento,hues_documento_tipo=@tipo, hues_habilitado=@estado
+	set hues_mail = @mail,hues_nombre=@nombre,hues_apellido=@apellido,hues_documento=@documento,hues_nacionalidad=@nacionalidad,hues_nacimiento=convert(datetime,@fecha_nacimiento,120),hues_documento_tipo=@tipo, hues_habilitado=@estado
 	where hues_mail = @mail
 END
 GO
@@ -1573,7 +1573,7 @@ CREATE PROCEDURE [CAIA_UNLIMITED].[sp_CancelarReserva] (@codigo_reserva numeric(
 AS
 BEGIN
 	insert into CAIA_UNLIMITED.Reserva_Cancelada(reca_rese,reca_motivo,reca_fecha_cancelacion,reca_usuario)
-	values (@codigo_reserva,@motivo,@fecha_cancelacion,@usuario)
+	values (@codigo_reserva,@motivo,convert(datetime,@fecha_cancelacion,120),@usuario)
 END
 GO 
 
@@ -1583,7 +1583,7 @@ CREATE PROCEDURE [CAIA_UNLIMITED].[sp_RegistrarIngreso](@fecha_inicio datetime, 
 AS
 BEGIN
 	insert into CAIA_UNLIMITED.Estadia(esta_fecha_inicio,rese_codigo,usur_checkin)
-	values (@fecha_inicio,@codigo_reserva,@usuario)
+	values (convert(datetime,@fecha_inicio,120),@codigo_reserva,@usuario)
 END
 GO
 
@@ -1591,7 +1591,7 @@ CREATE PROCEDURE [CAIA_UNLIMITED].[sp_RegistrarEgres](@fecha_egreso datetime, @u
 AS
 BEGIN
 	update CAIA_UNLIMITED.Estadia 
-	set esta_fecha_fin=@fecha_egreso, usur_checkout= @usuario where esta_codigo = @estadia_Id
+	set esta_fecha_fin=convert(datetime,@fecha_egreso,120), usur_checkout= @usuario where esta_codigo = @estadia_Id
 
 	
 END

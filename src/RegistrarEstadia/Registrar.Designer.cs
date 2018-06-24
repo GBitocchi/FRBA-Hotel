@@ -188,7 +188,7 @@
             // 
             // btnIngresar
             // 
-            this.btnIngresar.Location = new System.Drawing.Point(115, 181);
+            this.btnIngresar.Location = new System.Drawing.Point(263, 178);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(99, 26);
             this.btnIngresar.TabIndex = 10;
@@ -199,7 +199,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(33, 49);
+            this.label6.Location = new System.Drawing.Point(181, 46);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 13);
             this.label6.TabIndex = 302;
@@ -207,7 +207,7 @@
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(158, 88);
+            this.txtUsuario.Location = new System.Drawing.Point(306, 85);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(173, 20);
             this.txtUsuario.TabIndex = 301;
@@ -215,7 +215,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(34, 91);
+            this.label5.Location = new System.Drawing.Point(182, 88);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(43, 13);
             this.label5.TabIndex = 300;
@@ -227,7 +227,7 @@
             this.cbxRegistrar.Items.AddRange(new object[] {
             "Ingreso",
             "Egreso"});
-            this.cbxRegistrar.Location = new System.Drawing.Point(158, 46);
+            this.cbxRegistrar.Location = new System.Drawing.Point(306, 43);
             this.cbxRegistrar.Name = "cbxRegistrar";
             this.cbxRegistrar.Size = new System.Drawing.Size(173, 21);
             this.cbxRegistrar.TabIndex = 299;
@@ -236,7 +236,7 @@
             // txtFecha
             // 
             this.txtFecha.Enabled = false;
-            this.txtFecha.Location = new System.Drawing.Point(158, 135);
+            this.txtFecha.Location = new System.Drawing.Point(306, 132);
             this.txtFecha.Name = "txtFecha";
             this.txtFecha.ReadOnly = true;
             this.txtFecha.Size = new System.Drawing.Size(173, 20);
@@ -245,7 +245,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(33, 138);
+            this.label10.Location = new System.Drawing.Point(181, 135);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(37, 13);
             this.label10.TabIndex = 295;

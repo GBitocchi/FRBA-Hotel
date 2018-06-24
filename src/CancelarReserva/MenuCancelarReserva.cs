@@ -240,10 +240,5 @@ namespace FrbaHotel.CancelarReserva
             }
         }
 
-        private void btnSeleccionar_Click(object sender, EventArgs e)
-        {
-            txtCancelacion.Text = calendario.SelectionStart.ToShortDateString();
-        }
-
     }
 }
