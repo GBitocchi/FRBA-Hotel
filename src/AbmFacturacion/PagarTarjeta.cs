@@ -44,7 +44,6 @@ namespace FrbaHotel.AbmFacturacion
                         ejecutarStoredProcedure();
                         this.Hide();
                         MessageBox.Show("Pago realizado correctamente.", "Pago realizado", MessageBoxButtons.OK);
-                        new EstadiasAFacturar().Show();
                     }
                     catch
                     {

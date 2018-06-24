@@ -223,7 +223,7 @@ namespace FrbaHotel.Menu_Sistema
 
         private void stripFacturar_Click(object sender, EventArgs e)
         {
-            new EstadiasAFacturar().ShowDialog();
+            new EstadiasAFacturar(Convert.ToString(idHotel)).ShowDialog();
             this.Show();
         }
 

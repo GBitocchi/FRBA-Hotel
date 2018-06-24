@@ -609,3 +609,6 @@ C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHabitacion.CrearHab
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmUsuario.VistaUsuarioModificar.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.GenerarModificacionReserva.BuscarCliente.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.GenerarModificacionReserva.VariantesRegimenes.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmUsuario.VistaUsuarioModificar.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.GenerarModificacionReserva.BuscarCliente.resources
+C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.GenerarModificacionReserva.VariantesRegimenes.resources
