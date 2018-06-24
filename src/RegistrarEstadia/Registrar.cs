@@ -200,7 +200,6 @@ namespace FrbaHotel.RegistrarEstadia
         private void limpiarTodo()
         {
             txtUsuario.Clear();
-            txtFecha.Clear();
             btnIngresar.Enabled = true;
             gbxHuesped.Enabled = true;
             txtUsuario.Enabled = true;
@@ -326,33 +325,34 @@ namespace FrbaHotel.RegistrarEstadia
         {
             string fechaEgresoBuscada = String.Format("select esta_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Estadia where rese_codigo='{0}'", codigoReserva);
             DataSet fecha=DataBase.realizarConsulta(fechaEgresoBuscada);
-            
-            if ( DBNull.Value.Equals(fecha.Tables[0].Rows[0]["FechaFin"]))
+            if (fecha.Equals(DBNull.Value))
             {
-               
-            }
-            else
-            {
+                if (DBNull.Value.Equals(fecha.Tables[0].Rows[0]["FechaFin"]))
+                {
 
-                DataTable fechaEgresoObtenida = DataBase.realizarConsulta(fechaEgresoBuscada).Tables[0];
-                string fechaEgreso = fechaEgresoObtenida.Rows[0][0].ToString();
-                txtFecha.Text = fechaEgreso;
+                }
+                else
+                {
 
-                string usuarioBuscado = String.Format("select usur_checkout FROM CAIA_UNLIMITED.Estadia where rese_codigo='{0}'", codigoReserva);
-                DataTable usuarioEncontrado = DataBase.realizarConsulta(usuarioBuscado).Tables[0];
-                string usuario = usuarioEncontrado.Rows[0][0].ToString();
-                txtUsuario.Text = usuario;
+                    DataTable fechaEgresoObtenida = DataBase.realizarConsulta(fechaEgresoBuscada).Tables[0];
+                    string fechaEgreso = fechaEgresoObtenida.Rows[0][0].ToString();
+                    txtFecha.Text = fechaEgreso;
 
-                btnIngresar.Enabled = false;
-                gbxHuesped.Enabled = false;
-                txtUsuario.Enabled = false;
+                    string usuarioBuscado = String.Format("select usur_checkout FROM CAIA_UNLIMITED.Estadia where rese_codigo='{0}'", codigoReserva);
+                    DataTable usuarioEncontrado = DataBase.realizarConsulta(usuarioBuscado).Tables[0];
+                    string usuario = usuarioEncontrado.Rows[0][0].ToString();
+                    txtUsuario.Text = usuario;
+
+                    btnIngresar.Enabled = false;
+                    gbxHuesped.Enabled = false;
+                    txtUsuario.Enabled = false;
+                }
             }
         }
 
         private void limpiarRegistroEstadia()
         {
             txtUsuario.Clear();
-            txtFecha.Clear();
             btnIngresar.Enabled = true;
             gbxHuesped.Enabled = true;
             txtUsuario.Enabled = true;

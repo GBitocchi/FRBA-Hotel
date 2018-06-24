@@ -639,6 +639,8 @@ from CAIA_UNLIMITED.Hotel
 update CAIA_UNLIMITED.Huesped set hues_habilitado = 0
 where hues_mail in (select h1.hues_mail from CAIA_UNLIMITED.Huesped h1 group by h1.hues_mail having count(*)>1)
 
+
+
 --HOTEL
 
 CREATE PROCEDURE [CAIA_UNLIMITED].[sp_AlmacenarHotel] (@nombre_hotel nvarchar(255), @mail nvarchar(255), @estrellas numeric(18,0),
@@ -791,10 +793,8 @@ BEGIN
 											dire_telefono,dire_piso,dire_dpto)
 	values (@ciudad, @pais, @calle, @calle_nro, @telefono,@piso,@dpto)
 	insert into CAIA_UNLIMITED.Huesped (hues_mail,hues_nombre,hues_apellido,hues_documento,hues_nacionalidad,hues_nacimiento,hues_documento_tipo,hues_habilitado,dire_id)
-	values(@mail, @nombre,@apellido,@documento,@nacionalidad,convert(datetime,@fecha_nacimiento,120), @tipo,1,(select dire_id from CAIA_UNLIMITED.Direccion
-												where dire_telefono = @telefono and
-												dire_dom_calle = @calle and dire_ciudad = @ciudad
-												and dire_pais = @pais and dire_nro_calle = @calle_nro and dire_piso=@piso and dire_dpto=@dpto))
+	values(@mail, @nombre,@apellido,@documento,@nacionalidad,convert(datetime,@fecha_nacimiento,120), @tipo,1,(SELECT dire_id FROM CAIA_UNLIMITED.Direccion WHERE dire_telefono = @telefono AND dire_dom_calle = @calle AND dire_nro_calle = @calle_nro AND (dire_piso = @piso or @piso is null) AND dire_dpto = @dpto AND dire_ciudad = @ciudad  AND dire_pais = @pais ))
+	
 					
 END
 GO
