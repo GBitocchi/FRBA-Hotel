@@ -36,10 +36,16 @@ namespace FrbaHotel.RegistrarEstadia
 
                         if (DataBase.realizarConsulta(usuarioIngresado).Tables[0].Rows.Count == 0)
                         {
-                            string[] formato = { txtMail.Text.Trim(), txtTipo.Text.Trim(), txtNumero.Text.Trim() };
-                            var listViewItem = new ListViewItem(formato);
-                            listaHuesped.Items.Add(listViewItem);
-                            new CrearHuesped(txtMail.Text.Trim(), txtTipo.Text.Trim(), txtNumero.Text.Trim(), codigoReserva).Show();
+                            CrearHuesped huespedACrear = new CrearHuesped(txtMail.Text.Trim(), txtTipo.Text.Trim(), txtNumero.Text.Trim(), codigoReserva);
+
+                            DialogResult respuesta = huespedACrear.ShowDialog();
+                            if (respuesta == DialogResult.OK) 
+                            {
+                                string[] formato = { txtMail.Text.Trim(), txtTipo.Text.Trim(), txtNumero.Text.Trim() };
+                                var listViewItem = new ListViewItem(formato);
+                                listaHuesped.Items.Add(listViewItem);
+                            }
+                            
                             txtMail.Clear();
                             txtTipo.Clear();
                             txtNumero.Clear();                           
@@ -130,16 +136,16 @@ namespace FrbaHotel.RegistrarEstadia
                                     string consultaFecha = string.Format("select rese_fecha_desde as 'Fecha inicio' from CAIA_UNLIMITED.Reserva where rese_codigo='{0}'", codigoReserva);
                                     DataTable fecha = DataBase.realizarConsulta(consultaFecha).Tables[0];
                                     string fechaIngresoReserva = fecha.Rows[0][0].ToString();
-                                    //
-                                    //UTILIIZAR FECHA ACTUAL
-                                   // int resultado = DateTime.Compare(DateTime.Parse(txtFecha.Text), DateTime.Parse(fechaIngresoReserva));
-                                    if (DateTime.Parse(fechaIngresoReserva) == DateTime.Parse(txtFecha.Text.Trim()) )
+
+
+                                    TimeSpan ts = Convert.ToDateTime(txtFecha.Text.Trim()) - Convert.ToDateTime(fechaIngresoReserva);
+                                    if (DateTime.Parse(fechaIngresoReserva).Day == DateTime.Parse(txtFecha.Text.Trim()).Day && DateTime.Parse(fechaIngresoReserva).Month == DateTime.Parse(txtFecha.Text.Trim()).Month && DateTime.Parse(fechaIngresoReserva).Year == DateTime.Parse(txtFecha.Text.Trim()).Year)
                                     {
                                         ejecutarStoredProcedureRegistrarCheckIn();
                                         MessageBox.Show("Fecha de ingreso de reserva registrada correctamente", "Registrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         limpiarTodo();
                                     }
-                                    else if (DateTime.Parse(fechaIngresoReserva) > DateTime.Parse(txtFecha.Text.Trim()))
+                                    else if (ts.Days>0 )
                                     {
                                         MessageBox.Show("Ingreso anticipado a la fecha de ingreso establecido en la reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }
@@ -324,10 +330,14 @@ namespace FrbaHotel.RegistrarEstadia
         private void verificarSiYaRegistroEgreso()
         {
             string fechaEgresoBuscada = String.Format("select esta_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Estadia where rese_codigo='{0}'", codigoReserva);
-            DataSet fecha=DataBase.realizarConsulta(fechaEgresoBuscada);
-            if (fecha.Equals(DBNull.Value))
+            DataTable fecha = DataBase.realizarConsulta(fechaEgresoBuscada).Tables[0];
+            if (fecha.Rows.Count==0)
             {
-                if (DBNull.Value.Equals(fecha.Tables[0].Rows[0]["FechaFin"]))
+            }
+            else
+            {
+
+                if (DBNull.Value.Equals(fecha.Rows[0]["FechaFin"]))
                 {
 
                 }

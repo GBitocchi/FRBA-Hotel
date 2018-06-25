@@ -40,8 +40,6 @@
             this.txtMotivo = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnSeleccionar = new System.Windows.Forms.Button();
-            this.calendario = new System.Windows.Forms.MonthCalendar();
             this.txtCancelacion = new System.Windows.Forms.TextBox();
             this.txtNumero_Reserva = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -59,7 +57,7 @@
             this.cbxUsuario.Items.AddRange(new object[] {
             "Huesped",
             "Recepcion"});
-            this.cbxUsuario.Location = new System.Drawing.Point(176, 153);
+            this.cbxUsuario.Location = new System.Drawing.Point(287, 160);
             this.cbxUsuario.Name = "cbxUsuario";
             this.cbxUsuario.Size = new System.Drawing.Size(173, 21);
             this.cbxUsuario.TabIndex = 321;
@@ -67,7 +65,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(51, 156);
+            this.label3.Location = new System.Drawing.Point(162, 163);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 320;
@@ -141,16 +139,16 @@
             // 
             // txtMotivo
             // 
-            this.txtMotivo.Location = new System.Drawing.Point(54, 209);
+            this.txtMotivo.Location = new System.Drawing.Point(96, 216);
             this.txtMotivo.Name = "txtMotivo";
-            this.txtMotivo.Size = new System.Drawing.Size(312, 106);
+            this.txtMotivo.Size = new System.Drawing.Size(428, 106);
             this.txtMotivo.TabIndex = 315;
             this.txtMotivo.Text = "";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(51, 77);
+            this.label1.Location = new System.Drawing.Point(162, 84);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(97, 13);
             this.label1.TabIndex = 314;
@@ -160,39 +158,23 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(148, 33);
+            this.label5.Location = new System.Drawing.Point(231, 38);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(152, 24);
             this.label5.TabIndex = 313;
             this.label5.Text = "Cancelar reserva";
             // 
-            // btnSeleccionar
-            // 
-            this.btnSeleccionar.Location = new System.Drawing.Point(429, 228);
-            this.btnSeleccionar.Name = "btnSeleccionar";
-            this.btnSeleccionar.Size = new System.Drawing.Size(109, 26);
-            this.btnSeleccionar.TabIndex = 312;
-            this.btnSeleccionar.Text = "Seleccionar fecha";
-            this.btnSeleccionar.UseVisualStyleBackColor = true;
-            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
-            // 
-            // calendario
-            // 
-            this.calendario.Location = new System.Drawing.Point(388, 54);
-            this.calendario.Name = "calendario";
-            this.calendario.TabIndex = 311;
-            // 
             // txtCancelacion
             // 
             this.txtCancelacion.Enabled = false;
-            this.txtCancelacion.Location = new System.Drawing.Point(176, 114);
+            this.txtCancelacion.Location = new System.Drawing.Point(287, 121);
             this.txtCancelacion.Name = "txtCancelacion";
             this.txtCancelacion.Size = new System.Drawing.Size(173, 20);
             this.txtCancelacion.TabIndex = 310;
             // 
             // txtNumero_Reserva
             // 
-            this.txtNumero_Reserva.Location = new System.Drawing.Point(176, 74);
+            this.txtNumero_Reserva.Location = new System.Drawing.Point(287, 81);
             this.txtNumero_Reserva.Name = "txtNumero_Reserva";
             this.txtNumero_Reserva.Size = new System.Drawing.Size(173, 20);
             this.txtNumero_Reserva.TabIndex = 309;
@@ -200,7 +182,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(51, 117);
+            this.label10.Location = new System.Drawing.Point(162, 124);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(113, 13);
             this.label10.TabIndex = 308;
@@ -209,7 +191,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(51, 184);
+            this.label6.Location = new System.Drawing.Point(162, 191);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(39, 13);
             this.label6.TabIndex = 307;
@@ -228,8 +210,6 @@
             this.Controls.Add(this.txtMotivo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.btnSeleccionar);
-            this.Controls.Add(this.calendario);
             this.Controls.Add(this.txtCancelacion);
             this.Controls.Add(this.txtNumero_Reserva);
             this.Controls.Add(this.label10);
@@ -259,8 +239,6 @@
         private System.Windows.Forms.RichTextBox txtMotivo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btnSeleccionar;
-        private System.Windows.Forms.MonthCalendar calendario;
         private System.Windows.Forms.TextBox txtCancelacion;
         private System.Windows.Forms.TextBox txtNumero_Reserva;
         private System.Windows.Forms.Label label10;

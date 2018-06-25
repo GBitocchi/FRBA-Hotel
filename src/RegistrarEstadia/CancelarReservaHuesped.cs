@@ -23,6 +23,7 @@ namespace FrbaHotel.RegistrarEstadia
             txtNumero_Reserva.Enabled = false;
             txtUsername.Enabled = false;
             cbxUsuario.Enabled = false;
+            txtCancelacion.Text = Convert.ToString(DataBase.fechaSistema());
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -33,10 +34,7 @@ namespace FrbaHotel.RegistrarEstadia
                 {
                     if (reservaCorrecta())
                     {
-                        if (fechaEnCondicion())
-                        {
-
-
+                        
                             if (cbxUsuario.SelectedItem.ToString() == "Huesped")
                             {
                                 if (formatoMailCorrecto())
@@ -84,11 +82,7 @@ namespace FrbaHotel.RegistrarEstadia
 
                                 }
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Operacion cancelada, fecha proxima a fecha de inicio de reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
+                        
                     }
                 }
 
@@ -175,26 +169,7 @@ namespace FrbaHotel.RegistrarEstadia
             db.Close();
         }
 
-        private bool fechaEnCondicion()
-        {
-            string consultaFecha = string.Format("select rese_fecha_desde as 'Fecha inicio' from CAIA_UNLIMITED.Reserva where rese_codigo='{0}'", txtNumero_Reserva.Text.Trim());
-            DataTable fecha = DataBase.realizarConsulta(consultaFecha).Tables[0];
-            string fechaIngresoReserva = fecha.Rows[0][0].ToString();
-
-            DateTime fechaInicio = Convert.ToDateTime(fechaIngresoReserva);
-            /*TimeSpan diferencia = DataBase.fechaSistema() - fechaInicio; */
-            TimeSpan diferencia = Convert.ToDateTime(txtCancelacion.Text) - fechaInicio;
-
-            if (diferencia.Days > 1)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-
-        }
+      
 
 
         private bool camposCompletos()
@@ -246,10 +221,6 @@ namespace FrbaHotel.RegistrarEstadia
             }
         }
 
-        private void btnSeleccionar_Click(object sender, EventArgs e)
-        {
-            txtCancelacion.Text = calendario.SelectionStart.ToShortDateString();
-        }
 
     }
 }

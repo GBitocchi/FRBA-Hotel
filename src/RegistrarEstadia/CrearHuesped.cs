@@ -22,6 +22,7 @@ namespace FrbaHotel.RegistrarEstadia
             txtEmail.Text=mail;
             txtTipo_Identificacion.Text=tipo;
             txtNumero_Identificacion.Text=numero;
+            btnCrear.DialogResult = DialogResult.OK;
         }
 
         private bool camposCompletos()
@@ -108,6 +109,10 @@ namespace FrbaHotel.RegistrarEstadia
                             {
                                 ejecutarStoredProcedureCrear();
                                 MessageBox.Show("Cliente " + txtNombre.Text.Trim() + " ingresado correctamente.", "Ingresado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                string[] formato = { txtEmail.Text.Trim(), txtTipo_Identificacion.Text.Trim(), txtNumero_Identificacion.Text.Trim() };
+                                var listViewItem = new ListViewItem(formato);
+                                
+                                
                                 this.Hide();
                             }
                             else

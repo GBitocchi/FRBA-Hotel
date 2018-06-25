@@ -158,15 +158,16 @@ namespace FrbaHotel.RegistrarConsumible
                     SqlCommand registrarConsumible = new SqlCommand("CAIA_UNLIMITED.sp_RegistrarConsumible", db);
                     registrarConsumible.CommandType = CommandType.StoredProcedure;
                     registrarConsumible.Parameters.AddWithValue("@codigo_Estadia", txtCodigo_Estadia.Text.Trim());
-                    registrarConsumible.Parameters.AddWithValue("@codigo_Consumible", codigoConsumible);
+                    registrarConsumible.Parameters.AddWithValue("@codigo_Consumible", Convert.ToInt32(codigoConsumible));
 
                     registrarConsumible.ExecuteNonQuery();
 
-                    limpiarFormulario();
-
-                    MessageBox.Show("Consumibles registrados correctamente", "Registrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
 
                 }
+                limpiarFormulario();
+
+                MessageBox.Show("Consumibles registrados correctamente", "Registrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 db.Close();
             }
         }
