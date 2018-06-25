@@ -15,8 +15,17 @@ namespace FrbaHotel.AbmHotel
         public FiltrarHotel()
         {
             InitializeComponent();
-            dgHoteles.DataSource = DataBase.realizarConsulta("select hote_id as 'ID', hote_nombre as 'Nombre', hote_cant_estrellas as 'Estrellas', hote_mail as 'Mail', dire_dom_calle as 'Calle', dire_nro_calle as 'Numero', dire_ciudad as 'Ciudad', dire_pais as 'Pais', dire_telefono as 'Telefono' from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Direccion D on (D.dire_id = H.dire_id)").Tables[0];
+            refrescarVista();
+            dgHoteles.AllowUserToAddRows = false;
+        }
 
+        private void refrescarVista()
+        {
+            dgHoteles.DataSource = DataBase.realizarConsulta("select hote_id as 'ID', hote_nombre as 'Nombre', hote_cant_estrellas as 'Estrellas', hote_mail as 'Mail', dire_dom_calle as 'Calle', dire_nro_calle as 'Numero', dire_ciudad as 'Ciudad', dire_pais as 'Pais', dire_telefono as 'Telefono' from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Direccion D on (D.dire_id = H.dire_id)").Tables[0];
+            txtCantidadEstrellas.Clear();
+            txtPais.Clear();
+            txtNombreHotel.Clear();
+            txtCiudad.Clear();
         }
 
         private void btnFiltrar_Click(object sender, EventArgs e)
@@ -93,6 +102,7 @@ namespace FrbaHotel.AbmHotel
             string idHotel = dgHoteles.SelectedRows[0].Cells[0].Value.ToString();
             new ModificarHotel(idHotel).ShowDialog();
             this.Show();
+            refrescarVista();
         }
     }
 }

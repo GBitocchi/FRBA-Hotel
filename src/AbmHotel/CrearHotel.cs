@@ -85,6 +85,7 @@ namespace FrbaHotel.AbmHotel
             ocultarErrores();
             MostrarDG();
             dtFechaCreacion.Value = DataBase.fechaSistema();
+            dgRegimenes.AllowUserToAddRows = false;
             cbEstrellas.SelectedIndex = 0;
         }
 

@@ -23,6 +23,7 @@ namespace FrbaHotel.AbmHabitacion
             string nueva_consulta = "select habi_numero as 'Numero de habitacion', habi_piso as 'Piso', habi_frente 'Ubicacion', habi_descripcion as 'Descripcion' from CAIA_UNLIMITED.Habitacion where hote_id = " + hotel_id.ToString();
             DataSet ds_habitaciones = DataBase.realizarConsulta(nueva_consulta);
             dgHabitaciones.DataSource = ds_habitaciones.Tables[0];
+            dgHabitaciones.AllowUserToAddRows = false;
         }
 
 

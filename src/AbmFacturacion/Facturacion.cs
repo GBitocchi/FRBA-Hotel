@@ -41,6 +41,7 @@ namespace FrbaHotel.AbmFacturacion
                 existe = true;
                 cargarFacturaExistente(codigoEstadia);
             }
+            dgConsumibles.AllowUserToAddRows = false;
         }
 
         private double cantidadPersonas()

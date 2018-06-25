@@ -17,6 +17,7 @@ namespace FrbaHotel.AbmHotel
             InitializeComponent();
             DataSet hoteles = DataBase.realizarConsulta("select hote_id as 'ID', hote_nombre as 'Nombre', hote_cant_estrellas as 'Estrellas', hote_mail as 'Mail', dire_dom_calle as 'Calle', dire_nro_calle as 'Numero', dire_ciudad as 'Ciudad', dire_pais as 'Pais' from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id)");
             dgHoteles.DataSource = hoteles.Tables[0];
+            dgHoteles.AllowUserToAddRows = false;
         }
 
         private void btnBaja_Click(object sender, EventArgs e)
@@ -48,59 +49,55 @@ namespace FrbaHotel.AbmHotel
 
         private string generarConsulta()
         {
-            string consulta = "select hote_id as 'ID', hote_nombre as 'Nombre', hote_cant_estrellas as 'Estrellas', hote_mail as 'Mail', dire_dom_calle as 'Calle', dire_nro_calle as 'Numero', dire_ciudad as 'Ciudad', dire_pais as 'Pais', dire_telefono as 'Telefono' from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Direccion D on (D.dire_id = H.dire_id)";
-            bool hayOtro = false;
-            if (txtNombreHotel.Text.Trim() != "")
+            string consulta;
+            if (txtNombreHotel.Text.Trim() == "" && txtCiudad.Text.Trim() == "" && txtCantidadEstrellas.Text.Trim() == "" && txtPais.Text.Trim() == "")
             {
-                consulta += " where ";
-                consulta += string.Format("hote_nombre = '{0}'", txtNombreHotel.Text.Trim());
-                hayOtro = true;
+                consulta = "select hote_id as 'ID', hote_nombre as 'Nombre', hote_cant_estrellas as 'Estrellas', hote_mail as 'Mail', dire_dom_calle as 'Calle', dire_nro_calle as 'Numero', dire_ciudad as 'Ciudad', dire_pais as 'Pais', dire_telefono as 'Telefono' from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Direccion D on (D.dire_id = H.dire_id)";
             }
-            if (txtCantidadEstrellas.Text.Trim() != "")
+            else
             {
-                if (hayOtro)
+                consulta = "select hote_id as 'ID', hote_nombre as 'Nombre', hote_cant_estrellas as 'Estrellas', hote_mail as 'Mail', dire_dom_calle as 'Calle', dire_nro_calle as 'Numero', dire_ciudad as 'Ciudad', dire_pais as 'Pais', dire_telefono as 'Telefono' from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Direccion D on (D.dire_id = H.dire_id) where ";
+                bool hayOtro = false;
+                if (txtNombreHotel.Text.Trim() != "")
                 {
-                    consulta += ", ";
+                    consulta += string.Format("hote_nombre LIKE '%{0}%'", txtNombreHotel.Text.Trim());
+                    hayOtro = true;
                 }
-                else
+                if (txtCantidadEstrellas.Text.Trim() != "")
                 {
-                    consulta += " where ";
+                    if (hayOtro)
+                    {
+                        consulta += ", ";
+                    }
+                    int cantidadEstrellas;
+                    if (int.TryParse(txtCantidadEstrellas.Text.Trim(), out cantidadEstrellas))
+                    {
+                        consulta += string.Format("hote_cant_estrellas = {0}", cantidadEstrellas);
+                    }
+                    else
+                    {
+                        MessageBox.Show("La cantidad de estrellas tiene que ser un numero.", "Campos invalidos", MessageBoxButtons.OK);
+                        return "";
+                    }
                 }
-                int cantidadEstrellas;
-                if (int.TryParse(txtCantidadEstrellas.Text.Trim(), out cantidadEstrellas))
+                if (txtCiudad.Text.Trim() != "")
                 {
-                    consulta += string.Format("hote_cant_estrellas = {0}", cantidadEstrellas);
+                    if (hayOtro)
+                    {
+                        consulta += ", ";
+                    }
+                    consulta += string.Format("dire_ciudad LIKE '%{0}%'", txtCiudad.Text.Trim());
                 }
-                else
+                if (txtPais.Text.Trim() != "")
                 {
-                    MessageBox.Show("Las cantidad estrellas debe ser un numero.", "Campo invalido", MessageBoxButtons.OK);
-                    return "";
+                    if (hayOtro)
+                    {
+                        consulta += ", ";
+                    }
+                    consulta += string.Format("dire_pais LIKE '%{0}%'", txtPais.Text.Trim());
                 }
             }
-            if (txtCiudad.Text.Trim() != "")
-            {
-                if (hayOtro)
-                {
-                    consulta += ", ";
-                }
-                else
-                {
-                    consulta += " where ";
-                }
-                consulta += string.Format("dire_ciudad = '{0}'", txtCiudad.Text.Trim());
-            }
-            if (txtPais.Text.Trim() != "")
-            {
-                if (hayOtro)
-                {
-                    consulta += ", ";
-                }
-                else
-                {
-                    consulta += " where ";
-                }
-                consulta += string.Format("dire_pais = '{0}'", txtPais.Text.Trim());
-            }
+
             return consulta;
         }
     }
