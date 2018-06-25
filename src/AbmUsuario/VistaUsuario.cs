@@ -19,6 +19,8 @@ namespace FrbaHotel.AbmUsuario
     public partial class VistaUsuario : Form
     {
         decimal idHotel;
+        decimal codRol;
+        string username;
         DataSet _dsRoles;
         DataSet _dsHoteles;
 
@@ -115,10 +117,13 @@ namespace FrbaHotel.AbmUsuario
                 comboBoxHoteles.SelectedIndex = 0;
             }
         }
-        public VistaUsuario(decimal _idHotel)
+
+        public VistaUsuario(decimal _idHotel,decimal _codRol, string _username)
         {
             InitializeComponent();
             this.idHotel = _idHotel;
+            this.codRol = _codRol;
+            this.username = _username;
             lblBloqMayus.Visible = false;
             limpiarErrores();
             cargarComboBoxRol();
@@ -386,7 +391,8 @@ namespace FrbaHotel.AbmUsuario
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            this.Hide();
+            new VistaSistema(this.idHotel, this.codRol, this.username).Show();
         }
 
         private void buttonQuitarRol_Click(object sender, EventArgs e)
