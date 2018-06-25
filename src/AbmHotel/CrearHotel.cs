@@ -75,7 +75,7 @@ namespace FrbaHotel.AbmHotel
             {
                 return true;
             }
-            MessageBox.Show("Por favor complete los campos que quedaron vacios.", "Campos incompletos", MessageBoxButtons.OK);
+            MessageBox.Show("Por favor complete los campos que quedaron vacios o erroneos.", "Campos incompletos", MessageBoxButtons.OK);
             return false;
         }
 
