@@ -252,7 +252,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                     {
                         this.regimen = variantes.regimenElegido;
 
-                        string fechaDisponibleHotel = string.Format("SELECT hote_fecha_inicio as FechaInicio, hote_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
+                        string fechaDisponibleHotel = string.Format("SELECT mant_fecha_inicio as FechaInicio, mant_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Mantenimiento where hote_id = '{0}'", this.hotel);
                         DataSet dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel);
                         DateTime fechaElegidaInicio = calendarInicio.SelectionStart;
                         DateTime fechaElegidaFin = calendarFin.SelectionStart;
@@ -261,7 +261,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                         TimeSpan difference = fechaElegidaFin - fechaElegidaInicio;
                         this.difference = difference;
                         this.fechaElegidaInicio = fechaElegidaInicio;
-                        if (!DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"]) && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaFin"]))
+                        if (dsFechasHotel != null && dsFechasHotel.Tables.Count > 0 && dsFechasHotel.Tables[0].Rows.Count > 0 && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"]) && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaFin"]))
                         {
                             DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
                             DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());
@@ -387,7 +387,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 }
                 else
                 {
-                    string fechaDisponibleHotel = string.Format("SELECT hote_fecha_inicio as FechaInicio, hote_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
+                    string fechaDisponibleHotel = string.Format("SELECT mant_fecha_inicio as FechaInicio, mant_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Mantenimiento where hote_id = '{0}'", this.hotel);
                     DataSet dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel);
                     DateTime fechaElegidaInicio = calendarInicio.SelectionStart;
                     DateTime fechaElegidaFin = calendarFin.SelectionStart;
@@ -397,7 +397,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                     this.difference = difference;
                     this.fechaElegidaInicio = fechaElegidaInicio;
 
-                    if (!DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"]) && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaFin"]))
+                    if (dsFechasHotel != null && dsFechasHotel.Tables.Count > 0 && dsFechasHotel.Tables[0].Rows.Count > 0 && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"]) && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaFin"]))
                     {
                         DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
                         DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());
@@ -533,7 +533,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                     {
                         decimal regimen = variantes.regimenElegido;
 
-                        string fechaDisponibleHotel = string.Format("SELECT hote_fecha_inicio as FechaInicio, hote_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
+                        string fechaDisponibleHotel = string.Format("SELECT mant_fecha_inicio as FechaInicio, mant_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Mantenimiento where hote_id = '{0}'", this.hotel);
                         DataSet dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel);
                         DateTime fechaElegidaInicio = calendarInicio.SelectionStart;
                         DateTime fechaElegidaFin = calendarFin.SelectionStart;
@@ -543,7 +543,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                         this.difference = difference;
                         this.fechaElegidaInicio = fechaElegidaInicio;
 
-                        if (!DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"]) && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaFin"]))
+                        if (dsFechasHotel != null && dsFechasHotel.Tables.Count > 0 && dsFechasHotel.Tables[0].Rows.Count > 0 && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"]) && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaFin"]))
                         {
                             DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
                             DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());
@@ -669,7 +669,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 }
                 else
                 {
-                    string fechaDisponibleHotel = string.Format("SELECT hote_fecha_inicio as FechaInicio, hote_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
+                    string fechaDisponibleHotel = string.Format("SELECT mant_fecha_inicio as FechaInicio, mant_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Mantenimiento where hote_id = '{0}'", this.hotel);
                     DataSet dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel);
                     DateTime fechaElegidaInicio = calendarInicio.SelectionStart;
                     DateTime fechaElegidaFin = calendarFin.SelectionStart;
@@ -679,7 +679,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                     this.difference = difference;
                     this.fechaElegidaInicio = fechaElegidaInicio;
 
-                    if (!DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"]) && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaFin"]))
+                    if (dsFechasHotel != null && dsFechasHotel.Tables.Count > 0 && dsFechasHotel.Tables[0].Rows.Count > 0 && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"]) && !DBNull.Value.Equals(dsFechasHotel.Tables[0].Rows[0]["FechaFin"]))
                     {
                         DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
                         DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());

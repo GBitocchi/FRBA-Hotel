@@ -1014,11 +1014,14 @@ BEGIN
       ELSE
         SAVE TRANSACTION sp_CrearUsuarios;
 
-    	insert into CAIA_UNLIMITED.Direccion (dire_telefono,dire_dom_calle,dire_nro_calle,dire_piso,dire_dpto,dire_ciudad,dire_pais)
-	values (@telefono,@calle,@numeroCalle,@piso,@departamento,@ciudad,@pais)
+	if((SELECT COUNT(*) FROM CAIA_UNLIMITED.Direccion WHERE (dire_telefono = @telefono or dire_telefono IS NULL) AND dire_dom_calle = @calle AND dire_nro_calle = @numeroCalle AND (dire_piso = @piso OR dire_piso IS NULL) AND (dire_dpto = @departamento OR dire_dpto IS NULL) AND (dire_ciudad = @ciudad OR dire_ciudad IS NULL) AND (dire_pais = @pais OR dire_pais IS NULL)) = 0)
+		BEGIN
+			insert into CAIA_UNLIMITED.Direccion (dire_telefono,dire_dom_calle,dire_nro_calle,dire_piso,dire_dpto,dire_ciudad,dire_pais)
+			values (@telefono,@calle,@numeroCalle,@piso,@departamento,@ciudad,@pais)
+		END
 
 	insert into CAIA_UNLIMITED.Usuario (usur_username,usur_password,usur_nombre,usur_apellido,usur_documento,usur_documento_tipo,usur_mail,usur_nacimiento,usur_habilitado,usur_intentos,dire_id)
-	values (@username,@password,@name,@apellido,@documento,@tipoDocumento,@mail,convert(datetime,@fechaNacimiento,120),1,0,(SELECT dire_id FROM CAIA_UNLIMITED.Direccion WHERE (dire_telefono = @telefono or @telefono is null) AND dire_dom_calle = @calle AND dire_nro_calle = @numeroCalle AND (dire_piso = @piso or @piso is null) AND (dire_dpto = @departamento or @departamento is null) AND (dire_ciudad = @ciudad or @ciudad is null) AND (dire_pais = @pais or @pais is null)))
+	values (@username,@password,@name,@apellido,@documento,@tipoDocumento,@mail,convert(datetime,@fechaNacimiento,120),1,0,(SELECT dire_id FROM CAIA_UNLIMITED.Direccion WHERE (dire_telefono = @telefono OR dire_telefono IS NULL) AND dire_dom_calle = @calle AND dire_nro_calle = @numeroCalle AND (dire_piso = @piso OR dire_piso IS NULL) AND (dire_dpto = @departamento OR dire_dpto IS NULL) AND (dire_ciudad = @ciudad OR dire_ciudad IS NULL) AND (dire_pais = @pais OR dire_pais IS NULL)))
 	
 	insert into CAIA_UNLIMITED.Rol_X_Usuario(rol_usur_codigo,rol_usur_username)
 	SELECT Roles, @username FROM @lista_Roles
@@ -1349,11 +1352,14 @@ BEGIN
       ELSE
         SAVE TRANSACTION sp_CrearCliente;
 
-	insert into CAIA_UNLIMITED.Direccion (dire_telefono,dire_dom_calle,dire_nro_calle,dire_ciudad,dire_pais)
-	values (@telefono,@calle,@numeroCalle,@ciudad,@pais)
+	if((SELECT COUNT(*) FROM CAIA_UNLIMITED.Direccion WHERE (dire_telefono = @telefono OR dire_telefono IS NULL) AND dire_dom_calle = @calle AND dire_nro_calle = @numeroCalle AND (dire_ciudad = @ciudad OR dire_ciudad IS NULL) AND (dire_pais = @pais OR dire_pais IS NULL)) = 0)
+		BEGIN
+			insert into CAIA_UNLIMITED.Direccion (dire_telefono,dire_dom_calle,dire_nro_calle,dire_ciudad,dire_pais)
+			values (@telefono,@calle,@numeroCalle,@ciudad,@pais)
+		END
 	
 	insert into CAIA_UNLIMITED.Huesped (hues_mail,hues_nombre,hues_apellido,hues_documento,hues_documento_tipo,hues_habilitado,hues_nacionalidad,dire_id)
-	values (@mail,@name,@apellido,@documento,@tipoDocumento,1,@pais,(SELECT dire_id FROM CAIA_UNLIMITED.Direccion WHERE (dire_telefono = @telefono or @telefono is null) AND dire_dom_calle = @calle AND dire_nro_calle = @numeroCalle AND (dire_ciudad = @ciudad or @ciudad is null) AND (dire_pais = @pais or @pais is null)))
+	values (@mail,@name,@apellido,@documento,@tipoDocumento,1,@pais,(SELECT dire_id FROM CAIA_UNLIMITED.Direccion WHERE (dire_telefono = @telefono OR dire_telefono IS NULL) AND dire_dom_calle = @calle AND dire_nro_calle = @numeroCalle AND (dire_ciudad = @ciudad OR dire_ciudad IS NULL) AND (dire_pais = @pais OR dire_pais IS NULL)))
 	
 	insert into CAIA_UNLIMITED.Reserva_X_Huesped(rese_hues_codigo,rese_hues_mail,rese_hues_documento)
 	values(@codigoReserva,@mail,@documento)
@@ -1482,7 +1488,7 @@ BEGIN
 	WHERE hues_mail = (SELECT hues_mail FROM CAIA_UNLIMITED.Huesped h JOIN CAIA_UNLIMITED.Reserva_X_Huesped rh on (rh.rese_hues_mail = h.hues_mail AND rh.rese_hues_documento = h.hues_documento) WHERE rh.rese_hues_codigo = @codigoReserva) AND hues_documento = (SELECT hues_documento FROM CAIA_UNLIMITED.Huesped h JOIN CAIA_UNLIMITED.Reserva_X_Huesped rh on (rh.rese_hues_mail = h.hues_mail AND rh.rese_hues_documento = h.hues_documento) WHERE rh.rese_hues_codigo = @codigoReserva)
 	
 	insert into CAIA_UNLIMITED.Huesped (hues_mail,hues_nombre,hues_apellido,hues_documento,hues_documento_tipo,hues_habilitado,hues_nacionalidad,dire_id)
-	values (@mail,@name,@apellido,@documento,@tipoDocumento,1,@pais,(SELECT dire_id FROM CAIA_UNLIMITED.Direccion WHERE (dire_telefono = @telefono or @telefono is null) AND dire_dom_calle = @calle AND dire_nro_calle = @numeroCalle AND (dire_ciudad = @ciudad or @ciudad is null) AND (dire_pais = @pais or @pais is null)))
+	values (@mail,@name,@apellido,@documento,@tipoDocumento,1,@pais,(SELECT dire_id FROM CAIA_UNLIMITED.Direccion WHERE (dire_telefono = @telefono OR dire_telefono IS NULL) AND dire_dom_calle = @calle AND dire_nro_calle = @numeroCalle AND (dire_ciudad = @ciudad OR dire_ciudad IS NULL) AND (dire_pais = @pais OR dire_pais IS NULL)))
 	
 	DELETE FROM CAIA_UNLIMITED.Reserva_X_Huesped
 	WHERE rese_hues_codigo = @codigoReserva

@@ -114,7 +114,7 @@
             // registrarToolStripMenuItem
             // 
             this.registrarToolStripMenuItem.Name = "registrarToolStripMenuItem";
-            this.registrarToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.registrarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.registrarToolStripMenuItem.Text = "Registrar";
             this.registrarToolStripMenuItem.Click += new System.EventHandler(this.registrarToolStripMenuItem_Click);
             // 
@@ -123,6 +123,7 @@
             this.stripCancelar_Reserva.Name = "stripCancelar_Reserva";
             this.stripCancelar_Reserva.Size = new System.Drawing.Size(105, 20);
             this.stripCancelar_Reserva.Text = "Cancelar reserva";
+            this.stripCancelar_Reserva.Visible = false;
             this.stripCancelar_Reserva.Click += new System.EventHandler(this.stripCancelar_Reserva_Click);
             // 
             // stripReserva
