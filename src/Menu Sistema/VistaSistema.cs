@@ -80,11 +80,7 @@ namespace FrbaHotel.Menu_Sistema
                 else if (unaFuncionalidad["Funcionalidades"].ToString() == "ESTADIA")
                 {
                     stripEstadia.Visible = true;
-                }
-                else if (unaFuncionalidad["Funcionalidades"].ToString() == "CANCELAR_RESERVA")
-                {
-                    stripCancelar_Reserva.Visible = true;
-                }
+                }                
                 else if (unaFuncionalidad["Funcionalidades"].ToString() == "CONSUMIBLES")
                 {
                     stripConsumibles.Visible = true;

@@ -33,6 +33,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.stripEstadia = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stripCancelar_Reserva = new System.Windows.Forms.ToolStripMenuItem();
             this.stripReserva = new System.Windows.Forms.ToolStripMenuItem();
             this.generarReservaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarReservaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,12 +63,11 @@
             this.crearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.darDeBajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stripConsumibles = new System.Windows.Forms.ToolStripMenuItem();
+            this.registrarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
-            this.stripConsumibles = new System.Windows.Forms.ToolStripMenuItem();
-            this.registrarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.stripCancelar_Reserva = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -114,9 +114,16 @@
             // registrarToolStripMenuItem
             // 
             this.registrarToolStripMenuItem.Name = "registrarToolStripMenuItem";
-            this.registrarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.registrarToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.registrarToolStripMenuItem.Text = "Registrar";
             this.registrarToolStripMenuItem.Click += new System.EventHandler(this.registrarToolStripMenuItem_Click);
+            // 
+            // stripCancelar_Reserva
+            // 
+            this.stripCancelar_Reserva.Name = "stripCancelar_Reserva";
+            this.stripCancelar_Reserva.Size = new System.Drawing.Size(105, 20);
+            this.stripCancelar_Reserva.Text = "Cancelar reserva";
+            this.stripCancelar_Reserva.Click += new System.EventHandler(this.stripCancelar_Reserva_Click);
             // 
             // stripReserva
             // 
@@ -333,23 +340,39 @@
             // crearToolStripMenuItem
             // 
             this.crearToolStripMenuItem.Name = "crearToolStripMenuItem";
-            this.crearToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.crearToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.crearToolStripMenuItem.Text = "Crear";
             this.crearToolStripMenuItem.Click += new System.EventHandler(this.crearToolStripMenuItem_Click);
             // 
             // modificarToolStripMenuItem
             // 
             this.modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
-            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.modificarToolStripMenuItem.Text = "Modificar";
             this.modificarToolStripMenuItem.Click += new System.EventHandler(this.modificarToolStripMenuItem_Click);
             // 
             // darDeBajaToolStripMenuItem
             // 
             this.darDeBajaToolStripMenuItem.Name = "darDeBajaToolStripMenuItem";
-            this.darDeBajaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.darDeBajaToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.darDeBajaToolStripMenuItem.Text = "Dar de baja";
             this.darDeBajaToolStripMenuItem.Click += new System.EventHandler(this.darDeBajaToolStripMenuItem_Click);
+            // 
+            // stripConsumibles
+            // 
+            this.stripConsumibles.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.registrarToolStripMenuItem1});
+            this.stripConsumibles.Name = "stripConsumibles";
+            this.stripConsumibles.Size = new System.Drawing.Size(88, 20);
+            this.stripConsumibles.Text = "Consumibles";
+            this.stripConsumibles.Visible = false;
+            // 
+            // registrarToolStripMenuItem1
+            // 
+            this.registrarToolStripMenuItem1.Name = "registrarToolStripMenuItem1";
+            this.registrarToolStripMenuItem1.Size = new System.Drawing.Size(120, 22);
+            this.registrarToolStripMenuItem1.Text = "Registrar";
+            this.registrarToolStripMenuItem1.Click += new System.EventHandler(this.registrarToolStripMenuItem1_Click);
             // 
             // label1
             // 
@@ -384,30 +407,6 @@
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
-            // 
-            // stripConsumibles
-            // 
-            this.stripConsumibles.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.registrarToolStripMenuItem1});
-            this.stripConsumibles.Name = "stripConsumibles";
-            this.stripConsumibles.Size = new System.Drawing.Size(88, 20);
-            this.stripConsumibles.Text = "Consumibles";
-            this.stripConsumibles.Visible = false;
-            // 
-            // registrarToolStripMenuItem1
-            // 
-            this.registrarToolStripMenuItem1.Name = "registrarToolStripMenuItem1";
-            this.registrarToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.registrarToolStripMenuItem1.Text = "Registrar";
-            this.registrarToolStripMenuItem1.Click += new System.EventHandler(this.registrarToolStripMenuItem1_Click);
-            // 
-            // stripCancelar_Reserva
-            // 
-            this.stripCancelar_Reserva.Name = "stripCancelar_Reserva";
-            this.stripCancelar_Reserva.Size = new System.Drawing.Size(105, 20);
-            this.stripCancelar_Reserva.Text = "Cancelar reserva";
-            this.stripCancelar_Reserva.Visible = false;
-            this.stripCancelar_Reserva.Click += new System.EventHandler(this.stripCancelar_Reserva_Click);
             // 
             // VistaSistema
             // 
