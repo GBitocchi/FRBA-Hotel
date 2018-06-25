@@ -33,7 +33,7 @@ namespace FrbaHotel.AbmFacturacion
                         totalAFacturar += Convert.ToInt32(dgConsumibles.Rows[i].Cells[2].Value) * Convert.ToInt32(dgConsumibles.Rows[i].Cells[3].Value);
                     }
                 }
-                totalAFacturar += Convert.ToInt32(txtNochesReserva.Text.Trim()) * Convert.ToDouble(txtPrecioRegimen.Text.Trim()) * cantidadPersonas();
+                totalAFacturar += Convert.ToInt32(txtNochesReserva.Text.Trim()) * (Convert.ToDouble(txtPrecioRegimen.Text.Trim()) * cantidadPersonas() + Convert.ToDouble(txtPorcentual.Text));
                 txtTotal.Text = Convert.ToString(totalAFacturar);
             }
             else
