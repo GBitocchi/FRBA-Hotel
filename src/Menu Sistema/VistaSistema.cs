@@ -105,6 +105,7 @@ namespace FrbaHotel.Menu_Sistema
         public VistaSistema()
         {
             InitializeComponent();
+            stripCancelar_Reserva.Visible = true;
             this.guest = true;
             stripReserva.Visible = true;
         }
@@ -150,8 +151,8 @@ namespace FrbaHotel.Menu_Sistema
 
         private void administrarUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new VistaUsuario(this.idHotel).ShowDialog();
-            this.Show();
+            this.Hide();
+            new VistaUsuario(this.idHotel,this.codigoRol,this.nombreUsuario).Show();
         }
 
         private void cambiarMiContraseñaToolStripMenuItem_Click(object sender, EventArgs e)
