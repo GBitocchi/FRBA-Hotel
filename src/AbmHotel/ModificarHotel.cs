@@ -88,7 +88,6 @@ namespace FrbaHotel.AbmHotel
                             ejecutarStoredProcedure();
                             MessageBox.Show("Hotel modificado correctamente.", "Modificacion exitosa", MessageBoxButtons.OK);
                             this.Hide();
-                            new FiltrarHotel().Show();
                         }
                         else
                         {

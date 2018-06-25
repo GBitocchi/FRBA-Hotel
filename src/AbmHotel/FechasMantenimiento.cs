@@ -58,7 +58,6 @@ namespace FrbaHotel.AbmHotel
                         txtFechasIncorrectas.Visible = false;
                         MessageBox.Show("Baja de hotel exitosa.", "Baja exitosa", MessageBoxButtons.OK);
                         this.Hide();
-                        new BajaHotel().Show();
                     }
                     else
                     {

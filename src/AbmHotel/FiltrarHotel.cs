@@ -91,8 +91,8 @@ namespace FrbaHotel.AbmHotel
         private void dgHoteles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string idHotel = dgHoteles.SelectedRows[0].Cells[0].Value.ToString();
-            this.Hide();
-            new ModificarHotel(idHotel).Show();
+            new ModificarHotel(idHotel).ShowDialog();
+            this.Show();
         }
     }
 }
