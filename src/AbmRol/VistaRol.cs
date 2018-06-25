@@ -48,6 +48,7 @@ namespace FrbaHotel.AbmRol
             string roles = "SELECT rol_codigo as Codigo, rol_nombre as Nombre, rol_estado as Estado FROM CAIA_UNLIMITED.Rol";
             DataSet dsRoles = DataBase.realizarConsulta(roles);
             dgvModificarRoles.DataSource = dsRoles.Tables[0];
+            dgvModificarRoles.AllowUserToAddRows = false;
             DataGridViewButtonColumn botonModificar = new DataGridViewButtonColumn();
             botonModificar.HeaderText = "Seleccionar";
             botonModificar.Text = "            Modificar          ";
@@ -56,6 +57,7 @@ namespace FrbaHotel.AbmRol
             string rolesActivos = "SELECT rol_codigo as Codigo, rol_nombre as Nombre FROM CAIA_UNLIMITED.Rol WHERE rol_estado = 1";
             DataSet dsRolesActivos = DataBase.realizarConsulta(rolesActivos);
             dgvEliminarRoles.DataSource = dsRolesActivos.Tables[0];
+            dgvEliminarRoles.AllowUserToAddRows = false;
             DataGridViewButtonColumn botonEliminar = new DataGridViewButtonColumn();
             botonEliminar.HeaderText = "Seleccionar";
             botonEliminar.Text = "            Eliminar          ";
@@ -197,9 +199,11 @@ namespace FrbaHotel.AbmRol
                         string roles = "SELECT rol_codigo as Codigo, rol_nombre as Nombre, rol_estado as Estado FROM CAIA_UNLIMITED.Rol";
                         DataSet dsRoles = DataBase.realizarConsulta(roles);
                         dgvModificarRoles.DataSource = dsRoles.Tables[0];
+                        dgvModificarRoles.AllowUserToAddRows = false;
                         string rolesHabilitados = "SELECT rol_codigo as Codigo, rol_nombre as Nombre FROM CAIA_UNLIMITED.Rol WHERE rol_estado = 1";
                         DataSet dsRolesHabilitados = DataBase.realizarConsulta(rolesHabilitados);
                         dgvEliminarRoles.DataSource = dsRolesHabilitados.Tables[0];
+                        dgvEliminarRoles.AllowUserToAddRows = false;
                         MessageBox.Show("Rol creado exitosamente!");
                     }
                     catch (Exception errorDB)
@@ -225,9 +229,11 @@ namespace FrbaHotel.AbmRol
                     string rolesModificados = "SELECT rol_codigo as Codigo, rol_nombre as Nombre, rol_estado as Estado FROM CAIA_UNLIMITED.Rol";
                     DataSet dsRolesModificados = DataBase.realizarConsulta(rolesModificados);
                     dgvModificarRoles.DataSource = dsRolesModificados.Tables[0];
+                    dgvModificarRoles.AllowUserToAddRows = false;
                     string roles = "SELECT rol_codigo as Codigo, rol_nombre as Nombre FROM CAIA_UNLIMITED.Rol WHERE rol_estado = 1";
                     DataSet dsRoles = DataBase.realizarConsulta(roles);
                     dgvEliminarRoles.DataSource = dsRoles.Tables[0];
+                    dgvEliminarRoles.AllowUserToAddRows = false;
                 }
             }   
             catch(IndexOutOfRangeException iorem)
@@ -249,9 +255,11 @@ namespace FrbaHotel.AbmRol
                     string rolesModificados = "SELECT rol_codigo as Codigo, rol_nombre as Nombre, rol_estado as Estado FROM CAIA_UNLIMITED.Rol";
                     DataSet dsRolesModificados = DataBase.realizarConsulta(rolesModificados);
                     dgvModificarRoles.DataSource = dsRolesModificados.Tables[0];
+                    dgvModificarRoles.AllowUserToAddRows = false;
                     string roles = "SELECT rol_codigo as Codigo, rol_nombre as Nombre FROM CAIA_UNLIMITED.Rol WHERE rol_estado = 1";
                     DataSet dsRoles = DataBase.realizarConsulta(roles);
                     dgvEliminarRoles.DataSource = dsRoles.Tables[0];
+                    dgvEliminarRoles.AllowUserToAddRows = false;
                     MessageBox.Show("Rol eliminado exitosamente!");
                 }
             }
