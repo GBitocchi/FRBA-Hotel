@@ -139,11 +139,11 @@ namespace FrbaHotel.GenerarModificacionReserva
             listBoxTipoHabitacion.Items.Clear();
             limpiarErrores();
             limpiarTextBox();
-            cargarComboBoxRegimenes();
-            cargarComboBoxTipoHabitacion();
             this.hotel = _hotel;
             this.guest = false;
             this.username = _username;
+            cargarComboBoxRegimenes();
+            cargarComboBoxTipoHabitacion();            
             comboHoteles.Visible = false;
             lblHotel.Visible = false;
             btnSeleccionarHotel.Visible = false;
