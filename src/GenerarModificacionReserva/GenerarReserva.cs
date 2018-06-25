@@ -309,7 +309,24 @@ namespace FrbaHotel.GenerarModificacionReserva
                             lh.Add(new Habitacionalities { Habitacion = ((decimal)(dsNumeroHabitacion.Tables[0].Rows[j - 1][0])) });
                             string queryTipitoHabitacion = string.Format("SELECT TOP 1 thab_porcentual as PrecioHabitacion FROM CAIA_UNLIMITED.Tipo_Habitacion where thab_descripcion = '{0}'", tipitoHabitacion);
                             DataSet dsTipitoHabitacion = DataBase.realizarConsulta(queryTipitoHabitacion);
-                            decimal costoUnaHabitacion = ((decimal)dsTipitoHabitacion.Tables[0].Rows[0]["PrecioHabitacion"] * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                            decimal costoUnaHabitacion = 0;
+                            if (tipitoHabitacion == "Base Doble" || tipitoHabitacion == "King")
+                            {
+                                costoUnaHabitacion = (2 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                            }
+                            if (tipitoHabitacion == "Base Simple")
+                            {
+                                costoUnaHabitacion = (1 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                            }
+                            if (tipitoHabitacion == "Base Triple")
+                            {
+                                costoUnaHabitacion = (3 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                            }
+                            if (tipitoHabitacion == "Base Cuadruple")
+                            {
+                                costoUnaHabitacion = (4 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                            }
+                            
                             msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de '{0}' \n", costoUnaHabitacion));
                             costoTotal = costoTotal + costoUnaHabitacion;
                         }
@@ -429,7 +446,23 @@ namespace FrbaHotel.GenerarModificacionReserva
                         lh.Add(new Habitacionalities { Habitacion = ((decimal)(dsNumeroHabitacion.Tables[0].Rows[j - 1][0])) });
                         string queryTipitoHabitacion = string.Format("SELECT TOP 1 thab_porcentual as PrecioHabitacion FROM CAIA_UNLIMITED.Tipo_Habitacion where thab_descripcion = '{0}'", tipitoHabitacion);
                         DataSet dsTipitoHabitacion = DataBase.realizarConsulta(queryTipitoHabitacion);
-                        decimal costoUnaHabitacion = ((decimal)dsTipitoHabitacion.Tables[0].Rows[0]["PrecioHabitacion"] * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                        decimal costoUnaHabitacion = 0;
+                        if (tipitoHabitacion == "Base Doble" || tipitoHabitacion == "King")
+                        {
+                            costoUnaHabitacion = (2 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                        }
+                        if (tipitoHabitacion == "Base Simple")
+                        {
+                            costoUnaHabitacion = (1 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                        }
+                        if (tipitoHabitacion == "Base Triple")
+                        {
+                            costoUnaHabitacion = (3 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                        }
+                        if (tipitoHabitacion == "Base Cuadruple")
+                        {
+                            costoUnaHabitacion = (4 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                        }
                         msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de '{0}' \n", costoUnaHabitacion));
                         costoTotal = costoTotal + costoUnaHabitacion;
                     }
@@ -559,7 +592,23 @@ namespace FrbaHotel.GenerarModificacionReserva
                             lh.Add(new Habitacionalities { Habitacion = ((decimal)(dsNumeroHabitacion.Tables[0].Rows[j - 1][0])) });
                             string queryTipitoHabitacion = string.Format("SELECT TOP 1 thab_porcentual as PrecioHabitacion FROM CAIA_UNLIMITED.Tipo_Habitacion where thab_descripcion = '{0}'", tipitoHabitacion);
                             DataSet dsTipitoHabitacion = DataBase.realizarConsulta(queryTipitoHabitacion);
-                            decimal costoUnaHabitacion = ((decimal)dsTipitoHabitacion.Tables[0].Rows[0]["PrecioHabitacion"] * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                            decimal costoUnaHabitacion = 0;
+                            if (tipitoHabitacion == "Base Doble" || tipitoHabitacion == "King")
+                            {
+                                costoUnaHabitacion = (2 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                            }
+                            if (tipitoHabitacion == "Base Simple")
+                            {
+                                costoUnaHabitacion = (1 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                            }
+                            if (tipitoHabitacion == "Base Triple")
+                            {
+                                costoUnaHabitacion = (3 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                            }
+                            if (tipitoHabitacion == "Base Cuadruple")
+                            {
+                                costoUnaHabitacion = (4 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                            }
                             msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de '{0}' \n", costoUnaHabitacion));
                             costoTotal = costoTotal + costoUnaHabitacion;
                         }
@@ -679,7 +728,23 @@ namespace FrbaHotel.GenerarModificacionReserva
                         lh.Add(new Habitacionalities { Habitacion = ((decimal)(dsNumeroHabitacion.Tables[0].Rows[j - 1][0])) });
                         string queryTipitoHabitacion = string.Format("SELECT TOP 1 thab_porcentual as PrecioHabitacion FROM CAIA_UNLIMITED.Tipo_Habitacion where thab_descripcion = '{0}'", tipitoHabitacion);
                         DataSet dsTipitoHabitacion = DataBase.realizarConsulta(queryTipitoHabitacion);
-                        decimal costoUnaHabitacion = ((decimal)dsTipitoHabitacion.Tables[0].Rows[0]["PrecioHabitacion"] * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                        decimal costoUnaHabitacion = 0;
+                        if (tipitoHabitacion == "Base Doble" || tipitoHabitacion == "King")
+                        {
+                            costoUnaHabitacion = (2 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                        }
+                        if (tipitoHabitacion == "Base Simple")
+                        {
+                            costoUnaHabitacion = (1 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                        }
+                        if (tipitoHabitacion == "Base Triple")
+                        {
+                            costoUnaHabitacion = (3 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                        }
+                        if (tipitoHabitacion == "Base Cuadruple")
+                        {
+                            costoUnaHabitacion = (4 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                        }
                         msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de '{0}' \n", costoUnaHabitacion));
                         costoTotal = costoTotal + costoUnaHabitacion;
                     }
