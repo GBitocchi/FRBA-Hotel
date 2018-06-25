@@ -85,6 +85,10 @@ namespace FrbaHotel.Menu_Sistema
                 {
                     stripConsumibles.Visible = true;
                 }
+                else if (unaFuncionalidad["Funcionalidades"].ToString() == "CANCELAR_RESERVA")
+                {
+                    stripCancelar_Reserva.Visible = true;
+                }
             }
         }
 
