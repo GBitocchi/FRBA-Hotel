@@ -1352,8 +1352,8 @@ BEGIN
 	insert into CAIA_UNLIMITED.Direccion (dire_telefono,dire_dom_calle,dire_nro_calle,dire_ciudad,dire_pais)
 	values (@telefono,@calle,@numeroCalle,@ciudad,@pais)
 	
-	insert into CAIA_UNLIMITED.Huesped (hues_mail,hues_nombre,hues_apellido,hues_documento,hues_documento_tipo,hues_habilitado,hues_nacionalidad,hues_ciudad,dire_id)
-	values (@mail,@name,@apellido,@documento,@tipoDocumento,1,@pais,@ciudad,(SELECT dire_id FROM CAIA_UNLIMITED.Direccion WHERE (dire_telefono = @telefono or @telefono is null) AND dire_dom_calle = @calle AND dire_nro_calle = @numeroCalle AND (dire_ciudad = @ciudad or @ciudad is null) AND (dire_pais = @pais or @pais is null)))
+	insert into CAIA_UNLIMITED.Huesped (hues_mail,hues_nombre,hues_apellido,hues_documento,hues_documento_tipo,hues_habilitado,hues_nacionalidad,dire_id)
+	values (@mail,@name,@apellido,@documento,@tipoDocumento,1,@pais,(SELECT dire_id FROM CAIA_UNLIMITED.Direccion WHERE (dire_telefono = @telefono or @telefono is null) AND dire_dom_calle = @calle AND dire_nro_calle = @numeroCalle AND (dire_ciudad = @ciudad or @ciudad is null) AND (dire_pais = @pais or @pais is null)))
 	
 	insert into CAIA_UNLIMITED.Reserva_X_Huesped(rese_hues_codigo,rese_hues_mail,rese_hues_documento)
 	values(@codigoReserva,@mail,@documento)
@@ -1481,8 +1481,8 @@ BEGIN
 	DELETE FROM CAIA_UNLIMITED.Huesped
 	WHERE hues_mail = (SELECT hues_mail FROM CAIA_UNLIMITED.Huesped h JOIN CAIA_UNLIMITED.Reserva_X_Huesped rh on (rh.rese_hues_mail = h.hues_mail AND rh.rese_hues_documento = h.hues_documento) WHERE rh.rese_hues_codigo = @codigoReserva) AND hues_documento = (SELECT hues_documento FROM CAIA_UNLIMITED.Huesped h JOIN CAIA_UNLIMITED.Reserva_X_Huesped rh on (rh.rese_hues_mail = h.hues_mail AND rh.rese_hues_documento = h.hues_documento) WHERE rh.rese_hues_codigo = @codigoReserva)
 	
-	insert into CAIA_UNLIMITED.Huesped (hues_mail,hues_nombre,hues_apellido,hues_documento,hues_documento_tipo,hues_habilitado,hues_nacionalidad,hues_ciudad,dire_id)
-	values (@mail,@name,@apellido,@documento,@tipoDocumento,1,@pais,@ciudad,(SELECT dire_id FROM CAIA_UNLIMITED.Direccion WHERE (dire_telefono = @telefono or @telefono is null) AND dire_dom_calle = @calle AND dire_nro_calle = @numeroCalle AND (dire_ciudad = @ciudad or @ciudad is null) AND (dire_pais = @pais or @pais is null)))
+	insert into CAIA_UNLIMITED.Huesped (hues_mail,hues_nombre,hues_apellido,hues_documento,hues_documento_tipo,hues_habilitado,hues_nacionalidad,dire_id)
+	values (@mail,@name,@apellido,@documento,@tipoDocumento,1,@pais,(SELECT dire_id FROM CAIA_UNLIMITED.Direccion WHERE (dire_telefono = @telefono or @telefono is null) AND dire_dom_calle = @calle AND dire_nro_calle = @numeroCalle AND (dire_ciudad = @ciudad or @ciudad is null) AND (dire_pais = @pais or @pais is null)))
 	
 	DELETE FROM CAIA_UNLIMITED.Reserva_X_Huesped
 	WHERE rese_hues_codigo = @codigoReserva
