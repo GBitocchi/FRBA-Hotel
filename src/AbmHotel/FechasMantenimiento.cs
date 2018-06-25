@@ -39,7 +39,6 @@ namespace FrbaHotel.AbmHotel
         private void btnAtras_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new BajaHotel().Show();
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -89,10 +88,8 @@ namespace FrbaHotel.AbmHotel
 
         private string queryOtrosMantenimientos()
         {
-            Console.WriteLine("Entre");
             string otrosMantenimientos = string.Format("select * from CAIA_UNLIMITED.Mantenimiento where hote_id = {0} and ((DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{1}', 120)) >= 0 and DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{1}', 120)) <= DATEDIFF(day, mant_fecha_inicio, mant_fecha_fin)) or (DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{2}', 120)) >= 0 and DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{2}', 120)) <= DATEDIFF(day, mant_fecha_inicio, mant_fecha_fin)) or (DATEDIFF(day, mant_fecha_inicio, '{1}') <= 0 and DATEDIFF(day, mant_fecha_fin, '{2}') >=0))",
                 hotelID, fechaInicio, fechaFin);
-            Console.WriteLine("Sali");
             return otrosMantenimientos;
         }
 

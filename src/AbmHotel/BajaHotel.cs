@@ -21,8 +21,7 @@ namespace FrbaHotel.AbmHotel
 
         private void btnBaja_Click(object sender, EventArgs e)
         {
-            new FechasMantenimiento(dgHoteles.SelectedRows[0].Cells[0].Value.ToString()).Show();
-            this.Hide();
+            new FechasMantenimiento(dgHoteles.SelectedRows[0].Cells[0].Value.ToString()).ShowDialog();
         }
 
         private void reiniciarVista()
