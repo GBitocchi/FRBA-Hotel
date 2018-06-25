@@ -27,18 +27,20 @@ namespace FrbaHotel.RegistrarConsumible
             {
                 if (camposValidosCantidad())
                 {
-                    string consumible = Convert.ToString(cbxConsumible.SelectedValue);
-                    txtCantidad.Text = consumible;
-                    string cantidad = txtCantidad.Text;
-                    string consultaPrecio = string.Format("select cons_precio from CAIA_UNLIMITED.Consumible where cons_descripcion='{0}'", consumible);
-                    DataTable precioObtenido = DataBase.realizarConsulta(consultaPrecio).Tables[0];
-                    string precio = precioObtenido.Rows[0][0].ToString();
+                    if (noEsRepetido())
+                    {
+                        string consumible = Convert.ToString(cbxConsumible.SelectedValue);
+                        string cantidad = txtCantidad.Text;
+                        string consultaPrecio = string.Format("select cons_precio from CAIA_UNLIMITED.Consumible where cons_descripcion='{0}'", consumible);
+                        DataTable precioObtenido = DataBase.realizarConsulta(consultaPrecio).Tables[0];
+                        string precio = precioObtenido.Rows[0][0].ToString();
 
-                    string[] formato = { consumible, cantidad, precio };
-                    var listViewItem = new ListViewItem(formato);
-                    listaConsumibles.Items.Add(listViewItem);
-                    cbxConsumible.SelectedIndex = 0;
-                    txtCantidad.Text = "";                      
+                        string[] formato = { consumible, cantidad, precio };
+                        var listViewItem = new ListViewItem(formato);
+                        listaConsumibles.Items.Add(listViewItem);
+                        cbxConsumible.SelectedIndex = 0;
+                        txtCantidad.Text = "";
+                    }
                 }
             }
             else
@@ -46,6 +48,30 @@ namespace FrbaHotel.RegistrarConsumible
                 MessageBox.Show("Complete la cantidad de consumibles", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private bool noEsRepetido()
+        {
+            
+            
+            for (int i = 0; i < listaConsumibles.Items.Count; i++)
+            {
+                if(listaConsumibles.Items[i].SubItems[0].Text==Convert.ToString(cbxConsumible.SelectedValue))
+                {
+
+                    int cantidad = Convert.ToInt32(listaConsumibles.Items[i].SubItems[1].Text);
+                    int cantidad2 =Convert.ToInt32(txtCantidad.Text.Trim());
+
+                    listaConsumibles.Items[i].SubItems[1].Text = Convert.ToString(cantidad + cantidad2);
+                    cbxConsumible.SelectedIndex = 0;
+                    txtCantidad.Text = "";
+                    return false;
+                }
+
+            }
+
+            return true;
+        }
+
 
         private bool camposCompletosCantidad()
         {
@@ -99,6 +125,8 @@ namespace FrbaHotel.RegistrarConsumible
                         string consultaRegimenId = string.Format("select regi_descripcion from CAIA_UNLIMITED.Regimen R join CAIA_UNLIMITED.Reserva X on (R.regi_codigo = X.regi_codigo) join CAIA_UNLIMITED.Estadia E on (X.rese_codigo = E.rese_codigo) where E.esta_codigo='{0}'", txtCodigo_Estadia.Text);
                         DataTable regimenID = DataBase.realizarConsulta(consultaRegimenId).Tables[0];
                         txtRegimen.Text = regimenID.Rows[0][0].ToString();
+
+                        btnIngresar_Consumibles.Enabled = true;
 
                     }
                 }

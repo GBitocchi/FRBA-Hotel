@@ -140,6 +140,7 @@
             // 
             // btnIngresar_Consumibles
             // 
+            this.btnIngresar_Consumibles.Enabled = false;
             this.btnIngresar_Consumibles.Location = new System.Drawing.Point(299, 412);
             this.btnIngresar_Consumibles.Name = "btnIngresar_Consumibles";
             this.btnIngresar_Consumibles.Size = new System.Drawing.Size(120, 33);
@@ -266,7 +267,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "MenuRegistrarConsumible";
-            this.Text = "Form1";
+            this.Text = "Registrar Consumible";
             this.ResumeLayout(false);
             this.PerformLayout();
 

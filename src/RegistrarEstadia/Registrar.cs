@@ -21,7 +21,6 @@ namespace FrbaHotel.RegistrarEstadia
             codigoReserva = cod;
 
             txtFecha.Text = Convert.ToString(DataBase.fechaSistema());
-
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -64,7 +63,7 @@ namespace FrbaHotel.RegistrarEstadia
             }
             else
             {
-                MessageBox.Show("Ingrese todos los campos.");
+                MessageBox.Show("Ingrese todos los campos.","Error",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
             }
 
         }
