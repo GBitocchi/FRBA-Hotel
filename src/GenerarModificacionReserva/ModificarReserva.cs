@@ -1122,6 +1122,14 @@ namespace FrbaHotel.GenerarModificacionReserva
                 {
                     SqlConnection createConnection = DataBase.conectarBD();
                     SqlCommand insertCommand;
+                    string yaExistePKS = string.Format("SELECT COUNT(*) FROM CAIA_UNLIMITED.Huesped WHERE (hues_mail = '{0}' OR hues_documento = '{1}')", textBoxMail.Text.Trim(), textBoxDocumento.Text.Trim());
+                    SqlCommand commYaExistePKS = new SqlCommand(yaExistePKS, createConnection);
+                    Int32 countYaExistentesPKS = Convert.ToInt32(commYaExistePKS.ExecuteScalar());
+                    if (countYaExistentesPKS > 0)
+                    {
+                        MessageBox.Show("El mail o numero de identifacion ingresados coinciden con el de un usuario anterior. Intente con otro o elija un usuario ya existente");
+                        return;
+                    }
                     if (guest)
                     {
                         insertCommand = new SqlCommand("[CAIA_UNLIMITED].sp_ModificarReservaHuesped", createConnection);
