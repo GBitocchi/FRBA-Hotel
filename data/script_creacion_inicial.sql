@@ -318,7 +318,8 @@ go
 
 create table CAIA_UNLIMITED.Consumible_X_Estadia(
 	cons_esta_codigo_cons numeric(18,0) not null,
-	cons_esta_codigo_esta numeric(18,0) not null
+	cons_esta_codigo_esta numeric(18,0) not null,
+	cons_esta_cantidad numeric(18,0)
 )
 go
 
@@ -591,8 +592,8 @@ from CAIA_UNLIMITED.Regimen join gd_esquema.Maestra on (regi_descripcion = Regim
 
 
 --Consumible por estadia
-insert into CAIA_UNLIMITED.Consumible_X_Estadia (cons_esta_codigo_cons, cons_esta_codigo_esta)
-select distinct cons_codigo, esta_codigo
+insert into CAIA_UNLIMITED.Consumible_X_Estadia (cons_esta_codigo_cons, cons_esta_codigo_esta,cons_esta_cantidad)
+select distinct cons_codigo, esta_codigo,1
 from CAIA_UNLIMITED.Consumible join gd_esquema.Maestra on (Consumible_Codigo = cons_codigo)
 								join CAIA_UNLIMITED.Reserva R on (Reserva_Codigo = rese_codigo)
 								join CAIA_UNLIMITED.Estadia E on (E.rese_codigo = R.rese_codigo)
