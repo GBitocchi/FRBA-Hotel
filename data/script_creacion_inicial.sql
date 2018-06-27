@@ -304,6 +304,7 @@ alter table CAIA_UNLIMITED.Factura
 	references CAIA_UNLIMITED.Pago (pago_codigo),
 	constraint FK_Factura_Huesped foreign key (hues_mail, hues_documento)
 	references CAIA_UNLIMITED.Huesped (hues_mail, hues_documento)
+	on update cascade
 go
 
 alter table CAIA_UNLIMITED.Item_Factura
@@ -356,6 +357,7 @@ alter table CAIA_UNLIMITED.Reserva_X_Huesped
 	references CAIA_UNLIMITED.Reserva (rese_codigo),
 	constraint FK_ReservaHuesped_Hues foreign key (rese_hues_mail, rese_hues_documento)
 	references CAIA_UNLIMITED.Huesped (hues_mail, hues_documento)
+	on update cascade
 go
 
 alter table CAIA_UNLIMITED.Consumible_X_Estadia
