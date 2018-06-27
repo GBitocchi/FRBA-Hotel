@@ -9,6 +9,13 @@ BEGIN
 EXEC ('CREATE SCHEMA [CAIA_UNLIMITED] AUTHORIZATION [gd]')
 END
 
+create table CAIA_UNLIMITED.Mantenimiento(
+	mant_fecha_inicio datetime not null,
+	mant_fecha_fin datetime not null,
+	mant_descripcion nvarchar(255) not null,
+	hote_id numeric(18,0) not null
+)
+go
 
 create table CAIA_UNLIMITED.Hotel(
 	hote_id numeric(18,0) identity(0,1) not null,
