@@ -297,10 +297,6 @@ C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.CrearH
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.FechasMantenimiento.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.FiltrarHotel.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.ModificarHotel.resources
-C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRegimen.Crear.resources
-C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRegimen.MenuModificarDarDeBaja.resources
-C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRegimen.MenuRegimen.resources
-C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRegimen.Modificacion.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.Form1.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.ListadoEstadistico.MasCanceladas.resources
 C:\Users\Lucas Romano\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.ListadoEstadistico.MasMantenimiento.resources
