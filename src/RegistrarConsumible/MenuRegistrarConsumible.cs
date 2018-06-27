@@ -110,24 +110,33 @@ namespace FrbaHotel.RegistrarConsumible
                     }
                     else
                     {
-                        string consultaHabitacion = string.Format("select habi_rese_numero from CAIA_UNLIMITED.Habitacion_X_Reserva X join CAIA_UNLIMITED.Estadia E on (X.habi_rese_codigo = E.rese_codigo) where E.esta_codigo='{0}'", txtCodigo_Estadia.Text);
-                        DataTable habitacion = DataBase.realizarConsulta(consultaHabitacion).Tables[0];
-                        txtHabitacion.Text = habitacion.Rows[0][0].ToString();
+                        string codEstadiaIngresado = string.Format("select cons_esta_codigo_esta from CAIA_UNLIMITED.Consumible_X_Estadia where cons_esta_codigo_esta='{0}'", txtCodigo_Estadia.Text);
 
-                        string consultaHotelID = string.Format("select habi_rese_id from CAIA_UNLIMITED.Habitacion_X_Reserva X join CAIA_UNLIMITED.Estadia E on (X.habi_rese_codigo = E.rese_codigo) where E.esta_codigo='{0}'", txtCodigo_Estadia.Text);
-                        DataTable hotel_ID = DataBase.realizarConsulta(consultaHotelID).Tables[0];
-                        string hotelId = hotel_ID.Rows[0][0].ToString();
+                        if (DataBase.realizarConsulta(codEstadiaIngresado).Tables[0].Rows.Count == 0)
+                        {
+                            string consultaHabitacion = string.Format("select habi_rese_numero from CAIA_UNLIMITED.Habitacion_X_Reserva X join CAIA_UNLIMITED.Estadia E on (X.habi_rese_codigo = E.rese_codigo) where E.esta_codigo='{0}'", txtCodigo_Estadia.Text);
+                            DataTable habitacion = DataBase.realizarConsulta(consultaHabitacion).Tables[0];
+                            txtHabitacion.Text = habitacion.Rows[0][0].ToString();
 
-                        string consultaHotel = string.Format("select hote_nombre from CAIA_UNLIMITED.Hotel where hote_id='{0}'", hotelId);
-                        DataTable hotel = DataBase.realizarConsulta(consultaHotel).Tables[0];
-                        txtHotel.Text = hotel.Rows[0][0].ToString();
+                            string consultaHotelID = string.Format("select habi_rese_id from CAIA_UNLIMITED.Habitacion_X_Reserva X join CAIA_UNLIMITED.Estadia E on (X.habi_rese_codigo = E.rese_codigo) where E.esta_codigo='{0}'", txtCodigo_Estadia.Text);
+                            DataTable hotel_ID = DataBase.realizarConsulta(consultaHotelID).Tables[0];
+                            string hotelId = hotel_ID.Rows[0][0].ToString();
 
-                        string consultaRegimenId = string.Format("select regi_descripcion from CAIA_UNLIMITED.Regimen R join CAIA_UNLIMITED.Reserva X on (R.regi_codigo = X.regi_codigo) join CAIA_UNLIMITED.Estadia E on (X.rese_codigo = E.rese_codigo) where E.esta_codigo='{0}'", txtCodigo_Estadia.Text);
-                        DataTable regimenID = DataBase.realizarConsulta(consultaRegimenId).Tables[0];
-                        txtRegimen.Text = regimenID.Rows[0][0].ToString();
+                            string consultaHotel = string.Format("select hote_nombre from CAIA_UNLIMITED.Hotel where hote_id='{0}'", hotelId);
+                            DataTable hotel = DataBase.realizarConsulta(consultaHotel).Tables[0];
+                            txtHotel.Text = hotel.Rows[0][0].ToString();
 
-                        btnIngresar_Consumibles.Enabled = true;
+                            string consultaRegimenId = string.Format("select regi_descripcion from CAIA_UNLIMITED.Regimen R join CAIA_UNLIMITED.Reserva X on (R.regi_codigo = X.regi_codigo) join CAIA_UNLIMITED.Estadia E on (X.rese_codigo = E.rese_codigo) where E.esta_codigo='{0}'", txtCodigo_Estadia.Text);
+                            DataTable regimenID = DataBase.realizarConsulta(consultaRegimenId).Tables[0];
+                            txtRegimen.Text = regimenID.Rows[0][0].ToString();
 
+                            btnIngresar_Consumibles.Enabled = true;
+                            
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ya se registraron el/los consumible/s en esta estadia", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
 
