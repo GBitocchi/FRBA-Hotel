@@ -201,5 +201,10 @@ namespace FrbaHotel.AbmRol
         {
 
         }
+
+        private void VistaRolModificar_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

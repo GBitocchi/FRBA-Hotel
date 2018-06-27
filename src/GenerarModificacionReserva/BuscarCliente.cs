@@ -38,12 +38,13 @@ namespace FrbaHotel.GenerarModificacionReserva
         public BuscarCliente()
         {
             InitializeComponent();
-            cargarComboBoxTipoDocumento();
+            cargarComboBoxTipoDocumento();           
             DataGridViewButtonColumn botonSeleccionar = new DataGridViewButtonColumn();
             botonSeleccionar.HeaderText = "Elegir";
             botonSeleccionar.Text = "            Seleccionar          ";
             botonSeleccionar.UseColumnTextForButtonValue = true;
             dgvBuscarClientes.Columns.Add(botonSeleccionar);
+            dgvBuscarClientes.AllowUserToAddRows = false;
         }
 
         private void dgvBuscarClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -77,6 +78,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 string queryCliente = string.Format("SELECT hues_mail as Mail, hues_nombre as Nombre, hues_apellido as Apellido, hues_documento as Documento, hues_nacionalidad as Nacionalidad, hues_documento_tipo as TipoDocumento, hues_habilitado as Estado FROM CAIA_UNLIMITED.Huesped where hues_mail = '{0}'", textBoxMail.Text.Trim());
                 DataSet dsClientes = DataBase.realizarConsulta(queryCliente);
                 dgvBuscarClientes.DataSource = dsClientes.Tables[0];
+                dgvBuscarClientes.AllowUserToAddRows = false;
             }
             else
             {
@@ -89,6 +91,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             string queryCliente = string.Format("SELECT hues_mail as Mail, hues_nombre as Nombre, hues_apellido as Apellido, hues_documento as Documento, hues_nacionalidad as Nacionalidad, hues_documento_tipo as TipoDocumento, hues_habilitado as Estado FROM CAIA_UNLIMITED.Huesped where hues_documento_tipo = '{0}'", comboBoxTipoDocumento.SelectedItem.ToString());
             DataSet dsClientes = DataBase.realizarConsulta(queryCliente);
             dgvBuscarClientes.DataSource = dsClientes.Tables[0];
+            dgvBuscarClientes.AllowUserToAddRows = false;
         }
 
         private void btnSeleccionarNumeroIdentificacion_Click(object sender, EventArgs e)
@@ -98,6 +101,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 string queryCliente = string.Format("SELECT hues_mail as Mail, hues_nombre as Nombre, hues_apellido as Apellido, hues_documento as Documento, hues_nacionalidad as Nacionalidad, hues_documento_tipo as TipoDocumento, hues_habilitado as Estado FROM CAIA_UNLIMITED.Huesped where hues_documento = '{0}'", textBoxNumeroDocumento.Text.Trim());
                 DataSet dsClientes = DataBase.realizarConsulta(queryCliente);
                 dgvBuscarClientes.DataSource = dsClientes.Tables[0];
+                dgvBuscarClientes.AllowUserToAddRows = false;
             }
             else
             {

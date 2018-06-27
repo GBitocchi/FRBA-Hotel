@@ -28,6 +28,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             botonSeleccionar.Text = "            Seleccionar          ";
             botonSeleccionar.UseColumnTextForButtonValue = true;
             dgvRegimenes.Columns.Add(botonSeleccionar);
+            dgvRegimenes.AllowUserToAddRows = false;
         }
 
         private void dgvRegimenes_CellContentClick(object sender, DataGridViewCellEventArgs e)

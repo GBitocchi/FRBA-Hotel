@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VistaRol));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -140,9 +140,9 @@
             // 
             this.cbFuncionalidades.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbFuncionalidades.FormattingEnabled = true;
-            this.cbFuncionalidades.Location = new System.Drawing.Point(114, 317);
+            this.cbFuncionalidades.Location = new System.Drawing.Point(85, 317);
             this.cbFuncionalidades.Name = "cbFuncionalidades";
-            this.cbFuncionalidades.Size = new System.Drawing.Size(176, 28);
+            this.cbFuncionalidades.Size = new System.Drawing.Size(243, 28);
             this.cbFuncionalidades.TabIndex = 8;
             this.cbFuncionalidades.SelectedIndexChanged += new System.EventHandler(this.cbFuncionalidades_SelectedIndexChanged);
             // 
@@ -152,7 +152,7 @@
             this.lbFuncionalidades.ItemHeight = 20;
             this.lbFuncionalidades.Location = new System.Drawing.Point(526, 297);
             this.lbFuncionalidades.Name = "lbFuncionalidades";
-            this.lbFuncionalidades.Size = new System.Drawing.Size(218, 244);
+            this.lbFuncionalidades.Size = new System.Drawing.Size(262, 244);
             this.lbFuncionalidades.TabIndex = 7;
             this.lbFuncionalidades.SelectedIndexChanged += new System.EventHandler(this.lbFuncionalidades_SelectedIndexChanged);
             // 
@@ -198,9 +198,9 @@
             // btnGuardar
             // 
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Location = new System.Drawing.Point(648, 622);
+            this.btnGuardar.Location = new System.Drawing.Point(692, 619);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(96, 36);
+            this.btnGuardar.Size = new System.Drawing.Size(96, 42);
             this.btnGuardar.TabIndex = 4;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
@@ -209,7 +209,7 @@
             // btnLimpiar
             // 
             this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(84, 616);
+            this.btnLimpiar.Location = new System.Drawing.Point(39, 619);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(106, 42);
             this.btnLimpiar.TabIndex = 2;
@@ -255,14 +255,14 @@
             // 
             this.dgvModificarRoles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvModificarRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvModificarRoles.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvModificarRoles.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvModificarRoles.Location = new System.Drawing.Point(19, 86);
             this.dgvModificarRoles.MultiSelect = false;
             this.dgvModificarRoles.Name = "dgvModificarRoles";

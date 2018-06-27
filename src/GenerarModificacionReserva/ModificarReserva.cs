@@ -321,7 +321,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             lbllistBoxNoItem.Visible = false;
             this.lblerrorfechas.Visible = false;
 
-            if (calendarFin.SelectionStart < calendarInicio.SelectionStart)
+            if (calendarFin.SelectionStart <= calendarInicio.SelectionStart)
             {
                 this.lblerrorfechas.Visible = true;
                 lblErrorFechaInicio.Visible = true;

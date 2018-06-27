@@ -155,9 +155,9 @@
             // listBoxFuncionalidades
             // 
             this.listBoxFuncionalidades.FormattingEnabled = true;
-            this.listBoxFuncionalidades.Location = new System.Drawing.Point(598, 453);
+            this.listBoxFuncionalidades.Location = new System.Drawing.Point(598, 440);
             this.listBoxFuncionalidades.Name = "listBoxFuncionalidades";
-            this.listBoxFuncionalidades.Size = new System.Drawing.Size(259, 225);
+            this.listBoxFuncionalidades.Size = new System.Drawing.Size(293, 238);
             this.listBoxFuncionalidades.TabIndex = 9;
             // 
             // label4
@@ -176,9 +176,9 @@
             // comboBoxFuncionalidades
             // 
             this.comboBoxFuncionalidades.FormattingEnabled = true;
-            this.comboBoxFuncionalidades.Location = new System.Drawing.Point(109, 476);
+            this.comboBoxFuncionalidades.Location = new System.Drawing.Point(104, 476);
             this.comboBoxFuncionalidades.Name = "comboBoxFuncionalidades";
-            this.comboBoxFuncionalidades.Size = new System.Drawing.Size(241, 21);
+            this.comboBoxFuncionalidades.Size = new System.Drawing.Size(272, 21);
             this.comboBoxFuncionalidades.TabIndex = 11;
             // 
             // btnAñadirFuncionalidad
@@ -252,6 +252,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "VistaRolModificar";
             this.Text = "VistaRolModificar";
+            this.Load += new System.EventHandler(this.VistaRolModificar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
