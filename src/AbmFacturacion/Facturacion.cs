@@ -14,7 +14,7 @@ namespace FrbaHotel.AbmFacturacion
 {
     public partial class Facturacion : Form
     {
-        bool existe = false;
+        bool existe;
         string documento;
         string estadia;
         public Facturacion(string codigoEstadia)
@@ -35,6 +35,7 @@ namespace FrbaHotel.AbmFacturacion
                 }
                 totalAFacturar += Convert.ToInt32(txtNochesReserva.Text.Trim()) * (Convert.ToDouble(txtPrecioRegimen.Text.Trim()) * cantidadPersonas() + Convert.ToDouble(txtPorcentual.Text));
                 txtTotal.Text = Convert.ToString(totalAFacturar);
+                existe = false;
             }
             else
             {
@@ -121,7 +122,7 @@ namespace FrbaHotel.AbmFacturacion
         private void ejecutarStoredProcedure()
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand agregarFactura = new SqlCommand("sp_AlmacenarFactura", db);
+            SqlCommand agregarFactura = new SqlCommand("CAIA_UNLIMITED.sp_AlmacenarFactura", db);
             agregarFactura.CommandType = CommandType.StoredProcedure;
             agregarFactura.Parameters.AddWithValue("@numero", txtNroFactura.Text.Trim());
             agregarFactura.Parameters.AddWithValue("@total", txtTotal.Text.Trim());
@@ -132,7 +133,7 @@ namespace FrbaHotel.AbmFacturacion
             agregarFactura.ExecuteNonQuery();
             foreach (DataGridViewRow item in dgConsumibles.Rows)
             {
-                SqlCommand agregarItemFactura = new SqlCommand("sp_AlmacenarItem", db);
+                SqlCommand agregarItemFactura = new SqlCommand("CAIA_UNLIMITED.sp_AlmacenarItem", db);
                 agregarItemFactura.CommandType = CommandType.StoredProcedure;
                 agregarItemFactura.Parameters.AddWithValue("@consumible",item.Cells[0].Value.ToString());
                 agregarItemFactura.Parameters.AddWithValue("@cantidad", item.Cells[3].Value.ToString());
