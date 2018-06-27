@@ -37,20 +37,17 @@ namespace FrbaHotel.AbmFacturacion
             ocultarErrores();
             if (completo())
             {
-                if (camposCorrectos())
-                {
-                    try
-                    {
-                        ejecutarStoredProcedure();
-                        MessageBox.Show("Pago realizado correctamente.", "Pago realizado", MessageBoxButtons.OK);
-                        this.Hide();
-                    }
-                    catch
-                    {
-                        MessageBox.Show("No se pudo llevar a cabo el pago.", "Pago erroneo", MessageBoxButtons.OK);
-                    }
-                }
-            }
+                   try
+                   {
+                       ejecutarStoredProcedure();
+                       MessageBox.Show("Pago realizado correctamente.", "Pago realizado", MessageBoxButtons.OK);
+                       this.Hide();
+                   }
+                   catch
+                   {
+                       MessageBox.Show("No se pudo llevar a cabo el pago.", "Pago erroneo", MessageBoxButtons.OK);
+                   }
+               }
         }
 
         private void ejecutarStoredProcedure()
@@ -78,7 +75,8 @@ namespace FrbaHotel.AbmFacturacion
 
         private bool completo()
         {
-            int o;
+            double o;
+            int aux;
             if (txtNombre.Text.Trim() == "")
             {
                 lblNombre.Visible = true;
@@ -91,7 +89,7 @@ namespace FrbaHotel.AbmFacturacion
             {
                 lblNumero.Visible = true;
             }
-            else if(!int.TryParse(txtNroTarjeta.Text.Trim(), out o))
+            else if(!Double.TryParse(txtNroTarjeta.Text.Trim(), out o))
             {
                 MessageBox.Show("El numero de tarjeta debe ser numero.", "Campo invalido", MessageBoxButtons.OK);
                 lblNumero.Visible = true;
@@ -105,7 +103,7 @@ namespace FrbaHotel.AbmFacturacion
             {
                 lblCodigo.Visible = true;
             }
-            else if (!int.TryParse(txtCodigo.Text.Trim(), out o))
+            else if (!int.TryParse(txtCodigo.Text.Trim(), out aux))
             {
                 MessageBox.Show("El codigo de seguridad debe ser numero.", "Campo invalido", MessageBoxButtons.OK);
                 lblCodigo.Visible = true;
