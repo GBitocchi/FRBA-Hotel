@@ -41,11 +41,11 @@ namespace FrbaHotel.AbmCliente
             string consulta;
             if (txtNombre.Text.Trim() == "" && txtEmail.Text.Trim() == "" && txtApellido.Text.Trim() == "" && txtNro_Identificacion.Text.Trim() == ""  && txtTipo_Identificacion.Text.Trim() == "")
             {
-                consulta = "select hues_mail as 'E-Mail', hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as'DNI', hues_documento_tipo as 'Tipo'  from CAIA_UNLIMITED.Huesped H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id)";
+                consulta = "select hues_mail as 'E-Mail', hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as'DNI', hues_documento_tipo as 'Tipo', hues_habilitado as 'Estado'  from CAIA_UNLIMITED.Huesped H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id)";
             }
             else
             {
-                consulta = "select hues_mail as 'E-Mail', hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as'DNI', hues_documento_tipo as 'Tipo'  from CAIA_UNLIMITED.Huesped H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) where ";
+                consulta = "select hues_mail as 'E-Mail', hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as'DNI', hues_documento_tipo as 'Tipo', hues_habilitado as 'Estado'  from CAIA_UNLIMITED.Huesped H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) where ";
                 bool hayOtro = false;
                 if (txtNombre.Text.Trim() != "")
                 {
@@ -159,8 +159,9 @@ namespace FrbaHotel.AbmCliente
             string documento = dgClientes.SelectedRows[0].Cells[3].Value.ToString(); ;
             string tipo = dgClientes.SelectedRows[0].Cells[4].Value.ToString(); ;
 
-            this.Hide();
-            new Modificar(mail,documento,tipo).Show();
+            
+            new Modificar(mail,documento,tipo).ShowDialog();
+            this.Show();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -180,7 +181,7 @@ namespace FrbaHotel.AbmCliente
 
         private void btnReestablecer_Click(object sender, EventArgs e)
         {
-            DataSet huespedes = DataBase.realizarConsulta("select hues_mail as 'Mail', hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as 'Documento', hues_documento_tipo as 'Tipo'  from CAIA_UNLIMITED.Huesped");
+            DataSet huespedes = DataBase.realizarConsulta("select hues_mail as 'Mail', hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as 'Documento', hues_documento_tipo as 'Tipo', hues_habilitado as 'Estado'  from CAIA_UNLIMITED.Huesped");
             dgClientes.DataSource = huespedes.Tables[0];
         }
 

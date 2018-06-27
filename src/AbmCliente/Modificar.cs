@@ -203,91 +203,24 @@ namespace FrbaHotel.AbmCliente
                     {
                         if (estadoDelHuesped() != estadoAnt && rbtHabilitado.Checked)
                         {
-                            if (modificaronLosCampos())
-                            {
-                                if (seModificoElMAilDni())
-                                {
-                                    if (seModificoElDniYMail())
-                                    {
+                            
                                         string email_ingresado = String.Format("SELECT hues_mail, hues_habilitado FROM CAIA_UNLIMITED.Huesped  where hues_mail='{0}'", txtEmail.Text.Trim());
                                         
 
-                                        string documento_ingresado = String.Format("SELECT hues_documento FROM CAIA_UNLIMITED.Huesped WHERE hues_documento = '{0}'  AND hues_documento_tipo = '{1}'", txtDni.Text.Trim(), txtTipo.Text.Trim());
+                                       
 
                                         if (DataBase.realizarConsulta(email_ingresado).Tables[0].Rows.Count == 0)
-                                        {
-                                            if (DataBase.realizarConsulta(documento_ingresado).Tables[0].Rows.Count == 0)
-                                            {
+                                        {                                           
                                                 ejecutarStoredProcedureModificar();
                                                 MessageBox.Show("Cliente modificado exitosamente", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                 this.Hide();
                                                 new MenuModificarYBaja().Show();
-                                            }
-                                            else
-                                            {
-                                                MessageBox.Show("El tipo y numero de identificacion ingresado ya existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                            }
-                                        }
+                                                                                    }
                                         else
                                         {
                                             MessageBox.Show("El mail ingresado ya existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         }
-                                    }
-                                    else if (seModificoElMail())
-                                    {
-                                        string email_ingresado = String.Format("SELECT hues_mail, hues_habilitado FROM CAIA_UNLIMITED.Huesped  where hues_mail='{0}'", txtEmail.Text.Trim());
-                                        
-
-                                        if (DataBase.realizarConsulta(email_ingresado).Tables[0].Rows.Count == 0)
-                                        {
-                                            ejecutarStoredProcedureModificar();
-                                            MessageBox.Show("Cliente modificado exitosamente", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            this.Hide();
-                                            new MenuModificarYBaja().Show();
-
-                                        }
-                                        else
-                                        {
-                                            MessageBox.Show("El mail ingresado ya existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        }
-                                    }
-                                    else// SI MODIFICO SOLO EL DNI
-                                    {
-
-                                        string documento_ingresado = String.Format("SELECT hues_documento FROM CAIA_UNLIMITED.Huesped WHERE hues_documento = '{0}'  AND hues_documento_tipo = '{1}'", txtDni.Text.Trim(), txtTipo.Text.Trim());
-
-
-                                        if (DataBase.realizarConsulta(documento_ingresado).Tables[0].Rows.Count == 0)
-                                        {
-                                            ejecutarStoredProcedureModificar();
-                                            MessageBox.Show("Cliente modificado exitosamente", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            this.Hide();
-                                            new MenuModificarYBaja().Show();
-                                        }
-                                        else
-                                        {
-                                            MessageBox.Show("El tipo y numero de identificacion ingresado ya existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        }
-
-
-                                    }
-                                }//SI LO HABILITE Y MODIFIQUE COSAS MENOS EL MAIL O DNI
-                                else
-                                {
-                                    ejecutarStoredProcedureModificar();
-                                    MessageBox.Show("Cliente modificado exitosamente", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    this.Hide();
-                                    new MenuModificarYBaja().Show();
-                                }
-                            }
-                            else//SI SOLO LO HABILITE Y NO MODIFIQUE
-                            {
-                                ejecutarStoredProcedureModificar();
-                                MessageBox.Show("Cliente modificado exitosamente", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                this.Hide();
-                                new MenuModificarYBaja().Show();
-
-                            }
+                                    
 
                         }
                         else /////////////////////////////SI MODIFIQUE SIN CAMBIAR EL ESTADO

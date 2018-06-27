@@ -70,6 +70,7 @@
             this.lblCalle = new System.Windows.Forms.Label();
             this.lblNacionalidad = new System.Windows.Forms.Label();
             this.lblNro = new System.Windows.Forms.Label();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -451,9 +452,20 @@
             this.lblNro.Text = "*";
             this.lblNro.Visible = false;
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(457, 400);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(148, 34);
+            this.btnLimpiar.TabIndex = 297;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
             // Crear
             // 
             this.ClientSize = new System.Drawing.Size(669, 515);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.lblNro);
             this.Controls.Add(this.lblNacionalidad);
             this.Controls.Add(this.lblCalle);
@@ -547,5 +559,6 @@
         private System.Windows.Forms.Label lblCalle;
         private System.Windows.Forms.Label lblNacionalidad;
         private System.Windows.Forms.Label lblNro;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }

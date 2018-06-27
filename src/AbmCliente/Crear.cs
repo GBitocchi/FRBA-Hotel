@@ -263,5 +263,10 @@ namespace FrbaHotel.AbmCliente
         {
 
         }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            RestaurarFormulario();
+        }
     }
 }
