@@ -59,6 +59,10 @@ namespace FrbaHotel.AbmCliente
                     {
                         consulta += " and ";
                     }
+                    else
+                    {
+                        hayOtro = true;
+                    }
                     consulta += string.Format("hues_apellido LIKE '%{0}%'", txtApellido.Text.Trim());
                 }
 
@@ -67,6 +71,10 @@ namespace FrbaHotel.AbmCliente
                     if (hayOtro)
                     {
                         consulta += " and ";
+                    }
+                    else
+                    {
+                        hayOtro = true;
                     }
                     int documento;
                     if (int.TryParse(txtNro_Identificacion.Text.Trim(), out documento))
@@ -85,6 +93,10 @@ namespace FrbaHotel.AbmCliente
                     if (hayOtro)
                     {
                         consulta += " and ";
+                    }
+                    else
+                    {
+                        hayOtro = true;
                     }
                     consulta += string.Format("hues_documento_tipo LIKE '%{0}%'", txtTipo_Identificacion.Text.Trim());
                 }

@@ -69,6 +69,10 @@ namespace FrbaHotel.AbmHotel
                     {
                         consulta += " and ";
                     }
+                    else
+                    {
+                        hayOtro = true;
+                    }
                     int cantidadEstrellas;
                     if (int.TryParse(txtCantidadEstrellas.Text.Trim(), out cantidadEstrellas))
                     {
@@ -85,6 +89,10 @@ namespace FrbaHotel.AbmHotel
                     if (hayOtro)
                     {
                         consulta += " and ";
+                    }
+                    else
+                    {
+                        hayOtro = true;
                     }
                     consulta += string.Format("dire_ciudad LIKE '%{0}%'", txtCiudad.Text.Trim());
                 }
