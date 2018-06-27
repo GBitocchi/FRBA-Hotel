@@ -321,11 +321,21 @@ namespace FrbaHotel.GenerarModificacionReserva
             lbllistBoxNoItem.Visible = false;
             this.lblerrorfechas.Visible = false;
 
-            if (calendarFin.SelectionStart <= calendarInicio.SelectionStart)
+            if (calendarFin.SelectionStart < calendarInicio.SelectionStart)
             {
                 this.lblerrorfechas.Visible = true;
                 lblErrorFechaInicio.Visible = true;
                 lblErrorFechaFin.Visible = true;
+            }
+            else if (calendarFin.SelectionStart < DataBase.fechaSistema())
+            {
+                lblErrorFechaFin.Visible = true;
+                MessageBox.Show("No puede reservar por dias anteriores a los de hoy.");
+            }
+            else if (calendarInicio.SelectionStart < DataBase.fechaSistema())
+            {
+                lblErrorFechaInicio.Visible = true;
+                MessageBox.Show("No puede reservar por dias anteriores a los de hoy.");
             }
             else if (listBoxTipoHabitacion.Items.Count == 0)
             {
