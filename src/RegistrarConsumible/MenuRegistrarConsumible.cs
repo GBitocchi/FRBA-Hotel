@@ -183,11 +183,11 @@ namespace FrbaHotel.RegistrarConsumible
         {
             SqlConnection db = DataBase.conectarBD();
 
-            if (listaConsumibles != null)
+            if (listaConsumibles.Items.Count > 0)
             {
                 foreach (ListViewItem eachItem in listaConsumibles.Items)
                 {
-                    
+
                     string consultaCodigo = string.Format("select cons_codigo from CAIA_UNLIMITED.Consumible where cons_descripcion='{0}' and cons_precio='{1}'", eachItem.SubItems[0].Text.Trim(), Convert.ToDouble(eachItem.SubItems[2].Text.Trim()));
                     DataTable codigoObtenido = DataBase.realizarConsulta(consultaCodigo).Tables[0];
                     string codigoConsumible = codigoObtenido.Rows[0][0].ToString();
@@ -201,13 +201,17 @@ namespace FrbaHotel.RegistrarConsumible
 
                     registrarConsumible.ExecuteNonQuery();
 
-                    
+
 
                 }
                 limpiarFormulario();
 
                 MessageBox.Show("Consumibles registrados correctamente", "Registrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 db.Close();
+            }
+            else
+            {
+                MessageBox.Show("Ingrese consumibles", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -423,6 +423,7 @@
             // 
             // txtFechaSistema
             // 
+            this.txtFechaSistema.Enabled = false;
             this.txtFechaSistema.Location = new System.Drawing.Point(539, 476);
             this.txtFechaSistema.Name = "txtFechaSistema";
             this.txtFechaSistema.Size = new System.Drawing.Size(183, 20);

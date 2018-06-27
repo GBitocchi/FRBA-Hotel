@@ -109,6 +109,7 @@ namespace FrbaHotel.Menu_Sistema
             stripCancelar_Reserva.Visible = true;
             this.guest = true;
             stripReserva.Visible = true;
+            txtFechaSistema.Text = Convert.ToString(DataBase.fechaSistema());
         }
 
         private void label1_Click(object sender, EventArgs e)
