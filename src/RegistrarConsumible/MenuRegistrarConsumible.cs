@@ -187,6 +187,8 @@ namespace FrbaHotel.RegistrarConsumible
                     registrarConsumible.CommandType = CommandType.StoredProcedure;
                     registrarConsumible.Parameters.AddWithValue("@codigo_Estadia", txtCodigo_Estadia.Text.Trim());
                     registrarConsumible.Parameters.AddWithValue("@codigo_Consumible", Convert.ToInt32(codigoConsumible));
+                    registrarConsumible.Parameters.AddWithValue("@cantidad", Convert.ToInt32(eachItem.SubItems[1].Text.Trim()));
+
 
                     registrarConsumible.ExecuteNonQuery();
 

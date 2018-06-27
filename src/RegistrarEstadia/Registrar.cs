@@ -142,6 +142,12 @@ namespace FrbaHotel.RegistrarEstadia
                                     {
                                         ejecutarStoredProcedureRegistrarCheckIn();
                                         MessageBox.Show("Fecha de ingreso de reserva registrada correctamente", "Registrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                        string consultaEstadia = string.Format("select esta_codigo from CAIA_UNLIMITED.Estadia where rese_codigo ='{0}'", codigoReserva);
+                                        DataTable estadiaObtenida = DataBase.realizarConsulta(consultaEstadia).Tables[0];
+                                        string estadiaId = estadiaObtenida.Rows[0][0].ToString();
+
+                                        MessageBox.Show("El codigo de estadia es: "+estadiaId, "Registrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         limpiarTodo();
                                     }
                                     else if (ts.Days>0 )
