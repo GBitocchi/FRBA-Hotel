@@ -575,10 +575,10 @@ where  exists (select fact_nro from CAIA_UNLIMITED.Factura F where (esta_codigo 
 
 --Item_Factura
 insert into CAIA_UNLIMITED.Item_Factura (item_cantidad, item_monto, fact_nro, cons_codigo)
-select Item_Factura_Cantidad, Item_Factura_Monto, Factura_Nro, Consumible_Codigo
+select sum(Item_Factura_Cantidad), Item_Factura_Monto, Factura_Nro, Consumible_Codigo
 from gd_esquema.Maestra
 where Factura_Nro is not null
-
+group by Item_Factura_Monto, Factura_Nro, Consumible_Codigo
 
 --Regimen por Hotel
 insert into CAIA_UNLIMITED.Regimen_X_Hotel(regi_hote_codigo, regi_hote_id)
@@ -593,11 +593,13 @@ from CAIA_UNLIMITED.Regimen join gd_esquema.Maestra on (regi_descripcion = Regim
 
 --Consumible por estadia
 insert into CAIA_UNLIMITED.Consumible_X_Estadia (cons_esta_codigo_cons, cons_esta_codigo_esta,cons_esta_cantidad)
-select distinct cons_codigo, esta_codigo,1
+select distinct cons_codigo, esta_codigo, sum(Item_Factura_Cantidad)
 from CAIA_UNLIMITED.Consumible join gd_esquema.Maestra on (Consumible_Codigo = cons_codigo)
 								join CAIA_UNLIMITED.Reserva R on (Reserva_Codigo = rese_codigo)
 								join CAIA_UNLIMITED.Estadia E on (E.rese_codigo = R.rese_codigo)
 where cons_codigo is not null
+group by cons_codigo, esta_codigo
+
 
 
 --Reserva por huesped

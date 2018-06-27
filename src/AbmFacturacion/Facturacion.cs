@@ -84,7 +84,7 @@ namespace FrbaHotel.AbmFacturacion
 
         private void cargarCampos(string codigoEstadia)
         {
-            dgConsumibles.DataSource = DataBase.realizarConsulta("select cons_codigo as 'Codigo', cons_descripcion as 'Descripcion', cons_precio as 'Precio', count(*) as 'Cantidad' from CAIA_UNLIMITED.Consumible join CAIA_UNLIMITED.Consumible_X_Estadia on (cons_codigo = cons_esta_codigo_cons) where cons_esta_codigo_esta = " + codigoEstadia + " group by cons_codigo, cons_descripcion, cons_precio").Tables[0];
+            dgConsumibles.DataSource = DataBase.realizarConsulta("select cons_codigo as 'Codigo', cons_descripcion as 'Descripcion', cons_precio as 'Precio', cons_esta_cantidad as 'Cantidad' from CAIA_UNLIMITED.Consumible join CAIA_UNLIMITED.Consumible_X_Estadia on (cons_codigo = cons_esta_codigo_cons) where cons_esta_codigo_esta = " + codigoEstadia + " group by cons_codigo, cons_descripcion, cons_precio, cons_esta_cantidad").Tables[0];
             DataSet huesped = DataBase.realizarConsulta("select rese_hues_mail, rese_hues_documento from CAIA_UNLIMITED.Estadia E join CAIA_UNLIMITED.Reserva R on (E.rese_codigo = R.rese_codigo) join CAIA_UNLIMITED.Reserva_X_Huesped on (R.rese_codigo = rese_hues_codigo) where esta_codigo =" + codigoEstadia);
             txtHuesped.Text = huesped.Tables[0].Rows[0][0].ToString();
             documento = huesped.Tables[0].Rows[0][1].ToString();
