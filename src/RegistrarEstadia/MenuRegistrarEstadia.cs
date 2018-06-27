@@ -35,8 +35,8 @@ namespace FrbaHotel.RegistrarEstadia
                     }
                     else
                     {
-                        this.Hide();
-                        new Registrar(txtCodigo_Reserva.Text).Show();
+                        new Registrar(txtCodigo_Reserva.Text).ShowDialog();
+                        this.Show();                        
                     }
                 }
                 else
