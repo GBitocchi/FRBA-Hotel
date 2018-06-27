@@ -261,9 +261,9 @@ namespace FrbaHotel.GenerarModificacionReserva
                     DataSet dsReserva = DataBase.realizarConsulta(queryReserva);
                     this.fechaElegidaInicio = Convert.ToDateTime(dsReserva.Tables[0].Rows[0]["FechaComienzo"].ToString());
                     TimeSpan difference = fechaElegidaInicio - DataBase.fechaSistema();
-                    string queryCancelada = string.Format("SELECT rese_codigo FROM CAIA_UNLIMITED.Reserva JOIN CAIA_UNLIMITED.Reserva_Cancelada on (reca_rese = rese_codigo) WHERE reca_rese != rese_codigo AND rese_codigo = '{0}'", textBoxReserva.Text.Trim());
+                    string queryCancelada = string.Format("SELECT rese_codigo FROM CAIA_UNLIMITED.Reserva JOIN CAIA_UNLIMITED.Reserva_Cancelada on (reca_rese = rese_codigo) AND rese_codigo = '{0}'", textBoxReserva.Text.Trim());
                     DataSet dsCancelada = DataBase.realizarConsulta(queryCancelada);
-                    if (dsCancelada == null || dsCancelada.Tables.Count <= 0 || dsCancelada.Tables[0].Rows.Count <= 0)
+                    if (dsCancelada != null && dsCancelada.Tables.Count > 0 && dsCancelada.Tables[0].Rows.Count > 0)
                     {
                         if (difference.Days <= 1)
                         {
