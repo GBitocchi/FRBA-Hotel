@@ -195,6 +195,11 @@ namespace FrbaHotel.RegistrarEstadia
                     return false;
                 }
             }
+            if ((DateTime.Compare(DataBase.fechaSistema(), DateTime.Parse(txtNacimiento.Text.Trim()))) <= 0)
+            {
+                MessageBox.Show("Fecha de nacimiento incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
 
             return true;
 

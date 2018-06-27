@@ -68,6 +68,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
+            this.Fecha = new System.Windows.Forms.Label();
+            this.txtFechaSistema = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -114,7 +116,7 @@
             // registrarToolStripMenuItem
             // 
             this.registrarToolStripMenuItem.Name = "registrarToolStripMenuItem";
-            this.registrarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.registrarToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.registrarToolStripMenuItem.Text = "Registrar";
             this.registrarToolStripMenuItem.Click += new System.EventHandler(this.registrarToolStripMenuItem_Click);
             // 
@@ -409,12 +411,31 @@
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
+            // Fecha
+            // 
+            this.Fecha.AutoSize = true;
+            this.Fecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Fecha.Location = new System.Drawing.Point(468, 476);
+            this.Fecha.Name = "Fecha";
+            this.Fecha.Size = new System.Drawing.Size(54, 20);
+            this.Fecha.TabIndex = 5;
+            this.Fecha.Text = "Fecha";
+            // 
+            // txtFechaSistema
+            // 
+            this.txtFechaSistema.Location = new System.Drawing.Point(539, 476);
+            this.txtFechaSistema.Name = "txtFechaSistema";
+            this.txtFechaSistema.Size = new System.Drawing.Size(183, 20);
+            this.txtFechaSistema.TabIndex = 6;
+            // 
             // VistaSistema
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1179, 547);
+            this.Controls.Add(this.txtFechaSistema);
+            this.Controls.Add(this.Fecha);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.label1);
@@ -473,5 +494,7 @@
         private System.Windows.Forms.ToolStripMenuItem stripConsumibles;
         private System.Windows.Forms.ToolStripMenuItem registrarToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem stripCancelar_Reserva;
+        private System.Windows.Forms.Label Fecha;
+        private System.Windows.Forms.TextBox txtFechaSistema;
     }
 }

@@ -34,6 +34,7 @@ namespace FrbaHotel.Menu_Sistema
         public VistaSistema(decimal _idHotel, decimal _codigoRol, string _nombreUsuario)
         {
             InitializeComponent();
+            txtFechaSistema.Text = Convert.ToString(DataBase.fechaSistema());
             this.idHotel = _idHotel;
             this.codigoRol = _codigoRol;
             this.nombreUsuario = _nombreUsuario;
