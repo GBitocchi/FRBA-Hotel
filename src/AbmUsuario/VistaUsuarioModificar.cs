@@ -312,7 +312,7 @@ namespace FrbaHotel.AbmUsuario
                 lblErrorDialogListBoxEmpty.Visible = true;
                 lblErrorDialogHotel.Visible = true;
             }
-            else if ((DateTime.Compare(DateTime.Now, DateTime.Parse(textBoxDialogBirthday.Text.Trim()))) <= 0)
+            else if ((DateTime.Compare(DataBase.fechaSistema(), DateTime.Parse(textBoxDialogBirthday.Text.Trim()))) <= 0)
             {
                 lblErrorDialogBirthday.Visible = true;
                 lblErrorDialogFechaValida.Visible = true;
