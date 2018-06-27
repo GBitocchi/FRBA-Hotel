@@ -1569,11 +1569,11 @@ GO
 
 -----------Registrar consumible
 
-CREATE PROCEDURE [CAIA_UNLIMITED].[sp_RegistrarConsumible] (@codigo_estadia numeric(18,0), @codigo_consumible numeric(18,0))
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_RegistrarConsumible] (@codigo_estadia numeric(18,0), @codigo_consumible numeric(18,0),@cantidad numeric(18,0))
 AS
 BEGIN
-	insert into CAIA_UNLIMITED.Consumible_X_Estadia(cons_esta_codigo_cons, cons_esta_codigo_esta)
-	values (@codigo_consumible, @codigo_estadia)
+	insert into CAIA_UNLIMITED.Consumible_X_Estadia(cons_esta_codigo_cons, cons_esta_codigo_esta,cons_esta_cantidad)
+	values (@codigo_consumible, @codigo_estadia,@cantidad)
 END
 GO
 
