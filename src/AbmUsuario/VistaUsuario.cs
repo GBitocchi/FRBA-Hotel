@@ -484,7 +484,7 @@ namespace FrbaHotel.AbmUsuario
                 lbllistBoxNoItem.Visible = true;
                 lblErrorHotel.Visible = true;
             }
-            else if ((DateTime.Compare(DateTime.Now, DateTime.Parse(textBoxBirthday.Text.Trim())))<=0)
+            else if ((DateTime.Compare(DataBase.fechaSistema(), DateTime.Parse(textBoxBirthday.Text.Trim())))<=0)
             {
                 lblErrorBirthday.Visible = true;
                 lblBirthdayPost.Visible = true;
