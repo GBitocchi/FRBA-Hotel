@@ -93,11 +93,13 @@ namespace FrbaHotel.AbmFacturacion
             {
                 MessageBox.Show("El numero de tarjeta debe ser numero.", "Campo invalido", MessageBoxButtons.OK);
                 lblNumero.Visible = true;
+                return false;
             }
             else if (txtNroTarjeta.Text.Trim().Length > 20)
             {
                 MessageBox.Show("El numero de tarjeta tiene como maximo veinte digitos", "Campo invalido", MessageBoxButtons.OK);
                 lblNumero.Visible = true;
+                return false;
             }
             else if (txtCodigo.Text.Trim() == "")
             {
@@ -107,11 +109,13 @@ namespace FrbaHotel.AbmFacturacion
             {
                 MessageBox.Show("El codigo de seguridad debe ser numero.", "Campo invalido", MessageBoxButtons.OK);
                 lblCodigo.Visible = true;
+                return false;
             }
             else if (txtCodigo.Text.Trim().Length > 4)
             {
                 MessageBox.Show("El codigo de seguridad tiene como maximo cuatro digitos", "Campo invaldo", MessageBoxButtons.OK);
                 lblCodigo.Visible = true;
+                return false;
             }
             else if (txtBanco.Text.Trim() == "")
             {
