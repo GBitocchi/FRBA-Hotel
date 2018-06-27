@@ -229,11 +229,21 @@ namespace FrbaHotel.GenerarModificacionReserva
             lbllistBoxNoItem.Visible = false;
             this.lblerrorfechas.Visible = false;
 
-            if (calendarFin.SelectionStart <= calendarInicio.SelectionStart)
+            if (calendarFin.SelectionStart < calendarInicio.SelectionStart)
             {
                 this.lblerrorfechas.Visible = true;
                 lblErrorFechaInicio.Visible = true;
                 lblErrorFechaFin.Visible = true;
+            }
+            else if (calendarFin.SelectionStart < DataBase.fechaSistema())
+            {
+                lblErrorFechaFin.Visible = true;
+                MessageBox.Show("No puede reservar por dias anteriores a los de hoy.");
+            }
+            else if (calendarInicio.SelectionStart < DataBase.fechaSistema())
+            {
+                lblErrorFechaInicio.Visible = true;
+                MessageBox.Show("No puede reservar por dias anteriores a los de hoy.");
             }
             else if (listBoxTipoHabitacion.Items.Count == 0)
             {
@@ -326,7 +336,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                             {
                                 costoUnaHabitacion = (4 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
                             }
-                            
+
                             msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de '{0}' \n", costoUnaHabitacion));
                             costoTotal = costoTotal + costoUnaHabitacion;
                         }
