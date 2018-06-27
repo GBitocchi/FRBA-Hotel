@@ -380,6 +380,7 @@
             // rbtInabilitado
             // 
             this.rbtInabilitado.AutoSize = true;
+            this.rbtInabilitado.Enabled = false;
             this.rbtInabilitado.Location = new System.Drawing.Point(542, 339);
             this.rbtInabilitado.Name = "rbtInabilitado";
             this.rbtInabilitado.Size = new System.Drawing.Size(79, 17);

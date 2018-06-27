@@ -17,11 +17,13 @@ namespace FrbaHotel.AbmCliente
         string nombreAnt, apellidoAnt, dniAnt, tipoAnt, mailAnt, nacimientoAnt, nacionalidadAnt, calleAnt, numeroAnt, pisoAnt, dptoAnt, ciudadAnt, paisAtn, telefonoAnt;
         int estadoAnt;
 
-        public Modificar(string mail)
+        public Modificar(string mail, string documento, string tipo)
         {
             InitializeComponent();
             mailAnt = mail;
-            string consultaCliente = string.Format("select hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as'DNI', hues_documento_tipo as 'Tipo', hues_mail as 'E-Mail', hues_nacimiento as 'Fecha de nacimiento', hues_nacionalidad as 'Nacionalidad', dire_dom_calle as 'Calle', dire_nro_calle as 'Nro', dire_piso as 'Piso', dire_dpto as 'Dpto', dire_ciudad as 'Ciudad',dire_pais as 'Pais', dire_telefono as 'Telefono', hues_habilitado as 'Estado' from CAIA_UNLIMITED.Huesped H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) where hues_mail='{0}'", mail); 
+            dniAnt = documento;
+            tipoAnt = tipo;
+            string consultaCliente = string.Format("select hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as'DNI', hues_documento_tipo as 'Tipo', hues_mail as 'E-Mail', hues_nacimiento as 'Fecha de nacimiento', hues_nacionalidad as 'Nacionalidad', dire_dom_calle as 'Calle', dire_nro_calle as 'Nro', dire_piso as 'Piso', dire_dpto as 'Dpto', dire_ciudad as 'Ciudad',dire_pais as 'Pais', dire_telefono as 'Telefono', hues_habilitado as 'Estado' from CAIA_UNLIMITED.Huesped H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) where hues_mail='{0}' and hues_documento='{1}' and hues_documento_tipo='{2}'", mail,documento,tipo); 
             DataTable cliente = DataBase.realizarConsulta(consultaCliente).Tables[0];
             cargarInfo(cliente);
             valoresAnterioresCliente();
@@ -59,10 +61,7 @@ namespace FrbaHotel.AbmCliente
         private void valoresAnterioresCliente()
         {
             nombreAnt =txtNombre.Text;
-            apellidoAnt =txtApellido.Text;
-            dniAnt =txtDni.Text;
-            tipoAnt = txtTipo.Text;
-            mailAnt = txtEmail.Text;
+            apellidoAnt =txtApellido.Text;            
             nacimientoAnt = txtNacimiento.Text;
             nacionalidadAnt = txtNacionalidad.Text;
             calleAnt = txtCalle.Text;
@@ -124,18 +123,26 @@ namespace FrbaHotel.AbmCliente
             {
                 crearCliente.Parameters.AddWithValue("@estado", 0);
             }
+            crearCliente.Parameters.AddWithValue("@documentoViejo",dniAnt);
+            crearCliente.Parameters.AddWithValue("@tipoViejo", tipoAnt);
+            crearCliente.Parameters.AddWithValue("@mailViejo", mailAnt);
             
             crearCliente.ExecuteNonQuery();
             db.Close();
         }
 
-        private bool hayModificaciones()
+        
+
+        private int estadoDelHuesped()
         {
-            if (txtNombre.Text.Trim() == nombreAnt && txtApellido.Text.Trim() == apellidoAnt && txtDni.Text.Trim() == dniAnt && txtTipo.Text.Trim() == tipoAnt && txtEmail.Text.Trim() == mailAnt && txtNacimiento.Text.Trim() == nacimientoAnt && txtNacionalidad.Text.Trim() == nacionalidadAnt && txtCalle.Text.Trim() == calleAnt && txtCalle_Nro.Text.Trim() == numeroAnt && txtPiso.Text.Trim() == pisoAnt && txtDpto.Text.Trim() == dptoAnt && txtCiudad.Text.Trim() == ciudadAnt && txtPais.Text.Trim() == paisAtn && txtTelefono.Text.Trim() == telefonoAnt)
+            if (rbtHabilitado.Checked)
             {
-                return false;
+                return 1;
             }
-            return true;
+            else
+            {
+                return 0;
+            }
         }
 
         private bool estaCompleto()
@@ -190,23 +197,184 @@ namespace FrbaHotel.AbmCliente
             reestrablecerLabels();
             if (estaCompleto())
             {
-                if (hayModificaciones())
-                {
-                    if (camposValidos())
+                if (camposValidos())
+                   {
+                    if (formatoMailCorrecto())
                     {
-                        if (formatoMailCorrecto())
+                        if (estadoDelHuesped() != estadoAnt && rbtHabilitado.Checked)
                         {
-                            ejecutarStoredProcedureModificar();
-                            MessageBox.Show("Cliente modificado exitosamente","Modificado",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                            this.Hide();
-                            new MenuModificarYBaja().Show();
+                            if (modificaronLosCampos())
+                            {
+                                if (seModificoElMAilDni())
+                                {
+                                    if (seModificoElDniYMail())
+                                    {
+                                        string email_ingresado = String.Format("SELECT hues_mail, hues_habilitado FROM CAIA_UNLIMITED.Huesped  where hues_mail='{0}'", txtEmail.Text.Trim());
+                                        
+
+                                        string documento_ingresado = String.Format("SELECT hues_documento FROM CAIA_UNLIMITED.Huesped WHERE hues_documento = '{0}'  AND hues_documento_tipo = '{1}'", txtDni.Text.Trim(), txtTipo.Text.Trim());
+
+                                        if (DataBase.realizarConsulta(email_ingresado).Tables[0].Rows.Count == 0)
+                                        {
+                                            if (DataBase.realizarConsulta(documento_ingresado).Tables[0].Rows.Count == 0)
+                                            {
+                                                ejecutarStoredProcedureModificar();
+                                                MessageBox.Show("Cliente modificado exitosamente", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                this.Hide();
+                                                new MenuModificarYBaja().Show();
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("El tipo y numero de identificacion ingresado ya existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("El mail ingresado ya existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                    else if (seModificoElMail())
+                                    {
+                                        string email_ingresado = String.Format("SELECT hues_mail, hues_habilitado FROM CAIA_UNLIMITED.Huesped  where hues_mail='{0}'", txtEmail.Text.Trim());
+                                        
+
+                                        if (DataBase.realizarConsulta(email_ingresado).Tables[0].Rows.Count == 0)
+                                        {
+                                            ejecutarStoredProcedureModificar();
+                                            MessageBox.Show("Cliente modificado exitosamente", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            this.Hide();
+                                            new MenuModificarYBaja().Show();
+
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("El mail ingresado ya existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                    else// SI MODIFICO SOLO EL DNI
+                                    {
+
+                                        string documento_ingresado = String.Format("SELECT hues_documento FROM CAIA_UNLIMITED.Huesped WHERE hues_documento = '{0}'  AND hues_documento_tipo = '{1}'", txtDni.Text.Trim(), txtTipo.Text.Trim());
+
+
+                                        if (DataBase.realizarConsulta(documento_ingresado).Tables[0].Rows.Count == 0)
+                                        {
+                                            ejecutarStoredProcedureModificar();
+                                            MessageBox.Show("Cliente modificado exitosamente", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            this.Hide();
+                                            new MenuModificarYBaja().Show();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("El tipo y numero de identificacion ingresado ya existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+
+
+                                    }
+                                }//SI LO HABILITE Y MODIFIQUE COSAS MENOS EL MAIL O DNI
+                                else
+                                {
+                                    ejecutarStoredProcedureModificar();
+                                    MessageBox.Show("Cliente modificado exitosamente", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    this.Hide();
+                                    new MenuModificarYBaja().Show();
+                                }
+                            }
+                            else//SI SOLO LO HABILITE Y NO MODIFIQUE
+                            {
+                                ejecutarStoredProcedureModificar();
+                                MessageBox.Show("Cliente modificado exitosamente", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                this.Hide();
+                                new MenuModificarYBaja().Show();
+
+                            }
+
                         }
+                        else /////////////////////////////SI MODIFIQUE SIN CAMBIAR EL ESTADO
+                        {
+                            if (hayModificaciones())
+                            {
+                                if (seModificoElMAilDni())
+                                {
+                                    if (seModificoElDniYMail())
+                                    {
+                                        string email_ingresado = String.Format("SELECT hues_mail, hues_habilitado FROM CAIA_UNLIMITED.Huesped  where hues_mail='{0}'", txtEmail.Text.Trim());
+                                        string documento_ingresado = String.Format("SELECT hues_documento FROM CAIA_UNLIMITED.Huesped WHERE hues_documento = '{0}'  AND hues_documento_tipo = '{1}'", txtDni.Text.Trim(), txtTipo.Text.Trim());
+
+                                        if (DataBase.realizarConsulta(email_ingresado).Tables[0].Rows.Count == 0)
+                                        {
+                                            if (DataBase.realizarConsulta(documento_ingresado).Tables[0].Rows.Count == 0)
+                                            {
+                                                ejecutarStoredProcedureModificar();
+                                                MessageBox.Show("Cliente modificado exitosamente", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                this.Hide();
+                                                new MenuModificarYBaja().Show();
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("El tipo y numero de identificacion ingresado ya existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("El mail ingresado ya existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                    else if (seModificoElMail())
+                                    {
+                                        string email_ingresado = String.Format("SELECT hues_mail, hues_habilitado FROM CAIA_UNLIMITED.Huesped  where hues_mail='{0}'", txtEmail.Text.Trim());
+
+                                        if (DataBase.realizarConsulta(email_ingresado).Tables[0].Rows.Count == 0)
+                                        {
+                                            ejecutarStoredProcedureModificar();
+                                            MessageBox.Show("Cliente modificado exitosamente", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            this.Hide();
+                                            new MenuModificarYBaja().Show();
+
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("El mail ingresado ya existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                    else// SI MODIFICO SOLO EL DNI
+                                    {
+
+                                        string documento_ingresado = String.Format("SELECT hues_documento FROM CAIA_UNLIMITED.Huesped WHERE hues_documento = '{0}'  AND hues_documento_tipo = '{1}'", txtDni.Text.Trim(), txtTipo.Text.Trim());
+
+
+                                        if (DataBase.realizarConsulta(documento_ingresado).Tables[0].Rows.Count == 0)
+                                        {
+                                            ejecutarStoredProcedureModificar();
+                                            MessageBox.Show("Cliente modificado exitosamente", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            this.Hide();
+                                            new MenuModificarYBaja().Show();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("El tipo y numero de identificacion ingresado ya existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+
+
+                                    }
+                                }// MODIFIQUE COSAS MENOS EL MAIL O DNI
+                                else
+                                {
+                                    ejecutarStoredProcedureModificar();
+                                    MessageBox.Show("Cliente modificado exitosamente", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    this.Hide();
+                                    new MenuModificarYBaja().Show();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se realizaron cambios en el cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+
+                        }                            
                     }
                 }
-                else
-                {
-                    MessageBox.Show("No se realizaron cambios en los campo/s", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
+                
 
             }
             else
@@ -215,6 +383,53 @@ namespace FrbaHotel.AbmCliente
             }
 
         }
+
+
+
+        private bool modificaronLosCampos()
+        {
+            if (txtNombre.Text.Trim() == nombreAnt && txtApellido.Text.Trim() == apellidoAnt && txtDni.Text.Trim() == dniAnt && txtTipo.Text.Trim() == tipoAnt && txtEmail.Text.Trim() == mailAnt && txtNacimiento.Text.Trim() == nacimientoAnt && txtNacionalidad.Text.Trim() == nacionalidadAnt && txtCalle.Text.Trim() == calleAnt && txtCalle_Nro.Text.Trim() == numeroAnt && txtPiso.Text.Trim() == pisoAnt && txtDpto.Text.Trim() == dptoAnt && txtCiudad.Text.Trim() == ciudadAnt && txtPais.Text.Trim() == paisAtn && txtTelefono.Text.Trim() == telefonoAnt)
+            {
+                return false;
+            }
+            return true;
+        }
+
+
+        private bool seModificoElMail()
+        {
+            
+            if (txtEmail.Text.Trim() != mailAnt)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool seModificoElDniYMail()
+        {
+            if (txtDni.Text.Trim() != dniAnt && txtTipo.Text.Trim() != tipoAnt && txtEmail.Text.Trim() != mailAnt)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool seModificoElMAilDni()
+        {
+            if (txtDni.Text.Trim() != dniAnt && txtTipo.Text.Trim() != tipoAnt) 
+            {
+                return true;
+            }
+            if (txtEmail.Text.Trim() != mailAnt)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+
 
         private void reestrablecerLabels()
         {
@@ -289,12 +504,31 @@ namespace FrbaHotel.AbmCliente
                 MessageBox.Show("No se puede dar de baja, se realizaron cambios en el cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
-            {                
-                ejecutarStoredProcedureDarDeBaja();
-                MessageBox.Show("Cliente dado de baja exitosamente", "Baja", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Hide();
-                new MenuModificarYBaja().Show();
+            {
+                if (rbtHabilitado.Checked)
+                {
+                           ejecutarStoredProcedureDarDeBaja();
+                            MessageBox.Show("Cliente dado de baja exitosamente", "Baja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Hide();
+                            new MenuModificarYBaja().Show();                       
+                }
+                else
+                {
+                    MessageBox.Show("El huesped ya esta dado de baja.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                           
+            
+                
             }
+        }
+
+        private bool hayModificaciones()
+        {
+            if (txtNombre.Text.Trim() == nombreAnt && txtApellido.Text.Trim() == apellidoAnt && txtDni.Text.Trim() == dniAnt && txtTipo.Text.Trim() == tipoAnt && txtEmail.Text.Trim() == mailAnt && txtNacimiento.Text.Trim() == nacimientoAnt && txtNacionalidad.Text.Trim() == nacionalidadAnt && txtCalle.Text.Trim() == calleAnt && txtCalle_Nro.Text.Trim() == numeroAnt && txtPiso.Text.Trim() == pisoAnt && txtDpto.Text.Trim() == dptoAnt && txtCiudad.Text.Trim() == ciudadAnt && txtPais.Text.Trim() == paisAtn && txtTelefono.Text.Trim() == telefonoAnt && estadoDelHuesped() == estadoAnt)
+            {
+                return false;
+            }
+            return true;
         }
 
         private void ejecutarStoredProcedureDarDeBaja() 

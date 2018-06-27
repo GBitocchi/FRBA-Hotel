@@ -99,7 +99,8 @@ namespace FrbaHotel.AbmCliente
                 {
                     if (formatoMailCorrecto())
                     {
-                        string email_ingresado = String.Format("SELECT hues_mail FROM CAIA_UNLIMITED.Huesped  where hues_mail='{0}'", txtEmail.Text.Trim());
+                        string email_ingresado = String.Format("SELECT hues_mail, hues_habilitado FROM CAIA_UNLIMITED.Huesped  where hues_mail='{0}'", txtEmail.Text.Trim());
+                       
                         string documento_ingresado = String.Format("SELECT hues_documento FROM CAIA_UNLIMITED.Huesped WHERE hues_documento = '{0}'  AND hues_documento_tipo = '{1}'", txtNumero_Identificacion.Text.Trim(), txtTipo_Identificacion.Text.Trim());
 
                         if (DataBase.realizarConsulta(email_ingresado).Tables[0].Rows.Count == 0)
@@ -114,7 +115,7 @@ namespace FrbaHotel.AbmCliente
                             {
                                 MessageBox.Show("El tipo y numero de identificacion ingresado ya existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
-                        }
+                        } 
                         else
                         {
                             MessageBox.Show("El mail ingresado ya existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

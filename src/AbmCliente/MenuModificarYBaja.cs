@@ -16,7 +16,7 @@ namespace FrbaHotel.AbmCliente
         public MenuModificarYBaja()
         {
             InitializeComponent();
-            DataSet huespedes = DataBase.realizarConsulta("select hues_mail as 'Mail', hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as 'Documento', hues_documento_tipo as 'Tipo'  from CAIA_UNLIMITED.Huesped");
+            DataSet huespedes = DataBase.realizarConsulta("select hues_mail as 'Mail', hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as 'Documento', hues_documento_tipo as 'Tipo', hues_habilitado as 'Estado'  from CAIA_UNLIMITED.Huesped");
             dgClientes.DataSource = huespedes.Tables[0];
         }
 
@@ -156,8 +156,11 @@ namespace FrbaHotel.AbmCliente
         private void dgClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             string mail = dgClientes.SelectedRows[0].Cells[0].Value.ToString();
+            string documento = dgClientes.SelectedRows[0].Cells[3].Value.ToString(); ;
+            string tipo = dgClientes.SelectedRows[0].Cells[4].Value.ToString(); ;
+
             this.Hide();
-            new Modificar(mail).Show();
+            new Modificar(mail,documento,tipo).Show();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

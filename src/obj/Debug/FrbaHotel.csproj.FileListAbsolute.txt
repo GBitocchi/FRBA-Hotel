@@ -357,10 +357,6 @@ C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.CrearHotel.re
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.FechasMantenimiento.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.FiltrarHotel.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmHotel.ModificarHotel.resources
-C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRegimen.Crear.resources
-C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRegimen.MenuModificarDarDeBaja.resources
-C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRegimen.MenuRegimen.resources
-C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRegimen.Modificacion.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmRol.VistaRol.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmUsuario.VistaUsuario.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.Form1.resources

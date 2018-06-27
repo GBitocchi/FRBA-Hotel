@@ -9,13 +9,6 @@ BEGIN
 EXEC ('CREATE SCHEMA [CAIA_UNLIMITED] AUTHORIZATION [gd]')
 END
 
-create table CAIA_UNLIMITED.Mantenimiento(
-	mant_fecha_inicio datetime not null,
-	mant_fecha_fin datetime not null,
-	mant_descripcion nvarchar(255) not null,
-	hote_id numeric(18,0) not null
-)
-go
 
 create table CAIA_UNLIMITED.Hotel(
 	hote_id numeric(18,0) identity(0,1) not null,
@@ -711,7 +704,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE [CAIA_UNLIMITED].[sp_ModificarHuesped] (@nombre nvarchar(255), @apellido nvarchar(255), @documento numeric(18,0), @tipo nvarchar(3), @mail nvarchar(255), @fecha_nacimiento datetime,@nacionalidad nvarchar(255),@calle nvarchar(255),@calle_nro numeric(18,0),@piso numeric(18,0),@dpto nvarchar(50),@ciudad nvarchar(255),@pais nvarchar(255), @telefono nvarchar(20),@estado bit)
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_ModificarHuesped] (@nombre nvarchar(255), @apellido nvarchar(255), @documento numeric(18,0), @tipo nvarchar(3), @mail nvarchar(255), @fecha_nacimiento datetime,@nacionalidad nvarchar(255),@calle nvarchar(255),@calle_nro numeric(18,0),@piso numeric(18,0),@dpto nvarchar(50),@ciudad nvarchar(255),@pais nvarchar(255), @telefono nvarchar(20),@estado bit, @documentoViejo numeric(18,0), @tipoViejo nvarchar(3), @mailViejo nvarchar(255))
 AS
 BEGIN
 	update CAIA_UNLIMITED.Direccion 
@@ -722,7 +715,7 @@ BEGIN
 
 	update CAIA_UNLIMITED.Huesped
 	set hues_mail = @mail,hues_nombre=@nombre,hues_apellido=@apellido,hues_documento=@documento,hues_nacionalidad=@nacionalidad,hues_nacimiento=convert(datetime,@fecha_nacimiento,120),hues_documento_tipo=@tipo, hues_habilitado=@estado
-	where hues_mail = @mail
+	where hues_mail = @mailViejo and hues_documento=@documentoViejo and hues_documento_tipo=@tipoViejo
 END
 GO
 
@@ -1336,6 +1329,8 @@ CREATE PROCEDURE [CAIA_UNLIMITED].[sp_ModificarClienteExistente] (@codigoReserva
 AS
 BEGIN	
   SET NOCOUNT ON;
+
+
   DECLARE @trancount int;
   SET @trancount = @@trancount;
   BEGIN TRY
