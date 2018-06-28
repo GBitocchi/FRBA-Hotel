@@ -263,7 +263,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                     TimeSpan difference = fechaElegidaInicio - DataBase.fechaSistema();
                     string queryCancelada = string.Format("SELECT rese_codigo FROM CAIA_UNLIMITED.Reserva JOIN CAIA_UNLIMITED.Reserva_Cancelada on (reca_rese = rese_codigo) AND rese_codigo = '{0}'", textBoxReserva.Text.Trim());
                     DataSet dsCancelada = DataBase.realizarConsulta(queryCancelada);
-                    if (dsCancelada != null && dsCancelada.Tables.Count > 0 && dsCancelada.Tables[0].Rows.Count > 0)
+                    if (dsCancelada != null || dsCancelada.Tables.Count > 0 || dsCancelada.Tables[0].Rows.Count > 0)
                     {
                         if (difference.Days <= 1)
                         {
@@ -1041,6 +1041,37 @@ namespace FrbaHotel.GenerarModificacionReserva
             {
                 SqlConnection createConnection = DataBase.conectarBD();
                 SqlCommand insertCommand;
+                string estaDeshabilitado = string.Format("SELECT Count(*) FROM CAIA_UNLIMITED.Huesped where hues_mail = '{0}' and hues_documento = '{1}' and hues_habilitado = 0", this.mail, this.documento);
+                SqlCommand commEstaDeshabilitado = new SqlCommand(estaDeshabilitado, createConnection);
+                Int32 countDeshabilitado = Convert.ToInt32(commEstaDeshabilitado.ExecuteScalar());
+
+                if (countDeshabilitado >= 1)
+                {
+                    MessageBox.Show("El cliente elegido esta deshabilitado, por favor seleccione otro.");
+                    this.existeCliente = false;
+                    lblNombre.Visible = true;
+                    textBoxNombre.Visible = true;
+                    lblApellido.Visible = true;
+                    textBoxApellido.Visible = true;
+                    lblMail.Visible = true;
+                    textBoxMail.Visible = true;
+                    lblDocumento.Visible = true;
+                    textBoxDocumento.Visible = true;
+                    lblTipoDocumentoCliente.Visible = true;
+                    comboBoxTipoDocumentoCliente.Visible = true;
+                    lblDireccion.Visible = true;
+                    textBoxDireccion.Visible = true;
+                    lblTelefono.Visible = true;
+                    textBoxTelefono.Visible = true;
+                    lblNumeroDireccion.Visible = true;
+                    textBoxNumeroDireccion.Visible = true;
+                    lblCity.Visible = true;
+                    textBoxCiudad.Visible = true;
+                    lblPais.Visible = true;
+                    textBoxPais.Visible = true;
+                    return;
+                }
+
                 if (guest)
                 {
                     insertCommand = new SqlCommand("[CAIA_UNLIMITED].sp_ModificarReservaHuesped", createConnection);
