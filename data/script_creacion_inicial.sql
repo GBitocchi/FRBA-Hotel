@@ -540,7 +540,7 @@ from CAIA_UNLIMITED.Hotel
 
 update CAIA_UNLIMITED.Huesped set hues_habilitado = 0
 where hues_mail in (select h1.hues_mail from CAIA_UNLIMITED.Huesped h1 group by h1.hues_mail having count(*)>1)
-
+go
 
 
 --HOTEL
