@@ -72,6 +72,35 @@ namespace FrbaHotel.GenerarModificacionReserva
             }
         }
 
+        private void cargarComboBoxTipoHabitacionesMostrar()
+        {
+            string tiposHabitaciones = string.Format("SELECT DISTINCT thab_descripcion as Descripcion FROM CAIA_UNLIMITED.Tipo_Habitacion th JOIN CAIA_UNLIMITED.Habitacion h on h.thab_codigo = th.thab_codigo WHERE h.hote_id = '{0}'", this.hotel);
+            DataSet dsTiposHabitaciones = DataBase.realizarConsulta(tiposHabitaciones);
+
+            foreach (DataRow unTipo in dsTiposHabitaciones.Tables[0].Rows)
+            {
+                if ((string)unTipo["Descripcion"] == "Base Doble" || (string)unTipo["Descripcion"] == "King")
+                {
+                    listBoxMostrarHabitaciones.Items.Add(((string)unTipo["Descripcion"]) + " | 2 Personas");
+                }
+                if ((string)unTipo["Descripcion"] == "Base Simple")
+                {
+                    listBoxMostrarHabitaciones.Items.Add(((string)unTipo["Descripcion"]) + " | 1 Persona");
+                }
+                if ((string)unTipo["Descripcion"] == "Base Triple")
+                {
+                    listBoxMostrarHabitaciones.Items.Add(((string)unTipo["Descripcion"]) + " | 3 Personas");
+                }
+                if ((string)unTipo["Descripcion"] == "Base Cuadruple")
+                {
+                    listBoxMostrarHabitaciones.Items.Add(((string)unTipo["Descripcion"]) + " | 4 Personas");
+                }
+                               
+            }
+
+            listBoxMostrarHabitaciones.Sorted = true;
+        }
+
         private void cargarComboBoxHoteles()
         {
             string hoteles = "SELECT CONCAT(hote_id, '-', hote_nombre) as Hotel, hote_id as idHotel FROM CAIA_UNLIMITED.Hotel WHERE hote_habilitado = 1";
@@ -142,6 +171,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             this.hotel = _hotel;
             this.guest = false;
             this.username = _username;
+            cargarComboBoxTipoHabitacionesMostrar();
             cargarComboBoxRegimenes();
             cargarComboBoxTipoHabitacion();            
             comboHoteles.Visible = false;
@@ -192,6 +222,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             cbxTipoHabitacion.Text = "";
             cbxRegimenEstadia.Items.Clear();
             cbxTipoHabitacion.Items.Clear();
+            comboHoteles.Items.Clear();
             limpiarErrores();
             limpiarTextBox();
             if (guest)
@@ -392,6 +423,8 @@ namespace FrbaHotel.GenerarModificacionReserva
                         btnConfirmarPaso.Visible = true;
                         labelFechaInicio.Visible = false;
                         labelFechaFin.Visible = false;
+                        label2.Visible = false;
+                        listBoxMostrarHabitaciones.Visible = false;
 
                     }
                 }
@@ -528,7 +561,8 @@ namespace FrbaHotel.GenerarModificacionReserva
                     btnConfirmarPaso.Visible = true;
                     labelFechaInicio.Visible = false;
                     labelFechaFin.Visible = false;
-
+                    label2.Visible = false;
+                    listBoxMostrarHabitaciones.Visible = false;
                 }
             }
             else
@@ -674,6 +708,8 @@ namespace FrbaHotel.GenerarModificacionReserva
                         btnConfirmarPaso.Visible = true;
                         labelFechaInicio.Visible = false;
                         labelFechaFin.Visible = false;
+                        label2.Visible = false;
+                        listBoxMostrarHabitaciones.Visible = false;
                     }
 
                 }
@@ -810,7 +846,8 @@ namespace FrbaHotel.GenerarModificacionReserva
                     btnConfirmarPaso.Visible = true;
                     labelFechaInicio.Visible = false;
                     labelFechaFin.Visible = false;
-
+                    label2.Visible = false;
+                    listBoxMostrarHabitaciones.Visible = false;
                 }
             }
 
@@ -830,10 +867,12 @@ namespace FrbaHotel.GenerarModificacionReserva
             }
 
             listBoxTipoHabitacion.Items.Clear();
+            listBoxMostrarHabitaciones.Items.Clear();
             cbxRegimenEstadia.Text = "";
             cbxTipoHabitacion.Text = "";
             cbxRegimenEstadia.Items.Clear();
             cbxTipoHabitacion.Items.Clear();
+            cargarComboBoxTipoHabitacionesMostrar();
             cargarComboBoxRegimenes();
             cargarComboBoxTipoHabitacion();
         }

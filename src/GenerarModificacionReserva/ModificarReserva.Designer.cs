@@ -115,7 +115,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.groupBox1.BackColor = System.Drawing.Color.CornflowerBlue;
             this.groupBox1.Controls.Add(this.labelWrongCodigo);
             this.groupBox1.Controls.Add(this.btnSeleccionarReserva);
             this.groupBox1.Controls.Add(this.textBoxReserva);
@@ -201,7 +201,7 @@
             // 
             // btnSeleccionarReserva
             // 
-            this.btnSeleccionarReserva.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSeleccionarReserva.BackColor = System.Drawing.SystemColors.GrayText;
             this.btnSeleccionarReserva.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSeleccionarReserva.Location = new System.Drawing.Point(206, 28);
             this.btnSeleccionarReserva.Name = "btnSeleccionarReserva";
@@ -288,6 +288,7 @@
             // 
             this.textBoxHotel.Location = new System.Drawing.Point(520, 55);
             this.textBoxHotel.Name = "textBoxHotel";
+            this.textBoxHotel.ReadOnly = true;
             this.textBoxHotel.Size = new System.Drawing.Size(151, 20);
             this.textBoxHotel.TabIndex = 397;
             // 
@@ -684,6 +685,7 @@
             this.comboHoteles.Name = "comboHoteles";
             this.comboHoteles.Size = new System.Drawing.Size(151, 21);
             this.comboHoteles.TabIndex = 358;
+            this.comboHoteles.SelectedIndexChanged += new System.EventHandler(this.comboHoteles_SelectedIndexChanged);
             // 
             // lblHotel
             // 

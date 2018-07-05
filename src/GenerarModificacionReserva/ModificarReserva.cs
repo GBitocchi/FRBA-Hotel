@@ -263,7 +263,12 @@ namespace FrbaHotel.GenerarModificacionReserva
                     TimeSpan difference = fechaElegidaInicio - DataBase.fechaSistema();
                     string queryCancelada = string.Format("SELECT rese_codigo FROM CAIA_UNLIMITED.Reserva JOIN CAIA_UNLIMITED.Reserva_Cancelada on (reca_rese = rese_codigo) AND rese_codigo = '{0}'", textBoxReserva.Text.Trim());
                     DataSet dsCancelada = DataBase.realizarConsulta(queryCancelada);
-                    if (dsCancelada != null || dsCancelada.Tables.Count > 0 || dsCancelada.Tables[0].Rows.Count > 0)
+                    if (dsCancelada != null && dsCancelada.Tables.Count > 0 && dsCancelada.Tables[0].Rows.Count > 0)
+                    {
+                        MessageBox.Show("No puede modificar su reserva porque la cancelo!");
+                        return;
+                    }
+                    else
                     {
                         if (difference.Days <= 1)
                         {
@@ -289,11 +294,6 @@ namespace FrbaHotel.GenerarModificacionReserva
                         cargarComboBoxRegimenes();
                         cargarComboBoxTipoHabitacion();
                         this.reserva = Convert.ToDecimal(textBoxReserva.Text.Trim());
-                    }
-                    else
-                    {
-                        MessageBox.Show("No puede modificar su reserva porque la cancelo!");
-                        return;
                     }
                 }
             }
@@ -927,6 +927,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             cbxRegimenEstadia.Text = "";
             cbxTipoHabitacion.Text = "";
             cbxRegimenEstadia.Items.Clear();
+            comboHoteles.Items.Clear();
             cbxTipoHabitacion.Items.Clear();
             limpiarErrores();
             limpiarTextBox();
@@ -953,6 +954,13 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void btnSeleccionarHotel_Click_1(object sender, EventArgs e)
         {
+            if (this.comboHoteles.SelectedItem == null)
+            {
+                lblErrorNoField.Visible = true;
+                lblErrorReserva.Visible = true;
+                return;
+            }
+            
             textBoxHotel.Text = comboHoteles.SelectedItem.ToString();
             for (int i = 0; i < this.dsHoteles.Tables[0].Rows.Count; i++)
             {
@@ -1219,6 +1227,11 @@ namespace FrbaHotel.GenerarModificacionReserva
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboHoteles_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

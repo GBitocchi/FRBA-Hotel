@@ -92,6 +92,8 @@
             this.textBoxNombre = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblErrorNombre = new System.Windows.Forms.Label();
+            this.listBoxMostrarHabitaciones = new System.Windows.Forms.ListBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -134,7 +136,7 @@
             // 
             // calendarInicio
             // 
-            this.calendarInicio.Location = new System.Drawing.Point(116, 366);
+            this.calendarInicio.Location = new System.Drawing.Point(116, 377);
             this.calendarInicio.Name = "calendarInicio";
             this.calendarInicio.TabIndex = 333;
             this.calendarInicio.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.calendarInicio_DateChanged);
@@ -143,7 +145,7 @@
             // 
             this.labelFechaInicio.AutoSize = true;
             this.labelFechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFechaInicio.Location = new System.Drawing.Point(144, 337);
+            this.labelFechaInicio.Location = new System.Drawing.Point(144, 348);
             this.labelFechaInicio.Name = "labelFechaInicio";
             this.labelFechaInicio.Size = new System.Drawing.Size(132, 20);
             this.labelFechaInicio.TabIndex = 336;
@@ -151,7 +153,7 @@
             // 
             // calendarFin
             // 
-            this.calendarFin.Location = new System.Drawing.Point(441, 364);
+            this.calendarFin.Location = new System.Drawing.Point(441, 375);
             this.calendarFin.Name = "calendarFin";
             this.calendarFin.TabIndex = 337;
             this.calendarFin.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.calendarFin_DateChanged);
@@ -160,7 +162,7 @@
             // 
             this.labelFechaFin.AutoSize = true;
             this.labelFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFechaFin.Location = new System.Drawing.Point(449, 335);
+            this.labelFechaFin.Location = new System.Drawing.Point(449, 346);
             this.labelFechaFin.Name = "labelFechaFin";
             this.labelFechaFin.Size = new System.Drawing.Size(184, 20);
             this.labelFechaFin.TabIndex = 338;
@@ -171,7 +173,7 @@
             this.lblErrorFechaInicio.AutoSize = true;
             this.lblErrorFechaInicio.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorFechaInicio.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorFechaInicio.Location = new System.Drawing.Point(125, 337);
+            this.lblErrorFechaInicio.Location = new System.Drawing.Point(125, 348);
             this.lblErrorFechaInicio.Name = "lblErrorFechaInicio";
             this.lblErrorFechaInicio.Size = new System.Drawing.Size(17, 22);
             this.lblErrorFechaInicio.TabIndex = 339;
@@ -193,7 +195,7 @@
             // 
             this.labelTpoHabitacion.AutoSize = true;
             this.labelTpoHabitacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTpoHabitacion.Location = new System.Drawing.Point(53, 103);
+            this.labelTpoHabitacion.Location = new System.Drawing.Point(53, 90);
             this.labelTpoHabitacion.Name = "labelTpoHabitacion";
             this.labelTpoHabitacion.Size = new System.Drawing.Size(164, 20);
             this.labelTpoHabitacion.TabIndex = 341;
@@ -204,7 +206,7 @@
             this.lblErrorTipoHabitacion.AutoSize = true;
             this.lblErrorTipoHabitacion.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorTipoHabitacion.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorTipoHabitacion.Location = new System.Drawing.Point(30, 103);
+            this.lblErrorTipoHabitacion.Location = new System.Drawing.Point(30, 90);
             this.lblErrorTipoHabitacion.Name = "lblErrorTipoHabitacion";
             this.lblErrorTipoHabitacion.Size = new System.Drawing.Size(17, 22);
             this.lblErrorTipoHabitacion.TabIndex = 342;
@@ -213,7 +215,7 @@
             // cbxTipoHabitacion
             // 
             this.cbxTipoHabitacion.FormattingEnabled = true;
-            this.cbxTipoHabitacion.Location = new System.Drawing.Point(223, 102);
+            this.cbxTipoHabitacion.Location = new System.Drawing.Point(223, 89);
             this.cbxTipoHabitacion.Name = "cbxTipoHabitacion";
             this.cbxTipoHabitacion.Size = new System.Drawing.Size(154, 21);
             this.cbxTipoHabitacion.TabIndex = 343;
@@ -223,7 +225,7 @@
             // 
             this.labelRegimen.AutoSize = true;
             this.labelRegimen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRegimen.Location = new System.Drawing.Point(53, 264);
+            this.labelRegimen.Location = new System.Drawing.Point(53, 285);
             this.labelRegimen.Name = "labelRegimen";
             this.labelRegimen.Size = new System.Drawing.Size(176, 20);
             this.labelRegimen.TabIndex = 344;
@@ -232,7 +234,7 @@
             // cbxRegimenEstadia
             // 
             this.cbxRegimenEstadia.FormattingEnabled = true;
-            this.cbxRegimenEstadia.Location = new System.Drawing.Point(235, 263);
+            this.cbxRegimenEstadia.Location = new System.Drawing.Point(235, 284);
             this.cbxRegimenEstadia.Name = "cbxRegimenEstadia";
             this.cbxRegimenEstadia.Size = new System.Drawing.Size(139, 21);
             this.cbxRegimenEstadia.TabIndex = 345;
@@ -320,7 +322,7 @@
             this.lblErrorFechaFin.AutoSize = true;
             this.lblErrorFechaFin.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorFechaFin.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorFechaFin.Location = new System.Drawing.Point(426, 335);
+            this.lblErrorFechaFin.Location = new System.Drawing.Point(426, 346);
             this.lblErrorFechaFin.Name = "lblErrorFechaFin";
             this.lblErrorFechaFin.Size = new System.Drawing.Size(17, 22);
             this.lblErrorFechaFin.TabIndex = 359;
@@ -330,7 +332,7 @@
             // listBoxTipoHabitacion
             // 
             this.listBoxTipoHabitacion.FormattingEnabled = true;
-            this.listBoxTipoHabitacion.Location = new System.Drawing.Point(406, 103);
+            this.listBoxTipoHabitacion.Location = new System.Drawing.Point(57, 121);
             this.listBoxTipoHabitacion.Name = "listBoxTipoHabitacion";
             this.listBoxTipoHabitacion.Size = new System.Drawing.Size(177, 134);
             this.listBoxTipoHabitacion.TabIndex = 360;
@@ -338,7 +340,7 @@
             // btnAgregar
             // 
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(279, 134);
+            this.btnAgregar.Location = new System.Drawing.Point(253, 146);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(98, 32);
             this.btnAgregar.TabIndex = 361;
@@ -349,7 +351,7 @@
             // btnQuitar
             // 
             this.btnQuitar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnQuitar.Location = new System.Drawing.Point(279, 172);
+            this.btnQuitar.Location = new System.Drawing.Point(253, 201);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(98, 31);
             this.btnQuitar.TabIndex = 362;
@@ -359,7 +361,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.groupBox1.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.listBoxMostrarHabitaciones);
             this.groupBox1.Controls.Add(this.textBoxNumeroDireccion);
             this.groupBox1.Controls.Add(this.lblNumeroDireccion);
             this.groupBox1.Controls.Add(this.lblNroDireccion);
@@ -474,12 +478,13 @@
             // 
             this.textBoxHotel.Location = new System.Drawing.Point(115, 46);
             this.textBoxHotel.Name = "textBoxHotel";
+            this.textBoxHotel.ReadOnly = true;
             this.textBoxHotel.Size = new System.Drawing.Size(151, 20);
             this.textBoxHotel.TabIndex = 397;
             // 
             // txbRegimen
             // 
-            this.txbRegimen.Location = new System.Drawing.Point(235, 290);
+            this.txbRegimen.Location = new System.Drawing.Point(235, 311);
             this.txbRegimen.Name = "txbRegimen";
             this.txbRegimen.Size = new System.Drawing.Size(139, 20);
             this.txbRegimen.TabIndex = 396;
@@ -499,7 +504,7 @@
             // btnRegimenSeleccionar
             // 
             this.btnRegimenSeleccionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegimenSeleccionar.Location = new System.Drawing.Point(378, 274);
+            this.btnRegimenSeleccionar.Location = new System.Drawing.Point(378, 295);
             this.btnRegimenSeleccionar.Name = "btnRegimenSeleccionar";
             this.btnRegimenSeleccionar.Size = new System.Drawing.Size(113, 32);
             this.btnRegimenSeleccionar.TabIndex = 394;
@@ -822,6 +827,29 @@
             this.lblErrorNombre.Text = "*";
             this.lblErrorNombre.Visible = false;
             // 
+            // listBoxMostrarHabitaciones
+            // 
+            this.listBoxMostrarHabitaciones.BackColor = System.Drawing.Color.LightCyan;
+            this.listBoxMostrarHabitaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxMostrarHabitaciones.FormattingEnabled = true;
+            this.listBoxMostrarHabitaciones.ItemHeight = 20;
+            this.listBoxMostrarHabitaciones.Location = new System.Drawing.Point(476, 131);
+            this.listBoxMostrarHabitaciones.Name = "listBoxMostrarHabitaciones";
+            this.listBoxMostrarHabitaciones.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.listBoxMostrarHabitaciones.Size = new System.Drawing.Size(252, 124);
+            this.listBoxMostrarHabitaciones.TabIndex = 402;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(531, 90);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(131, 24);
+            this.label2.TabIndex = 403;
+            this.label2.Text = "Habitaciones";
+            // 
             // GenerarReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -906,5 +934,7 @@
         private System.Windows.Forms.TextBox textBoxNumeroDireccion;
         private System.Windows.Forms.Label lblNumeroDireccion;
         private System.Windows.Forms.Label lblNroDireccion;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ListBox listBoxMostrarHabitaciones;
     }
 }
