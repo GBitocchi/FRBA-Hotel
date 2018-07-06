@@ -72,7 +72,7 @@ namespace FrbaHotel.ListadoEstadistico
                         break;
                     case 2:
                         {
-                            DataTable mantenimientos = DataBase.realizarConsulta("select top 5 H.hote_id as 'ID', hote_nombre as 'Nombre', sum(datediff(day, mant_fecha_inicio, mant_fecha_fin)) as 'Dias' from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Mantenimiento M on (H.hote_id = M.hote_id) where DATEPART(quarter, M.mant_fecha_inicio) = " + trimestre + " and YEAR(M.mant_fecha_inicio) = " + anio + " group by H.hote_id, hote_nombre order by sum(datediff(day, mant_fecha_inicio, mant_fecha_fin))").Tables[0];
+                            DataTable mantenimientos = DataBase.realizarConsulta("select top 5 H.hote_id as 'ID', hote_nombre as 'Nombre' from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Mantenimiento M on (H.hote_id = M.hote_id) where DATEPART(quarter, M.mant_fecha_inicio) = " + trimestre + " and YEAR(M.mant_fecha_inicio) = " + anio + " group by H.hote_id, hote_nombre order by sum(datediff(day, mant_fecha_inicio, mant_fecha_fin)) desc").Tables[0];
                             if (mantenimientos.Rows.Count == 0)
                             {
                                 MessageBox.Show("No hay datos suficientes para listar", "Faltan datos", MessageBoxButtons.OK);
