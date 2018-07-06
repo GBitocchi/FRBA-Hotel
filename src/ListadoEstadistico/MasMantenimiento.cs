@@ -13,10 +13,10 @@ namespace FrbaHotel.ListadoEstadistico
 {
     public partial class MasMantenimiento : Form
     {
-        public MasMantenimiento()
+        public MasMantenimiento(DataTable mantenimientos)
         {
             InitializeComponent();
-            dgMantenimientos.DataSource = DataBase.realizarConsulta("select * from CAIA_UNLIMITED.vw_MasMantenimiento").Tables[0];
+            dgMantenimientos.DataSource = mantenimientos;
         }
 
         private void btnAtras_Click(object sender, EventArgs e)

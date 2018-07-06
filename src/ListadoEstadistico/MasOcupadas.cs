@@ -12,10 +12,10 @@ namespace FrbaHotel.ListadoEstadistico
 {
     public partial class MasOcupadas : Form
     {
-        public MasOcupadas()
+        public MasOcupadas(DataTable ocupadas)
         {
             InitializeComponent();
-            dgOcupadas.DataSource = DataBase.realizarConsulta("select * from CAIA_UNLIMITED.vw_MasOcupada").Tables[0];
+            dgOcupadas.DataSource = ocupadas;
         }
 
         private void btnAtras_Click(object sender, EventArgs e)

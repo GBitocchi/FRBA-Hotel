@@ -232,6 +232,12 @@
     <Compile Include="ListadoEstadistico\MayorFacturacionConsumibles.Designer.cs">
       <DependentUpon>MayorFacturacionConsumibles.cs</DependentUpon>
     </Compile>
+    <Compile Include="ListadoEstadistico\PeriodoListado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoEstadistico\PeriodoListado.Designer.cs">
+      <DependentUpon>PeriodoListado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\cambioContraseña.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -386,6 +392,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ListadoEstadistico\MayorFacturacionConsumibles.resx">
       <DependentUpon>MayorFacturacionConsumibles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoEstadistico\PeriodoListado.resx">
+      <DependentUpon>PeriodoListado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\cambioContraseña.resx">
       <DependentUpon>cambioContraseña.cs</DependentUpon>

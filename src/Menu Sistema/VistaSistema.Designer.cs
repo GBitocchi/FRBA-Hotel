@@ -53,12 +53,6 @@
             this.modificarHabitacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bajaDeHabitacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stripFacturar = new System.Windows.Forms.ToolStripMenuItem();
-            this.stripListado = new System.Windows.Forms.ToolStripMenuItem();
-            this.masTiempoFueraDeServiicoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.masReservasCanceladasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.habitacionesMasOcupadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clientesConMasPuntosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mayorFacturacionDeConsumiblesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stripHuesped = new System.Windows.Forms.ToolStripMenuItem();
             this.crearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,6 +64,7 @@
             this.btnVolver = new System.Windows.Forms.Button();
             this.Fecha = new System.Windows.Forms.Label();
             this.txtFechaSistema = new System.Windows.Forms.TextBox();
+            this.stripListado = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -95,9 +90,9 @@
             this.stripHotel,
             this.stripHabitacion,
             this.stripFacturar,
-            this.stripListado,
             this.stripHuesped,
-            this.stripConsumibles});
+            this.stripConsumibles,
+            this.stripListado});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1179, 24);
@@ -281,54 +276,6 @@
             this.stripFacturar.Visible = false;
             this.stripFacturar.Click += new System.EventHandler(this.stripFacturar_Click);
             // 
-            // stripListado
-            // 
-            this.stripListado.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.masTiempoFueraDeServiicoToolStripMenuItem,
-            this.masReservasCanceladasToolStripMenuItem,
-            this.habitacionesMasOcupadasToolStripMenuItem,
-            this.clientesConMasPuntosToolStripMenuItem,
-            this.mayorFacturacionDeConsumiblesToolStripMenuItem});
-            this.stripListado.Name = "stripListado";
-            this.stripListado.Size = new System.Drawing.Size(116, 20);
-            this.stripListado.Text = "Listado estadistico";
-            this.stripListado.Visible = false;
-            // 
-            // masTiempoFueraDeServiicoToolStripMenuItem
-            // 
-            this.masTiempoFueraDeServiicoToolStripMenuItem.Name = "masTiempoFueraDeServiicoToolStripMenuItem";
-            this.masTiempoFueraDeServiicoToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
-            this.masTiempoFueraDeServiicoToolStripMenuItem.Text = "Mas tiempo fuera de servicio";
-            this.masTiempoFueraDeServiicoToolStripMenuItem.Click += new System.EventHandler(this.masTiempoFueraDeServiicoToolStripMenuItem_Click);
-            // 
-            // masReservasCanceladasToolStripMenuItem
-            // 
-            this.masReservasCanceladasToolStripMenuItem.Name = "masReservasCanceladasToolStripMenuItem";
-            this.masReservasCanceladasToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
-            this.masReservasCanceladasToolStripMenuItem.Text = "Mas reservas canceladas";
-            this.masReservasCanceladasToolStripMenuItem.Click += new System.EventHandler(this.masReservasCanceladasToolStripMenuItem_Click);
-            // 
-            // habitacionesMasOcupadasToolStripMenuItem
-            // 
-            this.habitacionesMasOcupadasToolStripMenuItem.Name = "habitacionesMasOcupadasToolStripMenuItem";
-            this.habitacionesMasOcupadasToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
-            this.habitacionesMasOcupadasToolStripMenuItem.Text = "Habitaciones mas ocupadas";
-            this.habitacionesMasOcupadasToolStripMenuItem.Click += new System.EventHandler(this.habitacionesMasOcupadasToolStripMenuItem_Click);
-            // 
-            // clientesConMasPuntosToolStripMenuItem
-            // 
-            this.clientesConMasPuntosToolStripMenuItem.Name = "clientesConMasPuntosToolStripMenuItem";
-            this.clientesConMasPuntosToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
-            this.clientesConMasPuntosToolStripMenuItem.Text = "Clientes con mas puntos";
-            this.clientesConMasPuntosToolStripMenuItem.Click += new System.EventHandler(this.clientesConMasPuntosToolStripMenuItem_Click);
-            // 
-            // mayorFacturacionDeConsumiblesToolStripMenuItem
-            // 
-            this.mayorFacturacionDeConsumiblesToolStripMenuItem.Name = "mayorFacturacionDeConsumiblesToolStripMenuItem";
-            this.mayorFacturacionDeConsumiblesToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
-            this.mayorFacturacionDeConsumiblesToolStripMenuItem.Text = "Mayor facturacion de consumibles";
-            this.mayorFacturacionDeConsumiblesToolStripMenuItem.Click += new System.EventHandler(this.mayorFacturacionDeConsumiblesToolStripMenuItem_Click);
-            // 
             // stripHuesped
             // 
             this.stripHuesped.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -343,21 +290,21 @@
             // crearToolStripMenuItem
             // 
             this.crearToolStripMenuItem.Name = "crearToolStripMenuItem";
-            this.crearToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.crearToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.crearToolStripMenuItem.Text = "Crear";
             this.crearToolStripMenuItem.Click += new System.EventHandler(this.crearToolStripMenuItem_Click);
             // 
             // modificarToolStripMenuItem
             // 
             this.modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
-            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.modificarToolStripMenuItem.Text = "Modificar";
             this.modificarToolStripMenuItem.Click += new System.EventHandler(this.modificarToolStripMenuItem_Click);
             // 
             // darDeBajaToolStripMenuItem
             // 
             this.darDeBajaToolStripMenuItem.Name = "darDeBajaToolStripMenuItem";
-            this.darDeBajaToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.darDeBajaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.darDeBajaToolStripMenuItem.Text = "Dar de baja";
             this.darDeBajaToolStripMenuItem.Click += new System.EventHandler(this.darDeBajaToolStripMenuItem_Click);
             // 
@@ -429,6 +376,13 @@
             this.txtFechaSistema.Size = new System.Drawing.Size(183, 20);
             this.txtFechaSistema.TabIndex = 6;
             // 
+            // stripListado
+            // 
+            this.stripListado.Name = "stripListado";
+            this.stripListado.Size = new System.Drawing.Size(116, 20);
+            this.stripListado.Text = "Listado estadistico";
+            this.stripListado.Click += new System.EventHandler(this.stripListado_Click);
+            // 
             // VistaSistema
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -480,12 +434,6 @@
         private System.Windows.Forms.ToolStripMenuItem bajaDeHabitacionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificarHabitacionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stripFacturar;
-        private System.Windows.Forms.ToolStripMenuItem stripListado;
-        private System.Windows.Forms.ToolStripMenuItem masTiempoFueraDeServiicoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem masReservasCanceladasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem habitacionesMasOcupadasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem clientesConMasPuntosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mayorFacturacionDeConsumiblesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stripHuesped;
         private System.Windows.Forms.ToolStripMenuItem crearToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificarToolStripMenuItem;
@@ -497,5 +445,6 @@
         private System.Windows.Forms.ToolStripMenuItem stripCancelar_Reserva;
         private System.Windows.Forms.Label Fecha;
         private System.Windows.Forms.TextBox txtFechaSistema;
+        private System.Windows.Forms.ToolStripMenuItem stripListado;
     }
 }

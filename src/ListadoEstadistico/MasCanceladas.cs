@@ -12,10 +12,11 @@ namespace FrbaHotel.ListadoEstadistico
 {
     public partial class MasCanceladas : Form
     {
-        public MasCanceladas()
+        public MasCanceladas(DataTable canceladas)
         {
             InitializeComponent();
-            dgCanceladas.DataSource = DataBase.realizarConsulta("select * from CAIA_UNLIMITED.vw_MasCancelada").Tables[0];
+            dgCanceladas.DataSource = canceladas;
+            
         }
 
         private void btnAtras_Click(object sender, EventArgs e)

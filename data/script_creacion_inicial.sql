@@ -757,57 +757,6 @@ BEGIN
 END
 GO
 
---VISTAS PARA LISTADOS
-create view CAIA_UNLIMITED.vw_MasMantenimiento
-as
-	select top 5 H.hote_id as 'ID', hote_nombre as 'Nombre'
-	from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Mantenimiento M on (H.hote_id = M.hote_id)
-	group by H.hote_id, hote_nombre
-	order by sum(datediff(day, mant_fecha_inicio, mant_fecha_fin)) desc
-go
-
-create view CAIA_UNLIMITED.vw_MasCancelada
-as 
-	SELECT TOP 5 H.hote_id as 'ID', hote_nombre as 'Nombre' 
-	FROM CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Habitacion_X_Reserva X on (X.habi_rese_id = H.hote_id)
-								join CAIA_UNLIMITED.Reserva R on (R.rese_codigo = X.habi_rese_codigo)
-								join CAIA_UNLIMITED.Reserva_Cancelada C on (C.reca_rese = R.rese_codigo)
-	GROUP BY H.hote_id, hote_nombre
-	ORDER BY COUNT(*) desc
-	  
-go
-
-create view CAIA_UNLIMITED.vw_MasFacturacion
-as
-	select top 5 H.hote_id 'ID', hote_nombre as 'Nombre'
-	from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Habitacion_X_Reserva X on (X.habi_rese_id = H.hote_id)
-							join CAIA_UNLIMITED.Estadia E on (E.rese_codigo = X.habi_rese_codigo)
-							join CAIA_UNLIMITED.Factura F on (F.esta_codigo = E.esta_codigo)
-							join CAIA_UNLIMITED.Item_Factura I on (F.fact_nro = I.fact_nro)
-	group by H.hote_id, hote_nombre
-	order by sum(I.item_cantidad) desc 
-go
-
-create view CAIA_UNLIMITED.vw_MasOcupada
-as
-	select top 5 A.habi_numero as 'Habitacion', A.hote_id as 'Hotel', A.habi_piso as 'Piso', A.habi_frente as 'Frente' 
-	from CAIA_UNLIMITED.Habitacion A join CAIA_UNLIMITED.Hotel H on (H.hote_id = A.hote_id)
-									join CAIA_UNLIMITED.Habitacion_X_Reserva X on (X.habi_rese_id = H.hote_id and X.habi_rese_numero = A.habi_numero)
-									join CAIA_UNLIMITED.Estadia E on (X.habi_rese_codigo = E.rese_codigo)
-	group by A.habi_numero, A.hote_id, A.habi_piso, A.habi_frente
-	order by sum(DATEDIFF(day, E.esta_fecha_inicio, E.esta_fecha_fin)), count(*) desc
-go
-
-create view CAIA_UNLIMITED.vw_MasPuntos
-as
-	select top 5 H.hues_mail as 'Mail', H.hues_documento as 'Documento', hues_nombre as 'Nombre', hues_apellido as 'Apellido'
-	from CAIA_UNLIMITED.Factura F join CAIA_UNLIMITED.Item_Factura I on (F.fact_nro = I.fact_nro)
-									join CAIA_UNLIMITED.Huesped H on (F.hues_documento = H.hues_documento and
-																		F.hues_mail = H.hues_mail)
-	group by H.hues_mail, H.hues_documento, hues_nombre, hues_apellido
-	order by sum((I.item_monto*I.item_cantidad)/10) + sum((F.fact_total-(I.item_monto*I.item_cantidad))/20) desc
-go
-
 ----Rol
 GO
 CREATE TYPE [CAIA_UNLIMITED].FuncionalidadesList AS TABLE ( Funcionalidades numeric(18,0))

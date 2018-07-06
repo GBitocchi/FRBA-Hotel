@@ -12,10 +12,10 @@ namespace FrbaHotel.ListadoEstadistico
 {
     public partial class MayorFacturacionConsumibles : Form
     {
-        public MayorFacturacionConsumibles()
+        public MayorFacturacionConsumibles(DataTable consumibles)
         {
             InitializeComponent();
-            dgMasFacturacion.DataSource = DataBase.realizarConsulta("select * from CAIA_UNLIMITED.vw_MasFacturacion").Tables[0];
+            dgMasFacturacion.DataSource = consumibles;
         }
 
         private void btnAtras_Click(object sender, EventArgs e)

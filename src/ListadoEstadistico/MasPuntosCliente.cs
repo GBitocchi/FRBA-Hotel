@@ -12,10 +12,10 @@ namespace FrbaHotel.ListadoEstadistico
 {
     public partial class MasPuntosCliente : Form
     {
-        public MasPuntosCliente()
+        public MasPuntosCliente(DataTable clientes)
         {
             InitializeComponent();
-            dgClientes.DataSource = DataBase.realizarConsulta("select * from CAIA_UNLIMITED.vw_MasPuntos").Tables[0];
+            dgClientes.DataSource = clientes;
         }
 
         private void btnAtras_Click(object sender, EventArgs e)
