@@ -16,6 +16,9 @@ namespace FrbaHotel.ListadoEstadistico
         public PeriodoListado()
         {
             InitializeComponent();
+            cbTrimestre.SelectedIndex = 0;
+            cbListado.SelectedIndex = 0;
+            lblAno.Visible = false;
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -25,6 +28,7 @@ namespace FrbaHotel.ListadoEstadistico
             {
                 MessageBox.Show("Falta el año de la consulta", "Faltan datos", MessageBoxButtons.OK);
                 this.Show();
+                lblAno.Visible = true;
             }
             else if (!Int32.TryParse(txtAno.Text.Trim(), out aux))
             {
