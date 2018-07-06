@@ -26,19 +26,44 @@ namespace FrbaHotel.AbmFacturacion
             {
                 txtNroFactura.Text = DataBase.realizarConsulta("select max(fact_nro)+1 from CAIA_UNLIMITED.Factura").Tables[0].Rows[0][0].ToString();
                 double totalAFacturar = 0;
-                if ("All inclusive" != DataBase.realizarConsulta("select regi_descripcion from CAIA_UNLIMITED.Regimen R join CAIA_UNLIMITED.Reserva H on (R.regi_codigo = H.regi_codigo) join CAIA_UNLIMITED.Estadia E on (E.rese_codigo = H.rese_codigo) where esta_codigo =" + codigoEstadia).ToString().Trim())
+                if ("All inclusive" != DataBase.realizarConsulta("select regi_descripcion from CAIA_UNLIMITED.Regimen R join CAIA_UNLIMITED.Reserva H on (R.regi_codigo = H.regi_codigo) join CAIA_UNLIMITED.Estadia E on (E.rese_codigo = H.rese_codigo) where esta_codigo =" + codigoEstadia).Tables[0].Rows[0][0].ToString().Trim())
                 {
+                    lblDescuentos.Visible = false;
+                    txtDescuento.Visible = false;
                     for (int i = 0; i < dgConsumibles.Rows.Count; i++)
                     {
                         totalAFacturar += Convert.ToInt32(dgConsumibles.Rows[i].Cells[2].Value) * Convert.ToInt32(dgConsumibles.Rows[i].Cells[3].Value);
                     }
                 }
+                else if ("All inclusive" == DataBase.realizarConsulta("select regi_descripcion from CAIA_UNLIMITED.Regimen R join CAIA_UNLIMITED.Reserva H on (R.regi_codigo = H.regi_codigo) join CAIA_UNLIMITED.Estadia E on (E.rese_codigo = H.rese_codigo) where esta_codigo =" + codigoEstadia).Tables[0].Rows[0][0].ToString().Trim())
+                {
+                    double descuento = 0;
+                    for (int i = 0; i < dgConsumibles.Rows.Count; i++)
+                    {
+                        descuento += Convert.ToInt32(dgConsumibles.Rows[i].Cells[2].Value) * Convert.ToInt32(dgConsumibles.Rows[i].Cells[3].Value);
+                    }
+                    txtDescuento.Text = Convert.ToString(descuento);
+                }    
                 totalAFacturar += Convert.ToInt32(txtNochesReserva.Text.Trim()) * (Convert.ToDouble(txtPrecioRegimen.Text.Trim()) * cantidadPersonas() + Convert.ToDouble(txtPorcentual.Text));
                 txtTotal.Text = Convert.ToString(totalAFacturar);
                 existe = false;
             }
             else
             {
+                if ("All inclusive" == DataBase.realizarConsulta("select regi_descripcion from CAIA_UNLIMITED.Regimen R join CAIA_UNLIMITED.Reserva H on (R.regi_codigo = H.regi_codigo) join CAIA_UNLIMITED.Estadia E on (E.rese_codigo = H.rese_codigo) where esta_codigo =" + codigoEstadia).Tables[0].Rows[0][0].ToString().Trim())
+                {
+                    double descuento = 0;
+                    for (int i = 0; i < dgConsumibles.Rows.Count; i++)
+                    {
+                        descuento += Convert.ToInt32(dgConsumibles.Rows[i].Cells[2].Value) * Convert.ToInt32(dgConsumibles.Rows[i].Cells[3].Value);
+                    }
+                    txtDescuento.Text = Convert.ToString(descuento);
+                }
+                else
+                {
+                    lblDescuentos.Visible = false;
+                    txtDescuento.Visible = false;
+                }
                 existe = true;
                 cargarFacturaExistente(codigoEstadia);
             }
@@ -91,8 +116,9 @@ namespace FrbaHotel.AbmFacturacion
             documento = huesped.Tables[0].Rows[0][1].ToString();
             txtPrecioRegimen.Text = DataBase.realizarConsulta("select regi_precio_base from CAIA_UNLIMITED.Regimen R join CAIA_UNLIMITED.Reserva H on (R.regi_codigo = H.regi_codigo) join CAIA_UNLIMITED.Estadia E on (E.rese_codigo = H.rese_codigo) where esta_codigo =" + codigoEstadia).Tables[0].Rows[0][0].ToString();
             txtPorcentual.Text = DataBase.realizarConsulta("select H.hote_recarga_estrella * H.hote_cant_estrellas from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Habitacion_X_Reserva X on (X.habi_rese_id = H.hote_id) join CAIA_UNLIMITED.Reserva R on (R.rese_codigo = X.habi_rese_codigo) join CAIA_UNLIMITED.Estadia E on (E.rese_codigo = R.rese_codigo) where esta_codigo = " + codigoEstadia).Tables[0].Rows[0][0].ToString();
-            txtNoches.Text = DataBase.realizarConsulta("select DATEDIFF(day, esta_fecha_inicio, esta_fecha_fin) from CAIA_UNLIMITED.Estadia where esta_codigo =" + codigoEstadia).Tables[0].Rows[0][0].ToString();
             txtNochesReserva.Text = DataBase.realizarConsulta("select rese_cantidad_noches from CAIA_UNLIMITED.Reserva R join CAIA_UNLIMITED.Estadia E on (R.rese_codigo = E.rese_codigo) where esta_codigo = " + codigoEstadia).Tables[0].Rows[0][0].ToString();
+            txtNochesEstadia.Text = Convert.ToString(Convert.ToDouble(txtNochesReserva.Text.Trim()) - Convert.ToDouble(DataBase.realizarConsulta("select DATEDIFF(day, esta_fecha_inicio, esta_fecha_fin) from CAIA_UNLIMITED.Estadia where esta_codigo =" + codigoEstadia).Tables[0].Rows[0][0].ToString()));
+            txtCostoExtra.Text = (Convert.ToDouble(txtNochesEstadia.Text.Trim()) * Convert.ToDouble(txtPrecioRegimen.Text.Trim())).ToString();
         }
 
         private void btnPagar_Click(object sender, EventArgs e)

@@ -41,11 +41,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtNoches = new System.Windows.Forms.TextBox();
+            this.txtCostoExtra = new System.Windows.Forms.TextBox();
             this.txtPrecioRegimen = new System.Windows.Forms.TextBox();
             this.txtPorcentual = new System.Windows.Forms.TextBox();
             this.txtNochesReserva = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.lblDescuentos = new System.Windows.Forms.Label();
+            this.txtDescuento = new System.Windows.Forms.TextBox();
+            this.txtNochesEstadia = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgConsumibles)).BeginInit();
             this.SuspendLayout();
             // 
@@ -111,15 +115,15 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(19, 381);
+            this.label4.Location = new System.Drawing.Point(18, 451);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 20);
+            this.label4.Size = new System.Drawing.Size(91, 20);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Total";
+            this.label4.Text = "Total (U$D)";
             // 
             // txtTotal
             // 
-            this.txtTotal.Location = new System.Drawing.Point(435, 381);
+            this.txtTotal.Location = new System.Drawing.Point(435, 451);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(100, 20);
@@ -128,7 +132,7 @@
             // btnPagar
             // 
             this.btnPagar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPagar.Location = new System.Drawing.Point(357, 407);
+            this.btnPagar.Location = new System.Drawing.Point(357, 477);
             this.btnPagar.Name = "btnPagar";
             this.btnPagar.Size = new System.Drawing.Size(86, 39);
             this.btnPagar.TabIndex = 2;
@@ -139,7 +143,7 @@
             // btnAtras
             // 
             this.btnAtras.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAtras.Location = new System.Drawing.Point(449, 407);
+            this.btnAtras.Location = new System.Drawing.Point(449, 477);
             this.btnAtras.Name = "btnAtras";
             this.btnAtras.Size = new System.Drawing.Size(86, 39);
             this.btnAtras.TabIndex = 3;
@@ -151,17 +155,17 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(19, 255);
+            this.label5.Location = new System.Drawing.Point(19, 307);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(151, 20);
+            this.label5.Size = new System.Drawing.Size(221, 20);
             this.label5.TabIndex = 10;
-            this.label5.Text = "Cantidad de noches";
+            this.label5.Text = "Costo de noches no utilizadas";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(18, 305);
+            this.label6.Location = new System.Drawing.Point(19, 333);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(136, 20);
             this.label6.TabIndex = 11;
@@ -171,23 +175,23 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(19, 331);
+            this.label7.Location = new System.Drawing.Point(18, 359);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(180, 20);
             this.label7.TabIndex = 12;
             this.label7.Text = "Incremento por estrellas";
             // 
-            // txtNoches
+            // txtCostoExtra
             // 
-            this.txtNoches.Location = new System.Drawing.Point(435, 255);
-            this.txtNoches.Name = "txtNoches";
-            this.txtNoches.ReadOnly = true;
-            this.txtNoches.Size = new System.Drawing.Size(100, 20);
-            this.txtNoches.TabIndex = 13;
+            this.txtCostoExtra.Location = new System.Drawing.Point(435, 307);
+            this.txtCostoExtra.Name = "txtCostoExtra";
+            this.txtCostoExtra.ReadOnly = true;
+            this.txtCostoExtra.Size = new System.Drawing.Size(100, 20);
+            this.txtCostoExtra.TabIndex = 13;
             // 
             // txtPrecioRegimen
             // 
-            this.txtPrecioRegimen.Location = new System.Drawing.Point(435, 307);
+            this.txtPrecioRegimen.Location = new System.Drawing.Point(435, 333);
             this.txtPrecioRegimen.Name = "txtPrecioRegimen";
             this.txtPrecioRegimen.ReadOnly = true;
             this.txtPrecioRegimen.Size = new System.Drawing.Size(100, 20);
@@ -195,7 +199,7 @@
             // 
             // txtPorcentual
             // 
-            this.txtPorcentual.Location = new System.Drawing.Point(435, 333);
+            this.txtPorcentual.Location = new System.Drawing.Point(435, 359);
             this.txtPorcentual.Name = "txtPorcentual";
             this.txtPorcentual.ReadOnly = true;
             this.txtPorcentual.Size = new System.Drawing.Size(100, 20);
@@ -203,7 +207,7 @@
             // 
             // txtNochesReserva
             // 
-            this.txtNochesReserva.Location = new System.Drawing.Point(435, 281);
+            this.txtNochesReserva.Location = new System.Drawing.Point(435, 255);
             this.txtNochesReserva.Name = "txtNochesReserva";
             this.txtNochesReserva.ReadOnly = true;
             this.txtNochesReserva.Size = new System.Drawing.Size(100, 20);
@@ -213,22 +217,62 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(18, 279);
+            this.label8.Location = new System.Drawing.Point(19, 255);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(233, 20);
             this.label8.TabIndex = 18;
             this.label8.Text = "Cantidad de noches reservadas";
             // 
+            // lblDescuentos
+            // 
+            this.lblDescuentos.AutoSize = true;
+            this.lblDescuentos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescuentos.Location = new System.Drawing.Point(18, 387);
+            this.lblDescuentos.Name = "lblDescuentos";
+            this.lblDescuentos.Size = new System.Drawing.Size(208, 20);
+            this.lblDescuentos.TabIndex = 20;
+            this.lblDescuentos.Text = "Descuentos por All Inclusive";
+            // 
+            // txtDescuento
+            // 
+            this.txtDescuento.Location = new System.Drawing.Point(435, 387);
+            this.txtDescuento.Name = "txtDescuento";
+            this.txtDescuento.ReadOnly = true;
+            this.txtDescuento.Size = new System.Drawing.Size(100, 20);
+            this.txtDescuento.TabIndex = 21;
+            // 
+            // txtNochesEstadia
+            // 
+            this.txtNochesEstadia.Location = new System.Drawing.Point(435, 281);
+            this.txtNochesEstadia.Name = "txtNochesEstadia";
+            this.txtNochesEstadia.ReadOnly = true;
+            this.txtNochesEstadia.Size = new System.Drawing.Size(100, 20);
+            this.txtNochesEstadia.TabIndex = 22;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(18, 281);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(243, 20);
+            this.label9.TabIndex = 23;
+            this.label9.Text = "Cantidad de noches no utilziadas";
+            // 
             // Facturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(562, 487);
+            this.ClientSize = new System.Drawing.Size(562, 537);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.txtNochesEstadia);
+            this.Controls.Add(this.txtDescuento);
+            this.Controls.Add(this.lblDescuentos);
             this.Controls.Add(this.txtNochesReserva);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtPorcentual);
             this.Controls.Add(this.txtPrecioRegimen);
-            this.Controls.Add(this.txtNoches);
+            this.Controls.Add(this.txtCostoExtra);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -265,10 +309,14 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtNoches;
+        private System.Windows.Forms.TextBox txtCostoExtra;
         private System.Windows.Forms.TextBox txtPrecioRegimen;
         private System.Windows.Forms.TextBox txtPorcentual;
         private System.Windows.Forms.TextBox txtNochesReserva;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblDescuentos;
+        private System.Windows.Forms.TextBox txtDescuento;
+        private System.Windows.Forms.TextBox txtNochesEstadia;
+        private System.Windows.Forms.Label label9;
     }
 }
