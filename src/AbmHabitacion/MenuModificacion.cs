@@ -38,7 +38,7 @@ namespace FrbaHotel.AbmHabitacion
             }
             catch
             {
-                MessageBox.Show("Habitacion ya existente.", "Modificacion erronea", MessageBoxButtons.OK);
+                MessageBox.Show("Numero de habitacion ya existente.", "Modificacion erronea", MessageBoxButtons.OK);
             }
         }
 
