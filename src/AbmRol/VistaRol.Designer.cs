@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VistaRol));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -52,6 +52,9 @@
             this.dgvEliminarRoles = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.rbDeactivated = new System.Windows.Forms.RadioButton();
+            this.rbActivated = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -85,6 +88,9 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.rbDeactivated);
+            this.tabPage1.Controls.Add(this.rbActivated);
             this.tabPage1.Controls.Add(this.lblErrorFuncionalidad);
             this.tabPage1.Controls.Add(this.btnQuitar);
             this.tabPage1.Controls.Add(this.btnAñadir);
@@ -110,7 +116,7 @@
             this.lblErrorFuncionalidad.AutoSize = true;
             this.lblErrorFuncionalidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorFuncionalidad.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorFuncionalidad.Location = new System.Drawing.Point(34, 558);
+            this.lblErrorFuncionalidad.Location = new System.Drawing.Point(34, 572);
             this.lblErrorFuncionalidad.Name = "lblErrorFuncionalidad";
             this.lblErrorFuncionalidad.Size = new System.Drawing.Size(501, 25);
             this.lblErrorFuncionalidad.TabIndex = 11;
@@ -118,9 +124,9 @@
             // 
             // btnQuitar
             // 
-            this.btnQuitar.Location = new System.Drawing.Point(357, 407);
+            this.btnQuitar.Location = new System.Drawing.Point(354, 407);
             this.btnQuitar.Name = "btnQuitar";
-            this.btnQuitar.Size = new System.Drawing.Size(89, 42);
+            this.btnQuitar.Size = new System.Drawing.Size(92, 42);
             this.btnQuitar.TabIndex = 3;
             this.btnQuitar.Text = "Quitar";
             this.btnQuitar.UseVisualStyleBackColor = true;
@@ -150,9 +156,9 @@
             // 
             this.lbFuncionalidades.FormattingEnabled = true;
             this.lbFuncionalidades.ItemHeight = 20;
-            this.lbFuncionalidades.Location = new System.Drawing.Point(526, 297);
+            this.lbFuncionalidades.Location = new System.Drawing.Point(493, 294);
             this.lbFuncionalidades.Name = "lbFuncionalidades";
-            this.lbFuncionalidades.Size = new System.Drawing.Size(262, 244);
+            this.lbFuncionalidades.Size = new System.Drawing.Size(262, 224);
             this.lbFuncionalidades.TabIndex = 7;
             this.lbFuncionalidades.SelectedIndexChanged += new System.EventHandler(this.lbFuncionalidades_SelectedIndexChanged);
             // 
@@ -255,14 +261,14 @@
             // 
             this.dgvModificarRoles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvModificarRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvModificarRoles.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvModificarRoles.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvModificarRoles.Location = new System.Drawing.Point(19, 86);
             this.dgvModificarRoles.MultiSelect = false;
             this.dgvModificarRoles.Name = "dgvModificarRoles";
@@ -319,6 +325,43 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.button3_Click);
             // 
+            // rbDeactivated
+            // 
+            this.rbDeactivated.AutoSize = true;
+            this.rbDeactivated.BackColor = System.Drawing.Color.Transparent;
+            this.rbDeactivated.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbDeactivated.Location = new System.Drawing.Point(237, 526);
+            this.rbDeactivated.Name = "rbDeactivated";
+            this.rbDeactivated.Size = new System.Drawing.Size(160, 29);
+            this.rbDeactivated.TabIndex = 14;
+            this.rbDeactivated.TabStop = true;
+            this.rbDeactivated.Text = "Desactivado";
+            this.rbDeactivated.UseVisualStyleBackColor = false;
+            // 
+            // rbActivated
+            // 
+            this.rbActivated.AutoSize = true;
+            this.rbActivated.BackColor = System.Drawing.Color.Transparent;
+            this.rbActivated.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbActivated.Location = new System.Drawing.Point(84, 526);
+            this.rbActivated.Name = "rbActivated";
+            this.rbActivated.Size = new System.Drawing.Size(121, 29);
+            this.rbActivated.TabIndex = 13;
+            this.rbActivated.TabStop = true;
+            this.rbActivated.Text = "Activado";
+            this.rbActivated.UseVisualStyleBackColor = false;
+            this.rbActivated.CheckedChanged += new System.EventHandler(this.rbActivated_CheckedChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(80, 489);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(101, 29);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Estado:";
+            // 
             // VistaRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -369,6 +412,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dgvEliminarRoles;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.RadioButton rbDeactivated;
+        private System.Windows.Forms.RadioButton rbActivated;
 
 
     }

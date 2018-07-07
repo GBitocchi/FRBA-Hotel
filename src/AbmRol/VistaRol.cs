@@ -44,6 +44,7 @@ namespace FrbaHotel.AbmRol
             this._codigoRol = codigoRol;
             this._nombreUsuario = nombreUsuario;
             lblErrorNombreRol.Visible = false;
+            rbActivated.Select();
             cargarFuncionalidades();
             string roles = "SELECT rol_codigo as Codigo, rol_nombre as Nombre, rol_estado as Estado FROM CAIA_UNLIMITED.Rol";
             DataSet dsRoles = DataBase.realizarConsulta(roles);
@@ -190,7 +191,14 @@ namespace FrbaHotel.AbmRol
                         SqlCommand insertCommand = new SqlCommand("[CAIA_UNLIMITED].sp_CrearRol", rolCreateConnection);  
                         insertCommand.CommandType = CommandType.StoredProcedure;
                         insertCommand.Parameters.AddWithValue("@nombre_rol", tbNombreRol.Text.Trim());
-                        insertCommand.Parameters.AddWithValue("@estado_rol", true);
+                        if (rbActivated.Checked)
+                        {
+                            insertCommand.Parameters.AddWithValue("@estado_rol", true);
+                        }
+                        else
+                        {
+                            insertCommand.Parameters.AddWithValue("@estado_rol", false);
+                        }
                         SqlParameter tvpParam = insertCommand.Parameters.AddWithValue("@lista_Funcionalidades", fc);
                         tvpParam.SqlDbType = SqlDbType.Structured;
                         tvpParam.TypeName = "[CAIA_UNLIMITED].FuncionalidadesList";
@@ -267,6 +275,11 @@ namespace FrbaHotel.AbmRol
             {
             
             }
+        }
+
+        private void rbActivated_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

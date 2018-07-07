@@ -324,6 +324,14 @@ namespace FrbaHotel.GenerarModificacionReserva
                         string queryNumeroHabitacion;
                         int j = 1;
 
+                        SqlConnection createConnectionEfectivizados = DataBase.conectarBD();
+                        SqlCommand insertCommandEfectivizados = new SqlCommand("[CAIA_UNLIMITED].sp_CheckearEfectivizados", createConnectionEfectivizados);
+                        insertCommandEfectivizados.CommandType = CommandType.StoredProcedure;
+                        insertCommandEfectivizados.Parameters.AddWithValue("@fechaRealizacion", DataBase.fechaSistema());
+                        insertCommandEfectivizados.Parameters.AddWithValue("@hotel", this.hotel);
+                        insertCommandEfectivizados.ExecuteNonQuery();
+                        createConnectionEfectivizados.Close();
+
                         foreach (string tipitoHabitacion in listBoxTipoHabitacion.Items)
                         {
                             if (tipitoHabitacion == anterior)
@@ -462,6 +470,14 @@ namespace FrbaHotel.GenerarModificacionReserva
                     string anterior = "No especificado";
                     string queryNumeroHabitacion;
                     int j = 1;
+
+                    SqlConnection createConnectionEfectivizados = DataBase.conectarBD();
+                    SqlCommand insertCommandEfectivizados = new SqlCommand("[CAIA_UNLIMITED].sp_CheckearEfectivizados", createConnectionEfectivizados);
+                    insertCommandEfectivizados.CommandType = CommandType.StoredProcedure;
+                    insertCommandEfectivizados.Parameters.AddWithValue("@fechaRealizacion", DataBase.fechaSistema());
+                    insertCommandEfectivizados.Parameters.AddWithValue("@hotel", this.hotel);
+                    insertCommandEfectivizados.ExecuteNonQuery();
+                    createConnectionEfectivizados.Close();
 
                     foreach (string tipitoHabitacion in listBoxTipoHabitacion.Items)
                     {
@@ -610,6 +626,14 @@ namespace FrbaHotel.GenerarModificacionReserva
                         string queryNumeroHabitacion;
                         int j = 1;
 
+                        SqlConnection createConnectionEfectivizados = DataBase.conectarBD();
+                        SqlCommand insertCommandEfectivizados = new SqlCommand("[CAIA_UNLIMITED].sp_CheckearEfectivizados", createConnectionEfectivizados);
+                        insertCommandEfectivizados.CommandType = CommandType.StoredProcedure;
+                        insertCommandEfectivizados.Parameters.AddWithValue("@fechaRealizacion", DataBase.fechaSistema());
+                        insertCommandEfectivizados.Parameters.AddWithValue("@hotel", this.hotel);
+                        insertCommandEfectivizados.ExecuteNonQuery();
+                        createConnectionEfectivizados.Close();
+
                         foreach (string tipitoHabitacion in listBoxTipoHabitacion.Items)
                         {
                             if (tipitoHabitacion == anterior)
@@ -747,6 +771,14 @@ namespace FrbaHotel.GenerarModificacionReserva
                     string anterior = "No especificado";
                     string queryNumeroHabitacion;
                     int j = 1;
+
+                    SqlConnection createConnectionEfectivizados = DataBase.conectarBD();
+                    SqlCommand insertCommandEfectivizados = new SqlCommand("[CAIA_UNLIMITED].sp_CheckearEfectivizados", createConnectionEfectivizados);
+                    insertCommandEfectivizados.CommandType = CommandType.StoredProcedure;
+                    insertCommandEfectivizados.Parameters.AddWithValue("@fechaRealizacion", DataBase.fechaSistema());
+                    insertCommandEfectivizados.Parameters.AddWithValue("@hotel", this.hotel);
+                    insertCommandEfectivizados.ExecuteNonQuery();
+                    createConnectionEfectivizados.Close();
 
                     foreach (string tipitoHabitacion in listBoxTipoHabitacion.Items)
                     {
@@ -938,7 +970,6 @@ namespace FrbaHotel.GenerarModificacionReserva
                 {
                     insertCommand = new SqlCommand("[CAIA_UNLIMITED].sp_CrearReservaHuesped", createConnection);
                     insertCommand.CommandType = CommandType.StoredProcedure;
-                    insertCommand.Parameters.AddWithValue("@usuarioCreacion", "Guest");
                 }
                 else
                 {
