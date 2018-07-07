@@ -10,6 +10,7 @@ EXEC ('CREATE SCHEMA [CAIA_UNLIMITED] AUTHORIZATION [gd]')
 END
 
 
+
 create table CAIA_UNLIMITED.Mantenimiento(
 	mant_fecha_inicio datetime not null,
 	mant_fecha_fin datetime not null,
@@ -1488,11 +1489,13 @@ GO
 
 -----------Cancelar reserva
 
-CREATE PROCEDURE [CAIA_UNLIMITED].[sp_CancelarReserva] (@codigo_reserva numeric(18,0), @motivo nvarchar(255), @fecha_cancelacion datetime, @usuario nvarchar(255))
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_CancelarReserva] (@codigo_reserva numeric(18,0), @motivo nvarchar(255), @fecha_cancelacion datetime, @usuario nvarchar(255),@estado numeric(18,0))
 AS
 BEGIN
 	insert into CAIA_UNLIMITED.Reserva_Cancelada(reca_rese,reca_motivo,reca_fecha_cancelacion,reca_usuario)
 	values (@codigo_reserva,@motivo,convert(datetime,@fecha_cancelacion,120),@usuario)
+	update CAIA_UNLIMITED.Reserva 
+	set esre_codigo=@estado where rese_codigo = @codigo_reserva
 END
 GO 
 
@@ -1503,6 +1506,8 @@ AS
 BEGIN
 	insert into CAIA_UNLIMITED.Estadia(esta_fecha_inicio,rese_codigo,usur_checkin)
 	values (convert(datetime,@fecha_inicio,120),@codigo_reserva,@usuario)
+	update CAIA_UNLIMITED.Reserva 
+	set esre_codigo=5 where rese_codigo = @codigo_reserva
 END
 GO
 

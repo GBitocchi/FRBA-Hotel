@@ -124,6 +124,9 @@ namespace FrbaHotel.RegistrarEstadia
                         else
                         {
                             MessageBox.Show("Ya llego al máximo de huespedes posibles para la habitación.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            txtMail.Clear();
+                            txtNumero.Clear();
+                            txtTipo.Clear();
                         }
 
                     }
@@ -210,6 +213,8 @@ namespace FrbaHotel.RegistrarEstadia
                                     if (DateTime.Parse(fechaIngresoReserva).Day == DateTime.Parse(txtFecha.Text.Trim()).Day && DateTime.Parse(fechaIngresoReserva).Month == DateTime.Parse(txtFecha.Text.Trim()).Month && DateTime.Parse(fechaIngresoReserva).Year == DateTime.Parse(txtFecha.Text.Trim()).Year)
                                     {
                                         ejecutarStoredProcedureRegistrarCheckIn();
+
+
                                         MessageBox.Show("Fecha de ingreso de reserva registrada correctamente", "Registrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                         string consultaEstadia = string.Format("select esta_codigo from CAIA_UNLIMITED.Estadia where rese_codigo ='{0}'", codigoReserva);
@@ -227,7 +232,7 @@ namespace FrbaHotel.RegistrarEstadia
                                     {
                                         MessageBox.Show("Ingreso posterior a la fecha establecida, perdida de reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         this.Hide();
-                                        new CancelarReservaHuesped(txtUsuario.Text.Trim(), codigoReserva).Show();
+                                        new CancelarReservaHuesped(txtUsuario.Text.Trim(), codigoReserva, idHotelActual).Show();
                                     }
                                 }
                                 else

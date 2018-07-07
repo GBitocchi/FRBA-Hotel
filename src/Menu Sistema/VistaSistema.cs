@@ -277,8 +277,16 @@ namespace FrbaHotel.Menu_Sistema
 
         private void stripCancelar_Reserva_Click(object sender, EventArgs e)
         {
-            new MenuCancelarReserva(Convert.ToString(idHotel)).ShowDialog();
-            this.Show();
+            if (!guest)
+            {
+                new MenuCancelarReserva(Convert.ToString(idHotel)).ShowDialog();
+                this.Show();
+            }
+            else
+            {
+                new MenuCancelarReserva().ShowDialog();
+                this.Show();
+            }
         }
 
         private void stripListado_Click(object sender, EventArgs e)

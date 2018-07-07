@@ -14,7 +14,8 @@ namespace FrbaHotel.RegistrarEstadia
 {
     public partial class CancelarReservaHuesped : Form
     {
-        public CancelarReservaHuesped(string username, string codigoReserva)
+        string idHotelActual;
+        public CancelarReservaHuesped(string username, string codigoReserva, string idHotel)
         {
             InitializeComponent();
             cbxUsuario.SelectedIndex=1;
@@ -24,6 +25,7 @@ namespace FrbaHotel.RegistrarEstadia
             txtUsername.Enabled = false;
             cbxUsuario.Enabled = false;
             txtCancelacion.Text = Convert.ToString(DataBase.fechaSistema());
+            idHotelActual = idHotel;
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -58,11 +60,11 @@ namespace FrbaHotel.RegistrarEstadia
                             else if (cbxUsuario.SelectedItem.ToString() == "Recepcion")
                             {
 
-                                string consultaHotelId = string.Format("SELECT habi_rese_id FROM CAIA_UNLIMITED.Habitacion_X_Reserva  WHERE habi_rese_codigo ='{0}'", txtNumero_Reserva.Text.Trim());
-                                DataTable hotelIdObtenida = DataBase.realizarConsulta(consultaHotelId).Tables[0];
-                                string hotelID = hotelIdObtenida.Rows[0][0].ToString();
+                                string consultaIdUsuario = string.Format("SELECT usur_id FROM CAIA_UNLIMITED.Usuario  WHERE usur_username ='{0}'", txtUsername.Text.Trim());
+                                DataTable idUsuarioObtenido = DataBase.realizarConsulta(consultaIdUsuario).Tables[0];
+                                string idUsuario = idUsuarioObtenido.Rows[0][0].ToString();
 
-                                string usernameIngresado = String.Format("SELECT usur_hote_username FROM CAIA_UNLIMITED.Usuario_X_Hotel  WHERE usur_hote_id='{0}' and usur_hote_username= '{1}'", hotelID, txtUsername.Text.Trim());
+                                string usernameIngresado = String.Format("SELECT usur_hote_idusur FROM CAIA_UNLIMITED.Usuario_X_Hotel  WHERE usur_hote_idhote='{0}' and usur_hote_idusur= '{1}'", idHotelActual, idUsuario);
 
                                 if (DataBase.realizarConsulta(usernameIngresado).Tables[0].Rows.Count == 0)
                                 {
@@ -162,6 +164,7 @@ namespace FrbaHotel.RegistrarEstadia
             else
             {
                 cancelarReserva.Parameters.AddWithValue("@usuario", txtUsername.Text.Trim());
+                cancelarReserva.Parameters.AddWithValue("@estado", 4);
             }
             cancelarReserva.ExecuteNonQuery();
             db.Close();
