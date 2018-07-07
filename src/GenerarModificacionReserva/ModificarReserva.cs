@@ -257,8 +257,19 @@ namespace FrbaHotel.GenerarModificacionReserva
                 }
                 else
                 {
+                    if (!guest)
+                    {
+                        string queryHotelIncorrecto = string.Format("SELECT r.rese_codigo FROM CAIA_UNLIMITED.Reserva r JOIN CAIA_UNLIMITED.Habitacion_X_Reserva hr on hr.habi_rese_codigo = r.rese_codigo JOIN CAIA_UNLIMITED.Habitacion h on (h.habi_numero = hr.habi_rese_numero AND h.hote_id = hr.habi_rese_id) JOIN CAIA_UNLIMITED.Hotel ho on (ho.hote_id = h.hote_id) JOIN CAIA_UNLIMITED.Regimen_X_Hotel reh on ho.hote_id = reh.regi_hote_id JOIN CAIA_UNLIMITED.Regimen re on re.regi_codigo = reh.regi_hote_codigo JOIN CAIA_UNLIMITED.Tipo_Habitacion th on th.thab_codigo = h.thab_codigo WHERE r.rese_codigo = '{0}' AND r.regi_codigo = re.regi_codigo AND ho.hote_id = '{1}'", textBoxReserva.Text.Trim(),this.hotel);
+                        DataSet dsHotelIncorrecto = DataBase.realizarConsulta(queryHotelIncorrecto);
+
+                        if (dsHotelIncorrecto == null || dsHotelIncorrecto.Tables.Count <= 0 || dsHotelIncorrecto.Tables[0].Rows.Count <= 0)
+                        {
+                            MessageBox.Show("Este numero de reserva no pertenece al hotel en el que ingreso!");
+                            return;
+                        }
+                    }
                     string queryReserva = string.Format("SELECT r.rese_fecha_realizacion as FechaSistema, r.rese_fecha_desde as FechaComienzo, r.rese_cantidad_noches as CantidadNoches, re.regi_descripcion as Regimen, CONCAT(hr.habi_rese_id, '-', ho.hote_nombre) as Hotel, hr.habi_rese_id as idHotel, hr.habi_rese_numero as nroHabitacion, th.thab_descripcion as TipoHabitacion FROM CAIA_UNLIMITED.Reserva r JOIN CAIA_UNLIMITED.Habitacion_X_Reserva hr on hr.habi_rese_codigo = r.rese_codigo JOIN CAIA_UNLIMITED.Habitacion h on (h.habi_numero = hr.habi_rese_numero AND h.hote_id = hr.habi_rese_id) JOIN CAIA_UNLIMITED.Hotel ho on (ho.hote_id = h.hote_id) JOIN CAIA_UNLIMITED.Regimen_X_Hotel reh on ho.hote_id = reh.regi_hote_id JOIN CAIA_UNLIMITED.Regimen re on re.regi_codigo = reh.regi_hote_codigo JOIN CAIA_UNLIMITED.Tipo_Habitacion th on th.thab_codigo = h.thab_codigo WHERE r.rese_codigo = '{0}' AND r.regi_codigo = re.regi_codigo", textBoxReserva.Text.Trim());
-                    DataSet dsReserva = DataBase.realizarConsulta(queryReserva);
+                    DataSet dsReserva = DataBase.realizarConsulta(queryReserva);                  
                     this.fechaElegidaInicio = Convert.ToDateTime(dsReserva.Tables[0].Rows[0]["FechaComienzo"].ToString());
                     TimeSpan difference = fechaElegidaInicio - DataBase.fechaSistema();
                     string queryCancelada = string.Format("SELECT rese_codigo FROM CAIA_UNLIMITED.Reserva JOIN CAIA_UNLIMITED.Reserva_Cancelada on (reca_rese = rese_codigo) AND rese_codigo = '{0}'", textBoxReserva.Text.Trim());

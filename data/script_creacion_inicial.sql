@@ -9,7 +9,6 @@ BEGIN
 EXEC ('CREATE SCHEMA [CAIA_UNLIMITED] AUTHORIZATION [gd]')
 END
 
-
 create table CAIA_UNLIMITED.Mantenimiento(
 	mant_fecha_inicio datetime not null,
 	mant_fecha_fin datetime not null,
@@ -39,6 +38,7 @@ create table CAIA_UNLIMITED.Regimen(
 go
 
 create table CAIA_UNLIMITED.Usuario(
+	usur_id numeric(18,0) identity(0,1) not null,
 	usur_username nvarchar(255) not null,
 	usur_password varbinary(100) not null,
 	usur_nombre nvarchar(255),
@@ -83,8 +83,8 @@ create table CAIA_UNLIMITED.Reserva(
 	rese_fecha_realizacion datetime not null,
 	rese_fecha_desde datetime not null,
 	rese_cantidad_noches numeric(18,0) not null,
-	rese_usur_creacion nvarchar(255),
-	rese_usur_modificacion nvarchar(255),
+	rese_usur_creacion numeric(18,0),
+	rese_usur_modificacion numeric(18,0),
 	esre_codigo numeric(18,0),
 	regi_codigo numeric(18,0) not null
 )
@@ -152,8 +152,8 @@ create table CAIA_UNLIMITED.Estadia(
 	esta_fecha_inicio datetime not null,
 	esta_fecha_fin datetime null,
 	rese_codigo numeric(18,0) not null,
-	usur_checkin nvarchar(255),
-	usur_checkout nvarchar(255)
+	usur_checkin numeric(18,0),
+	usur_checkout numeric(18,0)
 )
 go
 
@@ -185,7 +185,7 @@ go
 
 create table CAIA_UNLIMITED.Rol_X_Usuario(
 	rol_usur_codigo numeric(18,0) not null,
-	rol_usur_username nvarchar(255) not null
+	rol_usur_id numeric(18,0) not null
 )
 go
 
@@ -202,8 +202,8 @@ create table CAIA_UNLIMITED.Regimen_X_Hotel(
 go
 
 create table CAIA_UNLIMITED.Usuario_X_Hotel(
-	usur_hote_username nvarchar(255) not null,
-	usur_hote_id numeric(18,0) not null
+	usur_hote_idusur numeric(18,0) not null,
+	usur_hote_idhote numeric(18,0) not null
 )
 go
 
@@ -263,7 +263,7 @@ alter table CAIA_UNLIMITED.Funcionalidad
 go
 
 alter table CAIA_UNLIMITED.Usuario 
-	add constraint PK_Usuario primary key (usur_username),
+	add constraint PK_Usuario primary key (usur_id),
 	constraint FK_Usuario_Direccion foreign key (dire_id)
 	references CAIA_UNLIMITED.Direccion (dire_id)
 go
@@ -282,8 +282,12 @@ alter table CAIA_UNLIMITED.Reserva
 	add constraint PK_Reserva primary key (rese_codigo),
 	constraint FK_Reserva_Estado foreign key (esre_codigo)
 	references CAIA_UNLIMITED.Estado_Reserva (esre_codigo),
+	constraint FK_Reserva_Usuario_Creacion foreign key (rese_usur_creacion)
+	references CAIA_UNLIMITED.Usuario (usur_id),
 	constraint FK_Reserva_Regimen foreign key (regi_codigo)
-	references CAIA_UNLIMITED.Regimen (regi_codigo)
+	references CAIA_UNLIMITED.Regimen (regi_codigo),
+	constraint FK_Reserva_Usuario_Modificacion foreign key (rese_usur_modificacion)
+	references CAIA_UNLIMITED.Usuario (usur_id)
 go
 
 alter table CAIA_UNLIMITED.Estadia
@@ -291,9 +295,9 @@ alter table CAIA_UNLIMITED.Estadia
 	constraint FK_Estadia_Reserva foreign key (rese_codigo)
 	references CAIA_UNLIMITED.Reserva (rese_codigo),
 	constraint FK_Estadia_Usuario_CheckIn foreign key (usur_checkin)
-	references CAIA_UNLIMITED.Usuario (usur_username),
+	references CAIA_UNLIMITED.Usuario (usur_id),
 	constraint FK_Estadia_Usuario_CheckOut foreign key (usur_checkout)
-	references CAIA_UNLIMITED.Usuario (usur_username)
+	references CAIA_UNLIMITED.Usuario (usur_id)
 go
 
 alter table CAIA_UNLIMITED.Consumible
@@ -328,11 +332,11 @@ alter table CAIA_UNLIMITED.Mantenimiento
 go
 
 alter table CAIA_UNLIMITED.Rol_X_Usuario
-	add constraint PK_Rol_X_Usuario primary key (rol_usur_codigo, rol_usur_username),
+	add constraint PK_Rol_X_Usuario primary key (rol_usur_codigo, rol_usur_id),
 	constraint FK_RolUsuario_Rol foreign key (rol_usur_codigo)
 	references CAIA_UNLIMITED.Rol (rol_codigo),
-	constraint FK_RolUsuario_Usur foreign key (rol_usur_username)
-	references CAIA_UNLIMITED.Usuario (usur_username)
+	constraint FK_RolUsuario_Usur foreign key (rol_usur_id)
+	references CAIA_UNLIMITED.Usuario (usur_id)
 go
 
 alter table CAIA_UNLIMITED.Funcionalidad_X_Rol
@@ -352,10 +356,10 @@ alter table CAIA_UNLIMITED.Regimen_X_Hotel
 go
 
 alter table CAIA_UNLIMITED.Usuario_X_Hotel
-	add constraint PK_Usuario_X_Hotel primary key (usur_hote_username, usur_hote_id),
-	constraint FK_UsuarioHotel_Usur foreign key (usur_hote_username)
-	references CAIA_UNLIMITED.Usuario (usur_username),
-	constraint FK_UsuarioHotel_Hote foreign key (usur_hote_id)
+	add constraint PK_Usuario_X_Hotel primary key (usur_hote_idusur, usur_hote_idhote),
+	constraint FK_UsuarioHotel_Usur foreign key (usur_hote_idusur)
+	references CAIA_UNLIMITED.Usuario (usur_id),
+	constraint FK_UsuarioHotel_Hote foreign key (usur_hote_idhote)
 	references CAIA_UNLIMITED.Hotel (hote_id)
 go
 
@@ -430,8 +434,8 @@ from gd_esquema.Maestra join CAIA_UNLIMITED.Tipo_Habitacion on (thab_codigo = Ha
 						join CAIA_UNLIMITED.Hotel H on (H.dire_id = D.dire_id) 
 
 --Reserva
-insert into CAIA_UNLIMITED.Reserva (rese_codigo, rese_usur_creacion, rese_usur_modificacion, rese_fecha_realizacion, rese_fecha_desde, rese_cantidad_noches, regi_codigo)
-select distinct Reserva_Codigo,'admin','admin', Reserva_Fecha_Inicio, Reserva_Fecha_Inicio, Reserva_Cant_Noches, L.regi_codigo
+insert into CAIA_UNLIMITED.Reserva (rese_codigo, rese_fecha_realizacion, rese_fecha_desde, rese_cantidad_noches, regi_codigo)
+select distinct Reserva_Codigo, Reserva_Fecha_Inicio, Reserva_Fecha_Inicio, Reserva_Cant_Noches, L.regi_codigo
 from gd_esquema.Maestra join CAIA_UNLIMITED.Direccion D on (Hotel_Calle = dire_dom_calle and
 															Hotel_Nro_Calle = dire_nro_calle and
 															Hotel_Ciudad = dire_ciudad)
@@ -468,7 +472,7 @@ where Factura_Nro is not null
 group by Factura_Nro, Factura_Fecha, esta_codigo, hues_documento, hues_mail
 
 update CAIA_UNLIMITED.Estadia
-set usur_checkin = (select usur_username from CAIA_UNLIMITED.Usuario where usur_username = 'admin'), usur_checkout = (select usur_username from CAIA_UNLIMITED.Usuario where usur_username = 'admin')
+set usur_checkin = (select usur_id from CAIA_UNLIMITED.Usuario where usur_username = 'admin'), usur_checkout = (select usur_id from CAIA_UNLIMITED.Usuario where usur_username = 'admin')
 where  exists (select fact_nro from CAIA_UNLIMITED.Factura F where (esta_codigo = F.esta_codigo) and fact_nro is not null)
 
 
@@ -522,7 +526,7 @@ from gd_esquema.Maestra join CAIA_UNLIMITED.Direccion D on (Hotel_Calle = dire_d
 
 insert into CAIA_UNLIMITED.Rol (rol_nombre, rol_estado) values('Administrador General', 1)
 
-insert into CAIA_UNLIMITED.Rol_X_Usuario (rol_usur_username, rol_usur_codigo) values('admin', 0)
+insert into CAIA_UNLIMITED.Rol_X_Usuario (rol_usur_id, rol_usur_codigo) values(0, 0)
 
 insert into CAIA_UNLIMITED.Funcionalidad (func_detalle) values('ABM_ROL'), ('ABM_USUARIO'), ('ABM_CLIENTE'), ('ABM_HOTEL'), ('ABM_HABITACION'), ('ABM_ESTADIA'), ('RESERVA'), ('CANCELAR_RESERVA'), ('ESTADIA'), ('CONSUMIBLES'), ('FACTURAR'), ('LISTADO_ESTADISTICO') 
 
@@ -534,8 +538,8 @@ values ('Reserva correcta'), ('Reserva modificada'), ('Reserva cancelada por rec
 		('Reserva cancelada por cliente'), ('Reserva cancelada por Non-Show'),
 		('Reserva con ingreso')
 
-insert into CAIA_UNLIMITED.Usuario_X_Hotel (usur_hote_username, usur_hote_id)
-select distinct 'admin', hote_id
+insert into CAIA_UNLIMITED.Usuario_X_Hotel (usur_hote_idusur, usur_hote_idhote)
+select distinct 0, hote_id
 from CAIA_UNLIMITED.Hotel
 
 update CAIA_UNLIMITED.Huesped set hues_habilitado = 0
@@ -862,6 +866,7 @@ CREATE PROCEDURE [CAIA_UNLIMITED].[sp_CrearUsuarios] (@username nvarchar(255),@p
 AS
 BEGIN	
   SET NOCOUNT ON;
+  DECLARE @userid numeric(18,0);
   DECLARE @trancount int;
   SET @trancount = @@trancount;
   BEGIN TRY
@@ -878,12 +883,13 @@ BEGIN
 
 	insert into CAIA_UNLIMITED.Usuario (usur_username,usur_password,usur_nombre,usur_apellido,usur_documento,usur_documento_tipo,usur_mail,usur_nacimiento,usur_habilitado,usur_intentos,dire_id)
 	values (@username,@password,@name,@apellido,@documento,@tipoDocumento,@mail,convert(datetime,@fechaNacimiento,120),1,0,(SELECT dire_id FROM CAIA_UNLIMITED.Direccion WHERE (dire_telefono = @telefono OR dire_telefono IS NULL) AND dire_dom_calle = @calle AND dire_nro_calle = @numeroCalle AND (dire_piso = @piso OR dire_piso IS NULL) AND (dire_dpto = @departamento OR dire_dpto IS NULL) AND (dire_ciudad = @ciudad OR dire_ciudad IS NULL) AND (dire_pais = @pais OR dire_pais IS NULL)))
-	
-	insert into CAIA_UNLIMITED.Rol_X_Usuario(rol_usur_codigo,rol_usur_username)
-	SELECT Roles, @username FROM @lista_Roles
+	SELECT @userid = SCOPE_IDENTITY();
 
-	insert into CAIA_UNLIMITED.Usuario_X_Hotel(usur_hote_id,usur_hote_username)
-	SELECT Hoteles, @username FROM @lista_Hoteles	
+	insert into CAIA_UNLIMITED.Rol_X_Usuario(rol_usur_codigo,rol_usur_id)
+	SELECT Roles, @userid FROM @lista_Roles
+
+	insert into CAIA_UNLIMITED.Usuario_X_Hotel(usur_hote_idhote,usur_hote_idusur)
+	SELECT Hoteles, @userid FROM @lista_Hoteles	
 
     lbexit:
       IF @trancount = 0
@@ -915,6 +921,7 @@ CREATE PROCEDURE [CAIA_UNLIMITED].[sp_ModificarUsuarios] (@idDireccion numeric(1
 AS
 BEGIN	
   SET NOCOUNT ON;
+  DECLARE @userid numeric(18,0);
   DECLARE @trancount int;
   SET @trancount = @@trancount;
   BEGIN TRY
@@ -926,28 +933,30 @@ BEGIN
     	update CAIA_UNLIMITED.Direccion set dire_telefono = @telefono,dire_dom_calle = @calle,dire_nro_calle = @numeroCalle,dire_piso = @piso,dire_dpto = @departamento,dire_ciudad = @ciudad,dire_pais = @pais
 	where dire_id = @idDireccion
 
+	SELECT @userid = u.usur_id FROM CAIA_UNLIMITED.Usuario u where u.usur_username = @username
+
 	if(@estado = 1)
 		BEGIN
 			update CAIA_UNLIMITED.Usuario set usur_password = @password,usur_nombre = @name,usur_apellido = @apellido,usur_documento = @documento,usur_documento_tipo = @tipoDocumento,usur_mail = @mail,usur_nacimiento = convert(datetime,@fechaNacimiento,120),usur_habilitado = 1,usur_intentos = 0
-			where usur_username = @username
+			where usur_id = @userid
 		END
 	else
 		BEGIN
 			update CAIA_UNLIMITED.Usuario set usur_password = @password,usur_nombre = @name,usur_apellido = @apellido,usur_documento = @documento,usur_documento_tipo = @tipoDocumento,usur_mail = @mail,usur_nacimiento = convert(datetime,@fechaNacimiento,120),usur_habilitado = 0,usur_intentos = 3
-			where usur_username = @username
+			where usur_id = @userid
 		END
 
 	DELETE FROM CAIA_UNLIMITED.Rol_X_Usuario 
-	WHERE rol_usur_username = @username
+	WHERE rol_usur_id = @userid
 
 	DELETE FROM CAIA_UNLIMITED.Usuario_X_Hotel
-	WHERE usur_hote_username = @username
+	WHERE usur_hote_idusur = @userid
 
-	insert into CAIA_UNLIMITED.Rol_X_Usuario(rol_usur_codigo,rol_usur_username)
-	SELECT Roles, @username FROM @lista_Roles
+	insert into CAIA_UNLIMITED.Rol_X_Usuario(rol_usur_codigo,rol_usur_id)
+	SELECT Roles, @userid FROM @lista_Roles
 
-	insert into CAIA_UNLIMITED.Usuario_X_Hotel(usur_hote_id,usur_hote_username)
-	SELECT Hoteles, @username FROM @lista_Hoteles
+	insert into CAIA_UNLIMITED.Usuario_X_Hotel(usur_hote_idhote,usur_hote_idusur)
+	SELECT Hoteles, @userid FROM @lista_Hoteles
 
     lbexit:
       IF @trancount = 0
@@ -1066,6 +1075,7 @@ AS
 BEGIN	
   SET NOCOUNT ON;
   DECLARE @trancount int;
+  DECLARE @creacionDelUsuario numeric(18,0);
   DECLARE @returnreserva numeric(18,0);
   SET @trancount = @@trancount;
   BEGIN TRY
@@ -1073,9 +1083,10 @@ BEGIN
       BEGIN TRANSACTION
       ELSE
         SAVE TRANSACTION sp_CrearReservaUsuario;
-	SET @returnreserva = (SELECT MAX(rese_codigo) FROM CAIA_UNLIMITED.Reserva)+1	
-    	insert into CAIA_UNLIMITED.Reserva (rese_codigo,rese_usur_creacion,rese_fecha_realizacion,rese_fecha_desde,rese_cantidad_noches,esre_codigo,regi_codigo)
-	values(@returnreserva,@usuarioCreacion,convert(datetime,@fechaRealizacion,120),convert(datetime,@fechaDesde,120),@cantidadNoches,(SELECT esre_codigo FROM CAIA_UNLIMITED.Estado_Reserva WHERE esre_detalle = @estado),@regimen)	
+	SET @returnreserva = (SELECT MAX(rese_codigo) FROM CAIA_UNLIMITED.Reserva)+1
+	SET @creacionDelUsuario = (SELECT usur_id FROM CAIA_UNLIMITED.Usuario WHERE usur_username = @usuarioCreacion)	
+    insert into CAIA_UNLIMITED.Reserva (rese_codigo,rese_usur_creacion,rese_fecha_realizacion,rese_fecha_desde,rese_cantidad_noches,esre_codigo,regi_codigo)
+	values(@returnreserva,@creacionDelUsuario,convert(datetime,@fechaRealizacion,120),convert(datetime,@fechaDesde,120),@cantidadNoches,(SELECT esre_codigo FROM CAIA_UNLIMITED.Estado_Reserva WHERE esre_detalle = @estado),@regimen)	
 	insert into CAIA_UNLIMITED.Habitacion_X_Reserva(habi_rese_numero,habi_rese_id,habi_rese_codigo)
 	SELECT Habitacion, @hotel,@returnreserva FROM @lista_Habitaciones
     lbexit:
@@ -1109,16 +1120,19 @@ AS
 BEGIN	
   SET NOCOUNT ON;
   DECLARE @trancount int;
+  DECLARE @modificacionDelUsuario numeric(18,0);
   SET @trancount = @@trancount;
   BEGIN TRY
     IF @trancount = 0
       BEGIN TRANSACTION
       ELSE
         SAVE TRANSACTION sp_ModificarReservaUsuario;
+	
+	SET @modificacionDelUsuario = (SELECT usur_id FROM CAIA_UNLIMITED.Usuario WHERE usur_username = @usuarioModificacion)
 
 	DELETE FROM CAIA_UNLIMITED.Habitacion_X_Reserva
 	WHERE habi_rese_codigo = @codigoReserva
-	update CAIA_UNLIMITED.Reserva set rese_fecha_realizacion = convert(datetime,@fechaRealizacion,120), rese_usur_modificacion = @usuarioModificacion,rese_fecha_desde = convert(datetime,@fechaDesde,120),rese_cantidad_noches = @cantidadNoches,esre_codigo = (SELECT esre_codigo FROM CAIA_UNLIMITED.Estado_Reserva WHERE esre_detalle = @estado),regi_codigo = @regimen
+	update CAIA_UNLIMITED.Reserva set rese_fecha_realizacion = convert(datetime,@fechaRealizacion,120), rese_usur_modificacion = @modificacionDelUsuario,rese_fecha_desde = convert(datetime,@fechaDesde,120),rese_cantidad_noches = @cantidadNoches,esre_codigo = (SELECT esre_codigo FROM CAIA_UNLIMITED.Estado_Reserva WHERE esre_detalle = @estado),regi_codigo = @regimen
 	WHERE rese_codigo = @codigoReserva
 
 	insert into CAIA_UNLIMITED.Habitacion_X_Reserva(habi_rese_numero,habi_rese_id,habi_rese_codigo)

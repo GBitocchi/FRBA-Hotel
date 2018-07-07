@@ -124,7 +124,7 @@ namespace FrbaHotel.AbmUsuario
             textBoxDialogCountry.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Pais"].Value.ToString();
             textBoxDialogNacionality.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Pais"].Value.ToString();
 
-            string queryUser = string.Format("SELECT r.rol_nombre as Rol FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Rol_X_Usuario ru on ru.rol_usur_username = u.usur_username JOIN CAIA_UNLIMITED.Rol r on ru.rol_usur_codigo = r.rol_codigo WHERE u.usur_username = '{0}'", usuarioAModificar.Rows[e.RowIndex].Cells["NombreDeUsuario"].Value.ToString());
+            string queryUser = string.Format("SELECT r.rol_nombre as Rol FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Rol_X_Usuario ru on ru.rol_usur_id = u.usur_id JOIN CAIA_UNLIMITED.Rol r on ru.rol_usur_codigo = r.rol_codigo WHERE u.usur_username = '{0}'", usuarioAModificar.Rows[e.RowIndex].Cells["NombreDeUsuario"].Value.ToString());
             DataSet dsInfoUser = DataBase.realizarConsulta(queryUser);
             
             foreach (DataRow unRol in dsInfoUser.Tables[0].Rows)
@@ -138,7 +138,7 @@ namespace FrbaHotel.AbmUsuario
                 listBoxDialogRoles.Sorted = true;
             }
 
-            string queryUser2 = string.Format("SELECT DISTINCT CONCAT(h.hote_id, '-', h.hote_nombre) as Hotel FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on uh.usur_hote_username = u.usur_username JOIN CAIA_UNLIMITED.Hotel h on h.hote_id = uh.usur_hote_id WHERE u.usur_username = '{0}'", usuarioAModificar.Rows[e.RowIndex].Cells["NombreDeUsuario"].Value.ToString());
+            string queryUser2 = string.Format("SELECT DISTINCT CONCAT(h.hote_id, '-', h.hote_nombre) as Hotel FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on uh.usur_hote_idusur = u.usur_id JOIN CAIA_UNLIMITED.Hotel h on h.hote_id = uh.usur_hote_idhote WHERE u.usur_username = '{0}'", usuarioAModificar.Rows[e.RowIndex].Cells["NombreDeUsuario"].Value.ToString());
             DataSet dsInfoUser2 = DataBase.realizarConsulta(queryUser2);
 
             foreach (DataRow unHotel in dsInfoUser2.Tables[0].Rows)
