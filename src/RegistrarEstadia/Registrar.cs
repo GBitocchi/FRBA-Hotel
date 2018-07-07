@@ -14,13 +14,61 @@ namespace FrbaHotel.RegistrarEstadia
 {
     public partial class Registrar : Form
     {
+
         string codigoReserva;
+        int cantHuespedPosible;
+
         public Registrar(string cod)
         {
             InitializeComponent();
             codigoReserva = cod;
 
             txtFecha.Text = Convert.ToString(DataBase.fechaSistema());
+
+            string habitacionesBuscadas = String.Format("SELECT habi_rese_numero FROM CAIA_UNLIMITED.Habitacion_X_Reserva WHERE habi_rese_codigo = '{0}'", cod);
+            DataTable habitacionesObtenidas = DataBase.realizarConsulta(habitacionesBuscadas).Tables[0];
+
+            foreach (DataRow habitacion in habitacionesObtenidas.Rows)
+            {
+                string habitacionSeleccionada = habitacion[0].ToString();
+
+                string tipoHabitacionBuscada = String.Format("SELECT thab_codigo FROM CAIA_UNLIMITED.Habitacion WHERE habi_numero = '{0}'", habitacionSeleccionada);
+                DataTable tipoHabitacionObtenido = DataBase.realizarConsulta(tipoHabitacionBuscada).Tables[0];
+                string tipoHabitacion = tipoHabitacionObtenido.Rows[0][0].ToString();
+
+                string tipoBuscado = String.Format("SELECT thab_descripcion FROM CAIA_UNLIMITED.Tipo_Habitacion WHERE thab_codigo = '{0}'", tipoHabitacion);
+                DataTable tipoObtenido = DataBase.realizarConsulta(tipoBuscado).Tables[0];
+                string tipo = tipoObtenido.Rows[0][0].ToString();
+
+                registrarCantidadHuespedesDisponibles(tipo);
+
+            }
+
+        }
+
+        private void registrarCantidadHuespedesDisponibles(string tipo)
+        {
+            if (tipo.Equals("Base Simple"))
+            {
+                cantHuespedPosible++;
+            }
+            else if (tipo.Equals("Base Doble"))
+            {
+                cantHuespedPosible = cantHuespedPosible + 2;
+            }
+            else if (tipo.Equals("Base Triple"))
+            {
+                cantHuespedPosible = cantHuespedPosible + 3;
+            }
+            else if (tipo.Equals("Base Cuadruple"))
+            {
+                cantHuespedPosible = cantHuespedPosible + 4;
+            }
+            else if (tipo.Equals("King"))
+            {
+                cantHuespedPosible = cantHuespedPosible + 2;
+            }
+
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -31,42 +79,62 @@ namespace FrbaHotel.RegistrarEstadia
                 {
                     if (formatoMailCorrecto())
                     {
-                        string usuarioIngresado = String.Format("SELECT hues_mail FROM CAIA_UNLIMITED.Huesped WHERE hues_mail = '{0}' AND hues_documento = '{1}'  AND hues_documento_tipo = '{2}'", txtMail.Text.Trim(), txtNumero.Text.Trim(), txtTipo.Text.Trim());
-
-                        if (DataBase.realizarConsulta(usuarioIngresado).Tables[0].Rows.Count == 0)
+                        if (listaHuesped.Items.Count < cantHuespedPosible)
                         {
-                            CrearHuesped huespedACrear = new CrearHuesped(txtMail.Text.Trim(), txtTipo.Text.Trim(), txtNumero.Text.Trim(), codigoReserva);
+                            string usuarioIngresado = String.Format("SELECT hues_mail FROM CAIA_UNLIMITED.Huesped WHERE hues_mail = '{0}' AND hues_documento = '{1}'  AND hues_documento_tipo = '{2}'", txtMail.Text.Trim(), txtNumero.Text.Trim(), txtTipo.Text.Trim());
 
-                            DialogResult respuesta = huespedACrear.ShowDialog();
-                            if (respuesta == DialogResult.OK) 
+                            if (DataBase.realizarConsulta(usuarioIngresado).Tables[0].Rows.Count == 0)
                             {
-                                string[] formato = { txtMail.Text.Trim(), txtTipo.Text.Trim(), txtNumero.Text.Trim() };
-                                var listViewItem = new ListViewItem(formato);
-                                listaHuesped.Items.Add(listViewItem);
+                                CrearHuesped huespedACrear = new CrearHuesped(txtMail.Text.Trim(), txtTipo.Text.Trim(), txtNumero.Text.Trim(), codigoReserva);
+
+                                DialogResult respuesta = huespedACrear.ShowDialog();
+                                if (respuesta == DialogResult.OK)
+                                {
+                                    string[] formato = { txtMail.Text.Trim(), txtTipo.Text.Trim(), txtNumero.Text.Trim() };
+                                    var listViewItem = new ListViewItem(formato);
+                                    listaHuesped.Items.Add(listViewItem);
+                                }
+
+                                txtMail.Clear();
+                                txtTipo.Clear();
+                                txtNumero.Clear();
                             }
-                            
-                            txtMail.Clear();
-                            txtTipo.Clear();
-                            txtNumero.Clear();                           
+                            else
+                            {
+                                string buscarUsuarioHabilitado = String.Format("SELECT hues_habilitado FROM CAIA_UNLIMITED.Huesped WHERE hues_mail = '{0}' AND hues_documento = '{1}'  AND hues_documento_tipo = '{2}'", txtMail.Text.Trim(), txtNumero.Text.Trim(), txtTipo.Text.Trim());
+                                DataTable usuarioObtenido = DataBase.realizarConsulta(buscarUsuarioHabilitado).Tables[0];
+                                string estadoUsuario = usuarioObtenido.Rows[0][0].ToString();
+
+                                if (true.Equals(Convert.ToBoolean(estadoUsuario)))
+                                {
+                                    string[] formato = { txtMail.Text.Trim(), txtTipo.Text.Trim(), txtNumero.Text.Trim() };
+                                    var listViewItem = new ListViewItem(formato);
+                                    listaHuesped.Items.Add(listViewItem);
+                                    txtMail.Clear();
+                                    txtTipo.Clear();
+                                    txtNumero.Clear();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("El usuario ingresado no esta habilitado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                }
+                            }
                         }
                         else
                         {
-                            string[] formato = { txtMail.Text.Trim(), txtTipo.Text.Trim(), txtNumero.Text.Trim() };
-                            var listViewItem = new ListViewItem(formato);
-                            listaHuesped.Items.Add(listViewItem);
-                            txtMail.Clear();
-                            txtTipo.Clear();
-                            txtNumero.Clear();
+                            MessageBox.Show("Ya llego al máximo de huespedes posibles para la habitación.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         }
+
                     }
                 }
             }
             else
             {
-                MessageBox.Show("Ingrese todos los campos.","Error",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                MessageBox.Show("Ingrese todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
         }
+
 
         private bool camposCompletosClientes()
         {            
