@@ -398,9 +398,14 @@ namespace FrbaHotel.RegistrarEstadia
                         string fechaIngreso = fechaIngresoObtenida.Rows[0][0].ToString();
                         txtFecha.Text = fechaIngreso;
 
-                        string usuarioBuscado = String.Format("select usur_checkin FROM CAIA_UNLIMITED.Estadia where rese_codigo='{0}'", codigoReserva);
+                        string idUsuarioBuscado = String.Format("select usur_checkin FROM CAIA_UNLIMITED.Estadia where rese_codigo='{0}'", codigoReserva);
+                        DataTable idUsuarioEncontrado = DataBase.realizarConsulta(idUsuarioBuscado).Tables[0];
+                        string idUsuario = idUsuarioEncontrado.Rows[0][0].ToString();
+
+                        string usuarioBuscado = String.Format("select usur_username FROM CAIA_UNLIMITED.Usuario where usur_id='{0}'", idUsuario);
                         DataTable usuarioEncontrado = DataBase.realizarConsulta(usuarioBuscado).Tables[0];
                         string usuario = usuarioEncontrado.Rows[0][0].ToString();
+                        
                         txtUsuario.Text = usuario;
 
                         btnIngresar.Enabled = false;
@@ -434,7 +439,11 @@ namespace FrbaHotel.RegistrarEstadia
                     string fechaEgreso = fechaEgresoObtenida.Rows[0][0].ToString();
                     txtFecha.Text = fechaEgreso;
 
-                    string usuarioBuscado = String.Format("select usur_checkout FROM CAIA_UNLIMITED.Estadia where rese_codigo='{0}'", codigoReserva);
+                    string idUsuarioBuscado = String.Format("select usur_checkout FROM CAIA_UNLIMITED.Estadia where rese_codigo='{0}'", codigoReserva);
+                    DataTable idUsuarioEncontrado = DataBase.realizarConsulta(idUsuarioBuscado).Tables[0];
+                    string idUsuario = idUsuarioEncontrado.Rows[0][0].ToString();
+
+                    string usuarioBuscado = String.Format("select usur_username FROM CAIA_UNLIMITED.Usuario where usur_id='{0}'", idUsuario);
                     DataTable usuarioEncontrado = DataBase.realizarConsulta(usuarioBuscado).Tables[0];
                     string usuario = usuarioEncontrado.Rows[0][0].ToString();
                     txtUsuario.Text = usuario;

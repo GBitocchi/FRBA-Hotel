@@ -208,29 +208,33 @@ namespace FrbaHotel.RegistrarConsumible
 
             if (listaConsumibles.Items.Count > 0)
             {
-                foreach (ListViewItem eachItem in listaConsumibles.Items)
+                DialogResult resultado = MessageBox.Show("¿Esta seguro que desea registrar esto/s consumible/s?", "Registrar", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (resultado == DialogResult.Yes)
                 {
+                    foreach (ListViewItem eachItem in listaConsumibles.Items)
+                    {
 
-                    string consultaCodigo = string.Format("select cons_codigo from CAIA_UNLIMITED.Consumible where cons_descripcion='{0}' and cons_precio='{1}'", eachItem.SubItems[0].Text.Trim(), Convert.ToDouble(eachItem.SubItems[2].Text.Trim()));
-                    DataTable codigoObtenido = DataBase.realizarConsulta(consultaCodigo).Tables[0];
-                    string codigoConsumible = codigoObtenido.Rows[0][0].ToString();
+                        string consultaCodigo = string.Format("select cons_codigo from CAIA_UNLIMITED.Consumible where cons_descripcion='{0}' and cons_precio='{1}'", eachItem.SubItems[0].Text.Trim(), Convert.ToDouble(eachItem.SubItems[2].Text.Trim()));
+                        DataTable codigoObtenido = DataBase.realizarConsulta(consultaCodigo).Tables[0];
+                        string codigoConsumible = codigoObtenido.Rows[0][0].ToString();
 
-                    SqlCommand registrarConsumible = new SqlCommand("CAIA_UNLIMITED.sp_RegistrarConsumible", db);
-                    registrarConsumible.CommandType = CommandType.StoredProcedure;
-                    registrarConsumible.Parameters.AddWithValue("@codigo_Estadia", txtCodigo_Estadia.Text.Trim());
-                    registrarConsumible.Parameters.AddWithValue("@codigo_Consumible", Convert.ToInt32(codigoConsumible));
-                    registrarConsumible.Parameters.AddWithValue("@cantidad", Convert.ToInt32(eachItem.SubItems[1].Text.Trim()));
-
-
-                    registrarConsumible.ExecuteNonQuery();
-
+                        SqlCommand registrarConsumible = new SqlCommand("CAIA_UNLIMITED.sp_RegistrarConsumible", db);
+                        registrarConsumible.CommandType = CommandType.StoredProcedure;
+                        registrarConsumible.Parameters.AddWithValue("@codigo_Estadia", txtCodigo_Estadia.Text.Trim());
+                        registrarConsumible.Parameters.AddWithValue("@codigo_Consumible", Convert.ToInt32(codigoConsumible));
+                        registrarConsumible.Parameters.AddWithValue("@cantidad", Convert.ToInt32(eachItem.SubItems[1].Text.Trim()));
 
 
+                        registrarConsumible.ExecuteNonQuery();
+
+
+
+                    }
+                    limpiarFormulario();
+
+                    MessageBox.Show("Consumibles registrados correctamente", "Registrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    db.Close();
                 }
-                limpiarFormulario();
-
-                MessageBox.Show("Consumibles registrados correctamente", "Registrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                db.Close();
             }
             else
             {

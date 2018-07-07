@@ -78,5 +78,10 @@ namespace FrbaHotel.RegistrarEstadia
             }
         }
 
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            txtCodigo_Reserva.Clear();
+        }
+
     }
 }
