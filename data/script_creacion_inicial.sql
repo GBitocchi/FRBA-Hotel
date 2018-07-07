@@ -9,6 +9,7 @@ BEGIN
 EXEC ('CREATE SCHEMA [CAIA_UNLIMITED] AUTHORIZATION [gd]')
 END
 
+
 create table CAIA_UNLIMITED.Mantenimiento(
 	mant_fecha_inicio datetime not null,
 	mant_fecha_fin datetime not null,
@@ -1454,7 +1455,7 @@ GO
 
 ------------Registrar estadia
 
-CREATE PROCEDURE [CAIA_UNLIMITED].[sp_RegistrarIngreso](@fecha_inicio datetime, @usuario nvarchar(255),@codigo_reserva numeric(18,0))
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_RegistrarIngreso](@fecha_inicio datetime, @usuario numeric(18,0),@codigo_reserva numeric(18,0))
 AS
 BEGIN
 	insert into CAIA_UNLIMITED.Estadia(esta_fecha_inicio,rese_codigo,usur_checkin)
@@ -1462,7 +1463,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE [CAIA_UNLIMITED].[sp_RegistrarEgreso](@fecha_egreso datetime, @usuario nvarchar(255),@estadia_Id numeric (18,0))
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_RegistrarEgreso](@fecha_egreso datetime, @usuario numeric(18,0),@estadia_Id numeric (18,0))
 AS
 BEGIN
 	update CAIA_UNLIMITED.Estadia 

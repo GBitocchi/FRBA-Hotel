@@ -14,6 +14,14 @@ namespace FrbaHotel.CancelarReserva
 {
     public partial class MenuCancelarReserva : Form
     {
+        string idHotelActual;
+        public MenuCancelarReserva(String idHotel)
+        {
+            InitializeComponent();
+            txtCancelacion.Text = Convert.ToString(DataBase.fechaSistema());
+            idHotelActual = idHotel;
+        }
+
         public MenuCancelarReserva()
         {
             InitializeComponent();

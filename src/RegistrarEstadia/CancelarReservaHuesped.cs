@@ -51,7 +51,6 @@ namespace FrbaHotel.RegistrarEstadia
                                         limpiarFormulario();
                                         MessageBox.Show("Reserva cancelada", "Cancelada", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         this.Hide();
-                                        new MenuRegistrarEstadia().Show();
                                     }
                                 }
 
@@ -78,7 +77,6 @@ namespace FrbaHotel.RegistrarEstadia
                                     MessageBox.Show("Reserva cancelada", "Cancelada", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                     this.Hide();
-                                    new MenuRegistrarEstadia().Show();
 
                                 }
                             }

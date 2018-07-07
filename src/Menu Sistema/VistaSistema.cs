@@ -265,19 +265,19 @@ namespace FrbaHotel.Menu_Sistema
 
         private void registrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new MenuRegistrarEstadia().ShowDialog();
+            new MenuRegistrarEstadia(Convert.ToString(idHotel)).ShowDialog();
             this.Show();
         }
 
         private void registrarToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            new MenuRegistrarConsumible().ShowDialog();
+            new MenuRegistrarConsumible(Convert.ToString(idHotel)).ShowDialog();
             this.Show();
         }
 
         private void stripCancelar_Reserva_Click(object sender, EventArgs e)
         {
-            new MenuCancelarReserva().ShowDialog();
+            new MenuCancelarReserva(Convert.ToString(idHotel)).ShowDialog();
             this.Show();
         }
 

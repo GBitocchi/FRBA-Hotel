@@ -864,3 +864,4 @@ C:\Users\Gusbi\Desktop\Papapa\FRBA-Hotel\src\obj\Debug\FrbaHotel.RegistrarEstadi
 C:\Users\Gusbi\Desktop\Papapa\FRBA-Hotel\src\obj\Debug\FrbaHotel.RegistrarEstadia.Registrar.resources
 C:\Users\Gusbi\Desktop\Papapa\FRBA-Hotel\src\obj\Debug\FrbaHotel.RegistrarEstadia.RegistrarCheckIn.resources
 C:\Users\Gusbi\Desktop\Papapa\FRBA-Hotel\src\obj\Debug\FrbaHotel.csproj.GenerateResource.Cache
+C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.ListadoEstadistico.PeriodoListado.resources

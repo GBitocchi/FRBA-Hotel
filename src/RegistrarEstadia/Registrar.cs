@@ -15,17 +15,18 @@ namespace FrbaHotel.RegistrarEstadia
     public partial class Registrar : Form
     {
 
-        string codigoReserva;
+        string codigoReserva, idHotelActual;
         int cantHuespedPosible;
 
-        public Registrar(string cod)
+        public Registrar(string cod, string idHotel)
         {
             InitializeComponent();
             codigoReserva = cod;
+            idHotelActual = idHotel;
 
             txtFecha.Text = Convert.ToString(DataBase.fechaSistema());
 
-            string habitacionesBuscadas = String.Format("SELECT habi_rese_numero FROM CAIA_UNLIMITED.Habitacion_X_Reserva WHERE habi_rese_codigo = '{0}'", cod);
+            string habitacionesBuscadas = String.Format("SELECT habi_rese_numero FROM CAIA_UNLIMITED.Habitacion_X_Reserva WHERE habi_rese_codigo = '{0}' and habi_rese_id = '{1}'", cod, idHotelActual);
             DataTable habitacionesObtenidas = DataBase.realizarConsulta(habitacionesBuscadas).Tables[0];
 
             foreach (DataRow habitacion in habitacionesObtenidas.Rows)
@@ -304,11 +305,11 @@ namespace FrbaHotel.RegistrarEstadia
 
         private bool usuarioCorrecto()
         {
-            string consultaHotelId = string.Format("SELECT habi_rese_id FROM CAIA_UNLIMITED.Habitacion_X_Reserva  WHERE habi_rese_codigo ='{0}'", codigoReserva);
-            DataTable hotelIdObtenida = DataBase.realizarConsulta(consultaHotelId).Tables[0];
-            string hotelID = hotelIdObtenida.Rows[0][0].ToString();
+            string consultaIdUsuario = string.Format("SELECT usur_id FROM CAIA_UNLIMITED.Usuario  WHERE usur_username ='{0}'", txtUsuario.Text.Trim());
+            DataTable idUsuarioObtenido = DataBase.realizarConsulta(consultaIdUsuario).Tables[0];
+            string idUsuario = idUsuarioObtenido.Rows[0][0].ToString();
 
-            string usernameIngresado = String.Format("SELECT usur_hote_username FROM CAIA_UNLIMITED.Usuario_X_Hotel  WHERE usur_hote_id='{0}' and usur_hote_username= '{1}'", hotelID, txtUsuario.Text.Trim());
+            string usernameIngresado = String.Format("SELECT usur_hote_idusur FROM CAIA_UNLIMITED.Usuario_X_Hotel  WHERE usur_hote_idhote='{0}' and usur_hote_idusur= '{1}'", idHotelActual, idUsuario);
 
             if (DataBase.realizarConsulta(usernameIngresado).Tables[0].Rows.Count == 0)
             {
@@ -342,9 +343,12 @@ namespace FrbaHotel.RegistrarEstadia
             SqlConnection db = DataBase.conectarBD();
             SqlCommand crearIngreso = new SqlCommand("CAIA_UNLIMITED.sp_RegistrarIngreso", db);
             crearIngreso.CommandType = CommandType.StoredProcedure;
-            //AGREGAR FECHA ACTUAL
             crearIngreso.Parameters.AddWithValue("@fecha_Inicio", DateTime.Parse(txtFecha.Text.Trim()));
-            crearIngreso.Parameters.AddWithValue("@usuario", txtUsuario.Text.Trim());
+            string consultaIdUsuario = string.Format("SELECT usur_id FROM CAIA_UNLIMITED.Usuario  WHERE usur_username ='{0}'", txtUsuario.Text.Trim());
+            DataTable idUsuarioObtenido = DataBase.realizarConsulta(consultaIdUsuario).Tables[0];
+            string idUsuario = idUsuarioObtenido.Rows[0][0].ToString();
+
+            crearIngreso.Parameters.AddWithValue("@usuario",Convert.ToInt32(idUsuario));
             crearIngreso.Parameters.AddWithValue("@codigo_reserva", codigoReserva);
             crearIngreso.ExecuteNonQuery();
             db.Close();
@@ -356,9 +360,13 @@ namespace FrbaHotel.RegistrarEstadia
             SqlConnection db = DataBase.conectarBD();
             SqlCommand crearEgreso = new SqlCommand("CAIA_UNLIMITED.sp_RegistrarEgreso", db);
             crearEgreso.CommandType = CommandType.StoredProcedure;
-            //AGREGAR FECHA ACTUAL
             crearEgreso.Parameters.AddWithValue("@fecha_egreso", DateTime.Parse(txtFecha.Text.Trim()));
-            crearEgreso.Parameters.AddWithValue("@usuario", txtUsuario.Text.Trim());
+            string consultaIdUsuario = string.Format("SELECT usur_id FROM CAIA_UNLIMITED.Usuario  WHERE usur_username ='{0}'", txtUsuario.Text.Trim());
+            DataTable idUsuarioObtenido = DataBase.realizarConsulta(consultaIdUsuario).Tables[0];
+            string idUsuario = idUsuarioObtenido.Rows[0][0].ToString();
+
+            crearEgreso.Parameters.AddWithValue("@usuario", Convert.ToInt32(idUsuario));
+
             crearEgreso.Parameters.AddWithValue("@estadia_Id", idEstadia);
             crearEgreso.ExecuteNonQuery();
             db.Close();
