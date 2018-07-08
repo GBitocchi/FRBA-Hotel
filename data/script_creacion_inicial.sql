@@ -556,15 +556,44 @@ CREATE PROCEDURE [CAIA_UNLIMITED].[sp_AlmacenarHotel] (@nombre_hotel nvarchar(25
 							@ciudad nvarchar(255), @pais nvarchar(255), @fecha datetime)
 AS
 BEGIN
-	insert into CAIA_UNLIMITED.Direccion (dire_ciudad, dire_pais, dire_dom_calle, dire_nro_calle,
+SET NOCOUNT ON;
+  DECLARE @trancount int;
+  SET @trancount = @@trancount;
+  BEGIN TRY
+    IF @trancount = 0
+      BEGIN TRANSACTION
+      ELSE
+        SAVE TRANSACTION sp_AlmacenarHotel;
+		 
+    	insert into CAIA_UNLIMITED.Direccion (dire_ciudad, dire_pais, dire_dom_calle, dire_nro_calle,
 											dire_telefono)
-	values (@ciudad, @pais, @calle, @numero_calle, @hote_telefono)
-	insert into CAIA_UNLIMITED.Hotel (hote_nombre, hote_mail, hote_cant_estrellas, hote_habilitado, hote_fecha_creacion, dire_id, hote_recarga_estrella)
-	values (@nombre_hotel, @mail, @estrellas, 1, convert(datetime, @fecha, 120), (select dire_id from CAIA_UNLIMITED.Direccion
-												where dire_telefono = @hote_telefono and
-												dire_dom_calle = @calle and dire_ciudad = @ciudad
-												and dire_pais = @pais and dire_nro_calle = @numero_calle), 10)		
-					
+		values (@ciudad, @pais, @calle, @numero_calle, @hote_telefono)
+		insert into CAIA_UNLIMITED.Hotel (hote_nombre, hote_mail, hote_cant_estrellas, hote_habilitado, hote_fecha_creacion, dire_id, hote_recarga_estrella)
+		values (@nombre_hotel, @mail, @estrellas, 1, convert(datetime, @fecha, 120), (select dire_id from CAIA_UNLIMITED.Direccion
+													where dire_telefono = @hote_telefono and
+													dire_dom_calle = @calle and dire_ciudad = @ciudad
+													and dire_pais = @pais and dire_nro_calle = @numero_calle), 10)		
+    lbexit:
+      IF @trancount = 0
+      COMMIT;
+  END TRY
+  BEGIN CATCH
+    DECLARE @error int,
+            @message varchar(4000),
+            @xstate int;
+
+    SELECT
+      @error = ERROR_NUMBER(),
+      @message = ERROR_MESSAGE(),
+      @xstate = XACT_STATE();
+
+    IF @xstate = -1
+      ROLLBACK;
+    IF @xstate = 1 AND @trancount = 0
+      ROLLBACK
+    IF @xstate = 1 AND @trancount > 0
+      ROLLBACK TRANSACTION sp_AlmacenarHotel;
+  END CATCH
 END
 GO
 
@@ -588,9 +617,41 @@ GO
 CREATE PROCEDURE [CAIA_UNLIMITED].[sp_BajaHotel] (@id_hotel numeric(18,0), @fecha_inicio datetime, @fecha_fin datetime, @descripcion nvarchar(255))
 AS
 BEGIN	
-	update CAIA_UNLIMITED.Hotel set hote_habilitado = 0 where hote_id = @id_hotel
-	insert into CAIA_UNLIMITED.Mantenimiento (hote_id, mant_fecha_inicio, mant_fecha_fin, mant_descripcion)
-	values (@id_hotel, convert(datetime, @fecha_inicio, 120), convert(datetime, @fecha_fin, 120), @descripcion)			
+SET NOCOUNT ON;
+  DECLARE @trancount int;
+  SET @trancount = @@trancount;
+  BEGIN TRY
+    IF @trancount = 0
+      BEGIN TRANSACTION
+      ELSE
+        SAVE TRANSACTION sp_BajaHotel;
+		 
+		update CAIA_UNLIMITED.Hotel set hote_habilitado = 0 where hote_id = @id_hotel
+		insert into CAIA_UNLIMITED.Mantenimiento (hote_id, mant_fecha_inicio, mant_fecha_fin, mant_descripcion)
+		values (@id_hotel, convert(datetime, @fecha_inicio, 120), convert(datetime, @fecha_fin, 120), @descripcion)		
+		
+    lbexit:
+      IF @trancount = 0
+      COMMIT;
+  END TRY
+  BEGIN CATCH
+    DECLARE @error int,
+            @message varchar(4000),
+            @xstate int;
+
+    SELECT
+      @error = ERROR_NUMBER(),
+      @message = ERROR_MESSAGE(),
+      @xstate = XACT_STATE();
+
+    IF @xstate = -1
+      ROLLBACK;
+    IF @xstate = 1 AND @trancount = 0
+      ROLLBACK
+    IF @xstate = 1 AND @trancount > 0
+      ROLLBACK TRANSACTION sp_BajaHotel;
+  END CATCH
+
 END
 GO
 
@@ -599,6 +660,15 @@ CREATE PROCEDURE [CAIA_UNLIMITED].[sp_ModificarHotel] (@idHotel numeric(18,0), @
 							@ciudad nvarchar(255), @pais nvarchar(255), @fecha datetime)
 AS
 BEGIN
+SET NOCOUNT ON;
+  DECLARE @trancount int;
+  SET @trancount = @@trancount;
+  BEGIN TRY
+    IF @trancount = 0
+      BEGIN TRANSACTION
+      ELSE
+        SAVE TRANSACTION sp_ModificarHotel;
+		 
 	update CAIA_UNLIMITED.Direccion 
 	set dire_dom_calle = @calle, dire_nro_calle = @numero_calle, dire_ciudad = @ciudad, dire_pais = @pais, dire_telefono = @hote_telefono
 	where dire_id = (select H.dire_id 
@@ -608,6 +678,29 @@ BEGIN
 	update CAIA_UNLIMITED.Hotel
 	set hote_nombre = @nombre_hotel, hote_mail = @mail, hote_cant_estrellas = @estrellas, hote_fecha_creacion = convert(datetime, @fecha, 120)
 	where hote_id = @idHotel
+		
+    lbexit:
+      IF @trancount = 0
+      COMMIT;
+  END TRY
+  BEGIN CATCH
+    DECLARE @error int,
+            @message varchar(4000),
+            @xstate int;
+
+    SELECT
+      @error = ERROR_NUMBER(),
+      @message = ERROR_MESSAGE(),
+      @xstate = XACT_STATE();
+
+    IF @xstate = -1
+      ROLLBACK;
+    IF @xstate = 1 AND @trancount = 0
+      ROLLBACK
+    IF @xstate = 1 AND @trancount > 0
+      ROLLBACK TRANSACTION sp_ModificarHotel;
+  END CATCH
+
 END
 GO
 
@@ -672,21 +765,85 @@ CREATE PROCEDURE [CAIA_UNLIMITED].[sp_AlmacenarPagoTarjeta] (@nombre nvarchar(25
 														@monto numeric(18,2), @numero_factura numeric(18,0))
 AS
 BEGIN
-	insert into CAIA_UNLIMITED.Pago (pago_nombre, pago_apellido, pago_nro_tarjeta, pago_codigo_seguridad,
-										pago_banco, pago_fecha_vencimiento, pago_monto)
-	values (@nombre, @apellido, @numero_tarjeta, @codigo_seguridad, @banco, convert(datetime, @fecha_vencimiento, 120), @monto)
-	update CAIA_UNLIMITED.Factura set pago_codigo = SCOPE_IDENTITY()
-	where fact_nro = @numero_factura
+SET NOCOUNT ON;
+  DECLARE @trancount int;
+  SET @trancount = @@trancount;
+  BEGIN TRY
+    IF @trancount = 0
+      BEGIN TRANSACTION
+      ELSE
+        SAVE TRANSACTION sp_AlmacenarPagoTarjeta;
+		 
+		insert into CAIA_UNLIMITED.Pago (pago_nombre, pago_apellido, pago_nro_tarjeta, pago_codigo_seguridad,
+											pago_banco, pago_fecha_vencimiento, pago_monto)
+		values (@nombre, @apellido, @numero_tarjeta, @codigo_seguridad, @banco, convert(datetime, @fecha_vencimiento, 120), @monto)
+		update CAIA_UNLIMITED.Factura set pago_codigo = SCOPE_IDENTITY()
+		where fact_nro = @numero_factura
+		
+    lbexit:
+      IF @trancount = 0
+      COMMIT;
+  END TRY
+  BEGIN CATCH
+    DECLARE @error int,
+            @message varchar(4000),
+            @xstate int;
+
+    SELECT
+      @error = ERROR_NUMBER(),
+      @message = ERROR_MESSAGE(),
+      @xstate = XACT_STATE();
+
+    IF @xstate = -1
+      ROLLBACK;
+    IF @xstate = 1 AND @trancount = 0
+      ROLLBACK
+    IF @xstate = 1 AND @trancount > 0
+      ROLLBACK TRANSACTION sp_AlmacenarPagoTarjeta;
+  END CATCH
+
 END
 GO
 
 CREATE PROCEDURE [CAIA_UNLIMITED].[sp_AlmacenarPagoEfectivo] (@monto numeric(18,2), @numero_factura numeric(18,0))
 AS
 BEGIN
+SET NOCOUNT ON;
+  DECLARE @trancount int;
+  SET @trancount = @@trancount;
+  BEGIN TRY
+    IF @trancount = 0
+      BEGIN TRANSACTION
+      ELSE
+        SAVE TRANSACTION sp_AlmacenarPagoEfectivo;
+		 
 	insert into CAIA_UNLIMITED.Pago (pago_monto)
 	values (@monto)
 	update CAIA_UNLIMITED.Factura set pago_codigo = SCOPE_IDENTITY()
 	where fact_nro = @numero_factura
+		
+    lbexit:
+      IF @trancount = 0
+      COMMIT;
+  END TRY
+  BEGIN CATCH
+    DECLARE @error int,
+            @message varchar(4000),
+            @xstate int;
+
+    SELECT
+      @error = ERROR_NUMBER(),
+      @message = ERROR_MESSAGE(),
+      @xstate = XACT_STATE();
+
+    IF @xstate = -1
+      ROLLBACK;
+    IF @xstate = 1 AND @trancount = 0
+      ROLLBACK
+    IF @xstate = 1 AND @trancount > 0
+      ROLLBACK TRANSACTION sp_AlmacenarPagoEfectivo;
+  END CATCH
+
 END
 GO
 
