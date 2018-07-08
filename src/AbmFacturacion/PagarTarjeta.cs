@@ -45,15 +45,13 @@ namespace FrbaHotel.AbmFacturacion
                    }
                    catch
                    {
-                       MessageBox.Show("No se pudo llevar a cabo el pago.", "Pago erroneo", MessageBoxButtons.OK);
+                       MessageBox.Show("No se pudo llevar a cabo el pago con tarjeta.", "Error de pago", MessageBoxButtons.OK);
                    }
                }
         }
 
         private void ejecutarStoredProcedure()
         {
-            try
-            {
                 SqlConnection db = DataBase.conectarBD();
                 SqlCommand agregarPago = new SqlCommand("CAIA_UNLIMITED.sp_AlmacenarPagoTarjeta", db);
                 agregarPago.CommandType = CommandType.StoredProcedure;
@@ -67,12 +65,6 @@ namespace FrbaHotel.AbmFacturacion
                 agregarPago.Parameters.AddWithValue("@numero_factura", numeroFactura);
                 agregarPago.ExecuteNonQuery();
                 db.Close();
-
-            }
-            catch
-            {
-                MessageBox.Show("Error al realizar el pago con tarjeta", "Error de pago", MessageBoxButtons.OK);
-            }
         }
 
         private bool camposCorrectos()

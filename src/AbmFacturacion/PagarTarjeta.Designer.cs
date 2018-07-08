@@ -137,9 +137,9 @@
             this.label1.Location = new System.Drawing.Point(39, 329);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 20);
+            this.label1.Size = new System.Drawing.Size(100, 20);
             this.label1.TabIndex = 9;
-            this.label1.Text = "Monto";
+            this.label1.Text = "Monto (US$)";
             // 
             // label2
             // 

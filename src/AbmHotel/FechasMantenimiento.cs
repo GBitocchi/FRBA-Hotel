@@ -25,8 +25,6 @@ namespace FrbaHotel.AbmHotel
 
         private void ejecutarStoredProcedure()
         {
-            try
-            {
                 SqlConnection db = DataBase.conectarBD();
                 SqlCommand bajaHotel = new SqlCommand("CAIA_UNLIMITED.sp_BajaHotel", db);
                 bajaHotel.CommandType = CommandType.StoredProcedure;
@@ -35,13 +33,7 @@ namespace FrbaHotel.AbmHotel
                 bajaHotel.Parameters.AddWithValue("@fecha_fin", dtFin.Value);
                 bajaHotel.Parameters.AddWithValue("@descripcion", txtDescripcion.Text.Trim());
                 bajaHotel.ExecuteNonQuery();
-                db.Close();
-            }
-            catch
-            {
-                MessageBox.Show("No se pudo llevar a cabo el mantenimiento", "Error de mantenimiento", MessageBoxButtons.OK);
-            }
-            
+                db.Close();            
         }
 
         private void btnAtras_Click(object sender, EventArgs e)
@@ -62,10 +54,17 @@ namespace FrbaHotel.AbmHotel
                     string otrosMantenimientos = queryOtrosMantenimientos();
                     if (DataBase.realizarConsulta(otrosMantenimientos).Tables[0].Rows.Count == 0)
                     {
-                        ejecutarStoredProcedure();
-                        txtFechasIncorrectas.Visible = false;
-                        MessageBox.Show("Baja de hotel exitosa.", "Baja exitosa", MessageBoxButtons.OK);
-                        this.Hide();
+                        try
+                        {
+                            ejecutarStoredProcedure();
+                            txtFechasIncorrectas.Visible = false;
+                            MessageBox.Show("Baja de hotel exitosa.", "Baja exitosa", MessageBoxButtons.OK);
+                            this.Hide();
+                        }
+                        catch
+                        {
+                            MessageBox.Show("No se pudo llevar a cabo el mantenimiento", "Error de mantenimiento", MessageBoxButtons.OK);
+                        }
                     }
                     else
                     {

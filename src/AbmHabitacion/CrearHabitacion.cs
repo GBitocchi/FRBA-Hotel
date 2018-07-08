@@ -66,13 +66,21 @@ namespace FrbaHotel.AbmHabitacion
                 ocultarErrores();
                 try
                 {
-                    ejecutarStoredProcedure();
-                    MessageBox.Show("Habitacion creada exitosamente.", "Creacion exitosa", MessageBoxButtons.OK);
-                    limpiarCampos();
+                    if (DataBase.realizarConsulta("select * from CAIA_UNLIMITED.Habitacion where habi_numero =" + txtNro_habitacion.Text.Trim() + " and hote_id = " + hotel_id).Tables[0].Rows.Count == 0)
+                    {
+                        ejecutarStoredProcedure();
+                        MessageBox.Show("Habitacion creada exitosamente.", "Creacion exitosa", MessageBoxButtons.OK);
+                        limpiarCampos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Numero de habitacion ya existente.", "Creacion erronea", MessageBoxButtons.OK);
+
+                    }
                 }
                 catch
                 {
-                    MessageBox.Show("Numero de habitacion ya existente.", "Creacion erronea", MessageBoxButtons.OK);
+                    MessageBox.Show("No se pudo crear la habitacion.", "Error de habitacion", MessageBoxButtons.OK);
                 }  
             }
         }

@@ -32,14 +32,23 @@ namespace FrbaHotel.AbmHabitacion
         {
             try
             {
-                ejecutarStoredProcedure();
-                MessageBox.Show("Habitacion modificada correctamente.", "Modificacion exitosa", MessageBoxButtons.OK);
-                limpiarCampos();
+                if (DataBase.realizarConsulta("select * from CAIA_UNLIMITED.Habitacion where habi_numero =" + txtNroHabitacion.Text.Trim() + " and hote_id = " + hotel_id).Tables[0].Rows.Count == 0)
+                {
+                    ejecutarStoredProcedure();
+                    MessageBox.Show("Habitacion modificada exitosamente.", "Modificacion exitosa", MessageBoxButtons.OK);
+                    limpiarCampos();
+                    btnModificar.Visible = false;
+                }
+                else
+                {
+                    MessageBox.Show("Numero de habitacion ya existente.", "Modificacion erronea", MessageBoxButtons.OK);
+
+                }
             }
             catch
             {
-                MessageBox.Show("Numero de habitacion ya existente.", "Modificacion erronea", MessageBoxButtons.OK);
-            }
+                MessageBox.Show("No se pudo modificar la habitacion.", "Error de habitacion", MessageBoxButtons.OK);
+            }  
         }
 
         private void limpiarCampos()
@@ -68,6 +77,7 @@ namespace FrbaHotel.AbmHabitacion
         public MenuModificacion(string hotelId)
         {
             InitializeComponent();
+            btnModificar.Visible = false;
             lblNroHabitacion.Visible = false;
             lblPiso.Visible = false;
             lblUbicacion.Visible = false;
@@ -116,6 +126,7 @@ namespace FrbaHotel.AbmHabitacion
             txtPiso.Text = dgHabitaciones.SelectedRows[0].Cells[1].Value.ToString();
             txtUbicacion.Text = dgHabitaciones.SelectedRows[0].Cells[2].Value.ToString();
             txtDescripcion.Text = dgHabitaciones.SelectedRows[0].Cells[3].Value.ToString();
+            btnModificar.Visible = true;
         }
 
     }

@@ -110,9 +110,16 @@ namespace FrbaHotel.AbmHotel
                 string existencia_direccion = String.Format("select * from CAIA_UNLIMITED.Direccion where dire_dom_calle='{0}' and dire_nro_calle={1} and dire_ciudad='{2}' and dire_pais='{3}'", txtDireccion.Text.Trim(), txtNumero.Text.Trim(), txtCiudad.Text.Trim(), txtPais.Text.Trim());
                 if (DataBase.realizarConsulta(existencia_direccion).Tables[0].Rows.Count == 0)
                 {
-                    ejecutarStoredProcedure();
-                    MessageBox.Show("Hotel creado correctamente.", "Creacion correcta", MessageBoxButtons.OK); 
-                    reiniciarVista();
+                    try
+                    {
+                        ejecutarStoredProcedure();
+                        MessageBox.Show("Hotel creado correctamente.", "Creacion correcta", MessageBoxButtons.OK);
+                        reiniciarVista();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("No se pudo crear el hotel", "Error al crear hotel", MessageBoxButtons.OK);
+                    }
                 }
                 else
                 {
@@ -123,8 +130,6 @@ namespace FrbaHotel.AbmHotel
 
         private void ejecutarStoredProcedure()
         {
-            try
-            {
                 SqlConnection db = DataBase.conectarBD();
                 SqlCommand agregarHotel = new SqlCommand("CAIA_UNLIMITED.sp_AlmacenarHotel", db);
                 agregarHotel.CommandType = CommandType.StoredProcedure;
@@ -148,12 +153,6 @@ namespace FrbaHotel.AbmHotel
                     agregarRegimenHotel.ExecuteNonQuery();
                 }
                 db.Close();
-
-            }
-            catch
-            {
-                MessageBox.Show("No se pudo crear el hotel", "Error al crear hotel", MessageBoxButtons.OK);
-            }
         }
 
         private void reiniciarVista()

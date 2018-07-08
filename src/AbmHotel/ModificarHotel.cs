@@ -85,9 +85,16 @@ namespace FrbaHotel.AbmHotel
                     {
                         if (reservasPorRegimen())
                         {
-                            ejecutarStoredProcedure();
-                            MessageBox.Show("Hotel modificado correctamente.", "Modificacion exitosa", MessageBoxButtons.OK);
-                            this.Hide();
+                            try
+                            {
+                                ejecutarStoredProcedure();
+                                MessageBox.Show("Hotel modificado correctamente.", "Modificacion exitosa", MessageBoxButtons.OK);
+                                this.Hide();
+                            }
+                            catch
+                            {
+                                MessageBox.Show("No se pudo modificar el hotel", "Error al modificar hotel", MessageBoxButtons.OK);
+                            }
                         }
                         else
                         {
@@ -136,8 +143,6 @@ namespace FrbaHotel.AbmHotel
 
         private void ejecutarStoredProcedure()
         {
-            try
-            {
                 SqlConnection db = DataBase.conectarBD();
                 SqlCommand modificarHotel = new SqlCommand("CAIA_UNLIMITED.sp_ModificarHotel", db);
                 modificarHotel.CommandType = CommandType.StoredProcedure;
@@ -165,12 +170,6 @@ namespace FrbaHotel.AbmHotel
                     agregarRegimen.ExecuteNonQuery();
                 }
                 db.Close();
-
-            }
-            catch
-            {
-                MessageBox.Show("No se pudo modificar el hotel", "Error al modificar hotel", MessageBoxButtons.OK);
-            }
         }
 
         private bool hayModificaciones()
