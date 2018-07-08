@@ -59,12 +59,12 @@
             this.darDeBajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stripConsumibles = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.stripListado = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
             this.Fecha = new System.Windows.Forms.Label();
             this.txtFechaSistema = new System.Windows.Forms.TextBox();
-            this.stripListado = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -290,21 +290,21 @@
             // crearToolStripMenuItem
             // 
             this.crearToolStripMenuItem.Name = "crearToolStripMenuItem";
-            this.crearToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.crearToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.crearToolStripMenuItem.Text = "Crear";
             this.crearToolStripMenuItem.Click += new System.EventHandler(this.crearToolStripMenuItem_Click);
             // 
             // modificarToolStripMenuItem
             // 
             this.modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
-            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.modificarToolStripMenuItem.Text = "Modificar";
             this.modificarToolStripMenuItem.Click += new System.EventHandler(this.modificarToolStripMenuItem_Click);
             // 
             // darDeBajaToolStripMenuItem
             // 
             this.darDeBajaToolStripMenuItem.Name = "darDeBajaToolStripMenuItem";
-            this.darDeBajaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.darDeBajaToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.darDeBajaToolStripMenuItem.Text = "Dar de baja";
             this.darDeBajaToolStripMenuItem.Click += new System.EventHandler(this.darDeBajaToolStripMenuItem_Click);
             // 
@@ -323,6 +323,14 @@
             this.registrarToolStripMenuItem1.Size = new System.Drawing.Size(120, 22);
             this.registrarToolStripMenuItem1.Text = "Registrar";
             this.registrarToolStripMenuItem1.Click += new System.EventHandler(this.registrarToolStripMenuItem1_Click);
+            // 
+            // stripListado
+            // 
+            this.stripListado.Name = "stripListado";
+            this.stripListado.Size = new System.Drawing.Size(116, 20);
+            this.stripListado.Text = "Listado estadistico";
+            this.stripListado.Visible = false;
+            this.stripListado.Click += new System.EventHandler(this.stripListado_Click);
             // 
             // label1
             // 
@@ -375,13 +383,6 @@
             this.txtFechaSistema.Name = "txtFechaSistema";
             this.txtFechaSistema.Size = new System.Drawing.Size(183, 20);
             this.txtFechaSistema.TabIndex = 6;
-            // 
-            // stripListado
-            // 
-            this.stripListado.Name = "stripListado";
-            this.stripListado.Size = new System.Drawing.Size(116, 20);
-            this.stripListado.Text = "Listado estadistico";
-            this.stripListado.Click += new System.EventHandler(this.stripListado_Click);
             // 
             // VistaSistema
             // 

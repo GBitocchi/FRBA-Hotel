@@ -573,20 +573,7 @@ namespace FrbaHotel.AbmUsuario
                     lblErrorUser.Visible = true;
                 }
                 else
-                {
-                    string datosExistentes = string.Format("SELECT COUNT(*) FROM CAIA_UNLIMITED.Usuario WHERE usur_mail = '{0}' OR usur_documento = '{1}'", textBoxMail.Text.Trim(), textBoxDocument.Text.Trim());
-                    SqlCommand commDatos = new SqlCommand(datosExistentes, connection);
-                    Int32 countDatos = Convert.ToInt32(commDatos.ExecuteScalar());
-                    connection.Close();
-
-                    if (countDatos > 0)
-                    {
-                        MessageBox.Show("Ya existe un mail y documento especificados. Intente con otros datos.");
-                        lblErrorMail.Visible = true;
-                        lblErrorDocument.Visible = true;
-                    }
-                    else
-                    {
+                {                                      
                         RolitiesCollection rc = new RolitiesCollection();
                         foreach (string rol in listBoxRoles.Items)
                         {
@@ -703,8 +690,7 @@ namespace FrbaHotel.AbmUsuario
                         catch (Exception errorDB)
                         {
                             MessageBox.Show(errorDB.Message);
-                        }
-                    }
+                        }                 
                 }
 
             }
@@ -717,16 +703,8 @@ namespace FrbaHotel.AbmUsuario
             {
                 if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
                 {
-                    new VistaUsuarioModificar(dataGridViewModificarUsuarios,e,this.idHotel).ShowDialog();
-                    string viewModificacion = string.Format("SELECT * FROM (SELECT u.usur_username as NombreDeUsuario, u.usur_habilitado as Habilitado, u.usur_nombre as Nombre, u.usur_apellido as Apellido, u.usur_documento_tipo as TipoDocumento, u.usur_documento Documento, u.usur_nacimiento as Nacimiento, u.usur_mail as Mail, d.dire_id as idDireccion, d.dire_pais as Pais, d.dire_telefono as Telefono, d.dire_dom_calle as Calle, d.dire_nro_calle as NumeroCalle, d.dire_piso Piso, d.dire_dpto as Departamento, d.dire_ciudad as Ciudad,ROW_NUMBER() OVER(PARTITION BY u.usur_username ORDER BY u.usur_username DESC) rn FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on (u.usur_id = uh.usur_hote_idusur AND uh.usur_hote_idhote = '{0}') JOIN CAIA_UNLIMITED.Direccion d on (d.dire_id = u.dire_id OR d.dire_id IS NULL OR u.dire_id IS NULL)) a WHERE rn = 1", this.idHotel);
-                    DataSet dsViewModificacion = DataBase.realizarConsulta(viewModificacion);
-                    dataGridViewModificarUsuarios.DataSource = dsViewModificacion.Tables[0];
-                    dataGridViewModificarUsuarios.AllowUserToAddRows = false;
-                    string viewEliminar = string.Format("SELECT * FROM (SELECT u.usur_username as NombreDeUsuario, u.usur_habilitado as Habilitado, u.usur_nombre as Nombre, u.usur_apellido as Apellido, u.usur_documento_tipo as TipoDocumento, u.usur_documento Documento, u.usur_nacimiento as Nacimiento, u.usur_mail as Mail, d.dire_id as idDireccion, d.dire_pais as Pais, d.dire_telefono as Telefono, d.dire_dom_calle as Calle, d.dire_nro_calle as NumeroCalle, d.dire_piso Piso, d.dire_dpto as Departamento, d.dire_ciudad as Ciudad,ROW_NUMBER() OVER(PARTITION BY u.usur_username ORDER BY u.usur_username DESC) rn FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on (u.usur_id = uh.usur_hote_idusur AND uh.usur_hote_idhote = '{0}') JOIN CAIA_UNLIMITED.Direccion d on (d.dire_id = u.dire_id OR d.dire_id IS NULL OR u.dire_id IS NULL) WHERE u.usur_habilitado = 1) a WHERE rn = 1", this.idHotel);
-                    DataSet dsViewEliminar = DataBase.realizarConsulta(viewEliminar);
-                    dataGridViewEliminarUsuarios.DataSource = dsViewEliminar.Tables[0];
-                    dataGridViewEliminarUsuarios.AllowUserToAddRows = false;
-                    this.Show();
+                    this.Hide();
+                    new VistaUsuarioModificar(dataGridViewModificarUsuarios,e,this.idHotel,this.username,this.codRol).Show();
                 }
             }
             catch (IndexOutOfRangeException iorem)

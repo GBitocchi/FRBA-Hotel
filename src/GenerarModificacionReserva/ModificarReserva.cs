@@ -17,6 +17,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         decimal hotel;
         bool guest = true;
         bool existeCliente = false;
+        bool seleccionoReserva = false;
         string mail;
         decimal documento;
         decimal reserva;
@@ -301,10 +302,12 @@ namespace FrbaHotel.GenerarModificacionReserva
                             listBoxTipoHabitacion.Sorted = true;
                         }
                         this.hotel = (decimal)dsReserva.Tables[0].Rows[0]["idHotel"];
+                        comboHoteles.Items.Clear();
                         cargarComboBoxHoteles();
                         cargarComboBoxRegimenes();
                         cargarComboBoxTipoHabitacion();
                         this.reserva = Convert.ToDecimal(textBoxReserva.Text.Trim());
+                        seleccionoReserva = true;
                     }
                 }
             }
@@ -352,6 +355,11 @@ namespace FrbaHotel.GenerarModificacionReserva
             {
                 lblErrorTipoHabitacion.Visible = true;
                 lbllistBoxNoItem.Visible = true;
+            }
+            else if (textBoxReserva.Text.Trim() == "" || !seleccionoReserva)
+            {
+                lblErrorNoField.Visible = true;
+                lblErrorReserva.Visible = true;
             }
             else if (guest)
             {

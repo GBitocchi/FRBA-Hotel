@@ -9,8 +9,6 @@ BEGIN
 EXEC ('CREATE SCHEMA [CAIA_UNLIMITED] AUTHORIZATION [gd]')
 END
 
-
-
 create table CAIA_UNLIMITED.Mantenimiento(
 	mant_fecha_inicio datetime not null,
 	mant_fecha_fin datetime not null,

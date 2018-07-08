@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using FrbaHotel;
+using FrbaHotel.Login;
 
 namespace FrbaHotel.AbmRol
 {
@@ -16,6 +17,10 @@ namespace FrbaHotel.AbmRol
     {
         DataSet _dsFuncionalidades;
         string _nombreRol;
+        bool noEsMiRol = false;
+        decimal codRolMio;
+        decimal hoteidMio;
+        string usernameMio;
         
         private void cargarFuncionalidadesRol(string nombreRol)
         {
@@ -48,15 +53,26 @@ namespace FrbaHotel.AbmRol
             }
         }
 
-        public VistaRolModificar(string _nombreRol)
+        public VistaRolModificar(string _nombreRol,decimal codigoMiRol,decimal miHotel, string miNombreUsuario)
         {
             InitializeComponent();
             cargarFuncionalidades();
+            this.codRolMio = codigoMiRol;
+            this.hoteidMio = miHotel;
+            this.usernameMio = miNombreUsuario;
             lblErrorNombreRol.Visible = false;
             lblErrorFuncionalidad.Visible = false;
             txbRolNombre.Text = _nombreRol;
             cargarFuncionalidadesRol(_nombreRol);
             cargarFuncionalidadesFaltantes(_nombreRol);
+            string esMiRol = string.Format("SELECT rol_codigo FROM CAIA_UNLIMITED.Rol WHERE rol_nombre = '{0}' AND rol_codigo = '{1}'",_nombreRol,codigoMiRol);
+            DataSet dsEsMiRol = DataBase.realizarConsulta(esMiRol);
+
+            if (dsEsMiRol == null || dsEsMiRol.Tables.Count <= 0 || dsEsMiRol.Tables[0].Rows.Count <= 0)
+            {
+                noEsMiRol = true;
+            }          
+
             string rolHabilitacion = string.Format("SELECT rol_estado FROM CAIA_UNLIMITED.Rol WHERE rol_nombre = '{0}'",_nombreRol);
             DataSet dsRolHabilitacion = DataBase.realizarConsulta(rolHabilitacion);
             if (((bool)dsRolHabilitacion.Tables[0].Rows[0]["rol_estado"]) == true)
@@ -133,7 +149,7 @@ namespace FrbaHotel.AbmRol
                         DataSet dsRolCodigo = DataBase.realizarConsulta(rolCodigo);
                         SqlConnection rolCreateConnection = DataBase.conectarBD();
                         SqlCommand insertCommand = new SqlCommand("[CAIA_UNLIMITED].sp_ModificarRol", rolCreateConnection);
-                        insertCommand.CommandType = CommandType.StoredProcedure;                      
+                        insertCommand.CommandType = CommandType.StoredProcedure;
                         insertCommand.Parameters.AddWithValue("@codigo_rol", (decimal)(dsRolCodigo.Tables[0].Rows[0]["rol_codigo"]));
                         insertCommand.Parameters.AddWithValue("@nombre_rol", txbRolNombre.Text.Trim());
                         if (rbActivated.Checked)
@@ -150,6 +166,17 @@ namespace FrbaHotel.AbmRol
                         insertCommand.ExecuteNonQuery();
                         rolCreateConnection.Close();
                         MessageBox.Show("Rol modificado exitosamente!");
+
+                        if (this.noEsMiRol)
+                        {
+                            this.Hide();
+                            new VistaRol(this.hoteidMio,this.codRolMio,this.usernameMio).Show();
+                        }
+                        else
+                        {
+                            this.Hide();
+                            new Usuario().Show();
+                        }
                     }
                     catch (Exception errorDB)
                     {

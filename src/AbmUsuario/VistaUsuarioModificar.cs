@@ -12,6 +12,7 @@ using System.Security.Cryptography;
 using FrbaHotel;
 using System.Globalization;
 using System.Web;
+using FrbaHotel.Login;
 
 namespace FrbaHotel.AbmUsuario
 {
@@ -21,6 +22,11 @@ namespace FrbaHotel.AbmUsuario
         DataSet _dsRoles;
         DataSet _dsHoteles;
         decimal direccion;
+        string nombreUsuario;
+        bool fuiModificado = false;
+        string miNombreUsuario;
+        decimal codigoMiRol;
+        decimal miHotel;
 
         private byte[] encryptPassword(string password)
         {
@@ -84,7 +90,7 @@ namespace FrbaHotel.AbmUsuario
             listBoxDialogRoles.Items.Clear();
         }
       
-        public VistaUsuarioModificar(DataGridView usuarioAModificar,DataGridViewCellEventArgs e,decimal hotel)
+        public VistaUsuarioModificar(DataGridView usuarioAModificar,DataGridViewCellEventArgs e,decimal hotel,string miUsuario,decimal codRol)
         {
             InitializeComponent();
             limpiarErrores();
@@ -95,7 +101,14 @@ namespace FrbaHotel.AbmUsuario
             lblDialogBloqMayus.Visible = false;
             this._usuarioAModificar = usuarioAModificar;
             this.direccion = Convert.ToDecimal(usuarioAModificar.Rows[e.RowIndex].Cells["idDireccion"].Value.ToString());
-            textBoxDialogUser.Text = usuarioAModificar.Rows[e.RowIndex].Cells["NombreDeUsuario"].Value.ToString();
+            this.nombreUsuario = textBoxDialogUser.Text = usuarioAModificar.Rows[e.RowIndex].Cells["NombreDeUsuario"].Value.ToString();
+            this.miNombreUsuario = miUsuario;
+            this.codigoMiRol = codRol;
+            this.miHotel = hotel;
+            if (this.nombreUsuario == this.miNombreUsuario)
+            {
+                fuiModificado = true;
+            }
             bool habilitado = (bool)usuarioAModificar.Rows[e.RowIndex].Cells["Habilitado"].Value;
             if (habilitado)
             {
@@ -389,6 +402,20 @@ namespace FrbaHotel.AbmUsuario
             }
             else
             {
+                string usuarioExistente = string.Format("SELECT COUNT(*) FROM CAIA_UNLIMITED.Usuario WHERE usur_username = '{0}' AND usur_username != '{1}'", textBoxDialogUser.Text.Trim(),this.nombreUsuario);
+
+                SqlConnection connectionExistente = DataBase.conectarBD();
+                SqlCommand commUserExistente = new SqlCommand(usuarioExistente, connectionExistente);
+                Int32 countExistente = Convert.ToInt32(commUserExistente.ExecuteScalar());
+                
+                if (countExistente > 0)
+                {
+                    connectionExistente.Close();
+                    MessageBox.Show("Ya existe un nombre de usuario con el nombre indicado. Intente con otro nombre.");
+                    lblErrorDialogUser.Visible = true;
+                    return;
+                }             
+
                 RolitiesCollection rc = new RolitiesCollection();
                 foreach (string rol in listBoxDialogRoles.Items)
                 {
@@ -502,6 +529,17 @@ namespace FrbaHotel.AbmUsuario
                     limpiarTextBox();
                     cargarComboBoxRol();
                     cargarComboBoxHotel();
+
+                    if (fuiModificado)
+                    {
+                        this.Hide();
+                        new Usuario().Show();
+                    }
+                    else
+                    {
+                        this.Hide();
+                        new VistaUsuario(this.miHotel,this.codigoMiRol,this.miNombreUsuario).Show();
+                    }
                 }
                 catch (Exception errorDB)
                 {

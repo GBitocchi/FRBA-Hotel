@@ -58,20 +58,23 @@ namespace FrbaHotel.Login
             }
             else
             {
-                try
-                {
-                    string queryChangePW = string.Format("UPDATE CAIA_UNLIMITED.Usuario SET usur_password = HASHBYTES('SHA2_256', '{0}') WHERE usur_username = '{1}' AND usur_password = HASHBYTES('SHA2_256', '{2}')", txtNewPW.Text.Trim(), this.nombreUsuario, txtCurrentPW.Text.Trim());
-                    DataBase.procedureBD(queryChangePW);
-                    MessageBox.Show("Cambio de contraseña realizado exitosamente!");
-                    this.DialogResult = DialogResult.OK;
-                }
-                catch (Exception error)
+                string queryCorrectPW = string.Format("SELECT usur_username FROM CAIA_UNLIMITED.Usuario WHERE usur_username = '{0}' AND usur_password = HASHBYTES('SHA2_256', '{1}')", this.nombreUsuario, txtCurrentPW.Text.Trim());
+                DataSet dsCorrectPW = DataBase.realizarConsulta(queryCorrectPW);
+
+                if (dsCorrectPW == null || dsCorrectPW.Tables.Count <= 0 || dsCorrectPW.Tables[0].Rows.Count <= 0)
                 {
                     txtCurrentPW.Clear();
                     txtNewPW.Clear();
                     txtReEntryNewPW.Clear();
                     lblErrorWrongPW.Visible = true;
                     SystemSounds.Beep.Play();
+                }
+                else
+                {
+                    string queryChangePW = string.Format("UPDATE CAIA_UNLIMITED.Usuario SET usur_password = HASHBYTES('SHA2_256', '{0}') WHERE usur_username = '{1}' AND usur_password = HASHBYTES('SHA2_256', '{2}')", txtNewPW.Text.Trim(), this.nombreUsuario, txtCurrentPW.Text.Trim());
+                    DataBase.procedureBD(queryChangePW);
+                    MessageBox.Show("Cambio de contraseña realizado exitosamente!");
+                    this.DialogResult = DialogResult.OK;
                 }
             }                 
         }

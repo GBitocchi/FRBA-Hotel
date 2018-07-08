@@ -232,16 +232,8 @@ namespace FrbaHotel.AbmRol
                 if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
                 {
                     string rolNombre = dgvModificarRoles.Rows[e.RowIndex].Cells["Nombre"].Value.ToString();
-                    new VistaRolModificar(rolNombre).ShowDialog();
-                    this.Show();
-                    string rolesModificados = "SELECT rol_codigo as Codigo, rol_nombre as Nombre, rol_estado as Estado FROM CAIA_UNLIMITED.Rol";
-                    DataSet dsRolesModificados = DataBase.realizarConsulta(rolesModificados);
-                    dgvModificarRoles.DataSource = dsRolesModificados.Tables[0];
-                    dgvModificarRoles.AllowUserToAddRows = false;
-                    string roles = "SELECT rol_codigo as Codigo, rol_nombre as Nombre FROM CAIA_UNLIMITED.Rol WHERE rol_estado = 1";
-                    DataSet dsRoles = DataBase.realizarConsulta(roles);
-                    dgvEliminarRoles.DataSource = dsRoles.Tables[0];
-                    dgvEliminarRoles.AllowUserToAddRows = false;
+                    this.Hide();
+                    new VistaRolModificar(rolNombre,this._codigoRol,this._idHotel,this._nombreUsuario).Show();
                 }
             }   
             catch(IndexOutOfRangeException iorem)
