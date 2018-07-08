@@ -376,7 +376,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                                 costoUnaHabitacion = (4 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
                             }
 
-                            msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de '{0}' \n", costoUnaHabitacion));
+                            msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de: US$ '{0}' \n", costoUnaHabitacion));
                             costoTotal = costoTotal + costoUnaHabitacion;
                         }
 
@@ -384,7 +384,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
                         MessageBox.Show(msg);
 
-                        if (MessageBox.Show("El costo total de la reserva es de " + costoTotal.ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                        if (MessageBox.Show("El costo total de la reserva es de: US$ " + costoTotal.ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                         {
                             return;
                         }
@@ -522,7 +522,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                         {
                             costoUnaHabitacion = (4 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
                         }
-                        msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de '{0}' \n", costoUnaHabitacion));
+                        msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de: US$ '{0}' \n", costoUnaHabitacion));
                         costoTotal = costoTotal + costoUnaHabitacion;
                     }
 
@@ -530,7 +530,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
                     MessageBox.Show(msg);
 
-                    if (MessageBox.Show("El costo total de la reserva es de " + costoTotal.ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                    if (MessageBox.Show("El costo total de la reserva es de: US$ " + costoTotal.ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                     {
                         return;
                     }
@@ -677,7 +677,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                             {
                                 costoUnaHabitacion = (4 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
                             }
-                            msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de '{0}' \n", costoUnaHabitacion));
+                            msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de: US$ '{0}' \n", costoUnaHabitacion));
                             costoTotal = costoTotal + costoUnaHabitacion;
                         }
 
@@ -685,7 +685,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
                         MessageBox.Show(msg);
 
-                        if (MessageBox.Show("El costo total de la reserva es de " + costoTotal.ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                        if (MessageBox.Show("El costo total de la reserva es de: US$ " + costoTotal.ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                         {
                             return;
                         }
@@ -823,7 +823,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                         {
                             costoUnaHabitacion = (4 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
                         }
-                        msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de '{0}' \n", costoUnaHabitacion));
+                        msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de: US$ '{0}' \n", costoUnaHabitacion));
                         costoTotal = costoTotal + costoUnaHabitacion;
                     }
 
@@ -831,7 +831,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
                     MessageBox.Show(msg);
 
-                    if (MessageBox.Show("El costo total de la reserva es de " + costoTotal.ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                    if (MessageBox.Show("El costo total de la reserva es de: US$ " + costoTotal.ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                     {
                         return;
                     }
