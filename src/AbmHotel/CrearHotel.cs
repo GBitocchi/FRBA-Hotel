@@ -123,29 +123,37 @@ namespace FrbaHotel.AbmHotel
 
         private void ejecutarStoredProcedure()
         {
-            SqlConnection db = DataBase.conectarBD();
-            SqlCommand agregarHotel = new SqlCommand("CAIA_UNLIMITED.sp_AlmacenarHotel", db);
-            agregarHotel.CommandType = CommandType.StoredProcedure;
-            agregarHotel.Parameters.AddWithValue("@nombre_hotel", txtNombreHotel.Text.Trim());
-            agregarHotel.Parameters.AddWithValue("@mail", txtMail.Text.Trim());
-            agregarHotel.Parameters.AddWithValue("@estrellas", cbEstrellas.SelectedIndex + 1);
-            agregarHotel.Parameters.AddWithValue("@hote_telefono", txtTelefono.Text.Trim());
-            agregarHotel.Parameters.AddWithValue("@calle", txtDireccion.Text.Trim());
-            agregarHotel.Parameters.AddWithValue("@numero_calle", Int32.Parse(txtNumero.Text.Trim()));
-            agregarHotel.Parameters.AddWithValue("@ciudad", txtCiudad.Text.Trim());
-            agregarHotel.Parameters.AddWithValue("@pais", txtPais.Text.Trim());
-            agregarHotel.Parameters.AddWithValue("@fecha", dtFechaCreacion.Value.ToString("yyyyMMdd"));
-            agregarHotel.ExecuteNonQuery();
-            string id_hotel = ObtenerIDHotel();
-            foreach (DataGridViewRow regimen in dgRegimenes.SelectedRows)
+            try
             {
-                SqlCommand agregarRegimenHotel = new SqlCommand("CAIA_UNLIMITED.sp_AgregarRegimenXHotel", db);
-                agregarRegimenHotel.CommandType = CommandType.StoredProcedure;
-                agregarRegimenHotel.Parameters.AddWithValue("@codigo_regimen", regimen.Cells[0].Value.ToString());
-                agregarRegimenHotel.Parameters.AddWithValue("@id_hotel", id_hotel);
-                agregarRegimenHotel.ExecuteNonQuery();
+                SqlConnection db = DataBase.conectarBD();
+                SqlCommand agregarHotel = new SqlCommand("CAIA_UNLIMITED.sp_AlmacenarHotel", db);
+                agregarHotel.CommandType = CommandType.StoredProcedure;
+                agregarHotel.Parameters.AddWithValue("@nombre_hotel", txtNombreHotel.Text.Trim());
+                agregarHotel.Parameters.AddWithValue("@mail", txtMail.Text.Trim());
+                agregarHotel.Parameters.AddWithValue("@estrellas", cbEstrellas.SelectedIndex + 1);
+                agregarHotel.Parameters.AddWithValue("@hote_telefono", txtTelefono.Text.Trim());
+                agregarHotel.Parameters.AddWithValue("@calle", txtDireccion.Text.Trim());
+                agregarHotel.Parameters.AddWithValue("@numero_calle", Int32.Parse(txtNumero.Text.Trim()));
+                agregarHotel.Parameters.AddWithValue("@ciudad", txtCiudad.Text.Trim());
+                agregarHotel.Parameters.AddWithValue("@pais", txtPais.Text.Trim());
+                agregarHotel.Parameters.AddWithValue("@fecha", dtFechaCreacion.Value.ToString("yyyyMMdd"));
+                agregarHotel.ExecuteNonQuery();
+                string id_hotel = ObtenerIDHotel();
+                foreach (DataGridViewRow regimen in dgRegimenes.SelectedRows)
+                {
+                    SqlCommand agregarRegimenHotel = new SqlCommand("CAIA_UNLIMITED.sp_AgregarRegimenXHotel", db);
+                    agregarRegimenHotel.CommandType = CommandType.StoredProcedure;
+                    agregarRegimenHotel.Parameters.AddWithValue("@codigo_regimen", regimen.Cells[0].Value.ToString());
+                    agregarRegimenHotel.Parameters.AddWithValue("@id_hotel", id_hotel);
+                    agregarRegimenHotel.ExecuteNonQuery();
+                }
+                db.Close();
+
             }
-            db.Close();
+            catch
+            {
+                MessageBox.Show("No se pudo crear el hotel", "Error al crear hotel", MessageBoxButtons.OK);
+            }
         }
 
         private void reiniciarVista()

@@ -52,19 +52,27 @@ namespace FrbaHotel.AbmFacturacion
 
         private void ejecutarStoredProcedure()
         {
-            SqlConnection db = DataBase.conectarBD();
-            SqlCommand agregarPago = new SqlCommand("CAIA_UNLIMITED.sp_AlmacenarPagoTarjeta", db);
-            agregarPago.CommandType = CommandType.StoredProcedure;
-            agregarPago.Parameters.AddWithValue("@nombre", txtNombre.Text.Trim());
-            agregarPago.Parameters.AddWithValue("@apellido", txtApellido.Text.Trim());
-            agregarPago.Parameters.AddWithValue("@numero_tarjeta", txtNroTarjeta.Text.Trim());
-            agregarPago.Parameters.AddWithValue("@codigo_seguridad", txtCodigo.Text.Trim());
-            agregarPago.Parameters.AddWithValue("@banco", txtBanco.Text.Trim());
-            agregarPago.Parameters.AddWithValue("@fecha_vencimiento", dtVencimiento.Value);
-            agregarPago.Parameters.AddWithValue("@monto", Convert.ToDouble(txtTotal.Text.Trim()));
-            agregarPago.Parameters.AddWithValue("@numero_factura", numeroFactura);
-            agregarPago.ExecuteNonQuery();
-            db.Close();
+            try
+            {
+                SqlConnection db = DataBase.conectarBD();
+                SqlCommand agregarPago = new SqlCommand("CAIA_UNLIMITED.sp_AlmacenarPagoTarjeta", db);
+                agregarPago.CommandType = CommandType.StoredProcedure;
+                agregarPago.Parameters.AddWithValue("@nombre", txtNombre.Text.Trim());
+                agregarPago.Parameters.AddWithValue("@apellido", txtApellido.Text.Trim());
+                agregarPago.Parameters.AddWithValue("@numero_tarjeta", txtNroTarjeta.Text.Trim());
+                agregarPago.Parameters.AddWithValue("@codigo_seguridad", txtCodigo.Text.Trim());
+                agregarPago.Parameters.AddWithValue("@banco", txtBanco.Text.Trim());
+                agregarPago.Parameters.AddWithValue("@fecha_vencimiento", dtVencimiento.Value);
+                agregarPago.Parameters.AddWithValue("@monto", Convert.ToDouble(txtTotal.Text.Trim()));
+                agregarPago.Parameters.AddWithValue("@numero_factura", numeroFactura);
+                agregarPago.ExecuteNonQuery();
+                db.Close();
+
+            }
+            catch
+            {
+                MessageBox.Show("Error al realizar el pago con tarjeta", "Error de pago", MessageBoxButtons.OK);
+            }
         }
 
         private bool camposCorrectos()

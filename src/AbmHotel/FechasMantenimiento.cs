@@ -25,15 +25,23 @@ namespace FrbaHotel.AbmHotel
 
         private void ejecutarStoredProcedure()
         {
-            SqlConnection db = DataBase.conectarBD();
-            SqlCommand bajaHotel = new SqlCommand("CAIA_UNLIMITED.sp_BajaHotel", db);
-            bajaHotel.CommandType = CommandType.StoredProcedure;
-            bajaHotel.Parameters.AddWithValue("@id_hotel", hotelID);
-            bajaHotel.Parameters.AddWithValue("@fecha_inicio", dtInicio.Value);
-            bajaHotel.Parameters.AddWithValue("@fecha_fin", dtFin.Value);
-            bajaHotel.Parameters.AddWithValue("@descripcion", txtDescripcion.Text.Trim());
-            bajaHotel.ExecuteNonQuery();
-            db.Close();
+            try
+            {
+                SqlConnection db = DataBase.conectarBD();
+                SqlCommand bajaHotel = new SqlCommand("CAIA_UNLIMITED.sp_BajaHotel", db);
+                bajaHotel.CommandType = CommandType.StoredProcedure;
+                bajaHotel.Parameters.AddWithValue("@id_hotel", hotelID);
+                bajaHotel.Parameters.AddWithValue("@fecha_inicio", dtInicio.Value);
+                bajaHotel.Parameters.AddWithValue("@fecha_fin", dtFin.Value);
+                bajaHotel.Parameters.AddWithValue("@descripcion", txtDescripcion.Text.Trim());
+                bajaHotel.ExecuteNonQuery();
+                db.Close();
+            }
+            catch
+            {
+                MessageBox.Show("No se pudo llevar a cabo el mantenimiento", "Error de mantenimiento", MessageBoxButtons.OK);
+            }
+            
         }
 
         private void btnAtras_Click(object sender, EventArgs e)

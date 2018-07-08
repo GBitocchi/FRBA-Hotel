@@ -136,33 +136,41 @@ namespace FrbaHotel.AbmHotel
 
         private void ejecutarStoredProcedure()
         {
-            SqlConnection db = DataBase.conectarBD();
-            SqlCommand modificarHotel = new SqlCommand("CAIA_UNLIMITED.sp_ModificarHotel", db);
-            modificarHotel.CommandType = CommandType.StoredProcedure;
-            modificarHotel.Parameters.AddWithValue("@idHotel", Convert.ToInt32(hotel_id));
-            modificarHotel.Parameters.AddWithValue("@nombre_hotel", txtNombreHotel.Text.Trim());
-            modificarHotel.Parameters.AddWithValue("@mail", txtMail.Text.Trim());
-            modificarHotel.Parameters.AddWithValue("@estrellas", cbCantidadEstrellas.SelectedIndex + 1);
-            modificarHotel.Parameters.AddWithValue("@hote_telefono", txtTelefono.Text.Trim());
-            modificarHotel.Parameters.AddWithValue("@calle", txtDireccion.Text.Trim());
-            modificarHotel.Parameters.AddWithValue("@numero_calle", Int32.Parse(txtNumero.Text.Trim()));
-            modificarHotel.Parameters.AddWithValue("@ciudad", txtCiudad.Text.Trim());
-            modificarHotel.Parameters.AddWithValue("@pais", txtPais.Text.Trim());
-            modificarHotel.Parameters.AddWithValue("@fecha", dtFechaCreacion.Value.ToString("yyyyMMdd"));
-            modificarHotel.ExecuteNonQuery();
-            SqlCommand eliminarRegimenes = new SqlCommand("CAIA_UNLIMITED.sp_EliminarRegimenes", db);
-            eliminarRegimenes.CommandType = CommandType.StoredProcedure;
-            eliminarRegimenes.Parameters.AddWithValue("@hotel", hotel_id);
-            eliminarRegimenes.ExecuteNonQuery();
-            foreach (DataGridViewRow regimen in dgRegimenes.SelectedRows)
+            try
             {
-                SqlCommand agregarRegimen = new SqlCommand("CAIA_UNLIMITED.sp_AgregarRegimenXHotel", db);
-                agregarRegimen.CommandType = CommandType.StoredProcedure;
-                agregarRegimen.Parameters.AddWithValue("@codigo_regimen", regimen.Cells[0].Value.ToString());
-                agregarRegimen.Parameters.AddWithValue("@id_hotel", hotel_id);
-                agregarRegimen.ExecuteNonQuery();
+                SqlConnection db = DataBase.conectarBD();
+                SqlCommand modificarHotel = new SqlCommand("CAIA_UNLIMITED.sp_ModificarHotel", db);
+                modificarHotel.CommandType = CommandType.StoredProcedure;
+                modificarHotel.Parameters.AddWithValue("@idHotel", Convert.ToInt32(hotel_id));
+                modificarHotel.Parameters.AddWithValue("@nombre_hotel", txtNombreHotel.Text.Trim());
+                modificarHotel.Parameters.AddWithValue("@mail", txtMail.Text.Trim());
+                modificarHotel.Parameters.AddWithValue("@estrellas", cbCantidadEstrellas.SelectedIndex + 1);
+                modificarHotel.Parameters.AddWithValue("@hote_telefono", txtTelefono.Text.Trim());
+                modificarHotel.Parameters.AddWithValue("@calle", txtDireccion.Text.Trim());
+                modificarHotel.Parameters.AddWithValue("@numero_calle", Int32.Parse(txtNumero.Text.Trim()));
+                modificarHotel.Parameters.AddWithValue("@ciudad", txtCiudad.Text.Trim());
+                modificarHotel.Parameters.AddWithValue("@pais", txtPais.Text.Trim());
+                modificarHotel.Parameters.AddWithValue("@fecha", dtFechaCreacion.Value.ToString("yyyyMMdd"));
+                modificarHotel.ExecuteNonQuery();
+                SqlCommand eliminarRegimenes = new SqlCommand("CAIA_UNLIMITED.sp_EliminarRegimenes", db);
+                eliminarRegimenes.CommandType = CommandType.StoredProcedure;
+                eliminarRegimenes.Parameters.AddWithValue("@hotel", hotel_id);
+                eliminarRegimenes.ExecuteNonQuery();
+                foreach (DataGridViewRow regimen in dgRegimenes.SelectedRows)
+                {
+                    SqlCommand agregarRegimen = new SqlCommand("CAIA_UNLIMITED.sp_AgregarRegimenXHotel", db);
+                    agregarRegimen.CommandType = CommandType.StoredProcedure;
+                    agregarRegimen.Parameters.AddWithValue("@codigo_regimen", regimen.Cells[0].Value.ToString());
+                    agregarRegimen.Parameters.AddWithValue("@id_hotel", hotel_id);
+                    agregarRegimen.ExecuteNonQuery();
+                }
+                db.Close();
+
             }
-            db.Close();
+            catch
+            {
+                MessageBox.Show("No se pudo modificar el hotel", "Error al modificar hotel", MessageBoxButtons.OK);
+            }
         }
 
         private bool hayModificaciones()
