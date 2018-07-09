@@ -37,7 +37,7 @@ namespace FrbaHotel.AbmHabitacion
         {
             string numero_habitacion = dgBajaHabitacion.SelectedRows[0].Cells[0].Value.ToString();
             string estado_actual = dgBajaHabitacion.SelectedRows[0].Cells[3].Value.ToString();
-            if (estado_actual != "0")
+            if (estado_actual != "False")
             {
                 string baja_habitacion = "update CAIA_UNLIMITED.Habitacion set habi_habilitado = 0 where habi_numero =" + numero_habitacion + " and hote_id=" + hotel_id.ToString();
                 DataBase.procedureBD(baja_habitacion);
@@ -51,7 +51,8 @@ namespace FrbaHotel.AbmHabitacion
         {
             string numero_habitacion = dgBajaHabitacion.SelectedRows[0].Cells[0].Value.ToString();
             string estado_actual = dgBajaHabitacion.SelectedRows[0].Cells[3].Value.ToString();
-            if (estado_actual != "1") 
+            Console.WriteLine(estado_actual);
+            if (estado_actual != "True") 
             {
                 string alta_habitacion = "update CAIA_UNLIMITED.Habitacion set habi_habilitado = 1 where habi_numero =" + numero_habitacion + " and hote_id=" + hotel_id.ToString();
                 DataBase.procedureBD(alta_habitacion);
