@@ -46,7 +46,6 @@ namespace FrbaHotel.AbmUsuario
             lblErrorDocument.Visible = false;
             lblErrorDocumentType.Visible = false;
             lblErrorHotel.Visible = false;
-            lblErrorNacionality.Visible = false;
             lblErrorNoField.Visible = false;
             lblErrorNoName.Visible = false;
             lblErrorNoSurname.Visible = false;
@@ -71,7 +70,6 @@ namespace FrbaHotel.AbmUsuario
             textBoxDepartamento.Clear();
             textBoxDocument.Clear();
             textBoxDocumentType.Clear();
-            textBoxNacionality.Clear();
             textBoxPiso.Clear();
             textBoxPW.Clear();
             textBoxSurname.Clear();
@@ -500,12 +498,7 @@ namespace FrbaHotel.AbmUsuario
             {
                 lblErrorNumberValue.Visible = true;
                 lblErrorBlockNumber.Visible = true;
-            }
-            else if (textBoxPiso.Text != "" && (!int.TryParse(textBoxPiso.Text.Trim(), out parsedValue)))
-            {
-                lblErrorNumberValue.Visible = true;
-                lblErrorPiso.Visible = true;
-            }
+            }          
             else if (textBoxUserName.Text == "")
             {
                 lblErrorNoField.Visible = true;
@@ -545,11 +538,6 @@ namespace FrbaHotel.AbmUsuario
             {
                 lblErrorNoField.Visible = true;
                 lblErrorNoSurname.Visible = true;
-            }
-            else if (textBoxNacionality.Text == "")
-            {
-                lblErrorNoField.Visible = true;
-                lblErrorNacionality.Visible = true;
             }
             else if (textBoxBirthday.Text == "")
             {
@@ -615,7 +603,7 @@ namespace FrbaHotel.AbmUsuario
                             insertCommand.Parameters.AddWithValue("@password", encryptPassword(textBoxPW.Text.Trim()));
                             insertCommand.Parameters.AddWithValue("@name", textBoxUserName.Text.Trim());
                             insertCommand.Parameters.AddWithValue("@apellido", textBoxSurname.Text.Trim());
-                            insertCommand.Parameters.AddWithValue("@nacionalidad", textBoxNacionality.Text.Trim());
+                            insertCommand.Parameters.AddWithValue("@nacionalidad", DBNull.Value);
                             insertCommand.Parameters.AddWithValue("@tipoDocumento", textBoxDocumentType.Text.Trim());
                             insertCommand.Parameters.AddWithValue("@documento", Decimal.Parse(textBoxDocument.Text.Trim()));
                             insertCommand.Parameters.AddWithValue("@fechaNacimiento", DateTime.Parse(textBoxBirthday.Text.Trim()));
@@ -647,6 +635,12 @@ namespace FrbaHotel.AbmUsuario
                             }
                             else
                             {
+                                if (!int.TryParse(textBoxPiso.Text.Trim(), out parsedValue))
+                                {
+                                    lblErrorNumberValue.Visible = true;
+                                    lblErrorPiso.Visible = true;
+                                    return;
+                                }
                                 insertCommand.Parameters.AddWithValue("@piso", Decimal.Parse(textBoxPiso.Text.Trim()));
                             }
 
@@ -665,6 +659,12 @@ namespace FrbaHotel.AbmUsuario
                             }
                             else
                             {
+                                if (!int.TryParse(textBoxTelefono.Text.Trim(), out parsedValue))
+                                {
+                                    lblErrorNumberValue.Visible = true;
+                                    lblErrorTelefono.Visible = true;
+                                    return;
+                                }
                                 insertCommand.Parameters.AddWithValue("@telefono", Decimal.Parse(textBoxTelefono.Text.Trim()));
                             }
 

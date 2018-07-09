@@ -34,9 +34,6 @@
             this.textBoxDialogBirthday = new System.Windows.Forms.TextBox();
             this.lblErrorDialogBirthday = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
-            this.textBoxDialogNacionality = new System.Windows.Forms.TextBox();
-            this.lblErrorDialogNacionality = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.textBoxDialogDocument = new System.Windows.Forms.TextBox();
             this.lblErrorDialogDocument = new System.Windows.Forms.Label();
@@ -167,34 +164,6 @@
             this.label33.Size = new System.Drawing.Size(158, 20);
             this.label33.TabIndex = 118;
             this.label33.Text = "Fecha Nacimiento:";
-            // 
-            // textBoxDialogNacionality
-            // 
-            this.textBoxDialogNacionality.Location = new System.Drawing.Point(493, 155);
-            this.textBoxDialogNacionality.Name = "textBoxDialogNacionality";
-            this.textBoxDialogNacionality.Size = new System.Drawing.Size(139, 20);
-            this.textBoxDialogNacionality.TabIndex = 117;
-            // 
-            // lblErrorDialogNacionality
-            // 
-            this.lblErrorDialogNacionality.AutoSize = true;
-            this.lblErrorDialogNacionality.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErrorDialogNacionality.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogNacionality.Location = new System.Drawing.Point(460, 126);
-            this.lblErrorDialogNacionality.Name = "lblErrorDialogNacionality";
-            this.lblErrorDialogNacionality.Size = new System.Drawing.Size(24, 29);
-            this.lblErrorDialogNacionality.TabIndex = 116;
-            this.lblErrorDialogNacionality.Text = "*";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(490, 126);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(117, 20);
-            this.label31.TabIndex = 115;
-            this.label31.Text = "Nacionalidad:";
             // 
             // label30
             // 
@@ -794,7 +763,7 @@
             // 
             // textBoxDialogMail
             // 
-            this.textBoxDialogMail.Location = new System.Drawing.Point(494, 391);
+            this.textBoxDialogMail.Location = new System.Drawing.Point(493, 155);
             this.textBoxDialogMail.Name = "textBoxDialogMail";
             this.textBoxDialogMail.Size = new System.Drawing.Size(139, 20);
             this.textBoxDialogMail.TabIndex = 135;
@@ -804,7 +773,7 @@
             this.lblErrorDialogMail.AutoSize = true;
             this.lblErrorDialogMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogMail.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogMail.Location = new System.Drawing.Point(461, 349);
+            this.lblErrorDialogMail.Location = new System.Drawing.Point(459, 126);
             this.lblErrorDialogMail.Name = "lblErrorDialogMail";
             this.lblErrorDialogMail.Size = new System.Drawing.Size(24, 29);
             this.lblErrorDialogMail.TabIndex = 134;
@@ -814,7 +783,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(490, 349);
+            this.label8.Location = new System.Drawing.Point(492, 126);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(46, 20);
             this.label8.TabIndex = 133;
@@ -893,9 +862,6 @@
             this.Controls.Add(this.textBoxDialogBirthday);
             this.Controls.Add(this.lblErrorDialogBirthday);
             this.Controls.Add(this.label33);
-            this.Controls.Add(this.textBoxDialogNacionality);
-            this.Controls.Add(this.lblErrorDialogNacionality);
-            this.Controls.Add(this.label31);
             this.Controls.Add(this.label30);
             this.Controls.Add(this.textBoxDialogDocument);
             this.Controls.Add(this.lblErrorDialogDocument);
@@ -964,9 +930,6 @@
         private System.Windows.Forms.TextBox textBoxDialogBirthday;
         private System.Windows.Forms.Label lblErrorDialogBirthday;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.TextBox textBoxDialogNacionality;
-        private System.Windows.Forms.Label lblErrorDialogNacionality;
-        private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TextBox textBoxDialogDocument;
         private System.Windows.Forms.Label lblErrorDialogDocument;

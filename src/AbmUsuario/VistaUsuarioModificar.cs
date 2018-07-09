@@ -49,7 +49,6 @@ namespace FrbaHotel.AbmUsuario
             lblErrorDialogDocument.Visible = false;
             lblErrorDialogDocumentType.Visible = false;
             lblErrorDialogHotel.Visible = false;
-            lblErrorDialogNacionality.Visible = false;
             lblErrorDialogNoValueInField.Visible = false;
             lblErrorDialogUserName.Visible = false;
             lblErrorDialogSurname.Visible = false;
@@ -74,7 +73,6 @@ namespace FrbaHotel.AbmUsuario
             textBoxDialogCountry.Clear();
             textBoxDialogDepartamento.Clear();
             textBoxDialogDocument.Clear();
-            textBoxDialogNacionality.Clear();
             textBoxDialogDocumentType.Clear();
             textBoxDialogPiso.Clear();
             textBoxDialogPW.Clear();
@@ -137,7 +135,6 @@ namespace FrbaHotel.AbmUsuario
             textBoxDialogDepartamento.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Departamento"].Value.ToString();
             textBoxDialogCity.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Ciudad"].Value.ToString();
             textBoxDialogCountry.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Pais"].Value.ToString();
-            textBoxDialogNacionality.Text = usuarioAModificar.Rows[e.RowIndex].Cells["Pais"].Value.ToString();
 
             string queryUser = string.Format("SELECT r.rol_nombre as Rol FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Rol_X_Usuario ru on ru.rol_usur_id = u.usur_id JOIN CAIA_UNLIMITED.Rol r on ru.rol_usur_codigo = r.rol_codigo WHERE u.usur_username = '{0}'", usuarioAModificar.Rows[e.RowIndex].Cells["NombreDeUsuario"].Value.ToString());
             DataSet dsInfoUser = DataBase.realizarConsulta(queryUser);
@@ -347,12 +344,7 @@ namespace FrbaHotel.AbmUsuario
             {
                 lblErrorDialogNumericValue.Visible = true;
                 lblErrorDialogBlockNumber.Visible = true;
-            }
-            else if (textBoxDialogPiso.Text != "" && (!int.TryParse(textBoxDialogPiso.Text.Trim(), out parsedValue)))
-            {
-                lblErrorDialogNumericValue.Visible = true;
-                lblErrorDialogPiso.Visible = true;
-            }
+            }            
             else if (textBoxDialogUsername.Text == "")
             {
                 lblErrorDialogNoValueInField.Visible = true;
@@ -392,11 +384,6 @@ namespace FrbaHotel.AbmUsuario
             {
                 lblErrorDialogNoValueInField.Visible = true;
                 lblErrorDialogSurname.Visible = true;
-            }
-            else if (textBoxDialogNacionality.Text == "")
-            {
-                lblErrorDialogNoValueInField.Visible = true;
-                lblErrorDialogNacionality.Visible = true;
             }
             else if (textBoxDialogBirthday.Text == "")
             {
@@ -464,7 +451,7 @@ namespace FrbaHotel.AbmUsuario
                     insertCommand.Parameters.AddWithValue("@password", encryptPassword(textBoxDialogPW.Text.Trim()));
                     insertCommand.Parameters.AddWithValue("@name", textBoxDialogUsername.Text.Trim());
                     insertCommand.Parameters.AddWithValue("@apellido", textBoxDialogSurname.Text.Trim());
-                    insertCommand.Parameters.AddWithValue("@nacionalidad", textBoxDialogNacionality.Text.Trim());
+                    insertCommand.Parameters.AddWithValue("@nacionalidad", DBNull.Value);
                     insertCommand.Parameters.AddWithValue("@tipoDocumento", textBoxDialogDocumentType.Text.Trim());
                     insertCommand.Parameters.AddWithValue("@documento", Decimal.Parse(textBoxDialogDocument.Text.Trim()));
                     insertCommand.Parameters.AddWithValue("@fechaNacimiento", DateTime.Parse(textBoxDialogBirthday.Text.Trim()));
@@ -505,6 +492,12 @@ namespace FrbaHotel.AbmUsuario
                     }
                     else
                     {
+                        if (!int.TryParse(textBoxDialogPiso.Text.Trim(), out parsedValue))
+                        {
+                            lblErrorDialogNumericValue.Visible = true;
+                            lblErrorDialogPiso.Visible = true;
+                            return;
+                        }
                         insertCommand.Parameters.AddWithValue("@piso", Decimal.Parse(textBoxDialogPiso.Text.Trim()));
                     }
 
@@ -523,6 +516,12 @@ namespace FrbaHotel.AbmUsuario
                     }
                     else
                     {
+                        if (!int.TryParse(textBoxDialogTelefono.Text.Trim(), out parsedValue))
+                        {
+                            lblErrorDialogNumericValue.Visible = true;
+                            lblErrorDialogTelefono.Visible = true;
+                            return;
+                        }
                         insertCommand.Parameters.AddWithValue("@telefono", Decimal.Parse(textBoxDialogTelefono.Text.Trim()));
                     }
 

@@ -30,6 +30,8 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.lblBirthdayPost = new System.Windows.Forms.Label();
             this.lbllistBoxNoItem = new System.Windows.Forms.Label();
             this.textBoxMail = new System.Windows.Forms.TextBox();
@@ -47,9 +49,6 @@
             this.textBoxBirthday = new System.Windows.Forms.TextBox();
             this.lblErrorBirthday = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
-            this.textBoxNacionality = new System.Windows.Forms.TextBox();
-            this.lblErrorNacionality = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.textBoxDocument = new System.Windows.Forms.TextBox();
             this.lblErrorDocument = new System.Windows.Forms.Label();
@@ -108,8 +107,6 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dataGridViewEliminarUsuarios = new System.Windows.Forms.DataGridView();
             this.label37 = new System.Windows.Forms.Label();
-            this.btnSalir = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -151,9 +148,6 @@
             this.tabPage1.Controls.Add(this.textBoxBirthday);
             this.tabPage1.Controls.Add(this.lblErrorBirthday);
             this.tabPage1.Controls.Add(this.label33);
-            this.tabPage1.Controls.Add(this.textBoxNacionality);
-            this.tabPage1.Controls.Add(this.lblErrorNacionality);
-            this.tabPage1.Controls.Add(this.label31);
             this.tabPage1.Controls.Add(this.label30);
             this.tabPage1.Controls.Add(this.textBoxDocument);
             this.tabPage1.Controls.Add(this.lblErrorDocument);
@@ -214,6 +208,28 @@
             this.tabPage1.Text = "Añadir";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
+            // btnSalir
+            // 
+            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.Location = new System.Drawing.Point(984, 690);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(75, 34);
+            this.btnSalir.TabIndex = 2;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(975, 424);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(192, 34);
+            this.button1.TabIndex = 73;
+            this.button1.Text = "Seleccionar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            // 
             // lblBirthdayPost
             // 
             this.lblBirthdayPost.AutoSize = true;
@@ -238,7 +254,7 @@
             // 
             // textBoxMail
             // 
-            this.textBoxMail.Location = new System.Drawing.Point(811, 360);
+            this.textBoxMail.Location = new System.Drawing.Point(811, 151);
             this.textBoxMail.Name = "textBoxMail";
             this.textBoxMail.Size = new System.Drawing.Size(139, 20);
             this.textBoxMail.TabIndex = 70;
@@ -248,7 +264,7 @@
             this.lblErrorMail.AutoSize = true;
             this.lblErrorMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorMail.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorMail.Location = new System.Drawing.Point(778, 324);
+            this.lblErrorMail.Location = new System.Drawing.Point(774, 119);
             this.lblErrorMail.Name = "lblErrorMail";
             this.lblErrorMail.Size = new System.Drawing.Size(24, 29);
             this.lblErrorMail.TabIndex = 69;
@@ -258,7 +274,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(807, 324);
+            this.label4.Location = new System.Drawing.Point(804, 119);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 20);
             this.label4.TabIndex = 68;
@@ -386,37 +402,6 @@
             this.label33.TabIndex = 56;
             this.label33.Text = "Fecha Nacimiento:";
             this.label33.Click += new System.EventHandler(this.label33_Click);
-            // 
-            // textBoxNacionality
-            // 
-            this.textBoxNacionality.Location = new System.Drawing.Point(808, 151);
-            this.textBoxNacionality.Name = "textBoxNacionality";
-            this.textBoxNacionality.Size = new System.Drawing.Size(139, 20);
-            this.textBoxNacionality.TabIndex = 55;
-            this.textBoxNacionality.TextChanged += new System.EventHandler(this.textBox13_TextChanged);
-            // 
-            // lblErrorNacionality
-            // 
-            this.lblErrorNacionality.AutoSize = true;
-            this.lblErrorNacionality.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErrorNacionality.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorNacionality.Location = new System.Drawing.Point(775, 122);
-            this.lblErrorNacionality.Name = "lblErrorNacionality";
-            this.lblErrorNacionality.Size = new System.Drawing.Size(24, 29);
-            this.lblErrorNacionality.TabIndex = 54;
-            this.lblErrorNacionality.Text = "*";
-            this.lblErrorNacionality.Click += new System.EventHandler(this.label32_Click);
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(805, 122);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(117, 20);
-            this.label31.TabIndex = 53;
-            this.label31.Text = "Nacionalidad:";
-            this.label31.Click += new System.EventHandler(this.label31_Click);
             // 
             // label30
             // 
@@ -1024,28 +1009,6 @@
             this.label37.TabIndex = 2;
             this.label37.Text = "Eliminar Usuarios";
             // 
-            // btnSalir
-            // 
-            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.Location = new System.Drawing.Point(984, 690);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 34);
-            this.btnSalir.TabIndex = 2;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(975, 424);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(192, 34);
-            this.button1.TabIndex = 73;
-            this.button1.Text = "Seleccionar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_2);
-            // 
             // VistaUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1128,9 +1091,6 @@
         private System.Windows.Forms.TextBox textBoxBirthday;
         private System.Windows.Forms.Label lblErrorBirthday;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.TextBox textBoxNacionality;
-        private System.Windows.Forms.Label lblErrorNacionality;
-        private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TextBox textBoxDocument;
         private System.Windows.Forms.Label label35;
