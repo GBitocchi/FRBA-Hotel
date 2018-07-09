@@ -1746,7 +1746,7 @@ GO
 
 -----------Cancelar reserva
 
-CREATE PROCEDURE [CAIA_UNLIMITED].[sp_CancelarReservaUsuario] (@codigo_reserva numeric(18,0), @motivo nvarchar(255), @fecha_cancelacion datetime, @usuario nvarchar(255),@estado numeric(18,0))
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_CancelarReservaUsuario] (@codigo_reserva numeric(18,0), @motivo nvarchar(255), @fecha_cancelacion datetime, @usuario nvarchar(255),@estado nvarchar(255))
 AS
 BEGIN	
   SET NOCOUNT ON;
@@ -1761,7 +1761,9 @@ BEGIN
 		insert into CAIA_UNLIMITED.Reserva_Cancelada(reca_rese,reca_motivo,reca_fecha_cancelacion,reca_usuario)
 		values (@codigo_reserva,@motivo,convert(datetime,@fecha_cancelacion,120),@usuario)
 		update CAIA_UNLIMITED.Reserva 
-		set esre_codigo=@estado where rese_codigo = @codigo_reserva
+
+		set esre_codigo=(SELECT esre_codigo FROM CAIA_UNLIMITED.Estado_Reserva where esre_detalle = @estado)where rese_codigo = @codigo_reserva
+
 	lbexit:
       IF @trancount = 0
       COMMIT;
@@ -1789,7 +1791,7 @@ END
 GO
 
 
-CREATE PROCEDURE [CAIA_UNLIMITED].[sp_CancelarReservaHuesped] (@codigo_reserva numeric(18,0), @motivo nvarchar(255), @fecha_cancelacion datetime,@estado numeric(18,0))
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_CancelarReservaHuesped] (@codigo_reserva numeric(18,0), @motivo nvarchar(255), @fecha_cancelacion datetime)
 AS
 BEGIN	
   SET NOCOUNT ON;
@@ -1804,7 +1806,7 @@ BEGIN
 		insert into CAIA_UNLIMITED.Reserva_Cancelada(reca_rese,reca_motivo,reca_fecha_cancelacion)
 		values (@codigo_reserva,@motivo,convert(datetime,@fecha_cancelacion,120))
 		update CAIA_UNLIMITED.Reserva 
-		set esre_codigo=@estado where rese_codigo = @codigo_reserva
+		set esre_codigo=(SELECT esre_codigo FROM CAIA_UNLIMITED.Estado_Reserva where esre_detalle = 'Reserva cancelada por cliente')  where rese_codigo = @codigo_reserva
 	lbexit:
       IF @trancount = 0
       COMMIT;
@@ -1848,7 +1850,7 @@ BEGIN
 		insert into CAIA_UNLIMITED.Estadia(esta_fecha_inicio,rese_codigo,usur_checkin)
 		values (convert(datetime,@fecha_inicio,120),@codigo_reserva,@usuario)
 		update CAIA_UNLIMITED.Reserva 
-		set esre_codigo=5 where rese_codigo = @codigo_reserva
+		set esre_codigo=(SELECT esre_codigo FROM CAIA_UNLIMITED.Estado_Reserva where esre_detalle = 'Reserva con ingreso') where rese_codigo = @codigo_reserva
 	lbexit:
       IF @trancount = 0
       COMMIT;

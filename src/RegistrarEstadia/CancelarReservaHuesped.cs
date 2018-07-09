@@ -125,7 +125,7 @@ namespace FrbaHotel.RegistrarEstadia
             string idUsuario = idUsuarioObtenido.Rows[0][0].ToString();
 
             cancelarReserva.Parameters.AddWithValue("@usuario", Convert.ToInt32(idUsuario));
-            cancelarReserva.Parameters.AddWithValue("@estado", 4);
+            cancelarReserva.Parameters.AddWithValue("@estado", "Reserva cancelada por Non-Show");
             cancelarReserva.ExecuteNonQuery();
             db.Close();
         }

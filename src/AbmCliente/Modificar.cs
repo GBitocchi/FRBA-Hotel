@@ -442,8 +442,9 @@ namespace FrbaHotel.AbmCliente
                 {
                            ejecutarStoredProcedureDarDeBaja();
                             MessageBox.Show("Cliente dado de baja exitosamente", "Baja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            
+                            new MenuModificarYBaja().Show();
                             this.Hide();
-                            new MenuModificarYBaja().Show();                       
                 }
                 else
                 {
@@ -481,8 +482,9 @@ namespace FrbaHotel.AbmCliente
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.Hide();
+           
             new MenuModificarYBaja().Show();
+            this.Hide();
         }
 
     }

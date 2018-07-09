@@ -159,16 +159,11 @@ namespace FrbaHotel.AbmCliente
             string documento = dgClientes.SelectedRows[0].Cells[3].Value.ToString(); ;
             string tipo = dgClientes.SelectedRows[0].Cells[4].Value.ToString(); ;
 
+            this.Hide();
+            new Modificar(mail,documento,tipo).Show();
             
-            new Modificar(mail,documento,tipo).ShowDialog();
-            this.Show();
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new MenuClientes().Show();
-        }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {

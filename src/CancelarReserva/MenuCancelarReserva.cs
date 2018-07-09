@@ -246,7 +246,6 @@ namespace FrbaHotel.CancelarReserva
             
             cancelarReserva.Parameters.AddWithValue("@fecha_cancelacion", DateTime.Parse(txtCancelacion.Text));
             
-            cancelarReserva.Parameters.AddWithValue("@estado", 3);
             
             cancelarReserva.ExecuteNonQuery();
             db.Close();
@@ -267,7 +266,7 @@ namespace FrbaHotel.CancelarReserva
             string idUsuario = idUsuarioObtenido.Rows[0][0].ToString();
 
             cancelarReserva.Parameters.AddWithValue("@usuario",Convert.ToInt32(idUsuario));
-            cancelarReserva.Parameters.AddWithValue("@estado", 2);
+            cancelarReserva.Parameters.AddWithValue("@estado", "Reserva cancelada por recepcion");
             cancelarReserva.ExecuteNonQuery();
             db.Close();
         }
