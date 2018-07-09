@@ -534,7 +534,7 @@ insert into CAIA_UNLIMITED.Rol_X_Usuario (rol_usur_id, rol_usur_codigo) values(0
 insert into CAIA_UNLIMITED.Funcionalidad (func_detalle) values('ABM_ROL'), ('ABM_USUARIO'), ('ABM_CLIENTE'), ('ABM_HOTEL'), ('ABM_HABITACION'), ('ABM_ESTADIA'), ('RESERVA'), ('CANCELAR_RESERVA'), ('ESTADIA'), ('CONSUMIBLES'), ('FACTURAR'), ('LISTADO_ESTADISTICO') 
 
 insert into CAIA_UNLIMITED.Funcionalidad_X_Rol (func_rol_codigo_rol, func_rol_codigo_func) 
-values (0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (0, 7), (0, 8), (0, 9), (0, 10), (0, 11)
+values (0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (0, 7), (0, 8), (0, 9), (0, 10), (0, 11), (2, 6), (2, 7), (1, 2), (1, 6), (1, 7), (1, 8), (1, 9), (1, 10), (1, 11)
 
 insert into CAIA_UNLIMITED.Estado_Reserva (esre_detalle)
 values ('Reserva correcta'), ('Reserva modificada'), ('Reserva cancelada por recepcion'),
