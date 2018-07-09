@@ -14,8 +14,9 @@ namespace FrbaHotel.RegistrarEstadia
 {
     public partial class CrearHuesped : Form
     {
+        private Registrar formulario;
         string codigoReserva;
-        public CrearHuesped(string mail, string tipo, string numero,string cod)
+        public CrearHuesped(string mail, string tipo, string numero,string cod, Registrar formuRegistrar)
         {
             InitializeComponent();
             codigoReserva=cod;
@@ -23,6 +24,8 @@ namespace FrbaHotel.RegistrarEstadia
             txtTipo_Identificacion.Text=tipo;
             txtNumero_Identificacion.Text=numero;
             btnCrear.DialogResult = DialogResult.OK;
+
+            this.formulario = formuRegistrar;
         }
 
         private bool camposCompletos()
@@ -109,11 +112,12 @@ namespace FrbaHotel.RegistrarEstadia
                             {
                                 ejecutarStoredProcedureCrear();
                                 MessageBox.Show("Cliente " + txtNombre.Text.Trim() + " ingresado correctamente.", "Ingresado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                
                                 string[] formato = { txtEmail.Text.Trim(), txtTipo_Identificacion.Text.Trim(), txtNumero_Identificacion.Text.Trim() };
                                 var listViewItem = new ListViewItem(formato);
+                                formulario.listaHuesped.Items.Add(listViewItem);
                                 
-                                
-                                this.Hide();
+                                this.Close();
                             }
                             else
                             {

@@ -86,15 +86,8 @@ namespace FrbaHotel.RegistrarEstadia
 
                             if (DataBase.realizarConsulta(usuarioIngresado).Tables[0].Rows.Count == 0)
                             {
-                                CrearHuesped huespedACrear = new CrearHuesped(txtMail.Text.Trim(), txtTipo.Text.Trim(), txtNumero.Text.Trim(), codigoReserva);
-
-                                DialogResult respuesta = huespedACrear.ShowDialog();
-                                if (respuesta == DialogResult.OK)
-                                {
-                                    string[] formato = { txtMail.Text.Trim(), txtTipo.Text.Trim(), txtNumero.Text.Trim() };
-                                    var listViewItem = new ListViewItem(formato);
-                                    listaHuesped.Items.Add(listViewItem);
-                                }
+                                new CrearHuesped(txtMail.Text.Trim(), txtTipo.Text.Trim(), txtNumero.Text.Trim(), codigoReserva,this).Show();
+                                                              
 
                                 txtMail.Clear();
                                 txtTipo.Clear();
@@ -224,7 +217,7 @@ namespace FrbaHotel.RegistrarEstadia
                                         MessageBox.Show("El codigo de estadia es: "+estadiaId, "Registrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         limpiarTodo();
                                     }
-                                    else if (ts.Days>0 )
+                                    else if (ts.Days<0 )
                                     {
                                         MessageBox.Show("Ingreso anticipado a la fecha de ingreso establecido en la reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }

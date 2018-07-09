@@ -298,10 +298,10 @@
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnIngresar;
-        private System.Windows.Forms.ListView listaHuesped;
         private System.Windows.Forms.ColumnHeader Email;
         private System.Windows.Forms.ColumnHeader Nro;
         private System.Windows.Forms.ColumnHeader Tipo;
         private System.Windows.Forms.Button btnVolver;
+        public System.Windows.Forms.ListView listaHuesped;
     }
 }
