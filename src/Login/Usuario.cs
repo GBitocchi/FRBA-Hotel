@@ -114,8 +114,8 @@ namespace FrbaHotel.Login
                             dpAutentificacion.Update(dsAutentificacion.Tables[0]);
                             dsAutentificacion.Tables[0].AcceptChanges();
                             autentificacionConnection.Close();
-
-                            string hotelesUser = string.Format("SELECT h.hote_id as Hotel, h.hote_nombre as HotelNombre,CONCAT(hote_id, '-', hote_nombre) as HotelCompuesto FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on u.usur_id = uh.usur_hote_idusur JOIN CAIA_UNLIMITED.Hotel h on h.hote_id = uh.usur_hote_idhote WHERE u.usur_username = '{0}'", txtUser.Text.Trim());
+                            
+                            string hotelesUser = string.Format("SELECT h.hote_id as Hotel, h.hote_nombre as HotelNombre,CONCAT(d.dire_dom_calle,'-',d.dire_nro_calle) as HotelCompuesto FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on u.usur_id = uh.usur_hote_idusur JOIN CAIA_UNLIMITED.Hotel h on h.hote_id = uh.usur_hote_idhote INNER JOIN CAIA_UNLIMITED.Direccion d on (h.dire_id = d.dire_id) WHERE u.usur_username = '{0}'", txtUser.Text.Trim());
                             DataSet dsHotelesUser = DataBase.realizarConsulta(hotelesUser);
                             string rolesUser = string.Format("SELECT r.rol_codigo as Rol, r.rol_nombre as RolNombre FROM CAIA_UNLIMITED.Rol r JOIN CAIA_UNLIMITED.Rol_X_Usuario ru on ru.rol_usur_codigo = r.rol_codigo JOIN CAIA_UNLIMITED.Usuario u on u.usur_id = ru.rol_usur_id WHERE u.usur_username = '{0}' AND r.rol_estado = 1 ", txtUser.Text.Trim());
                             DataSet dsRolesUser = DataBase.realizarConsulta(rolesUser);
@@ -125,9 +125,10 @@ namespace FrbaHotel.Login
 
                             this.Hide();
 
-                            if ((dsHotelesUser == null && dsHotelesUser.Tables.Count < 1) || (dsRolesUser == null && dsRolesUser.Tables.Count < 1))
+                            if ((dsHotelesUser == null || dsHotelesUser.Tables.Count <= 0 || dsHotelesUser.Tables[0].Rows.Count <= 0) || (dsRolesUser == null || dsRolesUser.Tables.Count <= 0 || dsRolesUser.Tables[0].Rows.Count <= 0))
                             {
                                 MessageBox.Show("El usuario no tiene asignado ningun hotel o rol. Contacte con el administrador");
+                                new Usuario().Show();
                             }
                             else if (dsHotelesUser != null && dsHotelesUser.Tables.Count > 0 && (dsHotelesUser.Tables[0].Rows.Count) > 1)
                             {
