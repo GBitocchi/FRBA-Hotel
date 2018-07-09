@@ -27,11 +27,6 @@ namespace FrbaHotel.GenerarModificacionReserva
         TimeSpan difference;
         HabitacionalitiesCollection lh;
 
-        public static bool Between(DateTime input, DateTime date1, DateTime date2)
-        {
-            return (input > date1 && input < date2);
-        }
-
         private void cargarComboBoxRegimenes()
         {
             string regimenes = string.Format("SELECT DISTINCT r.regi_descripcion as Descripcion, r.regi_codigo as Codigo FROM CAIA_UNLIMITED.Regimen r JOIN CAIA_UNLIMITED.Regimen_X_Hotel rh on r.regi_codigo = rh.regi_hote_codigo JOIN CAIA_UNLIMITED.Hotel h on h.hote_id = rh.regi_hote_id WHERE h.hote_id = '{0}' AND r.regi_estado = 1", this.hotel);
@@ -312,8 +307,9 @@ namespace FrbaHotel.GenerarModificacionReserva
                         {
                             DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
                             DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());
-                            bool estaEntreMedio = Between(fechaElegidaInicio, fechaInicioHotel, fechaFinHotel) || Between(fechaElegidaFin, fechaInicioHotel, fechaFinHotel);
-                            if(estaEntreMedio)
+                            string otrosMantenimientos = string.Format("select * from CAIA_UNLIMITED.Mantenimiento M join CAIA_UNLIMITED.Hotel H on (H.hote_id = M.hote_id) where H.hote_id = {0} and ((DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{1}', 120)) >= 0 and DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{1}', 120)) <= DATEDIFF(day, mant_fecha_inicio, mant_fecha_fin)) or (DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{2}', 120)) >= 0 and DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{2}', 120)) <= DATEDIFF(day, mant_fecha_inicio, mant_fecha_fin)) or (DATEDIFF(day, mant_fecha_inicio, '{1}') <= 0 and DATEDIFF(day, mant_fecha_fin, '{2}') >=0)) and hote_habilitado = 0",this.hotel, fechaElegidaInicio, fechaElegidaFin);
+                            DataSet dsCheckMantenimiento = DataBase.realizarConsulta(otrosMantenimientos);
+                            if (dsCheckMantenimiento != null && dsCheckMantenimiento.Tables.Count > 0 && dsCheckMantenimiento.Tables[0].Rows.Count > 0)
                             {
                                 MessageBox.Show("El Hotel no esta abierto entre las fechas elegidas. Por favor, seleccione otras.");
                                 return;
@@ -459,7 +455,9 @@ namespace FrbaHotel.GenerarModificacionReserva
                     {
                         DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
                         DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());
-                        if (((DateTime.Compare(fechaElegidaInicio, fechaInicioHotel)) < 0) || ((DateTime.Compare(fechaElegidaFin, fechaFinHotel)) > 0))
+                        string otrosMantenimientos = string.Format("select * from CAIA_UNLIMITED.Mantenimiento M join CAIA_UNLIMITED.Hotel H on (H.hote_id = M.hote_id) where H.hote_id = {0} and ((DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{1}', 120)) >= 0 and DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{1}', 120)) <= DATEDIFF(day, mant_fecha_inicio, mant_fecha_fin)) or (DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{2}', 120)) >= 0 and DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{2}', 120)) <= DATEDIFF(day, mant_fecha_inicio, mant_fecha_fin)) or (DATEDIFF(day, mant_fecha_inicio, '{1}') <= 0 and DATEDIFF(day, mant_fecha_fin, '{2}') >=0)) and hote_habilitado = 0", this.hotel, fechaElegidaInicio, fechaElegidaFin);
+                        DataSet dsCheckMantenimiento = DataBase.realizarConsulta(otrosMantenimientos);
+                        if (dsCheckMantenimiento != null && dsCheckMantenimiento.Tables.Count > 0 && dsCheckMantenimiento.Tables[0].Rows.Count > 0)
                         {
                             MessageBox.Show("El Hotel no esta abierto entre las fechas elegidas. Por favor, seleccione otras.");
                             return;
@@ -614,7 +612,9 @@ namespace FrbaHotel.GenerarModificacionReserva
                         {
                             DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
                             DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());
-                            if (((DateTime.Compare(fechaElegidaInicio, fechaInicioHotel)) < 0) || ((DateTime.Compare(fechaElegidaFin, fechaFinHotel)) > 0))
+                            string otrosMantenimientos = string.Format("select * from CAIA_UNLIMITED.Mantenimiento M join CAIA_UNLIMITED.Hotel H on (H.hote_id = M.hote_id) where H.hote_id = {0} and ((DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{1}', 120)) >= 0 and DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{1}', 120)) <= DATEDIFF(day, mant_fecha_inicio, mant_fecha_fin)) or (DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{2}', 120)) >= 0 and DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{2}', 120)) <= DATEDIFF(day, mant_fecha_inicio, mant_fecha_fin)) or (DATEDIFF(day, mant_fecha_inicio, '{1}') <= 0 and DATEDIFF(day, mant_fecha_fin, '{2}') >=0)) and hote_habilitado = 0", this.hotel, fechaElegidaInicio, fechaElegidaFin);
+                            DataSet dsCheckMantenimiento = DataBase.realizarConsulta(otrosMantenimientos);
+                            if (dsCheckMantenimiento != null && dsCheckMantenimiento.Tables.Count > 0 && dsCheckMantenimiento.Tables[0].Rows.Count > 0)
                             {
                                 MessageBox.Show("El Hotel no esta abierto entre las fechas elegidas. Por favor, seleccione otras.");
                                 return;
@@ -760,7 +760,9 @@ namespace FrbaHotel.GenerarModificacionReserva
                     {
                         DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
                         DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());
-                        if (((DateTime.Compare(fechaElegidaInicio, fechaInicioHotel)) < 0) || ((DateTime.Compare(fechaElegidaFin, fechaFinHotel)) > 0))
+                        string otrosMantenimientos = string.Format("select * from CAIA_UNLIMITED.Mantenimiento M join CAIA_UNLIMITED.Hotel H on (H.hote_id = M.hote_id) where H.hote_id = {0} and ((DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{1}', 120)) >= 0 and DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{1}', 120)) <= DATEDIFF(day, mant_fecha_inicio, mant_fecha_fin)) or (DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{2}', 120)) >= 0 and DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{2}', 120)) <= DATEDIFF(day, mant_fecha_inicio, mant_fecha_fin)) or (DATEDIFF(day, mant_fecha_inicio, '{1}') <= 0 and DATEDIFF(day, mant_fecha_fin, '{2}') >=0)) and hote_habilitado = 0", this.hotel, fechaElegidaInicio, fechaElegidaFin);
+                        DataSet dsCheckMantenimiento = DataBase.realizarConsulta(otrosMantenimientos);
+                        if (dsCheckMantenimiento != null && dsCheckMantenimiento.Tables.Count > 0 && dsCheckMantenimiento.Tables[0].Rows.Count > 0)
                         {
                             MessageBox.Show("El Hotel no esta abierto entre las fechas elegidas. Por favor, seleccione otras.");
                             return;
