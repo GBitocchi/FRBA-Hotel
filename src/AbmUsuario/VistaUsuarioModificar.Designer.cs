@@ -493,7 +493,7 @@
             // buttonDialogQuitarHotel
             // 
             this.buttonDialogQuitarHotel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDialogQuitarHotel.Location = new System.Drawing.Point(242, 618);
+            this.buttonDialogQuitarHotel.Location = new System.Drawing.Point(349, 645);
             this.buttonDialogQuitarHotel.Name = "buttonDialogQuitarHotel";
             this.buttonDialogQuitarHotel.Size = new System.Drawing.Size(86, 32);
             this.buttonDialogQuitarHotel.TabIndex = 82;
@@ -504,7 +504,7 @@
             // buttonDialogAgregarHotel
             // 
             this.buttonDialogAgregarHotel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDialogAgregarHotel.Location = new System.Drawing.Point(242, 573);
+            this.buttonDialogAgregarHotel.Location = new System.Drawing.Point(349, 597);
             this.buttonDialogAgregarHotel.Name = "buttonDialogAgregarHotel";
             this.buttonDialogAgregarHotel.Size = new System.Drawing.Size(86, 32);
             this.buttonDialogAgregarHotel.TabIndex = 81;
@@ -517,7 +517,7 @@
             this.listBoxDialogHoteles.FormattingEnabled = true;
             this.listBoxDialogHoteles.Location = new System.Drawing.Point(42, 573);
             this.listBoxDialogHoteles.Name = "listBoxDialogHoteles";
-            this.listBoxDialogHoteles.Size = new System.Drawing.Size(173, 121);
+            this.listBoxDialogHoteles.Size = new System.Drawing.Size(286, 134);
             this.listBoxDialogHoteles.TabIndex = 80;
             // 
             // comboBoxDialogHoteles
@@ -526,7 +526,7 @@
             this.comboBoxDialogHoteles.FormattingEnabled = true;
             this.comboBoxDialogHoteles.Location = new System.Drawing.Point(42, 530);
             this.comboBoxDialogHoteles.Name = "comboBoxDialogHoteles";
-            this.comboBoxDialogHoteles.Size = new System.Drawing.Size(188, 21);
+            this.comboBoxDialogHoteles.Size = new System.Drawing.Size(286, 21);
             this.comboBoxDialogHoteles.TabIndex = 79;
             // 
             // lblErrorDialogHotel

@@ -387,7 +387,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
                         MessageBox.Show(msg);
 
-                        if (MessageBox.Show("El costo total de la reserva es de: US$ " + costoTotal.ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                        if (MessageBox.Show("El costo total de la reserva es de: US$ " + (costoTotal*difference.Days).ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                         {
                             return;
                         }
@@ -535,7 +535,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
                     MessageBox.Show(msg);
 
-                    if (MessageBox.Show("El costo total de la reserva es de: US$ " + costoTotal.ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                    if (MessageBox.Show("El costo total de la reserva es de: US$ " + (costoTotal * difference.Days).ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                     {
                         return;
                     }
@@ -692,7 +692,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
                         MessageBox.Show(msg);
 
-                        if (MessageBox.Show("El costo total de la reserva es de: US$ " + costoTotal.ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                        if (MessageBox.Show("El costo total de la reserva es de: US$ " + (costoTotal * difference.Days).ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                         {
                             return;
                         }
@@ -840,7 +840,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
                     MessageBox.Show(msg);
 
-                    if (MessageBox.Show("El costo total de la reserva es de: US$ " + costoTotal.ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                    if (MessageBox.Show("El costo total de la reserva es de: US$ " + (costoTotal * difference.Days).ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                     {
                         return;
                     }
@@ -1142,35 +1142,47 @@ namespace FrbaHotel.GenerarModificacionReserva
                 this.existeCliente = true;
                 this.mail = clienteBuscarte.clienteElegidoMail;
                 this.documento = clienteBuscarte.clienteElegidoDocumento;
-                lblNombre.Visible = false;
+                lblNombre.Visible = true;
                 lblErrorNombre.Visible = false;
-                textBoxNombre.Visible = false;
-                lblApellido.Visible = false;
+                textBoxNombre.Visible = true;
+                textBoxNombre.Text = clienteBuscarte.clienteElegidoNombre;
+                textBoxNombre.ReadOnly = true;             
+                lblApellido.Visible = true;
                 lblErrorApellido.Visible = false;
-                textBoxApellido.Visible = false;
-                lblMail.Visible = false;
+                textBoxApellido.Text = clienteBuscarte.clienteElegidoApellido;
+                textBoxApellido.ReadOnly = true;
+                lblMail.Visible = true;
                 lblErrorMail.Visible = false;
-                textBoxMail.Visible = false;
-                lblDocumento.Visible = false;
+                textBoxMail.Text = clienteBuscarte.clienteElegidoMail;
+                textBoxMail.ReadOnly = true;
+                lblDocumento.Visible = true;
                 lblErrorDocumento.Visible = false;
-                textBoxDocumento.Visible = false;
-                lblTipoDocumentoCliente.Visible = false;
-                comboBoxTipoDocumentoCliente.Visible = false;
-                lblDireccion.Visible = false;
+                textBoxDocumento.Text = clienteBuscarte.clienteElegidoDocumento.ToString();
+                textBoxDocumento.ReadOnly = true;
+                lblTipoDocumentoCliente.Visible = true;
+                comboBoxTipoDocumentoCliente.Visible = true;
+                comboBoxTipoDocumentoCliente.SelectedIndex = comboBoxTipoDocumentoCliente.FindString(clienteBuscarte.clienteElegidoTipoDocumento, 0);
+                comboBoxTipoDocumentoCliente.Enabled = false;
+                lblDireccion.Visible = true;
                 lblErrorDireccion.Visible = false;
-                textBoxDireccion.Visible = false;
-                lblTelefono.Visible = false;
+                textBoxDireccion.Text = clienteBuscarte.clienteElegidoDireccion;
+                textBoxDireccion.ReadOnly = true;
+                lblTelefono.Visible = true;
                 lblErrorTelefono.Visible = false;
-                textBoxTelefono.Visible = false;
-                lblNumeroDireccion.Visible = false;
+                textBoxTelefono.Text = clienteBuscarte.clienteElegidoTelefono;
+                textBoxTelefono.ReadOnly = true;
+                lblNumeroDireccion.Visible = true;
                 lblNroDireccion.Visible = false;
-                textBoxNumeroDireccion.Visible = false;
-                lblCity.Visible = false;
+                textBoxNumeroDireccion.Text = clienteBuscarte.clienteElegidoNumeroDireccion.ToString();
+                textBoxNumeroDireccion.ReadOnly = true;
+                lblCity.Visible = true;
                 lblErrorCiudad.Visible = false;
-                textBoxCiudad.Visible = false;
-                lblPais.Visible = false;
+                textBoxCiudad.Text = clienteBuscarte.clienteElegidoCiudad;
+                textBoxCiudad.ReadOnly = true;
+                lblPais.Visible = true;
                 lblErrorPais.Visible = false;
-                textBoxPais.Visible = false;
+                textBoxPais.Text = clienteBuscarte.clienteElegidoPais;
+                textBoxPais.ReadOnly = true;
             }
         }
 

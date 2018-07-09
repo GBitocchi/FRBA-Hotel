@@ -756,7 +756,7 @@
             // buttonQuitarHotel
             // 
             this.buttonQuitarHotel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonQuitarHotel.Location = new System.Drawing.Point(254, 559);
+            this.buttonQuitarHotel.Location = new System.Drawing.Point(355, 577);
             this.buttonQuitarHotel.Name = "buttonQuitarHotel";
             this.buttonQuitarHotel.Size = new System.Drawing.Size(86, 32);
             this.buttonQuitarHotel.TabIndex = 20;
@@ -767,7 +767,7 @@
             // buttonAgregarHotel
             // 
             this.buttonAgregarHotel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAgregarHotel.Location = new System.Drawing.Point(254, 514);
+            this.buttonAgregarHotel.Location = new System.Drawing.Point(355, 530);
             this.buttonAgregarHotel.Name = "buttonAgregarHotel";
             this.buttonAgregarHotel.Size = new System.Drawing.Size(86, 32);
             this.buttonAgregarHotel.TabIndex = 19;
@@ -780,7 +780,7 @@
             this.listBoxHoteles.FormattingEnabled = true;
             this.listBoxHoteles.Location = new System.Drawing.Point(54, 514);
             this.listBoxHoteles.Name = "listBoxHoteles";
-            this.listBoxHoteles.Size = new System.Drawing.Size(173, 121);
+            this.listBoxHoteles.Size = new System.Drawing.Size(286, 134);
             this.listBoxHoteles.TabIndex = 18;
             // 
             // comboBoxHoteles
@@ -789,7 +789,7 @@
             this.comboBoxHoteles.FormattingEnabled = true;
             this.comboBoxHoteles.Location = new System.Drawing.Point(54, 471);
             this.comboBoxHoteles.Name = "comboBoxHoteles";
-            this.comboBoxHoteles.Size = new System.Drawing.Size(188, 21);
+            this.comboBoxHoteles.Size = new System.Drawing.Size(286, 21);
             this.comboBoxHoteles.TabIndex = 17;
             // 
             // lblErrorHotel

@@ -270,7 +270,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                             return;
                         }
                     }
-                    string queryReserva = string.Format("SELECT r.rese_fecha_realizacion as FechaSistema, r.rese_fecha_desde as FechaComienzo, r.rese_cantidad_noches as CantidadNoches, re.regi_descripcion as Regimen,CONCAT(d.dire_dom_calle,'-',d.dire_nro_calle) as Hotel, hr.habi_rese_id as idHotel, hr.habi_rese_numero as nroHabitacion, th.thab_descripcion as TipoHabitacion FROM CAIA_UNLIMITED.Reserva r JOIN CAIA_UNLIMITED.Habitacion_X_Reserva hr on hr.habi_rese_codigo = r.rese_codigo JOIN CAIA_UNLIMITED.Habitacion h on (h.habi_numero = hr.habi_rese_numero AND h.hote_id = hr.habi_rese_id) JOIN CAIA_UNLIMITED.Hotel ho on (ho.hote_id = h.hote_id) JOIN CAIA_UNLIMITED.Regimen_X_Hotel reh on ho.hote_id = reh.regi_hote_id JOIN CAIA_UNLIMITED.Regimen re on re.regi_codigo = reh.regi_hote_codigo JOIN CAIA_UNLIMITED.Tipo_Habitacion th on th.thab_codigo = h.thab_codigo INNER JOIN CAIA_UNLIMITED.Direccion d on (ho.dire_id = d.dire_id) WHERE r.rese_codigo = '{0}' AND r.regi_codigo = re.regi_codigo", textBoxReserva.Text.Trim());
+                    string queryReserva = string.Format("SELECT r.rese_fecha_realizacion as FechaSistema, r.rese_fecha_desde as FechaComienzo, r.rese_cantidad_noches as CantidadNoches, re.regi_descripcion as Regimen,CONCAT(dh.dire_dom_calle,'-',dh.dire_nro_calle) as Hotel, hr.habi_rese_id as idHotel, hr.habi_rese_numero as nroHabitacion, th.thab_descripcion as TipoHabitacion, d1.dire_telefono as Telefono, d1.dire_dom_calle as Direccion, d1.dire_nro_calle as NroDireccion, d1.dire_ciudad as Ciudad, d1.dire_pais as Pais, hues.hues_nombre as Nombre, hues.hues_apellido as Apellido, hues.hues_mail as Mail, hues.hues_documento as Documento, hues.hues_documento_tipo as TipoDocumento FROM CAIA_UNLIMITED.Reserva r JOIN CAIA_UNLIMITED.Reserva_X_Huesped rxh on (rxh.rese_hues_codigo = r.rese_codigo) JOIN CAIA_UNLIMITED.Huesped hues on (hues.hues_mail = rxh.rese_hues_mail AND hues.hues_documento = rxh.rese_hues_documento) JOIN CAIA_UNLIMITED.Direccion d1 on (d1.dire_id = hues.dire_id) JOIN CAIA_UNLIMITED.Habitacion_X_Reserva hr on hr.habi_rese_codigo = r.rese_codigo JOIN CAIA_UNLIMITED.Habitacion h on (h.habi_numero = hr.habi_rese_numero AND h.hote_id = hr.habi_rese_id) JOIN CAIA_UNLIMITED.Hotel ho on (ho.hote_id = h.hote_id) JOIN CAIA_UNLIMITED.Regimen_X_Hotel reh on ho.hote_id = reh.regi_hote_id JOIN CAIA_UNLIMITED.Regimen re on re.regi_codigo = reh.regi_hote_codigo JOIN CAIA_UNLIMITED.Tipo_Habitacion th on th.thab_codigo = h.thab_codigo INNER JOIN CAIA_UNLIMITED.Direccion dh on (ho.dire_id = dh.dire_id) WHERE r.rese_codigo = '{0}' AND r.regi_codigo = re.regi_codigo", textBoxReserva.Text.Trim());
                     DataSet dsReserva = DataBase.realizarConsulta(queryReserva);                  
                     this.fechaElegidaInicio = Convert.ToDateTime(dsReserva.Tables[0].Rows[0]["FechaComienzo"].ToString());
                     TimeSpan difference = fechaElegidaInicio - DataBase.fechaSistema();
@@ -290,8 +290,19 @@ namespace FrbaHotel.GenerarModificacionReserva
                         }
                         calendarInicio.SetDate(this.fechaElegidaInicio);
                         calendarFin.SetDate(this.fechaElegidaInicio.AddDays(Convert.ToDouble((decimal)dsReserva.Tables[0].Rows[0]["CantidadNoches"])));
+                        cargarComboBoxTipoDocumento();
                         textBoxHotel.Text = dsReserva.Tables[0].Rows[0]["Hotel"].ToString();
                         txbRegimen.Text = dsReserva.Tables[0].Rows[0]["Regimen"].ToString();
+                        textBoxNombre.Text = dsReserva.Tables[0].Rows[0]["Nombre"].ToString();
+                        textBoxApellido.Text = dsReserva.Tables[0].Rows[0]["Apellido"].ToString();
+                        textBoxMail.Text = dsReserva.Tables[0].Rows[0]["Mail"].ToString();
+                        textBoxDocumento.Text = dsReserva.Tables[0].Rows[0]["Documento"].ToString();
+                        comboBoxTipoDocumentoCliente.SelectedIndex = comboBoxTipoDocumentoCliente.FindString(dsReserva.Tables[0].Rows[0]["TipoDocumento"].ToString(), 0);
+                        textBoxDireccion.Text = dsReserva.Tables[0].Rows[0]["Direccion"].ToString();
+                        textBoxNumeroDireccion.Text = dsReserva.Tables[0].Rows[0]["NroDireccion"].ToString();
+                        textBoxTelefono.Text = dsReserva.Tables[0].Rows[0]["Telefono"].ToString();
+                        textBoxCiudad.Text = dsReserva.Tables[0].Rows[0]["Ciudad"].ToString();
+                        textBoxPais.Text = dsReserva.Tables[0].Rows[0]["Pais"].ToString();
                         foreach (DataRow unTipoHabitacion in dsReserva.Tables[0].Rows)
                         {
                             listBoxTipoHabitacion.Items.Add((string)unTipoHabitacion["TipoHabitacion"]);
@@ -466,7 +477,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
                         MessageBox.Show(msg);
 
-                        if (MessageBox.Show("El costo total de la reserva es de: US$ " + costoTotal.ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                        if (MessageBox.Show("El costo total de la reserva es de: US$ " + (costoTotal * difference.Days).ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                         {
                             return;
                         }
@@ -616,7 +627,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
                     MessageBox.Show(msg);
 
-                    if (MessageBox.Show("El costo total de la reserva es de: US$ " + costoTotal.ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                    if (MessageBox.Show("El costo total de la reserva es de: US$ " + (costoTotal * difference.Days).ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                     {
                         return;
                     }
@@ -776,7 +787,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
                         MessageBox.Show(msg);
 
-                        if (MessageBox.Show("El costo total de la reserva es de: US$ " + costoTotal.ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                        if (MessageBox.Show("El costo total de la reserva es de: US$ " + (costoTotal * difference.Days).ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                         {
                             return;
                         }
@@ -926,7 +937,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
                     MessageBox.Show(msg);
 
-                    if (MessageBox.Show("El costo total de la reserva es de: US$ " + costoTotal.ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                    if (MessageBox.Show("El costo total de la reserva es de: US$ " + (costoTotal * difference.Days).ToString() + ".¿Desea generar la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                     {
                         return;
                     }
@@ -1070,35 +1081,47 @@ namespace FrbaHotel.GenerarModificacionReserva
                 this.existeCliente = true;
                 this.mail = clienteBuscarte.clienteElegidoMail;
                 this.documento = clienteBuscarte.clienteElegidoDocumento;
-                lblNombre.Visible = false;
+                lblNombre.Visible = true;
                 lblErrorNombre.Visible = false;
-                textBoxNombre.Visible = false;
-                lblApellido.Visible = false;
+                textBoxNombre.Visible = true;
+                textBoxNombre.Text = clienteBuscarte.clienteElegidoNombre;
+                textBoxNombre.ReadOnly = true;
+                lblApellido.Visible = true;
                 lblErrorApellido.Visible = false;
-                textBoxApellido.Visible = false;
-                lblMail.Visible = false;
+                textBoxApellido.Text = clienteBuscarte.clienteElegidoApellido;
+                textBoxApellido.ReadOnly = true;
+                lblMail.Visible = true;
                 lblErrorMail.Visible = false;
-                textBoxMail.Visible = false;
-                lblDocumento.Visible = false;
+                textBoxMail.Text = clienteBuscarte.clienteElegidoMail;
+                textBoxMail.ReadOnly = true;
+                lblDocumento.Visible = true;
                 lblErrorDocumento.Visible = false;
-                textBoxDocumento.Visible = false;
-                lblTipoDocumentoCliente.Visible = false;
-                comboBoxTipoDocumentoCliente.Visible = false;
-                lblDireccion.Visible = false;
+                textBoxDocumento.Text = clienteBuscarte.clienteElegidoDocumento.ToString();
+                textBoxDocumento.ReadOnly = true;
+                lblTipoDocumentoCliente.Visible = true;
+                comboBoxTipoDocumentoCliente.Visible = true;
+                comboBoxTipoDocumentoCliente.SelectedIndex = comboBoxTipoDocumentoCliente.FindString(clienteBuscarte.clienteElegidoTipoDocumento, 0);
+                comboBoxTipoDocumentoCliente.Enabled = false;
+                lblDireccion.Visible = true;
                 lblErrorDireccion.Visible = false;
-                textBoxDireccion.Visible = false;
-                lblTelefono.Visible = false;
+                textBoxDireccion.Text = clienteBuscarte.clienteElegidoDireccion;
+                textBoxDireccion.ReadOnly = true;
+                lblTelefono.Visible = true;
                 lblErrorTelefono.Visible = false;
-                textBoxTelefono.Visible = false;
-                lblNumeroDireccion.Visible = false;
+                textBoxTelefono.Text = clienteBuscarte.clienteElegidoTelefono;
+                textBoxTelefono.ReadOnly = true;
+                lblNumeroDireccion.Visible = true;
                 lblNroDireccion.Visible = false;
-                textBoxNumeroDireccion.Visible = false;
-                lblCity.Visible = false;
+                textBoxNumeroDireccion.Text = clienteBuscarte.clienteElegidoNumeroDireccion.ToString();
+                textBoxNumeroDireccion.ReadOnly = true;
+                lblCity.Visible = true;
                 lblErrorCiudad.Visible = false;
-                textBoxCiudad.Visible = false;
-                lblPais.Visible = false;
+                textBoxCiudad.Text = clienteBuscarte.clienteElegidoCiudad;
+                textBoxCiudad.ReadOnly = true;
+                lblPais.Visible = true;
                 lblErrorPais.Visible = false;
-                textBoxPais.Visible = false;
+                textBoxPais.Text = clienteBuscarte.clienteElegidoPais;
+                textBoxPais.ReadOnly = true;
             }
         }
 
@@ -1300,6 +1323,11 @@ namespace FrbaHotel.GenerarModificacionReserva
         }
 
         private void comboHoteles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ModificarReserva_Load(object sender, EventArgs e)
         {
 
         }

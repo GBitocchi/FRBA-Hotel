@@ -52,10 +52,10 @@
             // cbHoteles
             // 
             this.cbHoteles.FormattingEnabled = true;
-            this.cbHoteles.Location = new System.Drawing.Point(352, 284);
+            this.cbHoteles.Location = new System.Drawing.Point(265, 284);
             this.cbHoteles.Margin = new System.Windows.Forms.Padding(6);
             this.cbHoteles.Name = "cbHoteles";
-            this.cbHoteles.Size = new System.Drawing.Size(238, 32);
+            this.cbHoteles.Size = new System.Drawing.Size(408, 32);
             this.cbHoteles.TabIndex = 0;
             this.cbHoteles.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -93,7 +93,7 @@
             // 
             this.lblRolSeleccion.AutoSize = true;
             this.lblRolSeleccion.BackColor = System.Drawing.Color.Transparent;
-            this.lblRolSeleccion.Location = new System.Drawing.Point(337, 374);
+            this.lblRolSeleccion.Location = new System.Drawing.Point(335, 345);
             this.lblRolSeleccion.Name = "lblRolSeleccion";
             this.lblRolSeleccion.Size = new System.Drawing.Size(273, 24);
             this.lblRolSeleccion.TabIndex = 4;
@@ -102,16 +102,16 @@
             // cbRoles
             // 
             this.cbRoles.FormattingEnabled = true;
-            this.cbRoles.Location = new System.Drawing.Point(352, 432);
+            this.cbRoles.Location = new System.Drawing.Point(265, 396);
             this.cbRoles.Name = "cbRoles";
-            this.cbRoles.Size = new System.Drawing.Size(238, 32);
+            this.cbRoles.Size = new System.Drawing.Size(408, 32);
             this.cbRoles.TabIndex = 5;
             this.cbRoles.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(574, 500);
+            this.button1.Location = new System.Drawing.Point(574, 460);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(99, 38);
             this.button1.TabIndex = 6;
@@ -196,7 +196,7 @@
             this.lblWelcome.BackColor = System.Drawing.Color.Transparent;
             this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWelcome.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.lblWelcome.Location = new System.Drawing.Point(1, 94);
+            this.lblWelcome.Location = new System.Drawing.Point(12, 72);
             this.lblWelcome.Name = "lblWelcome";
             this.lblWelcome.Size = new System.Drawing.Size(379, 73);
             this.lblWelcome.TabIndex = 12;

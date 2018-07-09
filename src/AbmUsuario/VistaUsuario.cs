@@ -601,7 +601,7 @@ namespace FrbaHotel.AbmUsuario
 
                                 if (((string)(_dsHoteles.Tables[0].Rows[i]["Hotel"])) == hotel)
                                 {
-                                    hc.Add(new Hotelities { Hoteles = ((decimal)(this._dsHoteles.Tables[0].Rows[i]["hote_id"])) });
+                                    hc.Add(new Hotelities { Hoteles = ((decimal)(this._dsHoteles.Tables[0].Rows[i]["idHotel"])) });
                                 }
                             }
                         }

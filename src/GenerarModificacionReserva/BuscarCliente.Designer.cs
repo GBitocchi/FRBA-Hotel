@@ -38,6 +38,7 @@
             this.dgvBuscarClientes = new System.Windows.Forms.DataGridView();
             this.btnMail = new System.Windows.Forms.Button();
             this.btnSeleccionarNumeroIdentificacion = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBuscarClientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -109,7 +110,7 @@
             // 
             this.dgvBuscarClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBuscarClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBuscarClientes.Location = new System.Drawing.Point(19, 223);
+            this.dgvBuscarClientes.Location = new System.Drawing.Point(19, 214);
             this.dgvBuscarClientes.MultiSelect = false;
             this.dgvBuscarClientes.Name = "dgvBuscarClientes";
             this.dgvBuscarClientes.ReadOnly = true;
@@ -140,13 +141,25 @@
             this.btnSeleccionarNumeroIdentificacion.UseVisualStyleBackColor = true;
             this.btnSeleccionarNumeroIdentificacion.Click += new System.EventHandler(this.btnSeleccionarNumeroIdentificacion_Click);
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(19, 605);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(113, 28);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Limpiar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // BuscarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(1061, 631);
+            this.ClientSize = new System.Drawing.Size(1061, 637);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSeleccionarNumeroIdentificacion);
             this.Controls.Add(this.btnMail);
             this.Controls.Add(this.dgvBuscarClientes);
@@ -177,5 +190,6 @@
         private System.Windows.Forms.DataGridView dgvBuscarClientes;
         private System.Windows.Forms.Button btnMail;
         private System.Windows.Forms.Button btnSeleccionarNumeroIdentificacion;
+        private System.Windows.Forms.Button button1;
     }
 }

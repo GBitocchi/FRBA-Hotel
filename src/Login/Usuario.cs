@@ -151,11 +151,11 @@ namespace FrbaHotel.Login
                         {
                             autentificacionConnection.Close();
                             progressBar1.PerformStep();
-                            progressBar1.Visible = false;
+                            progressBar1.Visible = false;                          
+                            SystemSounds.Hand.Play();
+                            MessageBox.Show("Se ha inhabilitado al usuario " + txtUser.Text.Trim() + ". Contacte con el administrador.");
                             txtPW.Clear();
                             txtUser.Clear();
-                            SystemSounds.Hand.Play();
-                            MessageBox.Show("Se ha inhabilitado al usuario " + txtUser.Text.Trim() + " por muchos intentos de inicio de sesion. Contacte con el administrador.");
                         }
                         else if (((passwordEncrypted.SequenceEqual(passwordInDataBase)) == false))
                         {
@@ -165,8 +165,9 @@ namespace FrbaHotel.Login
                             progressBar1.PerformStep();
                             progressBar1.Visible = false;
 
-                            if (intentos == 3)
+                            if (intentos >= 3)
                             {
+                                dsAutentificacion.Tables[0].Rows[0]["usur_intentos"] = intentos;
                                 dsAutentificacion.Tables[0].Rows[0]["usur_habilitado"] = false;
                                 MessageBox.Show("Se ha inhabilitado al usuario " + txtUser.Text.Trim() + " por muchos intentos de inicio de sesion. Contacte con el administrador.");
                             }

@@ -435,7 +435,9 @@ from gd_esquema.Maestra join CAIA_UNLIMITED.Tipo_Habitacion on (thab_codigo = Ha
 															dire_nro_calle = Hotel_Nro_Calle)
 						join CAIA_UNLIMITED.Hotel H on (H.dire_id = D.dire_id) 
 
+--Insertamos Usuarios
 insert into CAIA_UNLIMITED.Usuario (usur_username, usur_password, usur_habilitado, usur_intentos) values('admin', HASHBYTES('SHA2_256', 'w23e'), 1, 0)
+insert into CAIA_UNLIMITED.Usuario (usur_username, usur_password, usur_habilitado, usur_intentos) values('guest', HASHBYTES('SHA2_256', 'w23e'), 0, 0)
 
 --Reserva
 insert into CAIA_UNLIMITED.Reserva (rese_codigo, rese_fecha_realizacion, rese_fecha_desde, rese_cantidad_noches, regi_codigo)
@@ -1153,12 +1155,12 @@ BEGIN
 
 	if(@estado = 1)
 		BEGIN
-			update CAIA_UNLIMITED.Usuario set usur_password = @password,usur_nombre = @name,usur_apellido = @apellido,usur_documento = @documento,usur_documento_tipo = @tipoDocumento,usur_mail = @mail,usur_nacimiento = convert(datetime,@fechaNacimiento,120),usur_habilitado = 1,usur_intentos = 0
+			update CAIA_UNLIMITED.Usuario set usur_password = @password,usur_nombre = @name,usur_apellido = @apellido,usur_documento = @documento,usur_documento_tipo = @tipoDocumento,usur_mail = @mail,usur_nacimiento = convert(datetime,@fechaNacimiento,120),usur_habilitado = 1
 			where usur_id = @userid
 		END
 	else
 		BEGIN
-			update CAIA_UNLIMITED.Usuario set usur_password = @password,usur_nombre = @name,usur_apellido = @apellido,usur_documento = @documento,usur_documento_tipo = @tipoDocumento,usur_mail = @mail,usur_nacimiento = convert(datetime,@fechaNacimiento,120),usur_habilitado = 0,usur_intentos = 3
+			update CAIA_UNLIMITED.Usuario set usur_password = @password,usur_nombre = @name,usur_apellido = @apellido,usur_documento = @documento,usur_documento_tipo = @tipoDocumento,usur_mail = @mail,usur_nacimiento = convert(datetime,@fechaNacimiento,120),usur_habilitado = 0
 			where usur_id = @userid
 		END
 
@@ -1256,8 +1258,8 @@ BEGIN
       ELSE
         SAVE TRANSACTION sp_CrearReservaHuesped;
 	SET @returnreserva = (SELECT MAX(rese_codigo) FROM CAIA_UNLIMITED.Reserva)+1	
-    	insert into CAIA_UNLIMITED.Reserva (rese_codigo,rese_fecha_realizacion,rese_fecha_desde,rese_cantidad_noches,esre_codigo,regi_codigo)
-	values(@returnreserva,convert(datetime,@fechaRealizacion,120),convert(datetime,@fechaDesde,120),@cantidadNoches,(SELECT esre_codigo FROM CAIA_UNLIMITED.Estado_Reserva WHERE esre_detalle = @estado),@regimen)	
+    	insert into CAIA_UNLIMITED.Reserva (rese_codigo,rese_fecha_realizacion,rese_fecha_desde,rese_cantidad_noches,esre_codigo,regi_codigo,rese_usur_creacion)
+	values(@returnreserva,convert(datetime,@fechaRealizacion,120),convert(datetime,@fechaDesde,120),@cantidadNoches,(SELECT esre_codigo FROM CAIA_UNLIMITED.Estado_Reserva WHERE esre_detalle = @estado),@regimen,1)	
 	insert into CAIA_UNLIMITED.Habitacion_X_Reserva(habi_rese_numero,habi_rese_id,habi_rese_codigo)
 	SELECT Habitacion, @hotel,@returnreserva FROM @lista_Habitaciones
     lbexit:
@@ -1394,7 +1396,7 @@ BEGIN
 
 	DELETE FROM CAIA_UNLIMITED.Habitacion_X_Reserva
 	WHERE habi_rese_codigo = @codigoReserva
-	update CAIA_UNLIMITED.Reserva set rese_fecha_realizacion = convert(datetime,@fechaRealizacion,120),rese_fecha_desde = convert(datetime,@fechaDesde,120),rese_cantidad_noches = @cantidadNoches,esre_codigo = (SELECT esre_codigo FROM CAIA_UNLIMITED.Estado_Reserva WHERE esre_detalle = @estado),regi_codigo = @regimen
+	update CAIA_UNLIMITED.Reserva set rese_fecha_realizacion = convert(datetime,@fechaRealizacion,120),rese_fecha_desde = convert(datetime,@fechaDesde,120),rese_cantidad_noches = @cantidadNoches,esre_codigo = (SELECT esre_codigo FROM CAIA_UNLIMITED.Estado_Reserva WHERE esre_detalle = @estado),regi_codigo = @regimen, rese_usur_modificacion = 1
 	WHERE rese_codigo = @codigoReserva
 
 	insert into CAIA_UNLIMITED.Habitacion_X_Reserva(habi_rese_numero,habi_rese_id,habi_rese_codigo)
