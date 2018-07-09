@@ -13,6 +13,7 @@ using FrbaHotel;
 using System.Globalization;
 using System.Web;
 using FrbaHotel.Login;
+using System.Text.RegularExpressions;
 
 namespace FrbaHotel.AbmUsuario
 {
@@ -149,9 +150,8 @@ namespace FrbaHotel.AbmUsuario
             {
                 listBoxDialogRoles.SelectedIndex = 0;
                 listBoxDialogRoles.Sorted = true;
-            }
-
-            string queryUser2 = string.Format("SELECT DISTINCT CONCAT(h.hote_id, '-', h.hote_nombre) as Hotel FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on uh.usur_hote_idusur = u.usur_id JOIN CAIA_UNLIMITED.Hotel h on h.hote_id = uh.usur_hote_idhote WHERE u.usur_username = '{0}'", usuarioAModificar.Rows[e.RowIndex].Cells["NombreDeUsuario"].Value.ToString());
+            }            
+            string queryUser2 = string.Format("SELECT DISTINCT CONCAT(d.dire_dom_calle,'-',d.dire_nro_calle) as Hotel FROM CAIA_UNLIMITED.Usuario u JOIN CAIA_UNLIMITED.Usuario_X_Hotel uh on uh.usur_hote_idusur = u.usur_id JOIN CAIA_UNLIMITED.Hotel h on h.hote_id = uh.usur_hote_idhote INNER JOIN CAIA_UNLIMITED.Direccion d on (h.dire_id = d.dire_id) WHERE u.usur_username = '{0}'", usuarioAModificar.Rows[e.RowIndex].Cells["NombreDeUsuario"].Value.ToString());
             DataSet dsInfoUser2 = DataBase.realizarConsulta(queryUser2);
 
             foreach (DataRow unHotel in dsInfoUser2.Tables[0].Rows)
@@ -203,7 +203,7 @@ namespace FrbaHotel.AbmUsuario
         private void cargarComboBoxHotel()
         {
             comboBoxDialogHoteles.Items.Clear();
-            string hoteles = "SELECT hote_id, CONCAT(hote_id, '-', hote_nombre) as Hotel FROM CAIA_UNLIMITED.Hotel";
+            string hoteles = "SELECT CONCAT(d.dire_dom_calle,'-',d.dire_nro_calle) as Hotel, hote_id as idHotel FROM CAIA_UNLIMITED.Hotel ho INNER JOIN CAIA_UNLIMITED.Direccion d on (ho.dire_id = d.dire_id)";
             DataSet dsHoteles = DataBase.realizarConsulta(hoteles);
             this._dsHoteles = dsHoteles;
 
@@ -247,7 +247,10 @@ namespace FrbaHotel.AbmUsuario
         {
             if (listBoxDialogRoles.SelectedItem != null)
             {
-                comboBoxDialogRole.Items.Add(listBoxDialogRoles.SelectedItem);
+                if (!comboBoxDialogRole.Items.Contains(listBoxDialogRoles.SelectedItem))
+                {
+                    comboBoxDialogRole.Items.Add(listBoxDialogRoles.SelectedItem);
+                }
                 comboBoxDialogRole.Sorted = true;
                 listBoxDialogRoles.Items.Remove(listBoxDialogRoles.SelectedItem);
                 comboBoxDialogRole.SelectedIndex = 0;
@@ -277,7 +280,10 @@ namespace FrbaHotel.AbmUsuario
         {
             if (listBoxDialogHoteles.SelectedItem != null)
             {
-                comboBoxDialogHoteles.Items.Add(listBoxDialogHoteles.SelectedItem);
+                if (!comboBoxDialogHoteles.Items.Contains(listBoxDialogHoteles.SelectedItem))
+                {
+                    comboBoxDialogHoteles.Items.Add(listBoxDialogHoteles.SelectedItem);
+                }               
                 comboBoxDialogHoteles.Sorted = true;
                 listBoxDialogHoteles.Items.Remove(listBoxDialogHoteles.SelectedItem);
                 comboBoxDialogHoteles.SelectedIndex = 0;
@@ -310,6 +316,7 @@ namespace FrbaHotel.AbmUsuario
             CultureInfo culture;
             culture = CultureInfo.CreateSpecificCulture("en-US");
             info.ShortDatePattern = "dd/MM/yyyy";
+            Regex expEmail = new Regex(@"^([\w.-]+)@([\w-]+)((.(\w){2,3})+)$");
             if (!(DateTime.TryParse(textBoxDialogBirthday.Text.Trim(), info, DateTimeStyles.None, out Result)))
             {
                 lblErrorDialogDateFormat.Visible = true;
@@ -358,6 +365,11 @@ namespace FrbaHotel.AbmUsuario
             else if (textBoxDialogMail.Text == "")
             {
                 lblErrorDialogNoValueInField.Visible = true;
+                lblErrorDialogMail.Visible = true;
+            }
+            else if (!expEmail.IsMatch(textBoxDialogMail.Text))
+            {
+                MessageBox.Show("Formato de mail ingresado incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 lblErrorDialogMail.Visible = true;
             }
             else if (textBoxDialogBlock.Text == "")
@@ -436,7 +448,7 @@ namespace FrbaHotel.AbmUsuario
 
                        if (((string)(_dsHoteles.Tables[0].Rows[i]["Hotel"])) == hotel)
                        {
-                           hc.Add(new Hotelities { Hoteles = ((decimal)(this._dsHoteles.Tables[0].Rows[i]["hote_id"])) });
+                           hc.Add(new Hotelities { Hoteles = ((decimal)(this._dsHoteles.Tables[0].Rows[i]["idHotel"])) });
                        }
                    }
                }
@@ -551,6 +563,12 @@ namespace FrbaHotel.AbmUsuario
         private void monthCalendarDialog_DateChanged(object sender, DateRangeEventArgs e)
         {
             textBoxDialogBirthday.Text = monthCalendarDialog.SelectionStart.ToShortDateString();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new VistaUsuario(this.miHotel, this.codigoMiRol, this.miNombreUsuario).Show();
         }
     }
 }

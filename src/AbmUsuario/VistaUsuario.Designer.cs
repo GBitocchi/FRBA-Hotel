@@ -368,6 +368,7 @@
             // 
             this.textBoxBirthday.Location = new System.Drawing.Point(504, 396);
             this.textBoxBirthday.Name = "textBoxBirthday";
+            this.textBoxBirthday.ReadOnly = true;
             this.textBoxBirthday.Size = new System.Drawing.Size(139, 20);
             this.textBoxBirthday.TabIndex = 58;
             this.textBoxBirthday.TextChanged += new System.EventHandler(this.textBox14_TextChanged);
@@ -1054,6 +1055,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "VistaUsuario";
             this.Text = "VistaUsuario";
+            this.Load += new System.EventHandler(this.VistaUsuario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

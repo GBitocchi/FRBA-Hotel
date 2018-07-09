@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FrbaHotel;
 using FrbaHotel.Menu_Sistema;
+using FrbaHotel.Login;
 
 namespace FrbaHotel.AbmRol
 {
@@ -260,7 +261,15 @@ namespace FrbaHotel.AbmRol
                     DataSet dsRoles = DataBase.realizarConsulta(roles);
                     dgvEliminarRoles.DataSource = dsRoles.Tables[0];
                     dgvEliminarRoles.AllowUserToAddRows = false;
+                    string esMiRol = string.Format("SELECT rol_codigo FROM CAIA_UNLIMITED.Rol WHERE rol_nombre = '{0}' AND rol_codigo = '{1}'",rolNombre,this._codigoRol);
+                    DataSet dsEsMiRol = DataBase.realizarConsulta(esMiRol);
                     MessageBox.Show("Rol eliminado exitosamente!");
+
+                    if (dsEsMiRol != null && dsEsMiRol.Tables.Count > 0 && dsEsMiRol.Tables[0].Rows.Count > 0)
+                    {
+                        this.Hide();
+                        new Usuario().Show();
+                    }    
                 }
             }
             catch (IndexOutOfRangeException ioree)

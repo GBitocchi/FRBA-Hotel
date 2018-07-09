@@ -13,6 +13,7 @@ using FrbaHotel;
 using System.Globalization;
 using System.Web;
 using FrbaHotel.Menu_Sistema;
+using System.Text.RegularExpressions;
 
 namespace FrbaHotel.AbmUsuario
 {
@@ -104,7 +105,7 @@ namespace FrbaHotel.AbmUsuario
 
         private void cargarComboBoxHotel()
         {
-            string hoteles = "SELECT hote_id, CONCAT(hote_id, '-', hote_nombre) as Hotel FROM CAIA_UNLIMITED.Hotel";
+            string hoteles = "SELECT CONCAT(d.dire_dom_calle,'-',d.dire_nro_calle) as Hotel, hote_id as idHotel FROM CAIA_UNLIMITED.Hotel ho INNER JOIN CAIA_UNLIMITED.Direccion d on (ho.dire_id = d.dire_id)";
             DataSet dsHoteles = DataBase.realizarConsulta(hoteles);
             this._dsHoteles = dsHoteles;
 
@@ -469,6 +470,7 @@ namespace FrbaHotel.AbmUsuario
             CultureInfo culture;
             culture = CultureInfo.CreateSpecificCulture ( "en-US" );
             info.ShortDatePattern = "dd/MM/yyyy";
+            Regex expEmail = new Regex(@"^([\w.-]+)@([\w-]+)((.(\w){2,3})+)$");
             if ( !(DateTime.TryParse ( textBoxBirthday.Text.Trim(), info, DateTimeStyles.None, out Result )) )
             {
                 lblErrorDateFormat.Visible = true;
@@ -517,6 +519,11 @@ namespace FrbaHotel.AbmUsuario
             else if (textBoxMail.Text == "")
             {
                 lblErrorNoField.Visible = true;
+                lblErrorMail.Visible = true;
+            }
+            else if (!expEmail.IsMatch(textBoxMail.Text))
+            {
+                MessageBox.Show("Formato de mail ingresado incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 lblErrorMail.Visible = true;
             }
             else if (textBoxBlock.Text == "")
@@ -769,6 +776,11 @@ namespace FrbaHotel.AbmUsuario
             {
 
             }
+        }
+
+        private void VistaUsuario_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

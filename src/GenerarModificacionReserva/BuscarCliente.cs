@@ -22,7 +22,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         private void cargarComboBoxTipoDocumento()
         {
             comboBoxTipoDocumento.Items.Clear();
-            string tipoDocumento = "SELECT DISTINCT hues_documento_tipo as Documento FROM CAIA_UNLIMITED.Huesped WHERE hues_documento_tipo is not null UNION SELECT DISTINCT usur_documento_tipo as Documento FROM CAIA_UNLIMITED.Usuario WHERE usur_documento_tipo is not null";
+            string tipoDocumento = "SELECT DISTINCT hues_documento_tipo as Documento FROM CAIA_UNLIMITED.Huesped WHERE hues_documento_tipo is not null";
             DataSet dsTipoDocumento = DataBase.realizarConsulta(tipoDocumento);
 
             foreach (DataRow unTipoDocumento in dsTipoDocumento.Tables[0].Rows)

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -232,6 +232,12 @@ namespace FrbaHotel.AbmRol
         private void VistaRolModificar_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new VistaRol(this.hoteidMio, this.codRolMio, this.usernameMio).Show();
         }
     }
 }

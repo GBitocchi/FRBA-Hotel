@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -106,9 +106,60 @@ namespace FrbaHotel.Menu_Sistema
         public VistaSistema()
         {
             InitializeComponent();
-            stripCancelar_Reserva.Visible = true;
+
+            habilitarHoteles();
+            string rol = "Guest";
+            string queryFuncionalidadesUsuario = string.Format("SELECT f.func_detalle as Funcionalidades FROM CAIA_UNLIMITED.Funcionalidad f JOIN CAIA_UNLIMITED.Funcionalidad_X_Rol fr on fr.func_rol_codigo_func = f.func_codigo JOIN CAIA_UNLIMITED.Rol ro on (fr.func_rol_codigo_rol = ro.rol_codigo) WHERE ro.rol_nombre = '{0}'",rol);
+            DataSet dsFuncionalidadesUsuario = DataBase.realizarConsulta(queryFuncionalidadesUsuario);
+
+            foreach (DataRow unaFuncionalidad in dsFuncionalidadesUsuario.Tables[0].Rows)
+            {
+                if (unaFuncionalidad["Funcionalidades"].ToString() == "RESERVA")
+                {
+                    stripReserva.Visible = true;
+                }
+                else if (unaFuncionalidad["Funcionalidades"].ToString() == "ABM_ROL")
+                {
+                    stripRol.Visible = true;
+                }
+                else if (unaFuncionalidad["Funcionalidades"].ToString() == "ABM_USUARIO")
+                {
+                    stripUsuario.Visible = true;
+                }
+                else if (unaFuncionalidad["Funcionalidades"].ToString() == "ABM_HOTEL")
+                {
+                    stripHotel.Visible = true;
+                }
+                else if (unaFuncionalidad["Funcionalidades"].ToString() == "ABM_HABITACION")
+                {
+                    stripHabitacion.Visible = true;
+                }
+                else if (unaFuncionalidad["Funcionalidades"].ToString() == "FACTURAR")
+                {
+                    stripFacturar.Visible = true;
+                }
+                else if (unaFuncionalidad["Funcionalidades"].ToString() == "LISTADO_ESTADISTICO")
+                {
+                    stripListado.Visible = true;
+                }
+                else if (unaFuncionalidad["Funcionalidades"].ToString() == "ABM_CLIENTE")
+                {
+                    stripHuesped.Visible = true;
+                }
+                else if (unaFuncionalidad["Funcionalidades"].ToString() == "ESTADIA")
+                {
+                    stripEstadia.Visible = true;
+                }
+                else if (unaFuncionalidad["Funcionalidades"].ToString() == "CONSUMIBLES")
+                {
+                    stripConsumibles.Visible = true;
+                }
+                else if (unaFuncionalidad["Funcionalidades"].ToString() == "CANCELAR_RESERVA")
+                {
+                    stripCancelar_Reserva.Visible = true;
+                }
+            }
             this.guest = true;
-            stripReserva.Visible = true;
             txtFechaSistema.Text = Convert.ToString(DataBase.fechaSistema());
         }
 

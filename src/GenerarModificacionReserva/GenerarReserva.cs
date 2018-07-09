@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace FrbaHotel.GenerarModificacionReserva
 {
@@ -103,7 +104,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void cargarComboBoxHoteles()
         {
-            string hoteles = "SELECT CONCAT(hote_id, '-', hote_nombre) as Hotel, hote_id as idHotel FROM CAIA_UNLIMITED.Hotel WHERE hote_habilitado = 1";
+            string hoteles = "SELECT CONCAT(d.dire_dom_calle,'-',d.dire_nro_calle) as Hotel, hote_id as idHotel FROM CAIA_UNLIMITED.Hotel ho INNER JOIN CAIA_UNLIMITED.Direccion d on (ho.dire_id = d.dire_id) WHERE hote_habilitado = 1";
             DataSet dsHoteles = DataBase.realizarConsulta(hoteles);
             this.dsHoteles = dsHoteles;
 
@@ -1005,6 +1006,8 @@ namespace FrbaHotel.GenerarModificacionReserva
             else
             {
                 int parsedValue;
+                Regex expEmail = new Regex(@"^([\w.-]+)@([\w-]+)((.(\w){2,3})+)$");
+
                 if (textBoxNombre.Text.Trim() == "")
                 {
                     lblErrorNombre.Visible = true;
@@ -1019,6 +1022,11 @@ namespace FrbaHotel.GenerarModificacionReserva
                 {
                     lblErrorMail.Visible = true;
                     lblErrorNoField.Visible = true;
+                }
+                else if (!expEmail.IsMatch(textBoxMail.Text.Trim()))
+                {
+                    MessageBox.Show("Formato de mail ingresado incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lblErrorMail.Visible = true;
                 }
                 else if (textBoxDocumento.Text.Trim() == "")
                 {
@@ -1071,7 +1079,6 @@ namespace FrbaHotel.GenerarModificacionReserva
                     {
                         insertCommand = new SqlCommand("[CAIA_UNLIMITED].sp_CrearReservaHuesped", createConnection);
                         insertCommand.CommandType = CommandType.StoredProcedure;
-                        insertCommand.Parameters.AddWithValue("@usuarioCreacion", "Guest");
                     }
                     else
                     {

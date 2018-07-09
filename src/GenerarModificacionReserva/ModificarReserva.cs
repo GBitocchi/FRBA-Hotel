@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace FrbaHotel.GenerarModificacionReserva
 {
@@ -112,7 +113,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void cargarComboBoxHoteles()
         {
-            string hoteles = "SELECT CONCAT(hote_id, '-', hote_nombre) as Hotel, hote_id as idHotel FROM CAIA_UNLIMITED.Hotel WHERE hote_habilitado = 1";
+            string hoteles = "SELECT CONCAT(d.dire_dom_calle,'-',d.dire_nro_calle) as Hotel, hote_id as idHotel FROM CAIA_UNLIMITED.Hotel ho INNER JOIN CAIA_UNLIMITED.Direccion d on (ho.dire_id = d.dire_id) WHERE hote_habilitado = 1";
             DataSet dsHoteles = DataBase.realizarConsulta(hoteles);
             this.dsHoteles = dsHoteles;
 
@@ -269,7 +270,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                             return;
                         }
                     }
-                    string queryReserva = string.Format("SELECT r.rese_fecha_realizacion as FechaSistema, r.rese_fecha_desde as FechaComienzo, r.rese_cantidad_noches as CantidadNoches, re.regi_descripcion as Regimen, CONCAT(hr.habi_rese_id, '-', ho.hote_nombre) as Hotel, hr.habi_rese_id as idHotel, hr.habi_rese_numero as nroHabitacion, th.thab_descripcion as TipoHabitacion FROM CAIA_UNLIMITED.Reserva r JOIN CAIA_UNLIMITED.Habitacion_X_Reserva hr on hr.habi_rese_codigo = r.rese_codigo JOIN CAIA_UNLIMITED.Habitacion h on (h.habi_numero = hr.habi_rese_numero AND h.hote_id = hr.habi_rese_id) JOIN CAIA_UNLIMITED.Hotel ho on (ho.hote_id = h.hote_id) JOIN CAIA_UNLIMITED.Regimen_X_Hotel reh on ho.hote_id = reh.regi_hote_id JOIN CAIA_UNLIMITED.Regimen re on re.regi_codigo = reh.regi_hote_codigo JOIN CAIA_UNLIMITED.Tipo_Habitacion th on th.thab_codigo = h.thab_codigo WHERE r.rese_codigo = '{0}' AND r.regi_codigo = re.regi_codigo", textBoxReserva.Text.Trim());
+                    string queryReserva = string.Format("SELECT r.rese_fecha_realizacion as FechaSistema, r.rese_fecha_desde as FechaComienzo, r.rese_cantidad_noches as CantidadNoches, re.regi_descripcion as Regimen,CONCAT(d.dire_dom_calle,'-',d.dire_nro_calle) as Hotel, hr.habi_rese_id as idHotel, hr.habi_rese_numero as nroHabitacion, th.thab_descripcion as TipoHabitacion FROM CAIA_UNLIMITED.Reserva r JOIN CAIA_UNLIMITED.Habitacion_X_Reserva hr on hr.habi_rese_codigo = r.rese_codigo JOIN CAIA_UNLIMITED.Habitacion h on (h.habi_numero = hr.habi_rese_numero AND h.hote_id = hr.habi_rese_id) JOIN CAIA_UNLIMITED.Hotel ho on (ho.hote_id = h.hote_id) JOIN CAIA_UNLIMITED.Regimen_X_Hotel reh on ho.hote_id = reh.regi_hote_id JOIN CAIA_UNLIMITED.Regimen re on re.regi_codigo = reh.regi_hote_codigo JOIN CAIA_UNLIMITED.Tipo_Habitacion th on th.thab_codigo = h.thab_codigo INNER JOIN CAIA_UNLIMITED.Direccion d on (ho.dire_id = d.dire_id) WHERE r.rese_codigo = '{0}' AND r.regi_codigo = re.regi_codigo", textBoxReserva.Text.Trim());
                     DataSet dsReserva = DataBase.realizarConsulta(queryReserva);                  
                     this.fechaElegidaInicio = Convert.ToDateTime(dsReserva.Tables[0].Rows[0]["FechaComienzo"].ToString());
                     TimeSpan difference = fechaElegidaInicio - DataBase.fechaSistema();
@@ -1171,6 +1172,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             else
             {
                 int parsedValue;
+                Regex expEmail = new Regex(@"^([\w.-]+)@([\w-]+)((.(\w){2,3})+)$");
                 if (textBoxNombre.Text.Trim() == "")
                 {
                     lblErrorNombre.Visible = true;
@@ -1185,6 +1187,11 @@ namespace FrbaHotel.GenerarModificacionReserva
                 {
                     lblErrorMail.Visible = true;
                     lblErrorNoField.Visible = true;
+                }
+                else if (!expEmail.IsMatch(textBoxMail.Text.Trim()))
+                {
+                    MessageBox.Show("Formato de mail ingresado incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lblErrorMail.Visible = true;
                 }
                 else if (textBoxDocumento.Text.Trim() == "")
                 {
@@ -1237,7 +1244,6 @@ namespace FrbaHotel.GenerarModificacionReserva
                     {
                         insertCommand = new SqlCommand("[CAIA_UNLIMITED].sp_ModificarReservaHuesped", createConnection);
                         insertCommand.CommandType = CommandType.StoredProcedure;
-                        insertCommand.Parameters.AddWithValue("@usuarioModificacion", "Guest");
                     }
                     else
                     {

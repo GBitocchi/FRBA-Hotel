@@ -103,6 +103,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.lblErrorDialogFechaValida = new System.Windows.Forms.Label();
             this.lblErrorDialogListBoxEmpty = new System.Windows.Forms.Label();
+            this.btnSalir = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblErrorDialogNumericValue
@@ -141,6 +142,7 @@
             // 
             this.textBoxDialogBirthday.Location = new System.Drawing.Point(492, 356);
             this.textBoxDialogBirthday.Name = "textBoxDialogBirthday";
+            this.textBoxDialogBirthday.ReadOnly = true;
             this.textBoxDialogBirthday.Size = new System.Drawing.Size(139, 20);
             this.textBoxDialogBirthday.TabIndex = 120;
             // 
@@ -680,7 +682,7 @@
             // buttonDialogLimpiar
             // 
             this.buttonDialogLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDialogLimpiar.Location = new System.Drawing.Point(22, 877);
+            this.buttonDialogLimpiar.Location = new System.Drawing.Point(660, 877);
             this.buttonDialogLimpiar.Name = "buttonDialogLimpiar";
             this.buttonDialogLimpiar.Size = new System.Drawing.Size(84, 34);
             this.buttonDialogLimpiar.TabIndex = 63;
@@ -839,6 +841,17 @@
             this.lblErrorDialogListBoxEmpty.TabIndex = 137;
             this.lblErrorDialogListBoxEmpty.Text = "*Debe de agregar, al menos, un atributo";
             // 
+            // btnSalir
+            // 
+            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.Location = new System.Drawing.Point(22, 877);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(75, 34);
+            this.btnSalir.TabIndex = 138;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
             // VistaUsuarioModificar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -846,6 +859,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(892, 929);
+            this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.lblErrorDialogListBoxEmpty);
             this.Controls.Add(this.lblErrorDialogFechaValida);
             this.Controls.Add(this.textBoxDialogMail);
@@ -1006,5 +1020,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblErrorDialogFechaValida;
         private System.Windows.Forms.Label lblErrorDialogListBoxEmpty;
+        private System.Windows.Forms.Button btnSalir;
     }
 }
