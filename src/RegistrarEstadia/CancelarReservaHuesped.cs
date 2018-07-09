@@ -18,12 +18,10 @@ namespace FrbaHotel.RegistrarEstadia
         public CancelarReservaHuesped(string username, string codigoReserva, string idHotel)
         {
             InitializeComponent();
-            cbxUsuario.SelectedIndex=1;
             txtUsername.Text = username;
             txtNumero_Reserva.Text = codigoReserva;
             txtNumero_Reserva.Enabled = false;
             txtUsername.Enabled = false;
-            cbxUsuario.Enabled = false;
             txtCancelacion.Text = Convert.ToString(DataBase.fechaSistema());
             idHotelActual = idHotel;
         }
@@ -37,28 +35,7 @@ namespace FrbaHotel.RegistrarEstadia
                     if (reservaCorrecta())
                     {
                         
-                            if (cbxUsuario.SelectedItem.ToString() == "Huesped")
-                            {
-                                if (formatoMailCorrecto())
-                                {
-                                    string mailIngresado = String.Format("SELECT rese_hues_mail FROM CAIA_UNLIMITED.Reserva_X_Huesped where rese_hues_mail = '{0}'  and rese_hues_codigo = '{1}'", txtMail.Text.Trim(), txtNumero_Reserva.Text.Trim());
-
-                                    if (DataBase.realizarConsulta(mailIngresado).Tables[0].Rows.Count == 0)
-                                    {
-                                        MessageBox.Show("El huesped no corresponde con la reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    }
-                                    else
-                                    {
-                                        ejecutarStoredProcedureCancelarReserva();
-                                        limpiarFormulario();
-                                        MessageBox.Show("Reserva cancelada", "Cancelada", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        this.Hide();
-                                    }
-                                }
-
-                            }
-                            else if (cbxUsuario.SelectedItem.ToString() == "Recepcion")
-                            {
+                           
 
                                 string consultaIdUsuario = string.Format("SELECT usur_id FROM CAIA_UNLIMITED.Usuario  WHERE usur_username ='{0}'", txtUsername.Text.Trim());
                                 DataTable idUsuarioObtenido = DataBase.realizarConsulta(consultaIdUsuario).Tables[0];
@@ -72,7 +49,7 @@ namespace FrbaHotel.RegistrarEstadia
                                 }
                                 else
                                 {
-                                    ejecutarStoredProcedureCancelarReserva();
+                                    ejecutarStoredProcedureCancelarReservaUsuario();
 
                                     limpiarFormulario();
 
@@ -81,8 +58,7 @@ namespace FrbaHotel.RegistrarEstadia
                                     this.Hide();
 
                                 }
-                            }
-                        
+                            
                     }
                 }
 
@@ -98,10 +74,8 @@ namespace FrbaHotel.RegistrarEstadia
         {
             txtCancelacion.Clear();
             txtUsername.Clear();
-            txtMail.Clear();
             txtMotivo.Clear();
             txtNumero_Reserva.Clear();
-            cbxUsuario.SelectedIndex = 0;
         }
 
 
@@ -120,20 +94,7 @@ namespace FrbaHotel.RegistrarEstadia
             }
         }
 
-
-        private bool formatoMailCorrecto()
-        {
-            Regex expEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            if (!expEmail.IsMatch(txtMail.Text))
-            {
-                MessageBox.Show("Formato de mail ingresado incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
+       
 
         private bool camposValidos()
         {
@@ -149,23 +110,22 @@ namespace FrbaHotel.RegistrarEstadia
             }
         }
 
-        private void ejecutarStoredProcedureCancelarReserva()
+        private void ejecutarStoredProcedureCancelarReservaUsuario()
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand cancelarReserva = new SqlCommand("CAIA_UNLIMITED.sp_CancelarReserva", db);
+            SqlCommand cancelarReserva = new SqlCommand("CAIA_UNLIMITED.sp_CancelarReservaUsuario", db);
             cancelarReserva.CommandType = CommandType.StoredProcedure;
             cancelarReserva.Parameters.AddWithValue("@codigo_Reserva", txtNumero_Reserva.Text.Trim());
             cancelarReserva.Parameters.AddWithValue("@motivo", txtMotivo.Text.Trim());
+
             cancelarReserva.Parameters.AddWithValue("@fecha_cancelacion", DateTime.Parse(txtCancelacion.Text));
-            if (cbxUsuario.SelectedItem.ToString() == "Huesped")
-            {
-                cancelarReserva.Parameters.AddWithValue("@usuario", txtMail.Text.Trim());
-            }
-            else
-            {
-                cancelarReserva.Parameters.AddWithValue("@usuario", txtUsername.Text.Trim());
-                cancelarReserva.Parameters.AddWithValue("@estado", 4);
-            }
+
+            string consultaIdUsuario = string.Format("SELECT usur_id FROM CAIA_UNLIMITED.Usuario  WHERE usur_username ='{0}'", txtUsername.Text.Trim());
+            DataTable idUsuarioObtenido = DataBase.realizarConsulta(consultaIdUsuario).Tables[0];
+            string idUsuario = idUsuarioObtenido.Rows[0][0].ToString();
+
+            cancelarReserva.Parameters.AddWithValue("@usuario", Convert.ToInt32(idUsuario));
+            cancelarReserva.Parameters.AddWithValue("@estado", 4);
             cancelarReserva.ExecuteNonQuery();
             db.Close();
         }
@@ -190,11 +150,7 @@ namespace FrbaHotel.RegistrarEstadia
                 MessageBox.Show("Ingrese el motivo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (txtMail.Text.Trim() == "" && txtUsername.Text.Trim() == "")
-            {
-                MessageBox.Show("Ingrese el mail/usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+            
             return true;
         }
 
@@ -207,21 +163,7 @@ namespace FrbaHotel.RegistrarEstadia
         {
 
         }
-
-        private void cbxUsuario_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (Convert.ToString(cbxUsuario.SelectedItem) == "Huesped")
-            {
-                txtUsername.Enabled = false;
-                txtMail.Enabled = true;
-            }
-            else
-            {
-                txtUsername.Enabled = true;
-                txtMail.Enabled = false;
-            }
-        }
-
+      
 
     }
 }

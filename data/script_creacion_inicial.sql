@@ -9,6 +9,7 @@ BEGIN
 EXEC ('CREATE SCHEMA [CAIA_UNLIMITED] AUTHORIZATION [gd]')
 END
 
+
 create table CAIA_UNLIMITED.Mantenimiento(
 	mant_fecha_inicio datetime not null,
 	mant_fecha_fin datetime not null,
@@ -100,7 +101,7 @@ create table CAIA_UNLIMITED.Reserva_Cancelada(
 	reca_rese numeric(18,0) not null,
 	reca_motivo nvarchar(255),
 	reca_fecha_cancelacion datetime not null,
-	reca_usuario nvarchar(255) 
+	reca_usuario numeric(18,0)
 )
 go
 
@@ -391,7 +392,9 @@ go
 
 alter table CAIA_UNLIMITED.Reserva_Cancelada
 	add constraint FK_ReservaCancelada_Reserva foreign key (reca_rese)
-	references CAIA_UNLIMITED.Reserva (rese_codigo)
+	references CAIA_UNLIMITED.Reserva (rese_codigo),	
+	constraint FK_ReservaCancelada_Usuario foreign key (reca_usuario)
+	references CAIA_UNLIMITED.Usuario (usur_id)
 go
 
 --Consumibles
@@ -851,70 +854,137 @@ GO
 
 CREATE PROCEDURE [CAIA_UNLIMITED].[sp_CrearHuesped] (@nombre nvarchar(255), @apellido nvarchar(255), @documento numeric(18,0), @tipo nvarchar(3), @mail nvarchar(255), @fecha_nacimiento datetime,@nacionalidad nvarchar(255),@calle nvarchar(255),@calle_nro numeric(18,0),@piso numeric(18,0),@dpto nvarchar(50),@ciudad nvarchar(255),@pais nvarchar(255), @telefono nvarchar(20))
 AS
-BEGIN
+BEGIN	
+  SET NOCOUNT ON;
+  DECLARE @trancount int;
+  SET @trancount = @@trancount;
+  BEGIN TRY
+    IF @trancount = 0
+      BEGIN TRANSACTION
+      ELSE
+        SAVE TRANSACTION sp_CrearHuesped;
 
-	if((SELECT COUNT(*) FROM CAIA_UNLIMITED.Direccion WHERE dire_telefono = @telefono AND dire_dom_calle = @calle AND dire_nro_calle = @calle_nro AND (dire_piso = @piso or @piso is null) AND dire_dpto = @dpto AND dire_ciudad = @ciudad  AND dire_pais = @pais ) = 0)
-        BEGIN
+		if((SELECT COUNT(*) FROM CAIA_UNLIMITED.Direccion WHERE dire_telefono = @telefono AND dire_dom_calle = @calle AND dire_nro_calle = @calle_nro AND (dire_piso = @piso or @piso is null) AND dire_dpto = @dpto AND dire_ciudad = @ciudad  AND dire_pais = @pais ) = 0)
+        	BEGIN
 			insert into CAIA_UNLIMITED.Direccion (dire_ciudad, dire_pais, dire_dom_calle, dire_nro_calle,dire_telefono,dire_piso,dire_dpto)
 			values (@ciudad, @pais, @calle, @calle_nro, @telefono,@piso,@dpto)
-        END
+        	END
 	
-	insert into CAIA_UNLIMITED.Huesped (hues_mail,hues_nombre,hues_apellido,hues_documento,hues_nacionalidad,hues_nacimiento,hues_documento_tipo,hues_habilitado,dire_id)
-	values(@mail, @nombre,@apellido,@documento,@nacionalidad,convert(datetime,@fecha_nacimiento,120), @tipo,1,(SELECT dire_id FROM CAIA_UNLIMITED.Direccion WHERE dire_telefono = @telefono AND dire_dom_calle = @calle AND dire_nro_calle = @calle_nro AND (dire_piso = @piso or @piso is null) AND dire_dpto = @dpto AND dire_ciudad = @ciudad  AND dire_pais = @pais ))
-	
-					
+		insert into CAIA_UNLIMITED.Huesped (hues_mail,hues_nombre,hues_apellido,hues_documento,hues_nacionalidad,hues_nacimiento,hues_documento_tipo,hues_habilitado,dire_id)
+		values(@mail, @nombre,@apellido,@documento,@nacionalidad,convert(datetime,@fecha_nacimiento,120), @tipo,1,(SELECT dire_id FROM CAIA_UNLIMITED.Direccion WHERE dire_telefono = @telefono AND dire_dom_calle = @calle AND dire_nro_calle = @calle_nro AND (dire_piso = @piso or @piso is null) AND dire_dpto = @dpto AND dire_ciudad = @ciudad  AND dire_pais = @pais ))
+
+	lbexit:
+      IF @trancount = 0
+      COMMIT;
+  END TRY
+  BEGIN CATCH
+    DECLARE @error int,
+            @message varchar(4000),
+            @xstate int;
+
+    SELECT
+      @error = ERROR_NUMBER(),
+      @message = ERROR_MESSAGE(),
+      @xstate = XACT_STATE();
+
+    IF @xstate = -1
+      ROLLBACK;
+    IF @xstate = 1 AND @trancount = 0
+      ROLLBACK
+    IF @xstate = 1 AND @trancount > 0
+      ROLLBACK TRANSACTION sp_CrearHuesped;
+
+    RAISERROR ('sp_CrearHuesped: %d: %s', 16, 1, @error, @message);
+  END CATCH
 END
 GO
 
 CREATE PROCEDURE [CAIA_UNLIMITED].[sp_BajaHuesped] (@email nvarchar(255))
 AS
 BEGIN	
-	update CAIA_UNLIMITED.Huesped 
-	set hues_habilitado = 0 where hues_mail = @email
-		
+  SET NOCOUNT ON;
+  DECLARE @trancount int;
+  SET @trancount = @@trancount;
+  BEGIN TRY
+    IF @trancount = 0
+      BEGIN TRANSACTION
+      ELSE
+        SAVE TRANSACTION sp_BajaHuesped;
+
+		update CAIA_UNLIMITED.Huesped 
+		set hues_habilitado = 0 where hues_mail = @email
+
+	lbexit:
+      IF @trancount = 0
+      COMMIT;
+  END TRY
+  BEGIN CATCH
+    DECLARE @error int,
+            @message varchar(4000),
+            @xstate int;
+
+    SELECT
+      @error = ERROR_NUMBER(),
+      @message = ERROR_MESSAGE(),
+      @xstate = XACT_STATE();
+
+    IF @xstate = -1
+      ROLLBACK;
+    IF @xstate = 1 AND @trancount = 0
+      ROLLBACK
+    IF @xstate = 1 AND @trancount > 0
+      ROLLBACK TRANSACTION sp_BajaHuesped;
+
+    RAISERROR ('sp_BajaHuesped: %d: %s', 16, 1, @error, @message);
+  END CATCH
 END
 GO
 
 CREATE PROCEDURE [CAIA_UNLIMITED].[sp_ModificarHuesped] (@nombre nvarchar(255), @apellido nvarchar(255), @documento numeric(18,0), @tipo nvarchar(3), @mail nvarchar(255), @fecha_nacimiento datetime,@nacionalidad nvarchar(255),@calle nvarchar(255),@calle_nro numeric(18,0),@piso numeric(18,0),@dpto nvarchar(50),@ciudad nvarchar(255),@pais nvarchar(255), @telefono nvarchar(20),@estado bit, @documentoViejo numeric(18,0), @tipoViejo nvarchar(3), @mailViejo nvarchar(255))
 AS
-BEGIN
-	update CAIA_UNLIMITED.Direccion 
-	set dire_dom_calle = @calle, dire_nro_calle = @calle_nro, dire_ciudad = @ciudad, dire_pais = @pais, dire_telefono = @telefono,dire_piso=@piso, dire_dpto=@dpto
-	where dire_id = (select H.dire_id 
-						from CAIA_UNLIMITED.Huesped H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) 
-						where hues_mail = @mail)
+BEGIN	
+  SET NOCOUNT ON;
+  DECLARE @trancount int;
+  SET @trancount = @@trancount;
+  BEGIN TRY
+    IF @trancount = 0
+      BEGIN TRANSACTION
+      ELSE
+        SAVE TRANSACTION sp_ModificarHuesped;
 
-	update CAIA_UNLIMITED.Huesped
-	set hues_mail = @mail,hues_nombre=@nombre,hues_apellido=@apellido,hues_documento=@documento,hues_nacionalidad=@nacionalidad,hues_nacimiento=convert(datetime,@fecha_nacimiento,120),hues_documento_tipo=@tipo, hues_habilitado=@estado
-	where hues_mail = @mailViejo and hues_documento=@documentoViejo and hues_documento_tipo=@tipoViejo
-END
-GO
+		update CAIA_UNLIMITED.Direccion 
+		set dire_dom_calle = @calle, dire_nro_calle = @calle_nro, dire_ciudad = @ciudad, dire_pais = @pais, dire_telefono = @telefono,dire_piso=@piso, dire_dpto=@dpto
+		where dire_id = (select H.dire_id 
+				 from CAIA_UNLIMITED.Huesped H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) 
+				 where hues_mail = @mail)
 
------Regimen
+		update CAIA_UNLIMITED.Huesped
+		set hues_mail = @mail,hues_nombre=@nombre,hues_apellido=@apellido,hues_documento=@documento,hues_nacionalidad=@nacionalidad,hues_nacimiento=convert(datetime,@fecha_nacimiento,120),hues_documento_tipo=@tipo, hues_habilitado=@estado
+		where hues_mail = @mailViejo and hues_documento=@documentoViejo and hues_documento_tipo=@tipoViejo
 
+	lbexit:
+      IF @trancount = 0
+      COMMIT;
+  END TRY
+  BEGIN CATCH
+    DECLARE @error int,
+            @message varchar(4000),
+            @xstate int;
 
-CREATE PROCEDURE [CAIA_UNLIMITED].[sp_Modificar](@codigo numeric(18,0),@descripcion nvarchar(255), @precio_base numeric(18,2),@estado bit)
-AS
-BEGIN
-	update CAIA_UNLIMITED.Regimen
-	set regi_descripcion=@descripcion ,regi_precio_base=@precio_base, regi_estado=@estado where regi_codigo=@codigo
-END
-GO
+    SELECT
+      @error = ERROR_NUMBER(),
+      @message = ERROR_MESSAGE(),
+      @xstate = XACT_STATE();
 
-CREATE PROCEDURE [CAIA_UNLIMITED].[sp_BajaRegi] (@codigo numeric(18,0))
-AS
-BEGIN
-	update CAIA_UNLIMITED.Regimen 
-	set regi_estado = 0 where regi_codigo=@codigo
-END
-GO
+    IF @xstate = -1
+      ROLLBACK;
+    IF @xstate = 1 AND @trancount = 0
+      ROLLBACK
+    IF @xstate = 1 AND @trancount > 0
+      ROLLBACK TRANSACTION sp_ModificarHuesped;
 
-CREATE PROCEDURE [CAIA_UNLIMITED].[sp_CrearRegi] (@descripcion nvarchar(255), @precio_base numeric(18,2),@estado bit)
-AS
-BEGIN
-
-	insert into CAIA_UNLIMITED.Regimen (regi_descripcion,regi_precio_base,regi_estado)
-	values(@descripcion,@precio_base,@estado)
+    RAISERROR ('sp_ModificarHuesped: %d: %s', 16, 1, @error, @message);
+  END CATCH
 END
 GO
 
@@ -1636,41 +1706,210 @@ GO
 
 CREATE PROCEDURE [CAIA_UNLIMITED].[sp_RegistrarConsumible] (@codigo_estadia numeric(18,0), @codigo_consumible numeric(18,0),@cantidad numeric(18,0))
 AS
-BEGIN
-	insert into CAIA_UNLIMITED.Consumible_X_Estadia(cons_esta_codigo_cons, cons_esta_codigo_esta,cons_esta_cantidad)
-	values (@codigo_consumible, @codigo_estadia,@cantidad)
+BEGIN	
+  SET NOCOUNT ON;
+  DECLARE @trancount int;
+  SET @trancount = @@trancount;
+  BEGIN TRY
+    IF @trancount = 0
+      BEGIN TRANSACTION
+      ELSE
+        SAVE TRANSACTION sp_RegistrarConsumible;
+
+		insert into CAIA_UNLIMITED.Consumible_X_Estadia(cons_esta_codigo_cons, cons_esta_codigo_esta,cons_esta_cantidad)
+		values (@codigo_consumible, @codigo_estadia,@cantidad)
+	lbexit:
+      IF @trancount = 0
+      COMMIT;
+  END TRY
+  BEGIN CATCH
+    DECLARE @error int,
+            @message varchar(4000),
+            @xstate int;
+
+    SELECT
+      @error = ERROR_NUMBER(),
+      @message = ERROR_MESSAGE(),
+      @xstate = XACT_STATE();
+
+    IF @xstate = -1
+      ROLLBACK;
+    IF @xstate = 1 AND @trancount = 0
+      ROLLBACK
+    IF @xstate = 1 AND @trancount > 0
+      ROLLBACK TRANSACTION sp_RegistrarConsumible;
+
+    RAISERROR ('sp_RegistrarConsumible: %d: %s', 16, 1, @error, @message);
+  END CATCH
 END
 GO
 
 -----------Cancelar reserva
 
-CREATE PROCEDURE [CAIA_UNLIMITED].[sp_CancelarReserva] (@codigo_reserva numeric(18,0), @motivo nvarchar(255), @fecha_cancelacion datetime, @usuario nvarchar(255),@estado numeric(18,0))
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_CancelarReservaUsuario] (@codigo_reserva numeric(18,0), @motivo nvarchar(255), @fecha_cancelacion datetime, @usuario nvarchar(255),@estado numeric(18,0))
 AS
-BEGIN
-	insert into CAIA_UNLIMITED.Reserva_Cancelada(reca_rese,reca_motivo,reca_fecha_cancelacion,reca_usuario)
-	values (@codigo_reserva,@motivo,convert(datetime,@fecha_cancelacion,120),@usuario)
-	update CAIA_UNLIMITED.Reserva 
-	set esre_codigo=@estado where rese_codigo = @codigo_reserva
+BEGIN	
+  SET NOCOUNT ON;
+  DECLARE @trancount int;
+  SET @trancount = @@trancount;
+  BEGIN TRY
+    IF @trancount = 0
+      BEGIN TRANSACTION
+      ELSE
+        SAVE TRANSACTION sp_CancelarReservaUsuario;
+
+		insert into CAIA_UNLIMITED.Reserva_Cancelada(reca_rese,reca_motivo,reca_fecha_cancelacion,reca_usuario)
+		values (@codigo_reserva,@motivo,convert(datetime,@fecha_cancelacion,120),@usuario)
+		update CAIA_UNLIMITED.Reserva 
+		set esre_codigo=@estado where rese_codigo = @codigo_reserva
+	lbexit:
+      IF @trancount = 0
+      COMMIT;
+  END TRY
+  BEGIN CATCH
+    DECLARE @error int,
+            @message varchar(4000),
+            @xstate int;
+
+    SELECT
+      @error = ERROR_NUMBER(),
+      @message = ERROR_MESSAGE(),
+      @xstate = XACT_STATE();
+
+    IF @xstate = -1
+      ROLLBACK;
+    IF @xstate = 1 AND @trancount = 0
+      ROLLBACK
+    IF @xstate = 1 AND @trancount > 0
+      ROLLBACK TRANSACTION sp_CancelarReservaUsuario;
+
+    RAISERROR ('sp_CancelarReservaUsuario: %d: %s', 16, 1, @error, @message);
+  END CATCH
 END
-GO 
+GO
+
+
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_CancelarReservaHuesped] (@codigo_reserva numeric(18,0), @motivo nvarchar(255), @fecha_cancelacion datetime,@estado numeric(18,0))
+AS
+BEGIN	
+  SET NOCOUNT ON;
+  DECLARE @trancount int;
+  SET @trancount = @@trancount;
+  BEGIN TRY
+    IF @trancount = 0
+      BEGIN TRANSACTION
+      ELSE
+        SAVE TRANSACTION sp_CancelarReservaHuesped;
+
+		insert into CAIA_UNLIMITED.Reserva_Cancelada(reca_rese,reca_motivo,reca_fecha_cancelacion)
+		values (@codigo_reserva,@motivo,convert(datetime,@fecha_cancelacion,120))
+		update CAIA_UNLIMITED.Reserva 
+		set esre_codigo=@estado where rese_codigo = @codigo_reserva
+	lbexit:
+      IF @trancount = 0
+      COMMIT;
+  END TRY
+  BEGIN CATCH
+    DECLARE @error int,
+            @message varchar(4000),
+            @xstate int;
+
+    SELECT
+      @error = ERROR_NUMBER(),
+      @message = ERROR_MESSAGE(),
+      @xstate = XACT_STATE();
+
+    IF @xstate = -1
+      ROLLBACK;
+    IF @xstate = 1 AND @trancount = 0
+      ROLLBACK
+    IF @xstate = 1 AND @trancount > 0
+      ROLLBACK TRANSACTION sp_CancelarReservaHuesped;
+
+    RAISERROR ('sp_CancelarReservaHuesped: %d: %s', 16, 1, @error, @message);
+  END CATCH
+END
+GO
 
 ------------Registrar estadia
 
 CREATE PROCEDURE [CAIA_UNLIMITED].[sp_RegistrarIngreso](@fecha_inicio datetime, @usuario numeric(18,0),@codigo_reserva numeric(18,0))
 AS
-BEGIN
-	insert into CAIA_UNLIMITED.Estadia(esta_fecha_inicio,rese_codigo,usur_checkin)
-	values (convert(datetime,@fecha_inicio,120),@codigo_reserva,@usuario)
-	update CAIA_UNLIMITED.Reserva 
-	set esre_codigo=5 where rese_codigo = @codigo_reserva
+BEGIN	
+  SET NOCOUNT ON;
+  DECLARE @trancount int;
+  SET @trancount = @@trancount;
+  BEGIN TRY
+    IF @trancount = 0
+      BEGIN TRANSACTION
+      ELSE
+        SAVE TRANSACTION sp_RegistrarIngreso;
+
+		insert into CAIA_UNLIMITED.Estadia(esta_fecha_inicio,rese_codigo,usur_checkin)
+		values (convert(datetime,@fecha_inicio,120),@codigo_reserva,@usuario)
+		update CAIA_UNLIMITED.Reserva 
+		set esre_codigo=5 where rese_codigo = @codigo_reserva
+	lbexit:
+      IF @trancount = 0
+      COMMIT;
+  END TRY
+  BEGIN CATCH
+    DECLARE @error int,
+            @message varchar(4000),
+            @xstate int;
+
+    SELECT
+      @error = ERROR_NUMBER(),
+      @message = ERROR_MESSAGE(),
+      @xstate = XACT_STATE();
+
+    IF @xstate = -1
+      ROLLBACK;
+    IF @xstate = 1 AND @trancount = 0
+      ROLLBACK
+    IF @xstate = 1 AND @trancount > 0
+      ROLLBACK TRANSACTION sp_RegistrarIngreso;
+
+    RAISERROR ('sp_RegistrarIngreso: %d: %s', 16, 1, @error, @message);
+  END CATCH
 END
 GO
 
 CREATE PROCEDURE [CAIA_UNLIMITED].[sp_RegistrarEgreso](@fecha_egreso datetime, @usuario numeric(18,0),@estadia_Id numeric (18,0))
 AS
-BEGIN
-	update CAIA_UNLIMITED.Estadia 
-	set esta_fecha_fin=convert(datetime,@fecha_egreso,120), usur_checkout= @usuario where esta_codigo = @estadia_Id
+BEGIN	
+  SET NOCOUNT ON;
+  DECLARE @trancount int;
+  SET @trancount = @@trancount;
+  BEGIN TRY
+    IF @trancount = 0
+      BEGIN TRANSACTION
+      ELSE
+        SAVE TRANSACTION sp_RegistrarEgreso;
 
-	
+		update CAIA_UNLIMITED.Estadia 
+		set esta_fecha_fin=convert(datetime,@fecha_egreso,120), usur_checkout= @usuario where esta_codigo = @estadia_Id
+	lbexit:
+      IF @trancount = 0
+      COMMIT;
+  END TRY
+  BEGIN CATCH
+    DECLARE @error int,
+            @message varchar(4000),
+            @xstate int;
+
+    SELECT
+      @error = ERROR_NUMBER(),
+      @message = ERROR_MESSAGE(),
+      @xstate = XACT_STATE();
+
+    IF @xstate = -1
+      ROLLBACK;
+    IF @xstate = 1 AND @trancount = 0
+      ROLLBACK
+    IF @xstate = 1 AND @trancount > 0
+      ROLLBACK TRANSACTION sp_RegistrarEgreso;
+
+    RAISERROR ('sp_RegistrarEgreso: %d: %s', 16, 1, @error, @message);
+  END CATCH
 END

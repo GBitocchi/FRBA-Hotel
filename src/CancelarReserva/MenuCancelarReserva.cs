@@ -105,7 +105,7 @@ namespace FrbaHotel.CancelarReserva
                                 }
                                 else
                                 {
-                                    ejecutarStoredProcedureCancelarReserva();
+                                    ejecutarStoredProcedureCancelarReservaHuesped();
                                     limpiarFormulario();
                                     MessageBox.Show("Reserva cancelada", "Cancelada", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 }
@@ -127,7 +127,7 @@ namespace FrbaHotel.CancelarReserva
                             }
                             else
                             {
-                                ejecutarStoredProcedureCancelarReserva();
+                                ejecutarStoredProcedureCancelarReservaUsuario();
 
                                 limpiarFormulario();
 
@@ -236,25 +236,38 @@ namespace FrbaHotel.CancelarReserva
             }
         }
 
-        private void ejecutarStoredProcedureCancelarReserva()
+        private void ejecutarStoredProcedureCancelarReservaHuesped()
         {
             SqlConnection db = DataBase.conectarBD();
-            SqlCommand cancelarReserva = new SqlCommand("CAIA_UNLIMITED.sp_CancelarReserva", db);
+            SqlCommand cancelarReserva = new SqlCommand("CAIA_UNLIMITED.sp_CancelarReservaHuesped", db);
             cancelarReserva.CommandType = CommandType.StoredProcedure;
             cancelarReserva.Parameters.AddWithValue("@codigo_Reserva", txtNumero_Reserva.Text.Trim());
             cancelarReserva.Parameters.AddWithValue("@motivo", txtMotivo.Text.Trim());
             
             cancelarReserva.Parameters.AddWithValue("@fecha_cancelacion", DateTime.Parse(txtCancelacion.Text));
-            if (cbxUsuario.SelectedItem.ToString() == "Huesped")
-            {
-                cancelarReserva.Parameters.AddWithValue("@usuario", txtMail.Text.Trim());
-                cancelarReserva.Parameters.AddWithValue("@estado", 3);
-            }
-            else
-            {
-                cancelarReserva.Parameters.AddWithValue("@usuario", txtUsername.Text.Trim());
-                cancelarReserva.Parameters.AddWithValue("@estado", 2);
-            }
+            
+            cancelarReserva.Parameters.AddWithValue("@estado", 3);
+            
+            cancelarReserva.ExecuteNonQuery();
+            db.Close();
+        }
+
+        private void ejecutarStoredProcedureCancelarReservaUsuario()
+        {
+            SqlConnection db = DataBase.conectarBD();
+            SqlCommand cancelarReserva = new SqlCommand("CAIA_UNLIMITED.sp_CancelarReservaUsuario", db);
+            cancelarReserva.CommandType = CommandType.StoredProcedure;
+            cancelarReserva.Parameters.AddWithValue("@codigo_Reserva", txtNumero_Reserva.Text.Trim());
+            cancelarReserva.Parameters.AddWithValue("@motivo", txtMotivo.Text.Trim());
+
+            cancelarReserva.Parameters.AddWithValue("@fecha_cancelacion", DateTime.Parse(txtCancelacion.Text));
+
+            string consultaIdUsuario = string.Format("SELECT usur_id FROM CAIA_UNLIMITED.Usuario  WHERE usur_username ='{0}'", txtUsername.Text.Trim());
+            DataTable idUsuarioObtenido = DataBase.realizarConsulta(consultaIdUsuario).Tables[0];
+            string idUsuario = idUsuarioObtenido.Rows[0][0].ToString();
+
+            cancelarReserva.Parameters.AddWithValue("@usuario",Convert.ToInt32(idUsuario));
+            cancelarReserva.Parameters.AddWithValue("@estado", 2);
             cancelarReserva.ExecuteNonQuery();
             db.Close();
         }
