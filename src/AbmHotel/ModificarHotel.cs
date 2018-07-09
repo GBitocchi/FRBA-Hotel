@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -209,6 +210,11 @@ namespace FrbaHotel.AbmHotel
             {
                 lblMail.Visible = true;
             }
+            else if (!formatoMailCorrecto())
+            {
+                lblMail.Visible = true;
+                return false;
+            }
             else if (txtTelefono.Text.Trim() == "" || !int.TryParse(txtTelefono.Text.Trim(), out aux))
             {
                 MessageBox.Show("El numero de telefono debe ser un numero.", "Campos invalidos", MessageBoxButtons.OK);
@@ -257,5 +263,20 @@ namespace FrbaHotel.AbmHotel
         {
             this.Hide();
         }
+
+        private bool formatoMailCorrecto()
+        {
+            Regex expEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            if (!expEmail.IsMatch(txtMail.Text))
+            {
+                MessageBox.Show("Formato de mail ingresado incorrecto", "Campos erroneos", MessageBoxButtons.OK);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
     }
 }

@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -38,6 +39,11 @@ namespace FrbaHotel.AbmHotel
             else if (txtMail.Text.Trim() == "")
             {
                 lblMail.Visible = true;
+            }
+            else if (!formatoMailCorrecto())
+            {
+                lblMail.Visible = true;
+                return false;
             }
             else if (txtTelefono.Text.Trim() == "" || !int.TryParse(txtTelefono.Text.Trim(), out aux))
             {
@@ -78,6 +84,21 @@ namespace FrbaHotel.AbmHotel
             MessageBox.Show("Por favor complete los campos que quedaron vacios o erroneos.", "Campos incompletos", MessageBoxButtons.OK);
             return false;
         }
+
+        private bool formatoMailCorrecto()
+        {
+            Regex expEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            if (!expEmail.IsMatch(txtMail.Text.Trim()))
+            {
+                MessageBox.Show("Formato de mail ingresado incorrecto", "Campos erroneos", MessageBoxButtons.OK);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
 
         public CrearHotel()
         {
