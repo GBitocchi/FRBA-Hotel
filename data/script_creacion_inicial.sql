@@ -527,7 +527,7 @@ from gd_esquema.Maestra join CAIA_UNLIMITED.Direccion D on (Hotel_Calle = dire_d
 							join CAIA_UNLIMITED.Reserva R on (Reserva_Codigo = rese_codigo)
 
 
-insert into CAIA_UNLIMITED.Rol (rol_nombre, rol_estado) values('Administrador General', 1)
+insert into CAIA_UNLIMITED.Rol (rol_nombre, rol_estado) values('Administrador General', 1), ('Recepcionista', 1), ('Guest', 1)
 
 insert into CAIA_UNLIMITED.Rol_X_Usuario (rol_usur_id, rol_usur_codigo) values(0, 0)
 
