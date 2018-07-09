@@ -75,7 +75,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         {
             if (textBoxMail.Text.Trim() != "")
             {
-                string queryCliente = string.Format("SELECT hues_mail as Mail, hues_nombre as Nombre, hues_apellido as Apellido, hues_documento as Documento, hues_nacionalidad as Nacionalidad, hues_documento_tipo as TipoDocumento, hues_habilitado as Estado FROM CAIA_UNLIMITED.Huesped where hues_mail LIKE '{0}' AND hues_habilitado = 0", "%"+textBoxMail.Text.Trim()+"%");
+                string queryCliente = string.Format("SELECT hues_mail as Mail, hues_nombre as Nombre, hues_apellido as Apellido, hues_documento as Documento, hues_nacionalidad as Nacionalidad, hues_documento_tipo as TipoDocumento, hues_habilitado as Estado FROM CAIA_UNLIMITED.Huesped where hues_mail LIKE '{0}' AND hues_habilitado = 1", "%"+textBoxMail.Text.Trim()+"%");
                 DataSet dsClientes = DataBase.realizarConsulta(queryCliente);
                 dgvBuscarClientes.DataSource = dsClientes.Tables[0];
                 dgvBuscarClientes.AllowUserToAddRows = false;
@@ -88,7 +88,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void comboBoxTipoDocumento_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string queryCliente = string.Format("SELECT hues_mail as Mail, hues_nombre as Nombre, hues_apellido as Apellido, hues_documento as Documento, hues_nacionalidad as Nacionalidad, hues_documento_tipo as TipoDocumento, hues_habilitado as Estado FROM CAIA_UNLIMITED.Huesped where hues_documento_tipo LIKE '{0}' AND hues_habilitado = 0", "%"+comboBoxTipoDocumento.SelectedItem.ToString()+"%");
+            string queryCliente = string.Format("SELECT hues_mail as Mail, hues_nombre as Nombre, hues_apellido as Apellido, hues_documento as Documento, hues_nacionalidad as Nacionalidad, hues_documento_tipo as TipoDocumento, hues_habilitado as Estado FROM CAIA_UNLIMITED.Huesped where hues_documento_tipo LIKE '{0}' AND hues_habilitado = 1", "%"+comboBoxTipoDocumento.SelectedItem.ToString()+"%");
             DataSet dsClientes = DataBase.realizarConsulta(queryCliente);
             dgvBuscarClientes.DataSource = dsClientes.Tables[0];
             dgvBuscarClientes.AllowUserToAddRows = false;
@@ -98,7 +98,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         {
             if (textBoxNumeroDocumento.Text.Trim() != "")
             {
-                string queryCliente = string.Format("SELECT hues_mail as Mail, hues_nombre as Nombre, hues_apellido as Apellido, hues_documento as Documento, hues_nacionalidad as Nacionalidad, hues_documento_tipo as TipoDocumento, hues_habilitado as Estado FROM CAIA_UNLIMITED.Huesped where hues_documento = '{0}' AND hues_habilitado = 0", "%"+textBoxNumeroDocumento.Text.Trim()+"%");
+                string queryCliente = string.Format("SELECT hues_mail as Mail, hues_nombre as Nombre, hues_apellido as Apellido, hues_documento as Documento, hues_nacionalidad as Nacionalidad, hues_documento_tipo as TipoDocumento, hues_habilitado as Estado FROM CAIA_UNLIMITED.Huesped where hues_documento LIKE '{0}' AND hues_habilitado = 1", "%"+textBoxNumeroDocumento.Text.Trim()+"%");
                 DataSet dsClientes = DataBase.realizarConsulta(queryCliente);
                 dgvBuscarClientes.DataSource = dsClientes.Tables[0];
                 dgvBuscarClientes.AllowUserToAddRows = false;
