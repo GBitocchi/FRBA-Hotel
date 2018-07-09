@@ -77,12 +77,17 @@ namespace FrbaHotel.AbmHabitacion
         public MenuModificacion(string hotelId)
         {
             InitializeComponent();
+            ocultarErrores();
+            hotel_id = hotelId;
+            MostrarDG();
+        }
+
+        private void ocultarErrores()
+        {
             btnModificar.Visible = false;
             lblNroHabitacion.Visible = false;
             lblPiso.Visible = false;
             lblUbicacion.Visible = false;
-            hotel_id = hotelId;
-            MostrarDG();
         }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -127,6 +132,12 @@ namespace FrbaHotel.AbmHabitacion
             txtUbicacion.Text = dgHabitaciones.SelectedRows[0].Cells[2].Value.ToString();
             txtDescripcion.Text = dgHabitaciones.SelectedRows[0].Cells[3].Value.ToString();
             btnModificar.Visible = true;
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            limpiarCampos();
+            ocultarErrores();
         }
 
     }

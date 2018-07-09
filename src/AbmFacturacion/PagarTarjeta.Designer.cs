@@ -51,6 +51,7 @@
             this.lblCodigo = new System.Windows.Forms.Label();
             this.lblBanco = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAceptar
@@ -286,11 +287,23 @@
             this.lblFecha.TabIndex = 24;
             this.lblFecha.Text = "*Fecha incorrecta";
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(43, 359);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(112, 35);
+            this.btnLimpiar.TabIndex = 25;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
             // PagarTarjeta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(721, 438);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.lblFecha);
             this.Controls.Add(this.lblBanco);
             this.Controls.Add(this.lblCodigo);
@@ -348,5 +361,6 @@
         private System.Windows.Forms.Label lblCodigo;
         private System.Windows.Forms.Label lblBanco;
         private System.Windows.Forms.Label lblFecha;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }

@@ -59,6 +59,7 @@
             this.lblFecha = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.dtFechaCreacion = new System.Windows.Forms.DateTimePicker();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgRegimenes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -365,11 +366,23 @@
             this.dtFechaCreacion.Size = new System.Drawing.Size(223, 20);
             this.dtFechaCreacion.TabIndex = 30;
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.Location = new System.Drawing.Point(96, 451);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(90, 34);
+            this.btnLimpiar.TabIndex = 31;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
             // CrearHotel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(788, 511);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.dtFechaCreacion);
             this.Controls.Add(this.lblFecha);
             this.Controls.Add(this.label11);
@@ -442,5 +455,6 @@
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.DateTimePicker dtFechaCreacion;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }

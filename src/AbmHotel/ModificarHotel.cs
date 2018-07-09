@@ -278,5 +278,18 @@ namespace FrbaHotel.AbmHotel
             }
         }
 
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtCiudad.Clear();
+            txtDireccion.Clear();
+            txtMail.Clear();
+            txtNombreHotel.Clear();
+            txtNumero.Clear();
+            txtPais.Clear();
+            txtTelefono.Clear();
+            cbCantidadEstrellas.SelectedIndex = 0;
+            dtFechaCreacion.Value = DataBase.fechaSistema();
+            ocultarErrores();
+        }
     }
 }

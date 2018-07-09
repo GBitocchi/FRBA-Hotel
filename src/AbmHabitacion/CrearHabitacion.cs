@@ -21,7 +21,6 @@ namespace FrbaHotel.AbmHabitacion
             lblErrorNroHab.Visible = false;
             lblErrorPiso.Visible = false;
             lblErrorUbi.Visible = false;
-            lblErrorHabiExistente.Visible = false;
             cargarComboBox();
             hotel_id = hotelId;
         }
@@ -129,6 +128,12 @@ namespace FrbaHotel.AbmHabitacion
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            ocultarErrores();
+            limpiarCampos();
         }
     }
 }

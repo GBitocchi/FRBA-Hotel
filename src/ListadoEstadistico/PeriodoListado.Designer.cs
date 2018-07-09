@@ -38,6 +38,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblAno = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cbTrimestre
@@ -78,7 +79,7 @@
             // btnAceptar
             // 
             this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAceptar.Location = new System.Drawing.Point(39, 222);
+            this.btnAceptar.Location = new System.Drawing.Point(190, 222);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(84, 33);
             this.btnAceptar.TabIndex = 3;
@@ -148,11 +149,23 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Listados estadisticos";
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.Location = new System.Drawing.Point(39, 222);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(84, 33);
+            this.btnLimpiar.TabIndex = 10;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
             // PeriodoListado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(492, 285);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblAno);
             this.Controls.Add(this.label3);
@@ -182,5 +195,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblAno;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }

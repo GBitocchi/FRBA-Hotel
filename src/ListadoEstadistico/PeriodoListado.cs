@@ -122,5 +122,12 @@ namespace FrbaHotel.ListadoEstadistico
             this.Hide();
         }
 
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            cbTrimestre.SelectedIndex = 0;
+            cbListado.SelectedIndex = 0;
+            lblAno.Visible = false;
+        }
+
     }
 }

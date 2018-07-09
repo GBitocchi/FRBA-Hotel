@@ -137,5 +137,15 @@ namespace FrbaHotel.AbmFacturacion
         {
             this.Hide();
         }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            ocultarErrores();
+            txtApellido.Clear();
+            txtBanco.Clear();
+            txtCodigo.Clear();
+            txtNombre.Clear();
+            txtNroTarjeta.Clear();
+        }
     }
 }

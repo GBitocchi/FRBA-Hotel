@@ -44,6 +44,7 @@
             this.lblNroHabitacion = new System.Windows.Forms.Label();
             this.lblPiso = new System.Windows.Forms.Label();
             this.lblUbicacion = new System.Windows.Forms.Label();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgHabitaciones)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,7 +67,7 @@
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(97, 34);
             this.btnCancelar.TabIndex = 2;
-            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.Text = "Atras";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
@@ -203,11 +204,23 @@
             this.lblUbicacion.TabIndex = 16;
             this.lblUbicacion.Text = "*Falta ubicación";
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.Location = new System.Drawing.Point(127, 265);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(97, 34);
+            this.btnLimpiar.TabIndex = 17;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
             // MenuModificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(752, 571);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.lblUbicacion);
             this.Controls.Add(this.lblPiso);
             this.Controls.Add(this.lblNroHabitacion);
@@ -250,5 +263,6 @@
         private System.Windows.Forms.Label lblNroHabitacion;
         private System.Windows.Forms.Label lblPiso;
         private System.Windows.Forms.Label lblUbicacion;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }

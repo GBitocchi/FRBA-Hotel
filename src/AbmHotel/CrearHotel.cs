@@ -204,5 +204,11 @@ namespace FrbaHotel.AbmHotel
             this.Hide();
 
         }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            reiniciarVista();
+            ocultarErrores();
+        }
     }
 }

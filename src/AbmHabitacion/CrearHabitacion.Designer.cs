@@ -44,8 +44,8 @@
             this.lblErrorPiso = new System.Windows.Forms.Label();
             this.lblErrorUbi = new System.Windows.Forms.Label();
             this.lblErrorDesc = new System.Windows.Forms.Label();
-            this.lblErrorHabiExistente = new System.Windows.Forms.Label();
             this.cbTipos = new System.Windows.Forms.ComboBox();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -140,9 +140,9 @@
             // btnCrear
             // 
             this.btnCrear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCrear.Location = new System.Drawing.Point(106, 299);
+            this.btnCrear.Location = new System.Drawing.Point(229, 299);
             this.btnCrear.Name = "btnCrear";
-            this.btnCrear.Size = new System.Drawing.Size(122, 36);
+            this.btnCrear.Size = new System.Drawing.Size(84, 36);
             this.btnCrear.TabIndex = 11;
             this.btnCrear.Text = "Crear";
             this.btnCrear.UseVisualStyleBackColor = true;
@@ -151,11 +151,11 @@
             // btnCancelar
             // 
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(234, 299);
+            this.btnCancelar.Location = new System.Drawing.Point(319, 299);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(122, 36);
+            this.btnCancelar.Size = new System.Drawing.Size(84, 36);
             this.btnCancelar.TabIndex = 12;
-            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.Text = "Atras";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
@@ -203,17 +203,6 @@
             this.lblErrorDesc.TabIndex = 17;
             this.lblErrorDesc.Text = "*Ingrese descripción";
             // 
-            // lblErrorHabiExistente
-            // 
-            this.lblErrorHabiExistente.AutoSize = true;
-            this.lblErrorHabiExistente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErrorHabiExistente.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorHabiExistente.Location = new System.Drawing.Point(385, 307);
-            this.lblErrorHabiExistente.Name = "lblErrorHabiExistente";
-            this.lblErrorHabiExistente.Size = new System.Drawing.Size(179, 20);
-            this.lblErrorHabiExistente.TabIndex = 18;
-            this.lblErrorHabiExistente.Text = "*Habitacion ya existente";
-            // 
             // cbTipos
             // 
             this.cbTipos.FormattingEnabled = true;
@@ -222,13 +211,24 @@
             this.cbTipos.Size = new System.Drawing.Size(121, 21);
             this.cbTipos.TabIndex = 19;
             // 
-            // Crear
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.Location = new System.Drawing.Point(63, 299);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(84, 36);
+            this.btnLimpiar.TabIndex = 20;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // CrearHabitacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(676, 367);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.cbTipos);
-            this.Controls.Add(this.lblErrorHabiExistente);
             this.Controls.Add(this.lblErrorDesc);
             this.Controls.Add(this.lblErrorUbi);
             this.Controls.Add(this.lblErrorPiso);
@@ -245,7 +245,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Crear";
+            this.Name = "CrearHabitacion";
             this.Text = "Crear habitación";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -270,7 +270,7 @@
         private System.Windows.Forms.Label lblErrorPiso;
         private System.Windows.Forms.Label lblErrorUbi;
         private System.Windows.Forms.Label lblErrorDesc;
-        private System.Windows.Forms.Label lblErrorHabiExistente;
         private System.Windows.Forms.ComboBox cbTipos;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }
