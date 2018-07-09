@@ -102,7 +102,8 @@ namespace FrbaHotel.AbmUsuario
             lblDialogBloqMayus.Visible = false;
             this._usuarioAModificar = usuarioAModificar;
             this.direccion = Convert.ToDecimal(usuarioAModificar.Rows[e.RowIndex].Cells["idDireccion"].Value.ToString());
-            this.nombreUsuario = textBoxDialogUser.Text = usuarioAModificar.Rows[e.RowIndex].Cells["NombreDeUsuario"].Value.ToString();
+            textBoxDialogUser.Text = usuarioAModificar.Rows[e.RowIndex].Cells["NombreDeUsuario"].Value.ToString();
+            this.nombreUsuario = usuarioAModificar.Rows[e.RowIndex].Cells["NombreDeUsuario"].Value.ToString();
             this.miNombreUsuario = miUsuario;
             this.codigoMiRol = codRol;
             this.miHotel = hotel;
@@ -562,13 +563,18 @@ namespace FrbaHotel.AbmUsuario
 
         private void monthCalendarDialog_DateChanged(object sender, DateRangeEventArgs e)
         {
-            textBoxDialogBirthday.Text = monthCalendarDialog.SelectionStart.ToShortDateString();
+            
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Hide();
             new VistaUsuario(this.miHotel, this.codigoMiRol, this.miNombreUsuario).Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            textBoxDialogBirthday.Text = monthCalendarDialog.SelectionStart.ToShortDateString();
         }
     }
 }

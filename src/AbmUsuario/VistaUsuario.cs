@@ -200,7 +200,7 @@ namespace FrbaHotel.AbmUsuario
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
-            textBoxBirthday.Text = monthCalendar.SelectionStart.ToShortDateString();
+            
         }
 
         private void tabPage2_Click(object sender, EventArgs e)
@@ -781,6 +781,11 @@ namespace FrbaHotel.AbmUsuario
         private void VistaUsuario_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            textBoxBirthday.Text = monthCalendar.SelectionStart.ToShortDateString();
         }
     }
 }

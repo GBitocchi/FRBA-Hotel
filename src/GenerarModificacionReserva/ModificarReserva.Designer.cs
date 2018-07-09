@@ -95,6 +95,8 @@
             this.labelFechaInicio = new System.Windows.Forms.Label();
             this.calendarInicio = new System.Windows.Forms.MonthCalendar();
             this.btnConfirmarPaso = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -113,6 +115,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.labelWrongCodigo);
             this.groupBox1.Controls.Add(this.btnSeleccionarReserva);
             this.groupBox1.Controls.Add(this.textBoxReserva);
@@ -180,7 +184,7 @@
             this.groupBox1.Controls.Add(this.btnConfirmarPaso);
             this.groupBox1.Location = new System.Drawing.Point(12, 97);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1176, 630);
+            this.groupBox1.Size = new System.Drawing.Size(1176, 659);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
@@ -325,7 +329,7 @@
             this.lbllistBoxNoItem.AutoSize = true;
             this.lbllistBoxNoItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbllistBoxNoItem.ForeColor = System.Drawing.Color.Red;
-            this.lbllistBoxNoItem.Location = new System.Drawing.Point(43, 562);
+            this.lbllistBoxNoItem.Location = new System.Drawing.Point(20, 591);
             this.lbllistBoxNoItem.Name = "lbllistBoxNoItem";
             this.lbllistBoxNoItem.Size = new System.Drawing.Size(411, 20);
             this.lbllistBoxNoItem.TabIndex = 393;
@@ -337,7 +341,7 @@
             this.lblErrorNoField.AutoSize = true;
             this.lblErrorNoField.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorNoField.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorNoField.Location = new System.Drawing.Point(570, 522);
+            this.lblErrorNoField.Location = new System.Drawing.Point(570, 551);
             this.lblErrorNoField.Name = "lblErrorNoField";
             this.lblErrorNoField.Size = new System.Drawing.Size(164, 20);
             this.lblErrorNoField.TabIndex = 64;
@@ -357,7 +361,7 @@
             this.lblErrorNumberValue.AutoSize = true;
             this.lblErrorNumberValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorNumberValue.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorNumberValue.Location = new System.Drawing.Point(570, 542);
+            this.lblErrorNumberValue.Location = new System.Drawing.Point(570, 571);
             this.lblErrorNumberValue.Name = "lblErrorNumberValue";
             this.lblErrorNumberValue.Size = new System.Drawing.Size(540, 20);
             this.lblErrorNumberValue.TabIndex = 63;
@@ -701,7 +705,7 @@
             this.lblerrorfechas.AutoSize = true;
             this.lblerrorfechas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblerrorfechas.ForeColor = System.Drawing.Color.Red;
-            this.lblerrorfechas.Location = new System.Drawing.Point(43, 522);
+            this.lblerrorfechas.Location = new System.Drawing.Point(20, 551);
             this.lblerrorfechas.Name = "lblerrorfechas";
             this.lblerrorfechas.Size = new System.Drawing.Size(504, 20);
             this.lblerrorfechas.TabIndex = 353;
@@ -713,7 +717,7 @@
             this.lblErrorPaso1.AutoSize = true;
             this.lblErrorPaso1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorPaso1.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorPaso1.Location = new System.Drawing.Point(43, 542);
+            this.lblErrorPaso1.Location = new System.Drawing.Point(20, 571);
             this.lblErrorPaso1.Name = "lblErrorPaso1";
             this.lblErrorPaso1.Size = new System.Drawing.Size(488, 20);
             this.lblErrorPaso1.TabIndex = 351;
@@ -724,7 +728,7 @@
             // 
             this.btnLimpiar.BackColor = System.Drawing.Color.Yellow;
             this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(654, 585);
+            this.btnLimpiar.Location = new System.Drawing.Point(654, 611);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(100, 42);
             this.btnLimpiar.TabIndex = 348;
@@ -736,7 +740,7 @@
             // 
             this.btnCheckear.BackColor = System.Drawing.Color.LightCoral;
             this.btnCheckear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheckear.Location = new System.Drawing.Point(17, 585);
+            this.btnCheckear.Location = new System.Drawing.Point(17, 614);
             this.btnCheckear.Name = "btnCheckear";
             this.btnCheckear.Size = new System.Drawing.Size(177, 42);
             this.btnCheckear.TabIndex = 347;
@@ -747,7 +751,7 @@
             // lblResumenReserva
             // 
             this.lblResumenReserva.AutoSize = true;
-            this.lblResumenReserva.Location = new System.Drawing.Point(102, 542);
+            this.lblResumenReserva.Location = new System.Drawing.Point(79, 571);
             this.lblResumenReserva.Name = "lblResumenReserva";
             this.lblResumenReserva.Size = new System.Drawing.Size(10, 13);
             this.lblResumenReserva.TabIndex = 346;
@@ -861,7 +865,7 @@
             this.btnConfirmarPaso.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfirmarPaso.Enabled = false;
             this.btnConfirmarPaso.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirmarPaso.Location = new System.Drawing.Point(1009, 587);
+            this.btnConfirmarPaso.Location = new System.Drawing.Point(1009, 608);
             this.btnConfirmarPaso.Name = "btnConfirmarPaso";
             this.btnConfirmarPaso.Size = new System.Drawing.Size(160, 40);
             this.btnConfirmarPaso.TabIndex = 334;
@@ -870,12 +874,34 @@
             this.btnConfirmarPaso.Visible = false;
             this.btnConfirmarPaso.Click += new System.EventHandler(this.btnConfirmarPaso_Click_1);
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(66, 516);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(113, 32);
+            this.button1.TabIndex = 406;
+            this.button1.Text = "Seleccionar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(406, 516);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(113, 32);
+            this.button2.TabIndex = 407;
+            this.button2.Text = "Seleccionar";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
             // ModificarReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1189, 728);
+            this.ClientSize = new System.Drawing.Size(1189, 757);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Name = "ModificarReserva";
@@ -957,5 +983,7 @@
         private System.Windows.Forms.TextBox textBoxReserva;
         private System.Windows.Forms.Label lblErrorReserva;
         private System.Windows.Forms.Label lblReserva;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -19,10 +19,16 @@ namespace FrbaHotel.GenerarModificacionReserva
         bool guest = true;
         bool existeCliente = false;
         bool seleccionoReserva = false;
+        bool seleccionoInicio = false;
+        bool seleccionoFin = false;
         string mail;
+        string MailActual;
+        string DocumentoActual;
         decimal documento;
         decimal reserva;
         DateTime fechaElegidaInicio;
+        DateTime SelectionFechaInicio;
+        DateTime SelectionFechaFin;
         decimal regimen;
         string username;
         DataSet dsHoteles;
@@ -288,6 +294,10 @@ namespace FrbaHotel.GenerarModificacionReserva
                             MessageBox.Show("No puede modificar su reserva! El plazo de modificacion es hasta 1 dia antes del ingreso.");
                             return;
                         }
+                        this.SelectionFechaInicio = this.fechaElegidaInicio;
+                        this.SelectionFechaFin = this.fechaElegidaInicio.AddDays(Convert.ToDouble((decimal)dsReserva.Tables[0].Rows[0]["CantidadNoches"]));
+                        this.seleccionoFin = true;
+                        this.seleccionoInicio = true;
                         calendarInicio.SetDate(this.fechaElegidaInicio);
                         calendarFin.SetDate(this.fechaElegidaInicio.AddDays(Convert.ToDouble((decimal)dsReserva.Tables[0].Rows[0]["CantidadNoches"])));
                         cargarComboBoxTipoDocumento();
@@ -295,7 +305,9 @@ namespace FrbaHotel.GenerarModificacionReserva
                         txbRegimen.Text = dsReserva.Tables[0].Rows[0]["Regimen"].ToString();
                         textBoxNombre.Text = dsReserva.Tables[0].Rows[0]["Nombre"].ToString();
                         textBoxApellido.Text = dsReserva.Tables[0].Rows[0]["Apellido"].ToString();
+                        this.MailActual = dsReserva.Tables[0].Rows[0]["Mail"].ToString();
                         textBoxMail.Text = dsReserva.Tables[0].Rows[0]["Mail"].ToString();
+                        this.DocumentoActual = dsReserva.Tables[0].Rows[0]["Documento"].ToString();
                         textBoxDocumento.Text = dsReserva.Tables[0].Rows[0]["Documento"].ToString();
                         comboBoxTipoDocumentoCliente.SelectedIndex = comboBoxTipoDocumentoCliente.FindString(dsReserva.Tables[0].Rows[0]["TipoDocumento"].ToString(), 0);
                         textBoxDireccion.Text = dsReserva.Tables[0].Rows[0]["Direccion"].ToString();
@@ -346,19 +358,29 @@ namespace FrbaHotel.GenerarModificacionReserva
             lblErrorTipoHabitacion.Visible = false;
             lbllistBoxNoItem.Visible = false;
             this.lblerrorfechas.Visible = false;
-
-            if (calendarFin.SelectionStart <= calendarInicio.SelectionStart)
+            
+            if (!seleccionoFin)
+            {
+                MessageBox.Show("Seleccione la fecha de fin de la reserva.");
+                lblErrorFechaFin.Visible = true;
+            }
+            else if (!seleccionoInicio)
+            {
+                MessageBox.Show("Seleccione la fecha de inicio de la reserva.");
+                lblErrorFechaInicio.Visible = true;
+            }
+            else if (this.SelectionFechaFin <= this.SelectionFechaInicio)
             {
                 this.lblerrorfechas.Visible = true;
                 lblErrorFechaInicio.Visible = true;
                 lblErrorFechaFin.Visible = true;
             }
-            else if (calendarFin.SelectionStart < DataBase.fechaSistema())
+            else if (this.SelectionFechaFin < DataBase.fechaSistema())
             {
                 lblErrorFechaFin.Visible = true;
                 MessageBox.Show("No puede reservar por dias anteriores a los de hoy.");
             }
-            else if (calendarInicio.SelectionStart < DataBase.fechaSistema())
+            else if (this.SelectionFechaInicio < DataBase.fechaSistema())
             {
                 lblErrorFechaInicio.Visible = true;
                 MessageBox.Show("No puede reservar por dias anteriores a los de hoy.");
@@ -386,8 +408,8 @@ namespace FrbaHotel.GenerarModificacionReserva
                         this.regimen = variantes.regimenElegido;
                         string fechaDisponibleHotel = string.Format("SELECT mant_fecha_inicio as FechaInicio, mant_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Mantenimiento where hote_id = '{0}'", this.hotel);
                         DataSet dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel);
-                        DateTime fechaElegidaInicio = calendarInicio.SelectionStart;
-                        DateTime fechaElegidaFin = calendarFin.SelectionStart;
+                        DateTime fechaElegidaInicio = this.SelectionFechaInicio;
+                        DateTime fechaElegidaFin = this.SelectionFechaFin;
                         string fechaInicio = fechaElegidaInicio.ToString("yyyy-MM-dd HH:mm:ss");
                         string fechaFin = fechaElegidaFin.ToString("yyyy-MM-dd HH:mm:ss");
                         TimeSpan difference = fechaElegidaFin - fechaElegidaInicio;
@@ -529,6 +551,8 @@ namespace FrbaHotel.GenerarModificacionReserva
                         lblReserva.Visible = false;
                         textBoxReserva.Visible = false;
                         btnSeleccionarReserva.Visible = false;
+                        button1.Visible = false;
+                        button2.Visible = false;
 
                     }
                 }
@@ -536,8 +560,8 @@ namespace FrbaHotel.GenerarModificacionReserva
                 {
                     string fechaDisponibleHotel = string.Format("SELECT mant_fecha_inicio as FechaInicio, mant_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Mantenimiento where hote_id = '{0}'", this.hotel);
                     DataSet dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel);
-                    DateTime fechaElegidaInicio = calendarInicio.SelectionStart;
-                    DateTime fechaElegidaFin = calendarFin.SelectionStart;
+                    DateTime fechaElegidaInicio = this.SelectionFechaInicio;
+                    DateTime fechaElegidaFin = this.SelectionFechaFin;
                     string fechaInicio = fechaElegidaInicio.ToString("yyyy-MM-dd HH:mm:ss");
                     string fechaFin = fechaElegidaFin.ToString("yyyy-MM-dd HH:mm:ss");
                     TimeSpan difference = fechaElegidaFin - fechaElegidaInicio;
@@ -679,7 +703,8 @@ namespace FrbaHotel.GenerarModificacionReserva
                     lblReserva.Visible = false;
                     textBoxReserva.Visible = false;
                     btnSeleccionarReserva.Visible = false;
-
+                    button1.Visible = false;
+                    button2.Visible = false;
                 }
             }
             else
@@ -696,8 +721,8 @@ namespace FrbaHotel.GenerarModificacionReserva
 
                         string fechaDisponibleHotel = string.Format("SELECT mant_fecha_inicio as FechaInicio, mant_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Mantenimiento where hote_id = '{0}'", this.hotel);
                         DataSet dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel);
-                        DateTime fechaElegidaInicio = calendarInicio.SelectionStart;
-                        DateTime fechaElegidaFin = calendarFin.SelectionStart;
+                        DateTime fechaElegidaInicio = this.SelectionFechaInicio;
+                        DateTime fechaElegidaFin = this.SelectionFechaFin;
                         string fechaInicio = fechaElegidaInicio.ToString("yyyy-MM-dd HH:mm:ss");
                         string fechaFin = fechaElegidaFin.ToString("yyyy-MM-dd HH:mm:ss");
                         TimeSpan difference = fechaElegidaFin - fechaElegidaInicio;
@@ -839,15 +864,16 @@ namespace FrbaHotel.GenerarModificacionReserva
                         lblReserva.Visible = false;
                         textBoxReserva.Visible = false;
                         btnSeleccionarReserva.Visible = false;
-
+                        button1.Visible = false;
+                        button2.Visible = false;
                     }
                 }
                 else
                 {
                     string fechaDisponibleHotel = string.Format("SELECT mant_fecha_inicio as FechaInicio, mant_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Mantenimiento where hote_id = '{0}'", this.hotel);
                     DataSet dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel);
-                    DateTime fechaElegidaInicio = calendarInicio.SelectionStart;
-                    DateTime fechaElegidaFin = calendarFin.SelectionStart;
+                    DateTime fechaElegidaInicio = this.SelectionFechaInicio;
+                    DateTime fechaElegidaFin = this.SelectionFechaFin;
                     string fechaInicio = fechaElegidaInicio.ToString("yyyy-MM-dd HH:mm:ss");
                     string fechaFin = fechaElegidaFin.ToString("yyyy-MM-dd HH:mm:ss");
                     TimeSpan difference = fechaElegidaFin - fechaElegidaInicio;
@@ -989,7 +1015,8 @@ namespace FrbaHotel.GenerarModificacionReserva
                     lblReserva.Visible = false;
                     textBoxReserva.Visible = false;
                     btnSeleccionarReserva.Visible = false;
-
+                    button1.Visible = false;
+                    button2.Visible = false;
                 }
             }
 
@@ -1132,6 +1159,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void btnConfirmarPaso_Click_1(object sender, EventArgs e)
         {
+            limpiarErrores();
             if (existeCliente)
             {
                 SqlConnection createConnection = DataBase.conectarBD();
@@ -1229,10 +1257,20 @@ namespace FrbaHotel.GenerarModificacionReserva
                     lblErrorDocumento.Visible = true;
                     lblErrorNoField.Visible = true;
                 }
+                else if (!int.TryParse(textBoxDocumento.Text.Trim(), out parsedValue))
+                {
+                    lblErrorNumberValue.Visible = true;
+                    lblErrorDocumento.Visible = true;
+                }
                 else if (textBoxTelefono.Text.Trim() == "")
                 {
                     lblErrorTelefono.Visible = true;
                     lblErrorNoField.Visible = true;
+                }
+                else if (!int.TryParse(textBoxTelefono.Text.Trim(), out parsedValue))
+                {
+                    lblErrorNumberValue.Visible = true;
+                    lblErrorTelefono.Visible = true;
                 }
                 else if (textBoxDireccion.Text.Trim() == "")
                 {
@@ -1244,11 +1282,11 @@ namespace FrbaHotel.GenerarModificacionReserva
                     lblNroDireccion.Visible = true;
                     lblErrorNoField.Visible = true;
                 }
-                else if (!int.TryParse(textBoxTelefono.Text.Trim(), out parsedValue))
+                else if (!int.TryParse(textBoxNumeroDireccion.Text.Trim(), out parsedValue))
                 {
                     lblErrorNumberValue.Visible = true;
-                    lblErrorTelefono.Visible = true;
-                }
+                    lblNroDireccion.Visible = true;
+                }               
                 else if (textBoxPais.Text.Trim() == "")
                 {
                     lblErrorPais.Visible = true;
@@ -1263,7 +1301,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 {
                     SqlConnection createConnection = DataBase.conectarBD();
                     SqlCommand insertCommand;
-                    string yaExistePKS = string.Format("SELECT COUNT(*) FROM CAIA_UNLIMITED.Huesped WHERE (hues_mail = '{0}' OR hues_documento = '{1}')", textBoxMail.Text.Trim(), textBoxDocumento.Text.Trim());
+                    string yaExistePKS = string.Format("SELECT COUNT(*) FROM CAIA_UNLIMITED.Huesped WHERE (hues_mail = '{0}' OR hues_documento = '{1}') AND (hues_mail != '{2}' OR hues_documento != '{3}')", textBoxMail.Text.Trim(), textBoxDocumento.Text.Trim(),this.MailActual,this.DocumentoActual);
                     SqlCommand commYaExistePKS = new SqlCommand(yaExistePKS, createConnection);
                     Int32 countYaExistentesPKS = Convert.ToInt32(commYaExistePKS.ExecuteScalar());
                     if (countYaExistentesPKS > 0)
@@ -1294,7 +1332,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                     tvpParam.TypeName = "[CAIA_UNLIMITED].HabitacionesLista";
                     insertCommand.ExecuteNonQuery();
 
-                    SqlCommand insertCliente = new SqlCommand("[CAIA_UNLIMITED].sp_CrearCliente", createConnection);
+                    SqlCommand insertCliente = new SqlCommand("[CAIA_UNLIMITED].sp_ModificarCliente", createConnection);
                     insertCliente.CommandType = CommandType.StoredProcedure;
                     insertCliente.Parameters.AddWithValue("@codigoReserva", this.reserva);
                     insertCliente.Parameters.AddWithValue("@name", textBoxNombre.Text.Trim());
@@ -1309,7 +1347,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                     insertCliente.Parameters.AddWithValue("@numeroCalle", decimal.Parse(textBoxNumeroDireccion.Text.Trim()));
                     insertCliente.ExecuteNonQuery();
 
-                    MessageBox.Show("Reserva realizada exitosamente!");
+                    MessageBox.Show("Reserva modificada exitosamente!");
                     createConnection.Close();
                     this.DialogResult = DialogResult.OK;
                 }
@@ -1330,6 +1368,18 @@ namespace FrbaHotel.GenerarModificacionReserva
         private void ModificarReserva_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            this.SelectionFechaInicio = calendarInicio.SelectionStart;
+            this.seleccionoInicio = true;
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            this.SelectionFechaFin = calendarFin.SelectionStart;
+            this.seleccionoFin = true;
         }
     }
 }

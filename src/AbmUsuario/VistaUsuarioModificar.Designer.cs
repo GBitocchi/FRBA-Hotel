@@ -104,6 +104,7 @@
             this.lblErrorDialogFechaValida = new System.Windows.Forms.Label();
             this.lblErrorDialogListBoxEmpty = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblErrorDialogNumericValue
@@ -111,7 +112,7 @@
             this.lblErrorDialogNumericValue.AutoSize = true;
             this.lblErrorDialogNumericValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogNumericValue.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogNumericValue.Location = new System.Drawing.Point(19, 754);
+            this.lblErrorDialogNumericValue.Location = new System.Drawing.Point(14, 712);
             this.lblErrorDialogNumericValue.Name = "lblErrorDialogNumericValue";
             this.lblErrorDialogNumericValue.Size = new System.Drawing.Size(473, 16);
             this.lblErrorDialogNumericValue.TabIndex = 123;
@@ -122,7 +123,7 @@
             this.lblErrorDialogDateFormat.AutoSize = true;
             this.lblErrorDialogDateFormat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogDateFormat.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogDateFormat.Location = new System.Drawing.Point(19, 719);
+            this.lblErrorDialogDateFormat.Location = new System.Drawing.Point(14, 648);
             this.lblErrorDialogDateFormat.Name = "lblErrorDialogDateFormat";
             this.lblErrorDialogDateFormat.Size = new System.Drawing.Size(416, 16);
             this.lblErrorDialogDateFormat.TabIndex = 122;
@@ -132,7 +133,7 @@
             // 
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(54, 36);
+            this.label35.Location = new System.Drawing.Point(12, 9);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(234, 29);
             this.label35.TabIndex = 121;
@@ -140,7 +141,7 @@
             // 
             // textBoxDialogBirthday
             // 
-            this.textBoxDialogBirthday.Location = new System.Drawing.Point(492, 356);
+            this.textBoxDialogBirthday.Location = new System.Drawing.Point(494, 308);
             this.textBoxDialogBirthday.Name = "textBoxDialogBirthday";
             this.textBoxDialogBirthday.ReadOnly = true;
             this.textBoxDialogBirthday.Size = new System.Drawing.Size(139, 20);
@@ -151,7 +152,7 @@
             this.lblErrorDialogBirthday.AutoSize = true;
             this.lblErrorDialogBirthday.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogBirthday.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogBirthday.Location = new System.Drawing.Point(459, 314);
+            this.lblErrorDialogBirthday.Location = new System.Drawing.Point(461, 266);
             this.lblErrorDialogBirthday.Name = "lblErrorDialogBirthday";
             this.lblErrorDialogBirthday.Size = new System.Drawing.Size(24, 29);
             this.lblErrorDialogBirthday.TabIndex = 119;
@@ -161,7 +162,7 @@
             // 
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(488, 314);
+            this.label33.Location = new System.Drawing.Point(490, 266);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(158, 20);
             this.label33.TabIndex = 118;
@@ -169,7 +170,7 @@
             // 
             // textBoxDialogNacionality
             // 
-            this.textBoxDialogNacionality.Location = new System.Drawing.Point(492, 196);
+            this.textBoxDialogNacionality.Location = new System.Drawing.Point(493, 155);
             this.textBoxDialogNacionality.Name = "textBoxDialogNacionality";
             this.textBoxDialogNacionality.Size = new System.Drawing.Size(139, 20);
             this.textBoxDialogNacionality.TabIndex = 117;
@@ -179,7 +180,7 @@
             this.lblErrorDialogNacionality.AutoSize = true;
             this.lblErrorDialogNacionality.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogNacionality.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogNacionality.Location = new System.Drawing.Point(459, 167);
+            this.lblErrorDialogNacionality.Location = new System.Drawing.Point(460, 126);
             this.lblErrorDialogNacionality.Name = "lblErrorDialogNacionality";
             this.lblErrorDialogNacionality.Size = new System.Drawing.Size(24, 29);
             this.lblErrorDialogNacionality.TabIndex = 116;
@@ -189,7 +190,7 @@
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(489, 167);
+            this.label31.Location = new System.Drawing.Point(490, 126);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(117, 20);
             this.label31.TabIndex = 115;
@@ -199,7 +200,7 @@
             // 
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(488, 508);
+            this.label30.Location = new System.Drawing.Point(490, 473);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(184, 24);
             this.label30.TabIndex = 114;
@@ -207,7 +208,7 @@
             // 
             // textBoxDialogDocument
             // 
-            this.textBoxDialogDocument.Location = new System.Drawing.Point(677, 263);
+            this.textBoxDialogDocument.Location = new System.Drawing.Point(678, 222);
             this.textBoxDialogDocument.Name = "textBoxDialogDocument";
             this.textBoxDialogDocument.Size = new System.Drawing.Size(139, 20);
             this.textBoxDialogDocument.TabIndex = 112;
@@ -217,7 +218,7 @@
             this.lblErrorDialogDocument.AutoSize = true;
             this.lblErrorDialogDocument.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogDocument.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogDocument.Location = new System.Drawing.Point(653, 231);
+            this.lblErrorDialogDocument.Location = new System.Drawing.Point(654, 190);
             this.lblErrorDialogDocument.Name = "lblErrorDialogDocument";
             this.lblErrorDialogDocument.Size = new System.Drawing.Size(24, 29);
             this.lblErrorDialogDocument.TabIndex = 111;
@@ -227,7 +228,7 @@
             // 
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(673, 231);
+            this.label28.Location = new System.Drawing.Point(674, 190);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(106, 20);
             this.label28.TabIndex = 110;
@@ -238,7 +239,7 @@
             this.lblErrorDialogDocumentType.AutoSize = true;
             this.lblErrorDialogDocumentType.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogDocumentType.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogDocumentType.Location = new System.Drawing.Point(459, 231);
+            this.lblErrorDialogDocumentType.Location = new System.Drawing.Point(460, 190);
             this.lblErrorDialogDocumentType.Name = "lblErrorDialogDocumentType";
             this.lblErrorDialogDocumentType.Size = new System.Drawing.Size(24, 29);
             this.lblErrorDialogDocumentType.TabIndex = 109;
@@ -248,7 +249,7 @@
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(489, 231);
+            this.label26.Location = new System.Drawing.Point(490, 190);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(145, 20);
             this.label26.TabIndex = 108;
@@ -256,14 +257,14 @@
             // 
             // textBoxDialogPiso
             // 
-            this.textBoxDialogPiso.Location = new System.Drawing.Point(493, 740);
+            this.textBoxDialogPiso.Location = new System.Drawing.Point(494, 669);
             this.textBoxDialogPiso.Name = "textBoxDialogPiso";
             this.textBoxDialogPiso.Size = new System.Drawing.Size(139, 20);
             this.textBoxDialogPiso.TabIndex = 107;
             // 
             // textBoxDialogDepartamento
             // 
-            this.textBoxDialogDepartamento.Location = new System.Drawing.Point(678, 740);
+            this.textBoxDialogDepartamento.Location = new System.Drawing.Point(679, 669);
             this.textBoxDialogDepartamento.Name = "textBoxDialogDepartamento";
             this.textBoxDialogDepartamento.Size = new System.Drawing.Size(139, 20);
             this.textBoxDialogDepartamento.TabIndex = 106;
@@ -273,7 +274,7 @@
             this.lblErrorDialogPiso.AutoSize = true;
             this.lblErrorDialogPiso.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogPiso.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogPiso.Location = new System.Drawing.Point(459, 706);
+            this.lblErrorDialogPiso.Location = new System.Drawing.Point(460, 635);
             this.lblErrorDialogPiso.Name = "lblErrorDialogPiso";
             this.lblErrorDialogPiso.Size = new System.Drawing.Size(24, 29);
             this.lblErrorDialogPiso.TabIndex = 105;
@@ -284,7 +285,7 @@
             this.lblErrorDialogDepartamento.AutoSize = true;
             this.lblErrorDialogDepartamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogDepartamento.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogDepartamento.Location = new System.Drawing.Point(654, 706);
+            this.lblErrorDialogDepartamento.Location = new System.Drawing.Point(655, 635);
             this.lblErrorDialogDepartamento.Name = "lblErrorDialogDepartamento";
             this.lblErrorDialogDepartamento.Size = new System.Drawing.Size(24, 29);
             this.lblErrorDialogDepartamento.TabIndex = 104;
@@ -294,7 +295,7 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(674, 706);
+            this.label23.Location = new System.Drawing.Point(675, 635);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(129, 20);
             this.label23.TabIndex = 103;
@@ -304,7 +305,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(489, 706);
+            this.label22.Location = new System.Drawing.Point(490, 635);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(48, 20);
             this.label22.TabIndex = 102;
@@ -312,7 +313,7 @@
             // 
             // textBoxDialogBlockNumber
             // 
-            this.textBoxDialogBlockNumber.Location = new System.Drawing.Point(678, 657);
+            this.textBoxDialogBlockNumber.Location = new System.Drawing.Point(678, 602);
             this.textBoxDialogBlockNumber.Name = "textBoxDialogBlockNumber";
             this.textBoxDialogBlockNumber.Size = new System.Drawing.Size(139, 20);
             this.textBoxDialogBlockNumber.TabIndex = 101;
@@ -322,7 +323,7 @@
             this.lblErrorDialogBlockNumber.AutoSize = true;
             this.lblErrorDialogBlockNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogBlockNumber.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogBlockNumber.Location = new System.Drawing.Point(654, 627);
+            this.lblErrorDialogBlockNumber.Location = new System.Drawing.Point(654, 572);
             this.lblErrorDialogBlockNumber.Name = "lblErrorDialogBlockNumber";
             this.lblErrorDialogBlockNumber.Size = new System.Drawing.Size(24, 29);
             this.lblErrorDialogBlockNumber.TabIndex = 100;
@@ -332,7 +333,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(674, 627);
+            this.label20.Location = new System.Drawing.Point(674, 572);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(76, 20);
             this.label20.TabIndex = 99;
@@ -340,7 +341,7 @@
             // 
             // textBoxDialogBlock
             // 
-            this.textBoxDialogBlock.Location = new System.Drawing.Point(493, 657);
+            this.textBoxDialogBlock.Location = new System.Drawing.Point(493, 602);
             this.textBoxDialogBlock.Name = "textBoxDialogBlock";
             this.textBoxDialogBlock.Size = new System.Drawing.Size(139, 20);
             this.textBoxDialogBlock.TabIndex = 98;
@@ -350,7 +351,7 @@
             this.lblErrorDialogBlock.AutoSize = true;
             this.lblErrorDialogBlock.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogBlock.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogBlock.Location = new System.Drawing.Point(459, 627);
+            this.lblErrorDialogBlock.Location = new System.Drawing.Point(459, 572);
             this.lblErrorDialogBlock.Name = "lblErrorDialogBlock";
             this.lblErrorDialogBlock.Size = new System.Drawing.Size(24, 29);
             this.lblErrorDialogBlock.TabIndex = 97;
@@ -360,7 +361,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(489, 627);
+            this.label18.Location = new System.Drawing.Point(489, 572);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(54, 20);
             this.label18.TabIndex = 96;
@@ -372,7 +373,7 @@
             this.lblErrorDialogCity.BackColor = System.Drawing.Color.Transparent;
             this.lblErrorDialogCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogCity.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogCity.Location = new System.Drawing.Point(654, 549);
+            this.lblErrorDialogCity.Location = new System.Drawing.Point(654, 511);
             this.lblErrorDialogCity.Name = "lblErrorDialogCity";
             this.lblErrorDialogCity.Size = new System.Drawing.Size(24, 29);
             this.lblErrorDialogCity.TabIndex = 95;
@@ -382,7 +383,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(674, 549);
+            this.label16.Location = new System.Drawing.Point(674, 511);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(70, 20);
             this.label16.TabIndex = 94;
@@ -390,14 +391,14 @@
             // 
             // textBoxDialogCity
             // 
-            this.textBoxDialogCity.Location = new System.Drawing.Point(678, 581);
+            this.textBoxDialogCity.Location = new System.Drawing.Point(678, 543);
             this.textBoxDialogCity.Name = "textBoxDialogCity";
             this.textBoxDialogCity.Size = new System.Drawing.Size(139, 20);
             this.textBoxDialogCity.TabIndex = 93;
             // 
             // textBoxDialogCountry
             // 
-            this.textBoxDialogCountry.Location = new System.Drawing.Point(493, 581);
+            this.textBoxDialogCountry.Location = new System.Drawing.Point(493, 543);
             this.textBoxDialogCountry.Name = "textBoxDialogCountry";
             this.textBoxDialogCountry.Size = new System.Drawing.Size(139, 20);
             this.textBoxDialogCountry.TabIndex = 92;
@@ -408,7 +409,7 @@
             this.lblErrorDialogCountry.BackColor = System.Drawing.Color.Transparent;
             this.lblErrorDialogCountry.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogCountry.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogCountry.Location = new System.Drawing.Point(459, 549);
+            this.lblErrorDialogCountry.Location = new System.Drawing.Point(459, 511);
             this.lblErrorDialogCountry.Name = "lblErrorDialogCountry";
             this.lblErrorDialogCountry.Size = new System.Drawing.Size(24, 29);
             this.lblErrorDialogCountry.TabIndex = 91;
@@ -418,7 +419,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(489, 549);
+            this.label14.Location = new System.Drawing.Point(489, 511);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(48, 20);
             this.label14.TabIndex = 90;
@@ -426,7 +427,7 @@
             // 
             // textBoxDialogSurname
             // 
-            this.textBoxDialogSurname.Location = new System.Drawing.Point(677, 126);
+            this.textBoxDialogSurname.Location = new System.Drawing.Point(678, 85);
             this.textBoxDialogSurname.Name = "textBoxDialogSurname";
             this.textBoxDialogSurname.Size = new System.Drawing.Size(139, 20);
             this.textBoxDialogSurname.TabIndex = 89;
@@ -436,7 +437,7 @@
             this.lblErrorDialogSurname.AutoSize = true;
             this.lblErrorDialogSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogSurname.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogSurname.Location = new System.Drawing.Point(653, 94);
+            this.lblErrorDialogSurname.Location = new System.Drawing.Point(654, 53);
             this.lblErrorDialogSurname.Name = "lblErrorDialogSurname";
             this.lblErrorDialogSurname.Size = new System.Drawing.Size(24, 29);
             this.lblErrorDialogSurname.TabIndex = 88;
@@ -446,7 +447,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(673, 94);
+            this.label12.Location = new System.Drawing.Point(674, 53);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(78, 20);
             this.label12.TabIndex = 87;
@@ -454,7 +455,7 @@
             // 
             // textBoxDialogUsername
             // 
-            this.textBoxDialogUsername.Location = new System.Drawing.Point(492, 126);
+            this.textBoxDialogUsername.Location = new System.Drawing.Point(493, 85);
             this.textBoxDialogUsername.Name = "textBoxDialogUsername";
             this.textBoxDialogUsername.Size = new System.Drawing.Size(139, 20);
             this.textBoxDialogUsername.TabIndex = 86;
@@ -464,7 +465,7 @@
             this.lblErrorDialogUserName.AutoSize = true;
             this.lblErrorDialogUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogUserName.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogUserName.Location = new System.Drawing.Point(458, 94);
+            this.lblErrorDialogUserName.Location = new System.Drawing.Point(459, 53);
             this.lblErrorDialogUserName.Name = "lblErrorDialogUserName";
             this.lblErrorDialogUserName.Size = new System.Drawing.Size(24, 29);
             this.lblErrorDialogUserName.TabIndex = 85;
@@ -474,7 +475,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(488, 93);
+            this.label10.Location = new System.Drawing.Point(489, 52);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(76, 20);
             this.label10.TabIndex = 84;
@@ -484,7 +485,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(487, 36);
+            this.label9.Location = new System.Drawing.Point(459, 9);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(219, 29);
             this.label9.TabIndex = 83;
@@ -493,7 +494,7 @@
             // buttonDialogQuitarHotel
             // 
             this.buttonDialogQuitarHotel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDialogQuitarHotel.Location = new System.Drawing.Point(349, 645);
+            this.buttonDialogQuitarHotel.Location = new System.Drawing.Point(324, 572);
             this.buttonDialogQuitarHotel.Name = "buttonDialogQuitarHotel";
             this.buttonDialogQuitarHotel.Size = new System.Drawing.Size(86, 32);
             this.buttonDialogQuitarHotel.TabIndex = 82;
@@ -504,7 +505,7 @@
             // buttonDialogAgregarHotel
             // 
             this.buttonDialogAgregarHotel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDialogAgregarHotel.Location = new System.Drawing.Point(349, 597);
+            this.buttonDialogAgregarHotel.Location = new System.Drawing.Point(324, 524);
             this.buttonDialogAgregarHotel.Name = "buttonDialogAgregarHotel";
             this.buttonDialogAgregarHotel.Size = new System.Drawing.Size(86, 32);
             this.buttonDialogAgregarHotel.TabIndex = 81;
@@ -515,7 +516,7 @@
             // listBoxDialogHoteles
             // 
             this.listBoxDialogHoteles.FormattingEnabled = true;
-            this.listBoxDialogHoteles.Location = new System.Drawing.Point(42, 573);
+            this.listBoxDialogHoteles.Location = new System.Drawing.Point(17, 500);
             this.listBoxDialogHoteles.Name = "listBoxDialogHoteles";
             this.listBoxDialogHoteles.Size = new System.Drawing.Size(286, 134);
             this.listBoxDialogHoteles.TabIndex = 80;
@@ -524,7 +525,7 @@
             // 
             this.comboBoxDialogHoteles.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.comboBoxDialogHoteles.FormattingEnabled = true;
-            this.comboBoxDialogHoteles.Location = new System.Drawing.Point(42, 530);
+            this.comboBoxDialogHoteles.Location = new System.Drawing.Point(17, 457);
             this.comboBoxDialogHoteles.Name = "comboBoxDialogHoteles";
             this.comboBoxDialogHoteles.Size = new System.Drawing.Size(286, 21);
             this.comboBoxDialogHoteles.TabIndex = 79;
@@ -534,7 +535,7 @@
             this.lblErrorDialogHotel.AutoSize = true;
             this.lblErrorDialogHotel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogHotel.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogHotel.Location = new System.Drawing.Point(115, 498);
+            this.lblErrorDialogHotel.Location = new System.Drawing.Point(90, 425);
             this.lblErrorDialogHotel.Name = "lblErrorDialogHotel";
             this.lblErrorDialogHotel.Size = new System.Drawing.Size(24, 29);
             this.lblErrorDialogHotel.TabIndex = 78;
@@ -544,7 +545,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(38, 498);
+            this.label7.Location = new System.Drawing.Point(13, 425);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(76, 20);
             this.label7.TabIndex = 77;
@@ -553,7 +554,7 @@
             // listBoxDialogRoles
             // 
             this.listBoxDialogRoles.FormattingEnabled = true;
-            this.listBoxDialogRoles.Location = new System.Drawing.Point(42, 355);
+            this.listBoxDialogRoles.Location = new System.Drawing.Point(17, 286);
             this.listBoxDialogRoles.Name = "listBoxDialogRoles";
             this.listBoxDialogRoles.Size = new System.Drawing.Size(173, 121);
             this.listBoxDialogRoles.TabIndex = 76;
@@ -561,7 +562,7 @@
             // buttonDialogQuitarRole
             // 
             this.buttonDialogQuitarRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDialogQuitarRole.Location = new System.Drawing.Point(242, 401);
+            this.buttonDialogQuitarRole.Location = new System.Drawing.Point(217, 332);
             this.buttonDialogQuitarRole.Name = "buttonDialogQuitarRole";
             this.buttonDialogQuitarRole.Size = new System.Drawing.Size(86, 32);
             this.buttonDialogQuitarRole.TabIndex = 75;
@@ -572,7 +573,7 @@
             // buttonDialogAgregarRole
             // 
             this.buttonDialogAgregarRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDialogAgregarRole.Location = new System.Drawing.Point(242, 355);
+            this.buttonDialogAgregarRole.Location = new System.Drawing.Point(217, 286);
             this.buttonDialogAgregarRole.Name = "buttonDialogAgregarRole";
             this.buttonDialogAgregarRole.Size = new System.Drawing.Size(86, 32);
             this.buttonDialogAgregarRole.TabIndex = 74;
@@ -584,7 +585,7 @@
             // 
             this.comboBoxDialogRole.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.comboBoxDialogRole.FormattingEnabled = true;
-            this.comboBoxDialogRole.Location = new System.Drawing.Point(42, 309);
+            this.comboBoxDialogRole.Location = new System.Drawing.Point(17, 240);
             this.comboBoxDialogRole.Name = "comboBoxDialogRole";
             this.comboBoxDialogRole.Size = new System.Drawing.Size(188, 21);
             this.comboBoxDialogRole.TabIndex = 73;
@@ -594,7 +595,7 @@
             this.lblErrorDialogRole.AutoSize = true;
             this.lblErrorDialogRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogRole.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogRole.Location = new System.Drawing.Point(104, 277);
+            this.lblErrorDialogRole.Location = new System.Drawing.Point(79, 208);
             this.lblErrorDialogRole.Name = "lblErrorDialogRole";
             this.lblErrorDialogRole.Size = new System.Drawing.Size(24, 29);
             this.lblErrorDialogRole.TabIndex = 72;
@@ -604,7 +605,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(38, 277);
+            this.label5.Location = new System.Drawing.Point(13, 208);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(60, 20);
             this.label5.TabIndex = 71;
@@ -612,7 +613,7 @@
             // 
             // textBoxDialogPW
             // 
-            this.textBoxDialogPW.Location = new System.Drawing.Point(204, 138);
+            this.textBoxDialogPW.Location = new System.Drawing.Point(179, 84);
             this.textBoxDialogPW.Name = "textBoxDialogPW";
             this.textBoxDialogPW.PasswordChar = '*';
             this.textBoxDialogPW.Size = new System.Drawing.Size(124, 20);
@@ -624,7 +625,7 @@
             this.lblErrorDialogPW.AutoSize = true;
             this.lblErrorDialogPW.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogPW.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogPW.Location = new System.Drawing.Point(304, 106);
+            this.lblErrorDialogPW.Location = new System.Drawing.Point(279, 52);
             this.lblErrorDialogPW.Name = "lblErrorDialogPW";
             this.lblErrorDialogPW.Size = new System.Drawing.Size(24, 29);
             this.lblErrorDialogPW.TabIndex = 69;
@@ -634,7 +635,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(200, 106);
+            this.label3.Location = new System.Drawing.Point(175, 52);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(107, 20);
             this.label3.TabIndex = 68;
@@ -645,7 +646,7 @@
             this.lblErrorDialogUser.AutoSize = true;
             this.lblErrorDialogUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogUser.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogUser.Location = new System.Drawing.Point(115, 106);
+            this.lblErrorDialogUser.Location = new System.Drawing.Point(90, 52);
             this.lblErrorDialogUser.Name = "lblErrorDialogUser";
             this.lblErrorDialogUser.Size = new System.Drawing.Size(24, 29);
             this.lblErrorDialogUser.TabIndex = 67;
@@ -655,7 +656,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(38, 106);
+            this.label1.Location = new System.Drawing.Point(13, 52);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 20);
             this.label1.TabIndex = 66;
@@ -663,7 +664,7 @@
             // 
             // textBoxDialogUser
             // 
-            this.textBoxDialogUser.Location = new System.Drawing.Point(42, 138);
+            this.textBoxDialogUser.Location = new System.Drawing.Point(17, 84);
             this.textBoxDialogUser.Name = "textBoxDialogUser";
             this.textBoxDialogUser.Size = new System.Drawing.Size(124, 20);
             this.textBoxDialogUser.TabIndex = 65;
@@ -671,7 +672,7 @@
             // buttonDialogGuardar
             // 
             this.buttonDialogGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDialogGuardar.Location = new System.Drawing.Point(762, 877);
+            this.buttonDialogGuardar.Location = new System.Drawing.Point(757, 731);
             this.buttonDialogGuardar.Name = "buttonDialogGuardar";
             this.buttonDialogGuardar.Size = new System.Drawing.Size(89, 34);
             this.buttonDialogGuardar.TabIndex = 64;
@@ -682,7 +683,7 @@
             // buttonDialogLimpiar
             // 
             this.buttonDialogLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDialogLimpiar.Location = new System.Drawing.Point(660, 877);
+            this.buttonDialogLimpiar.Location = new System.Drawing.Point(655, 731);
             this.buttonDialogLimpiar.Name = "buttonDialogLimpiar";
             this.buttonDialogLimpiar.Size = new System.Drawing.Size(84, 34);
             this.buttonDialogLimpiar.TabIndex = 63;
@@ -692,7 +693,7 @@
             // 
             // monthCalendarDialog
             // 
-            this.monthCalendarDialog.Location = new System.Drawing.Point(659, 313);
+            this.monthCalendarDialog.Location = new System.Drawing.Point(678, 255);
             this.monthCalendarDialog.Name = "monthCalendarDialog";
             this.monthCalendarDialog.TabIndex = 62;
             this.monthCalendarDialog.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarDialog_DateChanged);
@@ -701,7 +702,7 @@
             // 
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(38, 185);
+            this.label36.Location = new System.Drawing.Point(13, 131);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(71, 20);
             this.label36.TabIndex = 124;
@@ -711,7 +712,7 @@
             // 
             this.radioButtonHabilitado.AutoSize = true;
             this.radioButtonHabilitado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonHabilitado.Location = new System.Drawing.Point(42, 222);
+            this.radioButtonHabilitado.Location = new System.Drawing.Point(17, 168);
             this.radioButtonHabilitado.Name = "radioButtonHabilitado";
             this.radioButtonHabilitado.Size = new System.Drawing.Size(108, 24);
             this.radioButtonHabilitado.TabIndex = 125;
@@ -723,7 +724,7 @@
             // 
             this.radioButtonDeshabilitado.AutoSize = true;
             this.radioButtonDeshabilitado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonDeshabilitado.Location = new System.Drawing.Point(204, 222);
+            this.radioButtonDeshabilitado.Location = new System.Drawing.Point(179, 168);
             this.radioButtonDeshabilitado.Name = "radioButtonDeshabilitado";
             this.radioButtonDeshabilitado.Size = new System.Drawing.Size(137, 24);
             this.radioButtonDeshabilitado.TabIndex = 126;
@@ -736,7 +737,7 @@
             this.lblErrorDialogNoValueInField.AutoSize = true;
             this.lblErrorDialogNoValueInField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogNoValueInField.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogNoValueInField.Location = new System.Drawing.Point(19, 784);
+            this.lblErrorDialogNoValueInField.Location = new System.Drawing.Point(14, 664);
             this.lblErrorDialogNoValueInField.Name = "lblErrorDialogNoValueInField";
             this.lblErrorDialogNoValueInField.Size = new System.Drawing.Size(144, 16);
             this.lblErrorDialogNoValueInField.TabIndex = 127;
@@ -747,7 +748,7 @@
             this.lblDialogBloqMayus.AutoSize = true;
             this.lblDialogBloqMayus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDialogBloqMayus.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lblDialogBloqMayus.Location = new System.Drawing.Point(239, 167);
+            this.lblDialogBloqMayus.Location = new System.Drawing.Point(214, 113);
             this.lblDialogBloqMayus.Name = "lblDialogBloqMayus";
             this.lblDialogBloqMayus.Size = new System.Drawing.Size(154, 16);
             this.lblDialogBloqMayus.TabIndex = 128;
@@ -755,14 +756,14 @@
             // 
             // textBoxDialogDocumentType
             // 
-            this.textBoxDialogDocumentType.Location = new System.Drawing.Point(492, 263);
+            this.textBoxDialogDocumentType.Location = new System.Drawing.Point(493, 222);
             this.textBoxDialogDocumentType.Name = "textBoxDialogDocumentType";
             this.textBoxDialogDocumentType.Size = new System.Drawing.Size(139, 20);
             this.textBoxDialogDocumentType.TabIndex = 129;
             // 
             // textBoxDialogTelefono
             // 
-            this.textBoxDialogTelefono.Location = new System.Drawing.Point(677, 196);
+            this.textBoxDialogTelefono.Location = new System.Drawing.Point(678, 155);
             this.textBoxDialogTelefono.Name = "textBoxDialogTelefono";
             this.textBoxDialogTelefono.Size = new System.Drawing.Size(139, 20);
             this.textBoxDialogTelefono.TabIndex = 132;
@@ -773,7 +774,7 @@
             this.lblErrorDialogTelefono.AutoSize = true;
             this.lblErrorDialogTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogTelefono.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogTelefono.Location = new System.Drawing.Point(644, 167);
+            this.lblErrorDialogTelefono.Location = new System.Drawing.Point(645, 126);
             this.lblErrorDialogTelefono.Name = "lblErrorDialogTelefono";
             this.lblErrorDialogTelefono.Size = new System.Drawing.Size(24, 29);
             this.lblErrorDialogTelefono.TabIndex = 131;
@@ -784,7 +785,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(674, 167);
+            this.label4.Location = new System.Drawing.Point(675, 126);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 20);
             this.label4.TabIndex = 130;
@@ -793,7 +794,7 @@
             // 
             // textBoxDialogMail
             // 
-            this.textBoxDialogMail.Location = new System.Drawing.Point(492, 439);
+            this.textBoxDialogMail.Location = new System.Drawing.Point(494, 391);
             this.textBoxDialogMail.Name = "textBoxDialogMail";
             this.textBoxDialogMail.Size = new System.Drawing.Size(139, 20);
             this.textBoxDialogMail.TabIndex = 135;
@@ -803,7 +804,7 @@
             this.lblErrorDialogMail.AutoSize = true;
             this.lblErrorDialogMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogMail.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogMail.Location = new System.Drawing.Point(459, 397);
+            this.lblErrorDialogMail.Location = new System.Drawing.Point(461, 349);
             this.lblErrorDialogMail.Name = "lblErrorDialogMail";
             this.lblErrorDialogMail.Size = new System.Drawing.Size(24, 29);
             this.lblErrorDialogMail.TabIndex = 134;
@@ -813,7 +814,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(488, 397);
+            this.label8.Location = new System.Drawing.Point(490, 349);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(46, 20);
             this.label8.TabIndex = 133;
@@ -824,7 +825,7 @@
             this.lblErrorDialogFechaValida.AutoSize = true;
             this.lblErrorDialogFechaValida.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogFechaValida.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogFechaValida.Location = new System.Drawing.Point(19, 815);
+            this.lblErrorDialogFechaValida.Location = new System.Drawing.Point(14, 680);
             this.lblErrorDialogFechaValida.Name = "lblErrorDialogFechaValida";
             this.lblErrorDialogFechaValida.Size = new System.Drawing.Size(125, 16);
             this.lblErrorDialogFechaValida.TabIndex = 136;
@@ -835,7 +836,7 @@
             this.lblErrorDialogListBoxEmpty.AutoSize = true;
             this.lblErrorDialogListBoxEmpty.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorDialogListBoxEmpty.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorDialogListBoxEmpty.Location = new System.Drawing.Point(19, 846);
+            this.lblErrorDialogListBoxEmpty.Location = new System.Drawing.Point(14, 696);
             this.lblErrorDialogListBoxEmpty.Name = "lblErrorDialogListBoxEmpty";
             this.lblErrorDialogListBoxEmpty.Size = new System.Drawing.Size(284, 16);
             this.lblErrorDialogListBoxEmpty.TabIndex = 137;
@@ -844,7 +845,7 @@
             // btnSalir
             // 
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.Location = new System.Drawing.Point(22, 877);
+            this.btnSalir.Location = new System.Drawing.Point(17, 731);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 34);
             this.btnSalir.TabIndex = 138;
@@ -852,13 +853,25 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(679, 429);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(191, 34);
+            this.button1.TabIndex = 139;
+            this.button1.Text = "Seleccionar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // VistaUsuarioModificar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(892, 929);
+            this.ClientSize = new System.Drawing.Size(892, 768);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.lblErrorDialogListBoxEmpty);
             this.Controls.Add(this.lblErrorDialogFechaValida);
@@ -1021,5 +1034,6 @@
         private System.Windows.Forms.Label lblErrorDialogFechaValida;
         private System.Windows.Forms.Label lblErrorDialogListBoxEmpty;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button button1;
     }
 }

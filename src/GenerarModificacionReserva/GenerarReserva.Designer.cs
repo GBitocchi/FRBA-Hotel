@@ -92,6 +92,8 @@
             this.textBoxNombre = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblErrorNombre = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -124,7 +126,7 @@
             // 
             // calendarInicio
             // 
-            this.calendarInicio.Location = new System.Drawing.Point(38, 354);
+            this.calendarInicio.Location = new System.Drawing.Point(34, 335);
             this.calendarInicio.Name = "calendarInicio";
             this.calendarInicio.TabIndex = 333;
             this.calendarInicio.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.calendarInicio_DateChanged);
@@ -133,7 +135,7 @@
             // 
             this.labelFechaInicio.AutoSize = true;
             this.labelFechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFechaInicio.Location = new System.Drawing.Point(66, 325);
+            this.labelFechaInicio.Location = new System.Drawing.Point(66, 306);
             this.labelFechaInicio.Name = "labelFechaInicio";
             this.labelFechaInicio.Size = new System.Drawing.Size(132, 20);
             this.labelFechaInicio.TabIndex = 336;
@@ -141,7 +143,7 @@
             // 
             // calendarFin
             // 
-            this.calendarFin.Location = new System.Drawing.Point(363, 352);
+            this.calendarFin.Location = new System.Drawing.Point(359, 335);
             this.calendarFin.Name = "calendarFin";
             this.calendarFin.TabIndex = 337;
             this.calendarFin.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.calendarFin_DateChanged);
@@ -150,7 +152,7 @@
             // 
             this.labelFechaFin.AutoSize = true;
             this.labelFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFechaFin.Location = new System.Drawing.Point(371, 323);
+            this.labelFechaFin.Location = new System.Drawing.Point(367, 306);
             this.labelFechaFin.Name = "labelFechaFin";
             this.labelFechaFin.Size = new System.Drawing.Size(184, 20);
             this.labelFechaFin.TabIndex = 338;
@@ -161,7 +163,7 @@
             this.lblErrorFechaInicio.AutoSize = true;
             this.lblErrorFechaInicio.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorFechaInicio.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorFechaInicio.Location = new System.Drawing.Point(47, 325);
+            this.lblErrorFechaInicio.Location = new System.Drawing.Point(43, 308);
             this.lblErrorFechaInicio.Name = "lblErrorFechaInicio";
             this.lblErrorFechaInicio.Size = new System.Drawing.Size(17, 22);
             this.lblErrorFechaInicio.TabIndex = 339;
@@ -213,7 +215,7 @@
             // 
             this.labelRegimen.AutoSize = true;
             this.labelRegimen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRegimen.Location = new System.Drawing.Point(34, 265);
+            this.labelRegimen.Location = new System.Drawing.Point(34, 245);
             this.labelRegimen.Name = "labelRegimen";
             this.labelRegimen.Size = new System.Drawing.Size(176, 20);
             this.labelRegimen.TabIndex = 344;
@@ -222,7 +224,7 @@
             // cbxRegimenEstadia
             // 
             this.cbxRegimenEstadia.FormattingEnabled = true;
-            this.cbxRegimenEstadia.Location = new System.Drawing.Point(216, 264);
+            this.cbxRegimenEstadia.Location = new System.Drawing.Point(216, 244);
             this.cbxRegimenEstadia.Name = "cbxRegimenEstadia";
             this.cbxRegimenEstadia.Size = new System.Drawing.Size(139, 21);
             this.cbxRegimenEstadia.TabIndex = 345;
@@ -230,7 +232,7 @@
             // lblResumenReserva
             // 
             this.lblResumenReserva.AutoSize = true;
-            this.lblResumenReserva.Location = new System.Drawing.Point(106, 543);
+            this.lblResumenReserva.Location = new System.Drawing.Point(106, 563);
             this.lblResumenReserva.Name = "lblResumenReserva";
             this.lblResumenReserva.Size = new System.Drawing.Size(10, 13);
             this.lblResumenReserva.TabIndex = 346;
@@ -240,7 +242,7 @@
             // 
             this.btnCheckear.BackColor = System.Drawing.Color.LightCoral;
             this.btnCheckear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheckear.Location = new System.Drawing.Point(621, 603);
+            this.btnCheckear.Location = new System.Drawing.Point(34, 603);
             this.btnCheckear.Name = "btnCheckear";
             this.btnCheckear.Size = new System.Drawing.Size(177, 43);
             this.btnCheckear.TabIndex = 347;
@@ -252,7 +254,7 @@
             // 
             this.btnLimpiar.BackColor = System.Drawing.Color.Yellow;
             this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(38, 609);
+            this.btnLimpiar.Location = new System.Drawing.Point(698, 606);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(100, 36);
             this.btnLimpiar.TabIndex = 348;
@@ -265,7 +267,7 @@
             this.lblErrorPaso1.AutoSize = true;
             this.lblErrorPaso1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorPaso1.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorPaso1.Location = new System.Drawing.Point(47, 543);
+            this.lblErrorPaso1.Location = new System.Drawing.Point(47, 563);
             this.lblErrorPaso1.Name = "lblErrorPaso1";
             this.lblErrorPaso1.Size = new System.Drawing.Size(488, 20);
             this.lblErrorPaso1.TabIndex = 351;
@@ -278,7 +280,7 @@
             this.lblerrorfechas.AutoSize = true;
             this.lblerrorfechas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblerrorfechas.ForeColor = System.Drawing.Color.Red;
-            this.lblerrorfechas.Location = new System.Drawing.Point(47, 523);
+            this.lblerrorfechas.Location = new System.Drawing.Point(47, 543);
             this.lblerrorfechas.Name = "lblerrorfechas";
             this.lblerrorfechas.Size = new System.Drawing.Size(504, 20);
             this.lblerrorfechas.TabIndex = 353;
@@ -310,7 +312,7 @@
             this.lblErrorFechaFin.AutoSize = true;
             this.lblErrorFechaFin.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorFechaFin.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorFechaFin.Location = new System.Drawing.Point(348, 323);
+            this.lblErrorFechaFin.Location = new System.Drawing.Point(344, 306);
             this.lblErrorFechaFin.Name = "lblErrorFechaFin";
             this.lblErrorFechaFin.Size = new System.Drawing.Size(17, 22);
             this.lblErrorFechaFin.TabIndex = 359;
@@ -322,7 +324,7 @@
             this.listBoxTipoHabitacion.FormattingEnabled = true;
             this.listBoxTipoHabitacion.Location = new System.Drawing.Point(38, 112);
             this.listBoxTipoHabitacion.Name = "listBoxTipoHabitacion";
-            this.listBoxTipoHabitacion.Size = new System.Drawing.Size(177, 134);
+            this.listBoxTipoHabitacion.Size = new System.Drawing.Size(177, 121);
             this.listBoxTipoHabitacion.TabIndex = 360;
             // 
             // btnAgregar
@@ -350,6 +352,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.listBoxMostrarHabitaciones);
             this.groupBox1.Controls.Add(this.textBoxNumeroDireccion);
@@ -495,7 +499,7 @@
             // 
             // txbRegimen
             // 
-            this.txbRegimen.Location = new System.Drawing.Point(216, 291);
+            this.txbRegimen.Location = new System.Drawing.Point(216, 271);
             this.txbRegimen.Name = "txbRegimen";
             this.txbRegimen.ReadOnly = true;
             this.txbRegimen.Size = new System.Drawing.Size(139, 20);
@@ -516,7 +520,7 @@
             // btnRegimenSeleccionar
             // 
             this.btnRegimenSeleccionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegimenSeleccionar.Location = new System.Drawing.Point(359, 275);
+            this.btnRegimenSeleccionar.Location = new System.Drawing.Point(359, 255);
             this.btnRegimenSeleccionar.Name = "btnRegimenSeleccionar";
             this.btnRegimenSeleccionar.Size = new System.Drawing.Size(113, 32);
             this.btnRegimenSeleccionar.TabIndex = 394;
@@ -529,7 +533,7 @@
             this.lbllistBoxNoItem.AutoSize = true;
             this.lbllistBoxNoItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbllistBoxNoItem.ForeColor = System.Drawing.Color.Red;
-            this.lbllistBoxNoItem.Location = new System.Drawing.Point(47, 563);
+            this.lbllistBoxNoItem.Location = new System.Drawing.Point(47, 583);
             this.lbllistBoxNoItem.Name = "lbllistBoxNoItem";
             this.lbllistBoxNoItem.Size = new System.Drawing.Size(411, 20);
             this.lbllistBoxNoItem.TabIndex = 393;
@@ -541,7 +545,7 @@
             this.lblErrorNoField.AutoSize = true;
             this.lblErrorNoField.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorNoField.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorNoField.Location = new System.Drawing.Point(574, 523);
+            this.lblErrorNoField.Location = new System.Drawing.Point(574, 543);
             this.lblErrorNoField.Name = "lblErrorNoField";
             this.lblErrorNoField.Size = new System.Drawing.Size(164, 20);
             this.lblErrorNoField.TabIndex = 64;
@@ -562,11 +566,11 @@
             this.lblErrorNumberValue.AutoSize = true;
             this.lblErrorNumberValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorNumberValue.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorNumberValue.Location = new System.Drawing.Point(574, 543);
+            this.lblErrorNumberValue.Location = new System.Drawing.Point(574, 563);
             this.lblErrorNumberValue.Name = "lblErrorNumberValue";
-            this.lblErrorNumberValue.Size = new System.Drawing.Size(515, 20);
+            this.lblErrorNumberValue.Size = new System.Drawing.Size(540, 20);
             this.lblErrorNumberValue.TabIndex = 63;
-            this.lblErrorNumberValue.Text = "*No puede ingresar valores numericos en los campos marcados";
+            this.lblErrorNumberValue.Text = "*No puede ingresar valores no numericos en los campos marcados";
             this.lblErrorNumberValue.Visible = false;
             // 
             // lblPais
@@ -839,6 +843,28 @@
             this.lblErrorNombre.Text = "*";
             this.lblErrorNombre.Visible = false;
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(70, 508);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(113, 32);
+            this.button1.TabIndex = 404;
+            this.button1.Text = "Seleccionar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(401, 508);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(113, 32);
+            this.button2.TabIndex = 405;
+            this.button2.Text = "Seleccionar";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
             // GenerarReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -922,5 +948,7 @@
         private System.Windows.Forms.Label lblNroDireccion;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox listBoxMostrarHabitaciones;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }
