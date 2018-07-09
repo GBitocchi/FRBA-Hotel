@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,6 +29,11 @@ namespace FrbaHotel.GenerarModificacionReserva
         DataSet dsRegimenes;
         TimeSpan difference;
         HabitacionalitiesCollection lh;
+
+        public static bool Between(DateTime input, DateTime date1, DateTime date2)
+        {
+            return (input > date1 && input < date2);
+        }
 
         public ModificarReserva()
         {
@@ -113,7 +118,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void cargarComboBoxHoteles()
         {
-            string hoteles = "SELECT CONCAT(d.dire_dom_calle,'-',d.dire_nro_calle) as Hotel, hote_id as idHotel FROM CAIA_UNLIMITED.Hotel ho INNER JOIN CAIA_UNLIMITED.Direccion d on (ho.dire_id = d.dire_id) WHERE hote_habilitado = 1";
+            string hoteles = "SELECT CONCAT(d.dire_dom_calle,'-',d.dire_nro_calle) as Hotel, hote_id as idHotel FROM CAIA_UNLIMITED.Hotel ho INNER JOIN CAIA_UNLIMITED.Direccion d on (ho.dire_id = d.dire_id)";
             DataSet dsHoteles = DataBase.realizarConsulta(hoteles);
             this.dsHoteles = dsHoteles;
 
@@ -386,7 +391,8 @@ namespace FrbaHotel.GenerarModificacionReserva
                         {
                             DateTime fechaInicioHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaInicio"].ToString());
                             DateTime fechaFinHotel = Convert.ToDateTime(dsFechasHotel.Tables[0].Rows[0]["FechaFin"].ToString());
-                            if (((DateTime.Compare(fechaElegidaInicio, fechaInicioHotel)) < 0) || ((DateTime.Compare(fechaElegidaFin, fechaFinHotel)) > 0))
+                            bool estaEntreMedio = Between(fechaElegidaInicio, fechaInicioHotel, fechaFinHotel) || Between(fechaElegidaFin, fechaInicioHotel, fechaFinHotel);
+                            if (estaEntreMedio)
                             {
                                 MessageBox.Show("El Hotel no esta abierto entre las fechas elegidas. Por favor, seleccione otras.");
                                 return;
