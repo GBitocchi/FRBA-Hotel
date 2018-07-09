@@ -16,13 +16,10 @@ namespace FrbaHotel.RegistrarEstadia
     {
         private Registrar formulario;
         string codigoReserva;
-        public CrearHuesped(string mail, string tipo, string numero,string cod, Registrar formuRegistrar)
+        public CrearHuesped(string cod, Registrar formuRegistrar)
         {
             InitializeComponent();
-            codigoReserva=cod;
-            txtEmail.Text=mail;
-            txtTipo_Identificacion.Text=tipo;
-            txtNumero_Identificacion.Text=numero;
+            codigoReserva=cod;            
             btnCrear.DialogResult = DialogResult.OK;
 
             this.formulario = formuRegistrar;
@@ -116,6 +113,8 @@ namespace FrbaHotel.RegistrarEstadia
                                 string[] formato = { txtEmail.Text.Trim(), txtTipo_Identificacion.Text.Trim(), txtNumero_Identificacion.Text.Trim() };
                                 var listViewItem = new ListViewItem(formato);
                                 formulario.listaHuesped.Items.Add(listViewItem);
+                                DataSet huespedes = DataBase.realizarConsulta("select hues_mail as 'Mail', hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as 'Documento', hues_documento_tipo as 'Tipo'  from CAIA_UNLIMITED.Huesped where hues_habilitado=1 ");
+                                formulario.dgClientes.DataSource = huespedes.Tables[0];
                                 
                                 this.Close();
                             }

@@ -14,10 +14,12 @@ namespace FrbaHotel.AbmCliente
 {
     public partial class Modificar : Form
     {
+
+        private MenuModificarYBaja formulario;
         string nombreAnt, apellidoAnt, dniAnt, tipoAnt, mailAnt, nacimientoAnt, nacionalidadAnt, calleAnt, numeroAnt, pisoAnt, dptoAnt, ciudadAnt, paisAtn, telefonoAnt;
         int estadoAnt;
 
-        public Modificar(string mail, string documento, string tipo)
+        public Modificar(string mail, string documento, string tipo, MenuModificarYBaja formuModificar)
         {
             InitializeComponent();
             mailAnt = mail;
@@ -27,6 +29,7 @@ namespace FrbaHotel.AbmCliente
             DataTable cliente = DataBase.realizarConsulta(consultaCliente).Tables[0];
             cargarInfo(cliente);
             valoresAnterioresCliente();
+            formulario = formuModificar;
         }
 
        
@@ -213,8 +216,10 @@ namespace FrbaHotel.AbmCliente
                                         {                                           
                                                 ejecutarStoredProcedureModificar();
                                                 MessageBox.Show("Cliente modificado exitosamente", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                this.Hide();
-                                                new MenuModificarYBaja().Show();
+                                                DataSet huespedes = DataBase.realizarConsulta("select hues_mail as 'Mail', hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as 'Documento', hues_documento_tipo as 'Tipo', hues_habilitado as 'Estado'  from CAIA_UNLIMITED.Huesped");
+                                                formulario.dgClientes.DataSource = huespedes.Tables[0];
+
+                                                this.Close();
                                                                                     }
                                         else
                                         {
@@ -240,8 +245,10 @@ namespace FrbaHotel.AbmCliente
                                             {
                                                 ejecutarStoredProcedureModificar();
                                                 MessageBox.Show("Cliente modificado exitosamente", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                this.Hide();
-                                                new MenuModificarYBaja().Show();
+                                                DataSet huespedes = DataBase.realizarConsulta("select hues_mail as 'Mail', hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as 'Documento', hues_documento_tipo as 'Tipo', hues_habilitado as 'Estado'  from CAIA_UNLIMITED.Huesped");
+                                                formulario.dgClientes.DataSource = huespedes.Tables[0];
+
+                                                this.Close();
                                             }
                                             else
                                             {
@@ -261,8 +268,10 @@ namespace FrbaHotel.AbmCliente
                                         {
                                             ejecutarStoredProcedureModificar();
                                             MessageBox.Show("Cliente modificado exitosamente", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            this.Hide();
-                                            new MenuModificarYBaja().Show();
+                                            DataSet huespedes = DataBase.realizarConsulta("select hues_mail as 'Mail', hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as 'Documento', hues_documento_tipo as 'Tipo', hues_habilitado as 'Estado'  from CAIA_UNLIMITED.Huesped");
+                                            formulario.dgClientes.DataSource = huespedes.Tables[0];
+
+                                            this.Close();
 
                                         }
                                         else
@@ -280,8 +289,10 @@ namespace FrbaHotel.AbmCliente
                                         {
                                             ejecutarStoredProcedureModificar();
                                             MessageBox.Show("Cliente modificado exitosamente", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            this.Hide();
-                                            new MenuModificarYBaja().Show();
+                                            DataSet huespedes = DataBase.realizarConsulta("select hues_mail as 'Mail', hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as 'Documento', hues_documento_tipo as 'Tipo', hues_habilitado as 'Estado'  from CAIA_UNLIMITED.Huesped");
+                                            formulario.dgClientes.DataSource = huespedes.Tables[0];
+
+                                            this.Close();
                                         }
                                         else
                                         {
@@ -295,8 +306,10 @@ namespace FrbaHotel.AbmCliente
                                 {
                                     ejecutarStoredProcedureModificar();
                                     MessageBox.Show("Cliente modificado exitosamente", "Modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    this.Hide();
-                                    new MenuModificarYBaja().Show();
+                                    DataSet huespedes = DataBase.realizarConsulta("select hues_mail as 'Mail', hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as 'Documento', hues_documento_tipo as 'Tipo', hues_habilitado as 'Estado'  from CAIA_UNLIMITED.Huesped");
+                                    formulario.dgClientes.DataSource = huespedes.Tables[0];
+
+                                    this.Close();
                                 }
                             }
                             else
@@ -442,9 +455,11 @@ namespace FrbaHotel.AbmCliente
                 {
                            ejecutarStoredProcedureDarDeBaja();
                             MessageBox.Show("Cliente dado de baja exitosamente", "Baja", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            
-                            new MenuModificarYBaja().Show();
-                            this.Hide();
+
+                            DataSet huespedes = DataBase.realizarConsulta("select hues_mail as 'Mail', hues_nombre as 'Nombre', hues_apellido as 'Apellido', hues_documento as 'Documento', hues_documento_tipo as 'Tipo', hues_habilitado as 'Estado'  from CAIA_UNLIMITED.Huesped");
+                            formulario.dgClientes.DataSource = huespedes.Tables[0];
+                    
+                            this.Close();
                 }
                 else
                 {
@@ -482,9 +497,7 @@ namespace FrbaHotel.AbmCliente
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-           
-            new MenuModificarYBaja().Show();
-            this.Hide();
+            this.Close();
         }
 
     }

@@ -221,9 +221,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnFiltrar;
-        private System.Windows.Forms.DataGridView dgClientes;
         private System.Windows.Forms.TextBox txtTipo_Identificacion;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnReestablecer;
+        public System.Windows.Forms.DataGridView dgClientes;
     }
 }

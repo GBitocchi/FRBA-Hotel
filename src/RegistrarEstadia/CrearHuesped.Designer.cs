@@ -172,7 +172,6 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Enabled = false;
             this.txtEmail.Location = new System.Drawing.Point(157, 232);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(173, 20);
@@ -180,7 +179,6 @@
             // 
             // txtTipo_Identificacion
             // 
-            this.txtTipo_Identificacion.Enabled = false;
             this.txtTipo_Identificacion.Location = new System.Drawing.Point(157, 193);
             this.txtTipo_Identificacion.Name = "txtTipo_Identificacion";
             this.txtTipo_Identificacion.Size = new System.Drawing.Size(173, 20);
@@ -188,7 +186,6 @@
             // 
             // txtNumero_Identificacion
             // 
-            this.txtNumero_Identificacion.Enabled = false;
             this.txtNumero_Identificacion.Location = new System.Drawing.Point(157, 148);
             this.txtNumero_Identificacion.Name = "txtNumero_Identificacion";
             this.txtNumero_Identificacion.Size = new System.Drawing.Size(173, 20);

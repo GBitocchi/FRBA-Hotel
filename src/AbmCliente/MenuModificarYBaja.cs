@@ -79,7 +79,7 @@ namespace FrbaHotel.AbmCliente
                     int documento;
                     if (int.TryParse(txtNro_Identificacion.Text.Trim(), out documento))
                     {
-                        consulta += string.Format("hues_documento = {0}", documento);
+                        consulta += string.Format("hues_documento LIKE {0}", "%"+documento+"%");
                     }
                     else
                     {
@@ -158,9 +158,8 @@ namespace FrbaHotel.AbmCliente
             string mail = dgClientes.SelectedRows[0].Cells[0].Value.ToString();
             string documento = dgClientes.SelectedRows[0].Cells[3].Value.ToString(); ;
             string tipo = dgClientes.SelectedRows[0].Cells[4].Value.ToString(); ;
-
-            this.Hide();
-            new Modificar(mail,documento,tipo).Show();
+                        
+            new Modificar(mail,documento,tipo,this).Show();
             
         }
 

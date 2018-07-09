@@ -35,8 +35,10 @@
             this.txtTipo = new System.Windows.Forms.TextBox();
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.txtMail = new System.Windows.Forms.TextBox();
-            this.btnAceptar = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.gbxHuesped = new System.Windows.Forms.GroupBox();
+            this.btnCrear = new System.Windows.Forms.Button();
+            this.dgClientes = new System.Windows.Forms.DataGridView();
             this.listaHuesped = new System.Windows.Forms.ListView();
             this.Email = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Nro = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -50,7 +52,9 @@
             this.txtFecha = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.btnVolver = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.gbxHuesped.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgClientes)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,22 +116,25 @@
             this.txtMail.Size = new System.Drawing.Size(168, 20);
             this.txtMail.TabIndex = 6;
             // 
-            // btnAceptar
+            // btnBuscar
             // 
-            this.btnAceptar.Enabled = false;
-            this.btnAceptar.Location = new System.Drawing.Point(114, 164);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(99, 26);
-            this.btnAceptar.TabIndex = 8;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            this.btnBuscar.Enabled = false;
+            this.btnBuscar.Location = new System.Drawing.Point(14, 167);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(99, 26);
+            this.btnBuscar.TabIndex = 8;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // gbxHuesped
             // 
+            this.gbxHuesped.Controls.Add(this.btnEliminar);
+            this.gbxHuesped.Controls.Add(this.btnCrear);
+            this.gbxHuesped.Controls.Add(this.dgClientes);
             this.gbxHuesped.Controls.Add(this.listaHuesped);
             this.gbxHuesped.Controls.Add(this.label1);
-            this.gbxHuesped.Controls.Add(this.btnAceptar);
+            this.gbxHuesped.Controls.Add(this.btnBuscar);
             this.gbxHuesped.Controls.Add(this.label2);
             this.gbxHuesped.Controls.Add(this.label3);
             this.gbxHuesped.Controls.Add(this.txtMail);
@@ -136,10 +143,35 @@
             this.gbxHuesped.Controls.Add(this.txtTipo);
             this.gbxHuesped.Location = new System.Drawing.Point(36, 256);
             this.gbxHuesped.Name = "gbxHuesped";
-            this.gbxHuesped.Size = new System.Drawing.Size(648, 224);
+            this.gbxHuesped.Size = new System.Drawing.Size(648, 402);
             this.gbxHuesped.TabIndex = 9;
             this.gbxHuesped.TabStop = false;
             this.gbxHuesped.Text = "Datos huesped";
+            // 
+            // btnCrear
+            // 
+            this.btnCrear.Enabled = false;
+            this.btnCrear.Location = new System.Drawing.Point(123, 167);
+            this.btnCrear.Name = "btnCrear";
+            this.btnCrear.Size = new System.Drawing.Size(99, 26);
+            this.btnCrear.TabIndex = 110;
+            this.btnCrear.Text = "Crear";
+            this.btnCrear.UseVisualStyleBackColor = true;
+            this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
+            // 
+            // dgClientes
+            // 
+            this.dgClientes.AllowUserToAddRows = false;
+            this.dgClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgClientes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
+            this.dgClientes.Enabled = false;
+            this.dgClientes.Location = new System.Drawing.Point(14, 213);
+            this.dgClientes.Name = "dgClientes";
+            this.dgClientes.RowHeadersVisible = false;
+            this.dgClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgClientes.Size = new System.Drawing.Size(623, 176);
+            this.dgClientes.TabIndex = 109;
+            this.dgClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgClientes_CellContentClick);
             // 
             // listaHuesped
             // 
@@ -253,7 +285,7 @@
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(299, 489);
+            this.btnVolver.Location = new System.Drawing.Point(299, 664);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(143, 39);
             this.btnVolver.TabIndex = 11;
@@ -261,11 +293,22 @@
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click_1);
             // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Enabled = false;
+            this.btnEliminar.Location = new System.Drawing.Point(231, 167);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(99, 26);
+            this.btnEliminar.TabIndex = 111;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
             // Registrar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(724, 540);
+            this.ClientSize = new System.Drawing.Size(724, 710);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.gbxHuesped);
@@ -273,6 +316,7 @@
             this.Text = "Datos del cliente";
             this.gbxHuesped.ResumeLayout(false);
             this.gbxHuesped.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgClientes)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -288,7 +332,7 @@
         private System.Windows.Forms.TextBox txtTipo;
         private System.Windows.Forms.TextBox txtNumero;
         private System.Windows.Forms.TextBox txtMail;
-        private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.GroupBox gbxHuesped;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox cbxRegistrar;
@@ -303,5 +347,8 @@
         private System.Windows.Forms.ColumnHeader Tipo;
         private System.Windows.Forms.Button btnVolver;
         public System.Windows.Forms.ListView listaHuesped;
+        private System.Windows.Forms.Button btnCrear;
+        private System.Windows.Forms.Button btnEliminar;
+        public System.Windows.Forms.DataGridView dgClientes;
     }
 }
