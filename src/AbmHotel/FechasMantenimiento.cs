@@ -94,7 +94,7 @@ namespace FrbaHotel.AbmHotel
 
         private string queryOtrosMantenimientos()
         {
-            string otrosMantenimientos = string.Format("select * from CAIA_UNLIMITED.Mantenimiento M join CAIA_UNLIMITED.Hotel H on (H.hote_id = M.hote_id) where H.hote_id = {0} and ((DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{1}', 120)) >= 0 and DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{1}', 120)) <= DATEDIFF(day, mant_fecha_inicio, mant_fecha_fin)) or (DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{2}', 120)) >= 0 and DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{2}', 120)) <= DATEDIFF(day, mant_fecha_inicio, mant_fecha_fin)) or (DATEDIFF(day, mant_fecha_inicio, '{1}') <= 0 and DATEDIFF(day, mant_fecha_fin, '{2}') >=0)) and hote_habilitado = 0",
+            string otrosMantenimientos = string.Format("select * from CAIA_UNLIMITED.Mantenimiento M join CAIA_UNLIMITED.Hotel H on (H.hote_id = M.hote_id) where H.hote_id = {0} and ((DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{1}', 120)) >= 0 and DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{1}', 120)) <= DATEDIFF(day, mant_fecha_inicio, mant_fecha_fin)) or (DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{2}', 120)) >= 0 and DATEDIFF(day, mant_fecha_inicio, convert(datetime, '{2}', 120)) <= DATEDIFF(day, mant_fecha_inicio, mant_fecha_fin)) or (DATEDIFF(day, mant_fecha_inicio, '{1}') <= 0 and DATEDIFF(day, mant_fecha_fin, '{2}') >=0))",
                 hotelID, fechaInicio, fechaFin);
             return otrosMantenimientos;
         }

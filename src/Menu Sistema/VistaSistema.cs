@@ -39,8 +39,6 @@ namespace FrbaHotel.Menu_Sistema
             this.codigoRol = _codigoRol;
             this.nombreUsuario = _nombreUsuario;
 
-            habilitarHoteles();
-
             string queryFuncionalidadesUsuario = string.Format("SELECT f.func_detalle as Funcionalidades FROM CAIA_UNLIMITED.Funcionalidad f JOIN CAIA_UNLIMITED.Funcionalidad_X_Rol fr on fr.func_rol_codigo_func = f.func_codigo WHERE fr.func_rol_codigo_rol = '{0}'", _codigoRol);
             DataSet dsFuncionalidadesUsuario = DataBase.realizarConsulta(queryFuncionalidadesUsuario);
 
@@ -93,21 +91,9 @@ namespace FrbaHotel.Menu_Sistema
             }
         }
 
-        private static void habilitarHoteles()
-        {
-            SqlConnection db = DataBase.conectarBD();
-            SqlCommand altaHoteles = new SqlCommand("CAIA_UNLIMITED.sp_AltaHotel", db);
-            altaHoteles.CommandType = CommandType.StoredProcedure;
-            altaHoteles.Parameters.AddWithValue("@fecha", DataBase.fechaSistema());
-            altaHoteles.ExecuteNonQuery();
-            db.Close();
-        }
-
         public VistaSistema()
         {
             InitializeComponent();
-
-            habilitarHoteles();
             string rol = "Guest";
             string queryFuncionalidadesUsuario = string.Format("SELECT f.func_detalle as Funcionalidades FROM CAIA_UNLIMITED.Funcionalidad f JOIN CAIA_UNLIMITED.Funcionalidad_X_Rol fr on fr.func_rol_codigo_func = f.func_codigo JOIN CAIA_UNLIMITED.Rol ro on (fr.func_rol_codigo_rol = ro.rol_codigo) WHERE ro.rol_nombre = '{0}'",rol);
             DataSet dsFuncionalidadesUsuario = DataBase.realizarConsulta(queryFuncionalidadesUsuario);

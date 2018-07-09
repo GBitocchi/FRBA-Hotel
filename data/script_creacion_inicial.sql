@@ -23,7 +23,6 @@ create table CAIA_UNLIMITED.Hotel(
 	hote_nombre nvarchar(255),
 	hote_cant_estrellas numeric(18,0) not null,
 	hote_recarga_estrella numeric(18,0),
-	hote_habilitado bit not null,
 	hote_fecha_creacion datetime,
 	hote_mail nvarchar(255),
 	dire_id numeric(18,0) not null
@@ -419,8 +418,8 @@ select distinct Habitacion_Tipo_Codigo, Habitacion_Tipo_Descripcion, Habitacion_
 from gd_esquema.Maestra
 
 --Hotel
-insert into CAIA_UNLIMITED.Hotel (hote_cant_estrellas, hote_recarga_estrella, hote_habilitado, dire_id)
-select distinct Hotel_CantEstrella, Hotel_Recarga_Estrella, 1, dire_id
+insert into CAIA_UNLIMITED.Hotel (hote_cant_estrellas, hote_recarga_estrella, dire_id)
+select distinct Hotel_CantEstrella, Hotel_Recarga_Estrella, dire_id
 from gd_esquema.Maestra join CAIA_UNLIMITED.Direccion on (Hotel_Calle = dire_dom_calle and
 															Hotel_Ciudad = dire_ciudad and
 															Hotel_Nro_Calle = dire_nro_calle)
@@ -569,8 +568,8 @@ SET NOCOUNT ON;
     	insert into CAIA_UNLIMITED.Direccion (dire_ciudad, dire_pais, dire_dom_calle, dire_nro_calle,
 											dire_telefono)
 		values (@ciudad, @pais, @calle, @numero_calle, @hote_telefono)
-		insert into CAIA_UNLIMITED.Hotel (hote_nombre, hote_mail, hote_cant_estrellas, hote_habilitado, hote_fecha_creacion, dire_id, hote_recarga_estrella)
-		values (@nombre_hotel, @mail, @estrellas, 1, convert(datetime, @fecha, 120), (select dire_id from CAIA_UNLIMITED.Direccion
+		insert into CAIA_UNLIMITED.Hotel (hote_nombre, hote_mail, hote_cant_estrellas, hote_fecha_creacion, dire_id, hote_recarga_estrella)
+		values (@nombre_hotel, @mail, @estrellas, convert(datetime, @fecha, 120), (select dire_id from CAIA_UNLIMITED.Direccion
 													where dire_telefono = @hote_telefono and
 													dire_dom_calle = @calle and dire_ciudad = @ciudad
 													and dire_pais = @pais and dire_nro_calle = @numero_calle), 10)		
@@ -627,7 +626,6 @@ SET NOCOUNT ON;
       ELSE
         SAVE TRANSACTION sp_BajaHotel;
 		 
-		update CAIA_UNLIMITED.Hotel set hote_habilitado = 0 where hote_id = @id_hotel
 		insert into CAIA_UNLIMITED.Mantenimiento (hote_id, mant_fecha_inicio, mant_fecha_fin, mant_descripcion)
 		values (@id_hotel, convert(datetime, @fecha_inicio, 120), convert(datetime, @fecha_fin, 120), @descripcion)		
 		
@@ -702,15 +700,6 @@ SET NOCOUNT ON;
       ROLLBACK TRANSACTION sp_ModificarHotel;
   END CATCH
 
-END
-GO
-
-CREATE PROCEDURE CAIA_UNLIMITED.sp_AltaHotel (@fecha datetime)
-AS
-BEGIN 
-	update CAIA_UNLIMITED.Hotel
-	set hote_habilitado = 1
-	where hote_id in (select H.hote_id from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Mantenimiento M on (M.hote_id = H.hote_id) where DATEDIFF(day, M.mant_fecha_fin, convert(datetime, @fecha, 120)) >= 0)  
 END
 GO
 
