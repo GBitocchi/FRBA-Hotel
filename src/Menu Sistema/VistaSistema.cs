@@ -64,10 +64,6 @@ namespace FrbaHotel.Menu_Sistema
                 {
                     stripHabitacion.Visible = true;
                 }
-                else if (unaFuncionalidad["Funcionalidades"].ToString() == "FACTURAR")
-                {
-                    stripFacturar.Visible = true;
-                }
                 else if (unaFuncionalidad["Funcionalidades"].ToString() == "LISTADO_ESTADISTICO")
                 {
                     stripListado.Visible = true;
@@ -119,10 +115,6 @@ namespace FrbaHotel.Menu_Sistema
                 else if (unaFuncionalidad["Funcionalidades"].ToString() == "ABM_HABITACION")
                 {
                     stripHabitacion.Visible = true;
-                }
-                else if (unaFuncionalidad["Funcionalidades"].ToString() == "FACTURAR")
-                {
-                    stripFacturar.Visible = true;
                 }
                 else if (unaFuncionalidad["Funcionalidades"].ToString() == "LISTADO_ESTADISTICO")
                 {
@@ -262,12 +254,6 @@ namespace FrbaHotel.Menu_Sistema
         private void modificarHabitacionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new MenuModificacion(Convert.ToString(idHotel)).ShowDialog();
-            this.Show();
-        }
-
-        private void stripFacturar_Click(object sender, EventArgs e)
-        {
-            new EstadiasAFacturar(Convert.ToString(idHotel)).ShowDialog();
             this.Show();
         }
 

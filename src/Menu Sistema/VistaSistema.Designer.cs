@@ -52,7 +52,6 @@
             this.crearHabitacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarHabitacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bajaDeHabitacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stripFacturar = new System.Windows.Forms.ToolStripMenuItem();
             this.stripHuesped = new System.Windows.Forms.ToolStripMenuItem();
             this.crearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,7 +87,6 @@
             this.stripRol,
             this.stripHotel,
             this.stripHabitacion,
-            this.stripFacturar,
             this.stripHuesped,
             this.stripConsumibles,
             this.stripListado});
@@ -267,14 +265,6 @@
             this.bajaDeHabitacionToolStripMenuItem.Text = "Baja de habitacion";
             this.bajaDeHabitacionToolStripMenuItem.Click += new System.EventHandler(this.bajaDeHabitacionToolStripMenuItem_Click);
             // 
-            // stripFacturar
-            // 
-            this.stripFacturar.Name = "stripFacturar";
-            this.stripFacturar.Size = new System.Drawing.Size(62, 20);
-            this.stripFacturar.Text = "Facturar";
-            this.stripFacturar.Visible = false;
-            this.stripFacturar.Click += new System.EventHandler(this.stripFacturar_Click);
-            // 
             // stripHuesped
             // 
             this.stripHuesped.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -288,14 +278,14 @@
             // crearToolStripMenuItem
             // 
             this.crearToolStripMenuItem.Name = "crearToolStripMenuItem";
-            this.crearToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.crearToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.crearToolStripMenuItem.Text = "Crear";
             this.crearToolStripMenuItem.Click += new System.EventHandler(this.crearToolStripMenuItem_Click);
             // 
             // modificarToolStripMenuItem
             // 
             this.modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
-            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.modificarToolStripMenuItem.Text = "Modificar";
             this.modificarToolStripMenuItem.Click += new System.EventHandler(this.modificarToolStripMenuItem_Click);
             // 
@@ -425,7 +415,6 @@
         private System.Windows.Forms.ToolStripMenuItem crearHabitacionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bajaDeHabitacionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificarHabitacionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem stripFacturar;
         private System.Windows.Forms.ToolStripMenuItem stripHuesped;
         private System.Windows.Forms.ToolStripMenuItem crearToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificarToolStripMenuItem;

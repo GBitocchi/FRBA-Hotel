@@ -69,12 +69,6 @@
     <Compile Include="AbmCliente\Modificar.designer.cs">
       <DependentUpon>Modificar.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmFacturacion\EstadiasAFacturar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmFacturacion\EstadiasAFacturar.Designer.cs">
-      <DependentUpon>EstadiasAFacturar.cs</DependentUpon>
-    </Compile>
     <Compile Include="AbmFacturacion\Facturacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -317,9 +311,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmCliente\Modificar.resx">
       <DependentUpon>Modificar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmFacturacion\EstadiasAFacturar.resx">
-      <DependentUpon>EstadiasAFacturar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmFacturacion\Facturacion.resx">
       <DependentUpon>Facturacion.cs</DependentUpon>
