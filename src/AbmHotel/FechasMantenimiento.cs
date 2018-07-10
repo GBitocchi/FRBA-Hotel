@@ -50,7 +50,6 @@ namespace FrbaHotel.AbmHotel
                 string consultarPorReservas = queryReservas();
                 if (DataBase.realizarConsulta(consultarPorReservas).Tables[0].Rows.Count == 0)
                 {
-                    Console.WriteLine("Pase");
                     string otrosMantenimientos = queryOtrosMantenimientos();
                     if (DataBase.realizarConsulta(otrosMantenimientos).Tables[0].Rows.Count == 0)
                     {
