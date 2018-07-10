@@ -155,7 +155,7 @@ namespace FrbaHotel.RegistrarEstadia
                     int documento;
                     if (int.TryParse(txtNumero.Text.Trim(), out documento))
                     {
-                        consulta += string.Format("hues_documento LIKE {0}", "%"+documento+"%");
+                        consulta += string.Format("hues_documento LIKE '%{0}%'", documento);
                     }
                     else
                     {

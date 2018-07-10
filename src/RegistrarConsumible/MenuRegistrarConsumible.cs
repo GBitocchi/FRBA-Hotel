@@ -19,7 +19,6 @@ namespace FrbaHotel.RegistrarConsumible
         public MenuRegistrarConsumible(string idHotel)
         {
             InitializeComponent();
-            limpiarFormulario();
             cbxConsumible.DataSource = DataBase.realizarConsulta("select * from CAIA_UNLIMITED.Consumible").Tables[0];
             cbxConsumible.DisplayMember = "cons_descripcion";
             cbxConsumible.ValueMember = "cons_descripcion";
@@ -244,6 +243,7 @@ namespace FrbaHotel.RegistrarConsumible
 
                     MessageBox.Show("Consumibles registrados correctamente", "Registrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     new Facturacion(txtCodigo_Estadia.Text.Trim()).Show();
+                    limpiarFormulario();
                     this.Close();
                     db.Close();
                 }

@@ -8,7 +8,6 @@ C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmCliente.Crear.resou
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmCliente.MenuClientes.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmCliente.MenuModificarYBaja.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmCliente.Modificar.resources
-C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmFacturacion.EstadiasAFacturar.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmFacturacion.Facturacion.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmFacturacion.MedioDePago.resources
 C:\Users\Germa\Desktop\FRBA-Hotel\src\obj\Debug\FrbaHotel.AbmFacturacion.PagarTarjeta.resources

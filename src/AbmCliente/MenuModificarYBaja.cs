@@ -79,7 +79,7 @@ namespace FrbaHotel.AbmCliente
                     int documento;
                     if (int.TryParse(txtNro_Identificacion.Text.Trim(), out documento))
                     {
-                        consulta += string.Format("hues_documento LIKE {0}", "%"+documento+"%");
+                        consulta += string.Format("hues_documento LIKE '%{0}%'", "%" + documento + "%");
                     }
                     else
                     {
