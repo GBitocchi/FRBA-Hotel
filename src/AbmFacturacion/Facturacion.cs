@@ -117,7 +117,15 @@ namespace FrbaHotel.AbmFacturacion
             txtPrecioRegimen.Text = DataBase.realizarConsulta("select regi_precio_base from CAIA_UNLIMITED.Regimen R join CAIA_UNLIMITED.Reserva H on (R.regi_codigo = H.regi_codigo) join CAIA_UNLIMITED.Estadia E on (E.rese_codigo = H.rese_codigo) where esta_codigo =" + codigoEstadia).Tables[0].Rows[0][0].ToString();
             txtPorcentual.Text = DataBase.realizarConsulta("select H.hote_recarga_estrella * H.hote_cant_estrellas from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Habitacion_X_Reserva X on (X.habi_rese_id = H.hote_id) join CAIA_UNLIMITED.Reserva R on (R.rese_codigo = X.habi_rese_codigo) join CAIA_UNLIMITED.Estadia E on (E.rese_codigo = R.rese_codigo) where esta_codigo = " + codigoEstadia).Tables[0].Rows[0][0].ToString();
             txtNochesReserva.Text = DataBase.realizarConsulta("select rese_cantidad_noches from CAIA_UNLIMITED.Reserva R join CAIA_UNLIMITED.Estadia E on (R.rese_codigo = E.rese_codigo) where esta_codigo = " + codigoEstadia).Tables[0].Rows[0][0].ToString();
-            txtNochesEstadia.Text = Convert.ToString(Convert.ToDouble(txtNochesReserva.Text.Trim()) - Convert.ToDouble(DataBase.realizarConsulta("select DATEDIFF(day, esta_fecha_inicio, esta_fecha_fin) from CAIA_UNLIMITED.Estadia where esta_codigo =" + codigoEstadia).Tables[0].Rows[0][0].ToString()));
+            int nochesRestantes = Convert.ToInt32(Convert.ToDouble(txtNochesReserva.Text.Trim()) - Convert.ToDouble(DataBase.realizarConsulta("select DATEDIFF(day, esta_fecha_inicio, esta_fecha_fin) from CAIA_UNLIMITED.Estadia where esta_codigo =" + codigoEstadia).Tables[0].Rows[0][0].ToString()));
+            if (nochesRestantes < 0)
+            {
+                txtNochesEstadia.Text = "0";
+            }
+            else
+            {
+                txtNochesEstadia.Text = nochesRestantes.ToString();
+            }
             txtCostoExtra.Text = (Convert.ToDouble(txtNochesEstadia.Text.Trim()) * Convert.ToDouble(txtPrecioRegimen.Text.Trim())).ToString();
         }
 
