@@ -14,8 +14,9 @@ namespace FrbaHotel.RegistrarEstadia
 {
     public partial class CancelarReservaHuesped : Form
     {
+        private Registrar formulario;
         string idHotelActual;
-        public CancelarReservaHuesped(string username, string codigoReserva, string idHotel)
+        public CancelarReservaHuesped(string username, string codigoReserva, string idHotel, Registrar formuRegistrar)
         {
             InitializeComponent();
             txtUsername.Text = username;
@@ -24,6 +25,7 @@ namespace FrbaHotel.RegistrarEstadia
             txtUsername.Enabled = false;
             txtCancelacion.Text = Convert.ToString(DataBase.fechaSistema());
             idHotelActual = idHotel;
+            this.formulario = formuRegistrar;
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -55,7 +57,7 @@ namespace FrbaHotel.RegistrarEstadia
 
                                     MessageBox.Show("Reserva cancelada", "Cancelada", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                    this.Hide();
+                                    this.Close();
 
                                 }
                             
@@ -144,12 +146,7 @@ namespace FrbaHotel.RegistrarEstadia
             {
                 MessageBox.Show("Ingrese la fecha", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
-            }
-            if (txtMotivo.Text.Trim() == "")
-            {
-                MessageBox.Show("Ingrese el motivo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+            }           
             
             return true;
         }

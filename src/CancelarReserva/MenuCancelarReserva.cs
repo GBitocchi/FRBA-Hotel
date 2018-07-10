@@ -144,7 +144,7 @@ namespace FrbaHotel.CancelarReserva
                 }
                 else
                 {
-                    MessageBox.Show("Operacion cancelada, la reserva ya finalizo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Operacion cancelada, ya se registro el egreso de dicha reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
 
@@ -326,12 +326,7 @@ namespace FrbaHotel.CancelarReserva
             {
                 MessageBox.Show("Ingrese la fecha", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
-            }
-            if (txtMotivo.Text.Trim() == "")
-            {
-                MessageBox.Show("Ingrese el motivo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+            }            
             if (txtMail.Text.Trim() == "" && txtUsername.Text.Trim()=="")
             {
                 MessageBox.Show("Ingrese el mail/usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

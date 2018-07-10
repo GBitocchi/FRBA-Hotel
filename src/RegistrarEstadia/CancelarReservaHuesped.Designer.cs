@@ -72,7 +72,7 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(176, 421);
+            this.btnAceptar.Location = new System.Drawing.Point(189, 431);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(114, 39);
             this.btnAceptar.TabIndex = 316;
@@ -91,7 +91,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(103, 84);
+            this.label1.Location = new System.Drawing.Point(104, 84);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(97, 13);
             this.label1.TabIndex = 314;
@@ -101,7 +101,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(172, 38);
+            this.label5.Location = new System.Drawing.Point(173, 38);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(152, 24);
             this.label5.TabIndex = 313;
@@ -110,14 +110,14 @@
             // txtCancelacion
             // 
             this.txtCancelacion.Enabled = false;
-            this.txtCancelacion.Location = new System.Drawing.Point(228, 121);
+            this.txtCancelacion.Location = new System.Drawing.Point(229, 121);
             this.txtCancelacion.Name = "txtCancelacion";
             this.txtCancelacion.Size = new System.Drawing.Size(173, 20);
             this.txtCancelacion.TabIndex = 310;
             // 
             // txtNumero_Reserva
             // 
-            this.txtNumero_Reserva.Location = new System.Drawing.Point(228, 81);
+            this.txtNumero_Reserva.Location = new System.Drawing.Point(229, 81);
             this.txtNumero_Reserva.Name = "txtNumero_Reserva";
             this.txtNumero_Reserva.Size = new System.Drawing.Size(173, 20);
             this.txtNumero_Reserva.TabIndex = 309;
@@ -125,7 +125,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(103, 124);
+            this.label10.Location = new System.Drawing.Point(104, 124);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(113, 13);
             this.label10.TabIndex = 308;

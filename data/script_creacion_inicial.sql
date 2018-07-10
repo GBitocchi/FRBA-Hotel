@@ -1790,8 +1790,8 @@ BEGIN
       ELSE
         SAVE TRANSACTION sp_CancelarReservaHuesped;
 
-		insert into CAIA_UNLIMITED.Reserva_Cancelada(reca_rese,reca_motivo,reca_fecha_cancelacion)
-		values (@codigo_reserva,@motivo,convert(datetime,@fecha_cancelacion,120))
+		insert into CAIA_UNLIMITED.Reserva_Cancelada(reca_rese,reca_motivo,reca_fecha_cancelacion,reca_usuario)
+		values (@codigo_reserva,@motivo,convert(datetime,@fecha_cancelacion,120),1)
 		update CAIA_UNLIMITED.Reserva 
 		set esre_codigo=(SELECT esre_codigo FROM CAIA_UNLIMITED.Estado_Reserva where esre_detalle = 'Reserva cancelada por cliente')  where rese_codigo = @codigo_reserva
 	lbexit:
