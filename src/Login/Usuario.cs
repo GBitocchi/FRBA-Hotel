@@ -127,7 +127,7 @@ namespace FrbaHotel.Login
 
                             if ((dsHotelesUser == null || dsHotelesUser.Tables.Count <= 0 || dsHotelesUser.Tables[0].Rows.Count <= 0) || (dsRolesUser == null || dsRolesUser.Tables.Count <= 0 || dsRolesUser.Tables[0].Rows.Count <= 0))
                             {
-                                MessageBox.Show("El usuario no tiene asignado ningun hotel o rol. Contacte con el administrador");
+                                MessageBox.Show("El usuario no tiene asignado ningun hotel o rol que este habilitado. Contacte con el administrador");
                                 new Usuario().Show();
                             }
                             else if (dsHotelesUser != null && dsHotelesUser.Tables.Count > 0 && (dsHotelesUser.Tables[0].Rows.Count) > 1)
