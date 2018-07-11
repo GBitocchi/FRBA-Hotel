@@ -102,13 +102,24 @@ namespace FrbaHotel.AbmHabitacion
             lblUbicacion.Visible = false;
             if (txtNroHabitacion.Text.Trim() == "")
             {
-                MessageBox.Show("El numero de habitacion debe ser numero.", "Campos invalidos", MessageBoxButtons.OK);
+                MessageBox.Show("Complete el numero de habitacion.", "Campos incompletos", MessageBoxButtons.OK);
                 lblNroHabitacion.Visible = true;
             }
-            else if (txtPiso.Text.Trim() == "" || !int.TryParse(txtPiso.Text.Trim(), out aux))
+            else if (!Int32.TryParse(txtNroHabitacion.Text.Trim(), out aux))
+            {
+                MessageBox.Show("El numero de habitacion debe ser numero", "Campos invalidos", MessageBoxButtons.OK);
+                lblNroHabitacion.Visible = true;
+            }
+            else if (txtPiso.Text.Trim() == "") 
+            {
+                MessageBox.Show("Complete el numero de piso.", "Campos incompletos", MessageBoxButtons.OK);
+                lblPiso.Visible = true;
+            }
+            else if (!int.TryParse(txtPiso.Text.Trim(), out aux))
             {
                 MessageBox.Show("El numero de piso debe ser numero.", "Campos invalidos", MessageBoxButtons.OK);
                 lblPiso.Visible = true;
+
             }
             else if (txtUbicacion.Text.Trim() == "")
             {

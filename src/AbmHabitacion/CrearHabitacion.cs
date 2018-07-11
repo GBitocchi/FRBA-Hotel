@@ -34,18 +34,31 @@ namespace FrbaHotel.AbmHabitacion
         private bool constatarCampos()
         {
             int aux;
-            if (txtNro_habitacion.Text.Trim() == "" || !int.TryParse(txtNro_habitacion.Text.Trim(), out aux))
+            if (txtNro_habitacion.Text.Trim() == "")
+            {
+                lblErrorNroHab.Visible = true;
+                MessageBox.Show("Complete el numero de habitacion.", "Campos incompletos", MessageBoxButtons.OK);
+                return false;
+            }
+            else if (!int.TryParse(txtNro_habitacion.Text.Trim(), out aux))
             {
                 lblErrorNroHab.Visible = true;
                 MessageBox.Show("El numero de habitacion debe ser numero.", "Campos invalidos", MessageBoxButtons.OK);
                 return false;
             }
-            else if (txtPiso.Text.Trim() == "" || !int.TryParse(txtPiso.Text.Trim(), out aux))
+            else if (txtPiso.Text.Trim() == "")
             {
                 lblErrorPiso.Visible = true;
+                MessageBox.Show("Complete el numero de piso.", "Campos incompletos", MessageBoxButtons.OK);
+                return false;
+            }
+            else if (!int.TryParse(txtPiso.Text.Trim(), out aux))
+            {
+                lblErrorNroHab.Visible = true;
                 MessageBox.Show("El numero de piso debe ser numero.", "Campos invalidos", MessageBoxButtons.OK);
                 return false;
             }
+
             else if (txtUbicacion.Text.Trim() == "")
             {
                 lblErrorUbi.Visible = true;
