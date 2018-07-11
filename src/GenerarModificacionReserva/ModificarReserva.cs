@@ -265,6 +265,16 @@ namespace FrbaHotel.GenerarModificacionReserva
                 }
                 else
                 {
+                
+                    string reservaExiste = string.Format("SELECT 1 FROM CAIA_UNLIMITED.Reserva where rese_codigo = '{0}'", textBoxReserva.Text.Trim());
+                    DataSet dsReservaExiste = DataBase.realizarConsulta(reservaExiste);
+
+                    if (dsReservaExiste == null || dsReservaExiste.Tables.Count <= 0 || dsReservaExiste.Tables[0].Rows.Count <= 0)
+                    {
+                        MessageBox.Show("No existe el numero de reserva que ha ingresado.");
+                        return;
+                    }
+                
                     if (!guest)
                     {
                         string queryHotelIncorrecto = string.Format("SELECT DISTINCT r.rese_codigo FROM CAIA_UNLIMITED.Reserva r JOIN CAIA_UNLIMITED.Habitacion_X_Reserva hr on hr.habi_rese_codigo = r.rese_codigo JOIN CAIA_UNLIMITED.Habitacion h on (h.habi_numero = hr.habi_rese_numero AND h.hote_id = hr.habi_rese_id) JOIN CAIA_UNLIMITED.Hotel ho on (ho.hote_id = h.hote_id) JOIN CAIA_UNLIMITED.Regimen_X_Hotel reh on ho.hote_id = reh.regi_hote_id JOIN CAIA_UNLIMITED.Regimen re on re.regi_codigo = reh.regi_hote_codigo JOIN CAIA_UNLIMITED.Tipo_Habitacion th on th.thab_codigo = h.thab_codigo WHERE r.rese_codigo = '{0}' AND ho.hote_id = '{1}'", textBoxReserva.Text.Trim(),this.hotel);
