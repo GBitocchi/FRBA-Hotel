@@ -439,8 +439,8 @@ insert into CAIA_UNLIMITED.Usuario (usur_username, usur_password, usur_habilitad
 insert into CAIA_UNLIMITED.Usuario (usur_username, usur_password, usur_habilitado, usur_intentos) values('guest', HASHBYTES('SHA2_256', 'w23e'), 0, 0)
 
 --Reserva
-insert into CAIA_UNLIMITED.Reserva (rese_codigo, rese_fecha_realizacion, rese_fecha_desde, rese_cantidad_noches, regi_codigo)
-select distinct Reserva_Codigo, Reserva_Fecha_Inicio, Reserva_Fecha_Inicio, Reserva_Cant_Noches, L.regi_codigo
+insert into CAIA_UNLIMITED.Reserva (rese_codigo, rese_fecha_realizacion, rese_fecha_desde, rese_cantidad_noches, regi_codigo, rese_usur_creacion, esre_codigo)
+select distinct Reserva_Codigo, Reserva_Fecha_Inicio, Reserva_Fecha_Inicio, Reserva_Cant_Noches, L.regi_codigo, 0, 5
 from gd_esquema.Maestra join CAIA_UNLIMITED.Direccion D on (Hotel_Calle = dire_dom_calle and
 															Hotel_Nro_Calle = dire_nro_calle and
 															Hotel_Ciudad = dire_ciudad)
