@@ -129,7 +129,6 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.tabPage1.Controls.Add(this.btnSalir);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.lblBirthdayPost);
             this.tabPage1.Controls.Add(this.lbllistBoxNoItem);
@@ -211,7 +210,7 @@
             // btnSalir
             // 
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.Location = new System.Drawing.Point(984, 690);
+            this.btnSalir.Location = new System.Drawing.Point(1217, 770);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 34);
             this.btnSalir.TabIndex = 2;
@@ -947,7 +946,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1267, 730);
+            this.tabPage2.Size = new System.Drawing.Size(1267, 776);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Modificar";
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
@@ -982,7 +981,7 @@
             this.tabPage3.Controls.Add(this.label37);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1267, 730);
+            this.tabPage3.Size = new System.Drawing.Size(1267, 776);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Eliminar";
             // 
@@ -1014,7 +1013,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1307, 769);
+            this.ClientSize = new System.Drawing.Size(1304, 805);
+            this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.tabControl1);
             this.Name = "VistaUsuario";
             this.Text = "VistaUsuario";
