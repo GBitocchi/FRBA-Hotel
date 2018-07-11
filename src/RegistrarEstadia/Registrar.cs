@@ -283,7 +283,7 @@ namespace FrbaHotel.RegistrarEstadia
                                     else
                                     {
                                         MessageBox.Show("Ingreso posterior a la fecha establecida, perdida de reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        new CancelarReservaHuesped(txtUsuario.Text.Trim(), codigoReserva, idHotelActual,this).Show();
+                                        new CancelarReservaHuesped(txtUsuario.Text.Trim(), codigoReserva, idHotelActual,this).ShowDialog();
                                         this.Hide();
                                     }
                                 }
