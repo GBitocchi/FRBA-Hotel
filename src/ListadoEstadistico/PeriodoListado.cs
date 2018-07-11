@@ -44,7 +44,7 @@ namespace FrbaHotel.ListadoEstadistico
                 {
                     case 0:
                         {
-                            DataTable canceladas = DataBase.realizarConsulta("SELECT TOP 5 H.hote_id as 'ID', hote_nombre as 'Nombre' FROM CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Habitacion_X_Reserva X on (X.habi_rese_id = H.hote_id)	join CAIA_UNLIMITED.Reserva R on (R.rese_codigo = X.habi_rese_codigo) join CAIA_UNLIMITED.Reserva_Cancelada C on (C.reca_rese = R.rese_codigo) WHERE DATEPART(QUARTER, R.rese_fecha_desde) = " + trimestre + " and YEAR(R.rese_fecha_desde) = " + anio + " GROUP BY H.hote_id, hote_nombre ORDER BY COUNT(*) desc").Tables[0];
+                            DataTable canceladas = DataBase.realizarConsulta("SELECT TOP 5 dire_dom_calle as 'Calle', dire_nro_calle as 'Numero' FROM CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Habitacion_X_Reserva X on (X.habi_rese_id = H.hote_id)	join CAIA_UNLIMITED.Reserva R on (R.rese_codigo = X.habi_rese_codigo) join CAIA_UNLIMITED.Reserva_Cancelada C on (C.reca_rese = R.rese_codigo) join CAIA_UNLIMITED.Direccion D on (D.dire_id = H.dire_id) WHERE DATEPART(QUARTER, R.rese_fecha_desde) = " + trimestre + " and YEAR(R.rese_fecha_desde) = " + anio + " GROUP BY D.dire_dom_calle, D.dire_nro_calle ORDER BY COUNT(*) desc").Tables[0];
                             if (canceladas.Rows.Count == 0)
                             {
                                 MessageBox.Show("No hay datos suficientes para listar", "Faltan datos", MessageBoxButtons.OK);
@@ -58,7 +58,7 @@ namespace FrbaHotel.ListadoEstadistico
                         break;
                     case 1:
                         {
-                            DataTable consumibles = DataBase.realizarConsulta("select top 5 H.hote_id 'ID', hote_nombre as 'Nombre' from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Habitacion_X_Reserva X on (X.habi_rese_id = H.hote_id) join CAIA_UNLIMITED.Estadia E on (E.rese_codigo = X.habi_rese_codigo) join CAIA_UNLIMITED.Factura F on (F.esta_codigo = E.esta_codigo) join CAIA_UNLIMITED.Item_Factura I on (F.fact_nro = I.fact_nro) where DATEPART(QUARTER, fact_fecha) = " + trimestre + " and YEAR(fact_fecha) = " + anio + " group by H.hote_id, hote_nombre order by sum(I.item_cantidad) desc ").Tables[0];
+                            DataTable consumibles = DataBase.realizarConsulta("select top 5 dire_dom_calle as 'Calle', dire_nro_calle as 'Numero' from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Habitacion_X_Reserva X on (X.habi_rese_id = H.hote_id) join CAIA_UNLIMITED.Estadia E on (E.rese_codigo = X.habi_rese_codigo) join CAIA_UNLIMITED.Factura F on (F.esta_codigo = E.esta_codigo) join CAIA_UNLIMITED.Item_Factura I on (F.fact_nro = I.fact_nro) join CAIA_UNLIMITED.Direccion D on (D.dire_id = H.dire_id) where DATEPART(QUARTER, fact_fecha) = " + trimestre + " and YEAR(fact_fecha) = " + anio + " group by dire_dom_calle, dire_nro_calle order by sum(I.item_cantidad) desc ").Tables[0];
                             if (consumibles.Rows.Count == 0)
                             {
                                 MessageBox.Show("No hay datos suficientes para listar", "Faltan datos", MessageBoxButtons.OK);
@@ -72,7 +72,7 @@ namespace FrbaHotel.ListadoEstadistico
                         break;
                     case 2:
                         {
-                            DataTable mantenimientos = DataBase.realizarConsulta("select top 5 H.hote_id as 'ID', hote_nombre as 'Nombre' from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Mantenimiento M on (H.hote_id = M.hote_id) where DATEPART(quarter, M.mant_fecha_inicio) = " + trimestre + " and YEAR(M.mant_fecha_inicio) = " + anio + " group by H.hote_id, hote_nombre order by sum(datediff(day, mant_fecha_inicio, mant_fecha_fin)) desc").Tables[0];
+                            DataTable mantenimientos = DataBase.realizarConsulta("select top 5 dire_dom_calle as 'Calle', dire_nro_calle as 'Numero' from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Mantenimiento M on (H.hote_id = M.hote_id) join CAIA_UNLIMITED.Direccion D on (D.dire_id = H.dire_id) where DATEPART(quarter, M.mant_fecha_inicio) = " + trimestre + " and YEAR(M.mant_fecha_inicio) = " + anio + " group by dire_dom_calle, dire_nro_calle order by sum(datediff(day, mant_fecha_inicio, mant_fecha_fin)) desc").Tables[0];
                             if (mantenimientos.Rows.Count == 0)
                             {
                                 MessageBox.Show("No hay datos suficientes para listar", "Faltan datos", MessageBoxButtons.OK);
