@@ -45,6 +45,7 @@
             this.lblPiso = new System.Windows.Forms.Label();
             this.lblUbicacion = new System.Windows.Forms.Label();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.lblDescripcion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgHabitaciones)).BeginInit();
             this.SuspendLayout();
             // 
@@ -215,11 +216,23 @@
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
+            // lblDescripcion
+            // 
+            this.lblDescripcion.AutoSize = true;
+            this.lblDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescripcion.ForeColor = System.Drawing.Color.Red;
+            this.lblDescripcion.Location = new System.Drawing.Point(530, 188);
+            this.lblDescripcion.Name = "lblDescripcion";
+            this.lblDescripcion.Size = new System.Drawing.Size(135, 20);
+            this.lblDescripcion.TabIndex = 18;
+            this.lblDescripcion.Text = "*Falta descripcion";
+            // 
             // MenuModificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(752, 571);
+            this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.lblUbicacion);
             this.Controls.Add(this.lblPiso);
@@ -264,5 +277,6 @@
         private System.Windows.Forms.Label lblPiso;
         private System.Windows.Forms.Label lblUbicacion;
         private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Label lblDescripcion;
     }
 }

@@ -62,6 +62,13 @@ namespace FrbaHotel.AbmHabitacion
             else if (txtUbicacion.Text.Trim() == "")
             {
                 lblErrorUbi.Visible = true;
+                MessageBox.Show("Complete la ubicacion.", "Campos incompletos", MessageBoxButtons.OK);
+                return false;
+            }
+            else if (txtDescripcion.Text.Trim() == "")
+            {
+                lblErrorDesc.Visible = true;
+                MessageBox.Show("Complete la descripcion de la habitacion.", "Campos incompletos", MessageBoxButtons.OK);
                 return false;
             }
             else

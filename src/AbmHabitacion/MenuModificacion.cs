@@ -32,7 +32,7 @@ namespace FrbaHotel.AbmHabitacion
         {
             try
             {
-                if (DataBase.realizarConsulta("select * from CAIA_UNLIMITED.Habitacion where habi_numero =" + txtNroHabitacion.Text.Trim() + " and hote_id = " + hotel_id).Tables[0].Rows.Count == 0)
+                if (DataBase.realizarConsulta("select * from CAIA_UNLIMITED.Habitacion where habi_numero =" + txtNroHabitacion.Text.Trim() + " and hote_id = " + hotel_id).Tables[0].Rows.Count == 0 || numeroAnterior == txtNroHabitacion.Text.Trim())
                 {
                     ejecutarStoredProcedure();
                     MessageBox.Show("Habitacion modificada exitosamente.", "Modificacion exitosa", MessageBoxButtons.OK);
@@ -88,6 +88,7 @@ namespace FrbaHotel.AbmHabitacion
             lblNroHabitacion.Visible = false;
             lblPiso.Visible = false;
             lblUbicacion.Visible = false;
+            lblDescripcion.Visible = false;
         }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -123,12 +124,19 @@ namespace FrbaHotel.AbmHabitacion
             }
             else if (txtUbicacion.Text.Trim() == "")
             {
+                MessageBox.Show("Complete la ubicacion", "Campos incompletos", MessageBoxButtons.OK);
                 lblUbicacion.Visible = true;
+            }
+            else if (txtDescripcion.Text.Trim() == "")
+            {
+                MessageBox.Show("Complete la descripcion.", "Campos incompletos", MessageBoxButtons.OK);
+                lblDescripcion.Visible = true;
             }
             else if (txtNroHabitacion.Text.Trim() != numeroAnterior || txtPiso.Text.Trim() != numeroPiso || txtUbicacion.Text.Trim() != ubicacion || txtDescripcion.Text.Trim() != descripcion)
             {
                 ActualizarBD();
                 MostrarDG();
+                ocultarErrores();
             }
         }
 
@@ -143,6 +151,11 @@ namespace FrbaHotel.AbmHabitacion
             txtUbicacion.Text = dgHabitaciones.SelectedRows[0].Cells[2].Value.ToString();
             txtDescripcion.Text = dgHabitaciones.SelectedRows[0].Cells[3].Value.ToString();
             btnModificar.Visible = true;
+            lblNroHabitacion.Visible = false;
+            lblPiso.Visible = false;
+            lblUbicacion.Visible = false;
+            lblDescripcion.Visible = false;
+
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
