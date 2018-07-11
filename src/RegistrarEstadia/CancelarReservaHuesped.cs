@@ -146,8 +146,12 @@ namespace FrbaHotel.RegistrarEstadia
             {
                 MessageBox.Show("Ingrese la fecha", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
-            }           
-            
+            }
+            if (txtMotivo.Text.Trim() == "")
+            {
+                MessageBox.Show("Ingrese el motivo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }  
             return true;
         }
 

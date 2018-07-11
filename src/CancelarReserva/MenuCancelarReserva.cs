@@ -331,7 +331,12 @@ namespace FrbaHotel.CancelarReserva
             {
                 MessageBox.Show("Ingrese el mail/usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
-            }            
+            }
+            if (txtMotivo.Text.Trim() == "")
+            {
+                MessageBox.Show("Ingrese el motivo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            } 
             return true;
         }
 

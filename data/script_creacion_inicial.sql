@@ -97,9 +97,9 @@ go
 
 create table CAIA_UNLIMITED.Reserva_Cancelada(
 	reca_rese numeric(18,0) not null,
-	reca_motivo nvarchar(255),
+	reca_motivo nvarchar(255) not null,
 	reca_fecha_cancelacion datetime not null,
-	reca_usuario numeric(18,0)
+	reca_usuario numeric(18,0) 
 )
 go
 
