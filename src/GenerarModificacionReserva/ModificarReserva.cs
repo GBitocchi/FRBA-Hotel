@@ -568,7 +568,9 @@ namespace FrbaHotel.GenerarModificacionReserva
                 }
                 else
                 {
-                    this.regimen = Convert.ToDecimal(txbRegimen.Text.Trim());
+                    string obtenerCodRegimen = string.Format("SELECT regi_codigo as Regimen FROM CAIA_UNLIMITED.Regimen where regi_descripcion = '{0}'", txbRegimen.Text.Trim());
+                    DataSet dsObtenerCodRegimen = DataBase.realizarConsulta(obtenerCodRegimen);
+                    this.regimen = Convert.ToDecimal(dsObtenerCodRegimen.Tables[0].Rows[0]["Regimen"].ToString());
                     string fechaDisponibleHotel = string.Format("SELECT mant_fecha_inicio as FechaInicio, mant_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Mantenimiento where hote_id = '{0}'", this.hotel);
                     DataSet dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel);
                     DateTime fechaElegidaInicio = this.SelectionFechaInicio;
@@ -881,7 +883,9 @@ namespace FrbaHotel.GenerarModificacionReserva
                 }
                 else
                 {
-                    this.regimen = Convert.ToDecimal(txbRegimen.Text.Trim());
+                    string obtenerCodRegimen = string.Format("SELECT regi_codigo as Regimen FROM CAIA_UNLIMITED.Regimen where regi_descripcion = '{0}'", txbRegimen.Text.Trim());
+                    DataSet dsObtenerCodRegimen = DataBase.realizarConsulta(obtenerCodRegimen);
+                    this.regimen = Convert.ToDecimal(dsObtenerCodRegimen.Tables[0].Rows[0]["Regimen"].ToString());
                     string fechaDisponibleHotel = string.Format("SELECT mant_fecha_inicio as FechaInicio, mant_fecha_fin as FechaFin FROM CAIA_UNLIMITED.Mantenimiento where hote_id = '{0}'", this.hotel);
                     DataSet dsFechasHotel = DataBase.realizarConsulta(fechaDisponibleHotel);
                     DateTime fechaElegidaInicio = this.SelectionFechaInicio;
