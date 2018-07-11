@@ -242,7 +242,7 @@ namespace FrbaHotel.RegistrarConsumible
                     }                    
 
                     MessageBox.Show("Consumibles registrados correctamente", "Registrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    new Facturacion(txtCodigo_Estadia.Text.Trim()).Show();
+                    new Facturacion(txtCodigo_Estadia.Text.Trim()).ShowDialog();
                     limpiarFormulario();
                     this.Close();
                     db.Close();
