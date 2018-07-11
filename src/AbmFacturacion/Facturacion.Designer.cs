@@ -257,7 +257,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(243, 20);
             this.label9.TabIndex = 23;
-            this.label9.Text = "Cantidad de noches no utilziadas";
+            this.label9.Text = "Cantidad de noches no utilizadas";
             // 
             // Facturacion
             // 
