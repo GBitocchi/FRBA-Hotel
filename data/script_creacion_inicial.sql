@@ -395,6 +395,13 @@ alter table CAIA_UNLIMITED.Reserva_Cancelada
 	references CAIA_UNLIMITED.Usuario (usur_id)
 go
 
+--Estados Reserva
+insert into CAIA_UNLIMITED.Estado_Reserva (esre_detalle)
+values ('Reserva correcta'), ('Reserva modificada'), ('Reserva cancelada por recepcion'),
+		('Reserva cancelada por cliente'), ('Reserva cancelada por Non-Show'),
+		('Reserva con ingreso')
+
+
 --Consumibles
 insert into CAIA_UNLIMITED.Consumible (cons_codigo, cons_descripcion, cons_precio)
 select distinct Consumible_Codigo, Consumible_Descripcion, Consumible_Precio from gd_esquema.Maestra
@@ -535,11 +542,6 @@ insert into CAIA_UNLIMITED.Funcionalidad (func_detalle) values('ABM_ROL'), ('ABM
 
 insert into CAIA_UNLIMITED.Funcionalidad_X_Rol (func_rol_codigo_rol, func_rol_codigo_func) 
 values (0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (0, 7), (0, 8), (0, 9), (0, 10), (0, 11), (2, 6), (2, 7), (1, 2), (1, 6), (1, 7), (1, 8), (1, 9), (1, 10), (1, 11)
-
-insert into CAIA_UNLIMITED.Estado_Reserva (esre_detalle)
-values ('Reserva correcta'), ('Reserva modificada'), ('Reserva cancelada por recepcion'),
-		('Reserva cancelada por cliente'), ('Reserva cancelada por Non-Show'),
-		('Reserva con ingreso')
 
 insert into CAIA_UNLIMITED.Usuario_X_Hotel (usur_hote_idusur, usur_hote_idhote)
 select distinct 0, hote_id
