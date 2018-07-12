@@ -76,10 +76,6 @@ namespace FrbaHotel.CancelarReserva
             
 
             }
-            else
-            {
-                MessageBox.Show("Complete todo los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
 
