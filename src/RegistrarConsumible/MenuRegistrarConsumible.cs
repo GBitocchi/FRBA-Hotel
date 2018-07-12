@@ -135,15 +135,23 @@ namespace FrbaHotel.RegistrarConsumible
                                     string consultaHabitacion = string.Format("select habi_rese_numero from CAIA_UNLIMITED.Habitacion_X_Reserva X join CAIA_UNLIMITED.Estadia E on (X.habi_rese_codigo = E.rese_codigo) where E.esta_codigo='{0}'", txtCodigo_Estadia.Text);
                                     DataTable habitacion = DataBase.realizarConsulta(consultaHabitacion).Tables[0];
                                     txtHabitacion.Text = habitacion.Rows[0][0].ToString();
+                                                                        
+                                    //HOTEL
+                                    string consultaDireccionHotel = string.Format("select dire_id from CAIA_UNLIMITED.Hotel where hote_id='{0}'", idHotelActual);
+                                    DataTable direccionHotelObtenido = DataBase.realizarConsulta(consultaDireccionHotel).Tables[0];
+                                    string idDireccionHotel = direccionHotelObtenido.Rows[0][0].ToString();
 
-                                    string consultaHotelID = string.Format("select habi_rese_id from CAIA_UNLIMITED.Habitacion_X_Reserva X join CAIA_UNLIMITED.Estadia E on (X.habi_rese_codigo = E.rese_codigo) where E.esta_codigo='{0}'", txtCodigo_Estadia.Text);
-                                    DataTable hotel_ID = DataBase.realizarConsulta(consultaHotelID).Tables[0];
-                                    string hotelId = hotel_ID.Rows[0][0].ToString();
+                                    string consultaDireccion = string.Format("select dire_dom_calle from CAIA_UNLIMITED.Direccion where dire_id='{0}'", idDireccionHotel);
+                                    DataTable direccionObtenida = DataBase.realizarConsulta(consultaDireccion).Tables[0];
+                                    string direccion = direccionObtenida.Rows[0][0].ToString();
 
-                                    string consultaHotel = string.Format("select hote_nombre from CAIA_UNLIMITED.Hotel where hote_id='{0}'", hotelId);
-                                    DataTable hotel = DataBase.realizarConsulta(consultaHotel).Tables[0];
-                                    txtHotel.Text = hotel.Rows[0][0].ToString();
+                                    string consultaNumeroDireccion = string.Format("select dire_nro_calle from CAIA_UNLIMITED.Direccion where dire_id='{0}'", idDireccionHotel);
+                                    DataTable numeroDireccionObtenida = DataBase.realizarConsulta(consultaNumeroDireccion).Tables[0];
+                                    string numeroDireccion = numeroDireccionObtenida.Rows[0][0].ToString();
 
+                                    txtHotel.Text = direccion + " " + numeroDireccion;
+
+                                    //REGIMEN
                                     string consultaRegimenId = string.Format("select regi_descripcion from CAIA_UNLIMITED.Regimen R join CAIA_UNLIMITED.Reserva X on (R.regi_codigo = X.regi_codigo) join CAIA_UNLIMITED.Estadia E on (X.rese_codigo = E.rese_codigo) where E.esta_codigo='{0}'", txtCodigo_Estadia.Text);
                                     DataTable regimenID = DataBase.realizarConsulta(consultaRegimenId).Tables[0];
                                     txtRegimen.Text = regimenID.Rows[0][0].ToString();
