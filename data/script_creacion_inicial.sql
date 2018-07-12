@@ -657,6 +657,15 @@ SET NOCOUNT ON;
 END
 GO
 
+CREATE PROCEDURE [CAIA_UNLIMITED].[sp_CrearDireccion] (@hote_telefono nvarchar(20), @calle nvarchar(255), @numero_calle numeric(18,0), 
+														@ciudad nvarchar(255), @pais nvarchar(255))
+AS
+BEGIN
+	INSERT INTO CAIA_UNLIMITED.Direccion (dire_dom_calle, dire_nro_calle, dire_telefono, dire_ciudad, dire_pais)
+	VALUES(@calle, @numero_calle, @hote_telefono, @ciudad, @pais)
+END
+GO
+
 CREATE PROCEDURE [CAIA_UNLIMITED].[sp_ModificarHotel] (@idHotel numeric(18,0), @nombre_hotel nvarchar(255), @mail nvarchar(255), @estrellas numeric(18,0),
 							@hote_telefono nvarchar(20), @calle nvarchar(255), @numero_calle numeric(18,0),
 							@ciudad nvarchar(255), @pais nvarchar(255), @fecha datetime)
@@ -671,14 +680,8 @@ SET NOCOUNT ON;
       ELSE
         SAVE TRANSACTION sp_ModificarHotel;
 		 
-	update CAIA_UNLIMITED.Direccion 
-	set dire_dom_calle = @calle, dire_nro_calle = @numero_calle, dire_ciudad = @ciudad, dire_pais = @pais, dire_telefono = @hote_telefono
-	where dire_id = (select H.dire_id 
-						from CAIA_UNLIMITED.Hotel H join CAIA_UNLIMITED.Direccion D on (H.dire_id = D.dire_id) 
-						where hote_id = @idHotel)
-
 	update CAIA_UNLIMITED.Hotel
-	set hote_nombre = @nombre_hotel, hote_mail = @mail, hote_cant_estrellas = @estrellas, hote_fecha_creacion = convert(datetime, @fecha, 120)
+	set hote_nombre = @nombre_hotel, hote_mail = @mail, hote_cant_estrellas = @estrellas, hote_fecha_creacion = convert(datetime, @fecha, 120), dire_id = (select D.dire_id from CAIA_UNLIMITED.Direccion D where D.dire_dom_calle = @calle and D.dire_nro_calle = @numero_calle and D.dire_ciudad = @ciudad and D.dire_pais = @pais and D.dire_dpto is null and D.dire_piso is null and D.dire_telefono = @hote_telefono)
 	where hote_id = @idHotel
 		
     lbexit:
