@@ -12,11 +12,12 @@ namespace FrbaHotel.RegistrarEstadia
 {
     public partial class MenuRegistrarEstadia : Form
     {
-        string idHotelActual;
-        public MenuRegistrarEstadia(string idHotel)
+        string idHotelActual, usuarioActual;
+        public MenuRegistrarEstadia(string idHotel, string usuario)
         {
             InitializeComponent();
             idHotelActual = idHotel;
+            usuarioActual = usuario;
         }
 
         private void bntIngresar_Click(object sender, EventArgs e)
@@ -39,7 +40,7 @@ namespace FrbaHotel.RegistrarEstadia
                         }
                         else
                         {
-                            new Registrar(txtCodigo_Reserva.Text, idHotelActual).ShowDialog();
+                            new Registrar(txtCodigo_Reserva.Text, idHotelActual,usuarioActual).ShowDialog();
                             this.Show();
                         }
                     }

@@ -288,7 +288,7 @@ namespace FrbaHotel.Menu_Sistema
 
         private void registrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new MenuRegistrarEstadia(Convert.ToString(idHotel)).ShowDialog();
+            new MenuRegistrarEstadia(Convert.ToString(idHotel),nombreUsuario).ShowDialog();
             this.Show();
         }
 
@@ -302,7 +302,7 @@ namespace FrbaHotel.Menu_Sistema
         {
             if (!guest)
             {
-                new MenuCancelarReserva(Convert.ToString(idHotel)).ShowDialog();
+                new MenuCancelarReserva(Convert.ToString(idHotel),nombreUsuario).ShowDialog();
                 this.Show();
             }
             else

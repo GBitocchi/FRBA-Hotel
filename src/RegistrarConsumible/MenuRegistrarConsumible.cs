@@ -250,7 +250,13 @@ namespace FrbaHotel.RegistrarConsumible
             }
             else
             {
-                MessageBox.Show("Ingrese consumibles", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DialogResult resultado = MessageBox.Show("¿Esta seguro que no desea registrar consumible/s?", "Registrar", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (resultado == DialogResult.Yes)
+                {
+                    new Facturacion(txtCodigo_Estadia.Text.Trim()).ShowDialog();
+                    limpiarFormulario();
+                    this.Close();
+                }
             }
         }
 

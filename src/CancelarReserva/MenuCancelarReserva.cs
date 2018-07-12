@@ -16,7 +16,7 @@ namespace FrbaHotel.CancelarReserva
     {
         string idHotelActual;
         Boolean esUsuario;
-        public MenuCancelarReserva(String idHotel)
+        public MenuCancelarReserva(String idHotel, String usuarioActual)
         {
             InitializeComponent();
             txtCancelacion.Text = Convert.ToString(DataBase.fechaSistema());
@@ -25,7 +25,10 @@ namespace FrbaHotel.CancelarReserva
        
             cbxUsuario.SelectedIndex = 1;
             txtMail.Enabled = false;
-            esUsuario = true;            
+            esUsuario = true;
+            txtUsername.Text = usuarioActual;
+            txtUsername.Enabled = false;
+
         }
 
         public MenuCancelarReserva()
@@ -83,65 +86,60 @@ namespace FrbaHotel.CancelarReserva
         {
             if (reservaNoCancelada())
             {
-                if (noTerminoReserva())
-                {
+                
                     if (fechaEnCondicion())
                     {
-
-
-                        if (cbxUsuario.SelectedItem.ToString() == "Huesped")
-                        {
-                            if (formatoMailCorrecto())
+                        
+                            if (cbxUsuario.SelectedItem.ToString() == "Huesped")
                             {
-                                string mailIngresado = String.Format("SELECT rese_hues_mail FROM CAIA_UNLIMITED.Reserva_X_Huesped where rese_hues_mail = '{0}'  and rese_hues_codigo = '{1}'", txtMail.Text.Trim(), txtNumero_Reserva.Text.Trim());
-
-                                if (DataBase.realizarConsulta(mailIngresado).Tables[0].Rows.Count == 0)
+                                if (formatoMailCorrecto())
                                 {
-                                    MessageBox.Show("El huesped no corresponde con la reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    string mailIngresado = String.Format("SELECT rese_hues_mail FROM CAIA_UNLIMITED.Reserva_X_Huesped where rese_hues_mail = '{0}'  and rese_hues_codigo = '{1}'", txtMail.Text.Trim(), txtNumero_Reserva.Text.Trim());
+
+                                    if (DataBase.realizarConsulta(mailIngresado).Tables[0].Rows.Count == 0)
+                                    {
+                                        MessageBox.Show("El huesped no corresponde con la reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                    else
+                                    {
+                                        ejecutarStoredProcedureCancelarReservaHuesped();
+                                        limpiarFormulario();
+                                        MessageBox.Show("Reserva cancelada", "Cancelada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    }
+                                }
+
+                            }
+                            else if (cbxUsuario.SelectedItem.ToString() == "Recepcion")
+                            {
+
+                                string consultaIdUsuario = string.Format("SELECT usur_id FROM CAIA_UNLIMITED.Usuario  WHERE usur_username ='{0}'", txtUsername.Text.Trim());
+                                DataTable idUsuarioObtenido = DataBase.realizarConsulta(consultaIdUsuario).Tables[0];
+                                string idUsuario = idUsuarioObtenido.Rows[0][0].ToString();
+
+                                string usernameIngresado = String.Format("SELECT usur_hote_idusur FROM CAIA_UNLIMITED.Usuario_X_Hotel  WHERE usur_hote_idhote='{0}' and usur_hote_idusur= '{1}'", idHotelActual, idUsuario);
+                            
+                                if (DataBase.realizarConsulta(usernameIngresado).Tables[0].Rows.Count == 0)
+                                {
+                                    MessageBox.Show("El usuario no corresponde con el hotel donde se registro la reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                                 else
                                 {
-                                    ejecutarStoredProcedureCancelarReservaHuesped();
+                                    ejecutarStoredProcedureCancelarReservaUsuario();
+
                                     limpiarFormulario();
+
                                     MessageBox.Show("Reserva cancelada", "Cancelada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
                                 }
                             }
-
-                        }
-                        else if (cbxUsuario.SelectedItem.ToString() == "Recepcion")
-                        {
-
-                            string consultaIdUsuario = string.Format("SELECT usur_id FROM CAIA_UNLIMITED.Usuario  WHERE usur_username ='{0}'", txtUsername.Text.Trim());
-                            DataTable idUsuarioObtenido = DataBase.realizarConsulta(consultaIdUsuario).Tables[0];
-                            string idUsuario = idUsuarioObtenido.Rows[0][0].ToString();
-
-                            string usernameIngresado = String.Format("SELECT usur_hote_idusur FROM CAIA_UNLIMITED.Usuario_X_Hotel  WHERE usur_hote_idhote='{0}' and usur_hote_idusur= '{1}'", idHotelActual, idUsuario);
-                            
-                            if (DataBase.realizarConsulta(usernameIngresado).Tables[0].Rows.Count == 0)
-                            {
-                                MessageBox.Show("El usuario no corresponde con el hotel donde se registro la reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                            else
-                            {
-                                ejecutarStoredProcedureCancelarReservaUsuario();
-
-                                limpiarFormulario();
-
-                                MessageBox.Show("Reserva cancelada", "Cancelada", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-                            }
-                        }
+                        
                     }
                     else
                     {
-                        MessageBox.Show("Operacion cancelada, fecha proxima a fecha de inicio de reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Operacion cancelada, paso el tiempo limite posible para cancelar la reserva.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Operacion cancelada, ya se registro el egreso de dicha reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
+               
             }
 
 
@@ -273,8 +271,8 @@ namespace FrbaHotel.CancelarReserva
              DataTable fecha = DataBase.realizarConsulta(consultaFecha).Tables[0];
              string fechaIngresoReserva = fecha.Rows[0][0].ToString();
 
-
-             if (DateTime.Parse(fechaIngresoReserva).Day == DateTime.Parse(txtCancelacion.Text.Trim()).Day && DateTime.Parse(fechaIngresoReserva).Month == DateTime.Parse(txtCancelacion.Text.Trim()).Month && DateTime.Parse(fechaIngresoReserva).Year==DateTime.Parse(txtCancelacion.Text.Trim()).Year)
+             TimeSpan ts = Convert.ToDateTime(txtCancelacion.Text.Trim()) - Convert.ToDateTime(fechaIngresoReserva);
+             if (ts.Days>=0)
              {
                  return false;
              }
@@ -285,7 +283,7 @@ namespace FrbaHotel.CancelarReserva
 
         }
 
-        private bool noTerminoReserva()
+        private bool terminoReserva()
         {
             string consultaFechaFinEstadia = string.Format("select esta_fecha_fin from CAIA_UNLIMITED.Estadia where rese_codigo= '{0}'", txtNumero_Reserva.Text.Trim());
             DataTable fechaFinObtenida = DataBase.realizarConsulta(consultaFechaFinEstadia).Tables[0];
@@ -294,17 +292,17 @@ namespace FrbaHotel.CancelarReserva
 
             if (fechaFinObtenida.Rows.Count==0)
             {
-                return true;
+                return false;
             }
             else
             {
                 if (DBNull.Value.Equals(fechaFinObtenida.Rows[0][0]))
                 {
-                    return true;
+                    return false;
                 }
                 else
                 {
-                    return false;
+                    return true;
                 }
             }
 

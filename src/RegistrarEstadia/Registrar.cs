@@ -18,11 +18,13 @@ namespace FrbaHotel.RegistrarEstadia
         string codigoReserva, idHotelActual;
         int cantHuespedPosible;
 
-        public Registrar(string cod, string idHotel)
+        public Registrar(string cod, string idHotel, string usuario)
         {
             InitializeComponent();
             codigoReserva = cod;
             idHotelActual = idHotel;
+            txtUsuario.Text = usuario;
+            txtUsuario.Enabled = false;
 
             txtFecha.Text = Convert.ToString(DataBase.fechaSistema());
 
@@ -336,10 +338,9 @@ namespace FrbaHotel.RegistrarEstadia
 
         private void limpiarTodo()
         {
-            txtUsuario.Clear();
+          
             btnIngresar.Enabled = true;
             gbxHuesped.Enabled = true;
-            txtUsuario.Enabled = true;
             txtMail.Clear();
             txtTipo.Clear();
             txtNumero.Clear();
@@ -462,7 +463,6 @@ namespace FrbaHotel.RegistrarEstadia
 
                         btnIngresar.Enabled = false;
                         gbxHuesped.Enabled = false;
-                        txtUsuario.Enabled = false;
                     }
                     btnBuscar.Enabled = true;
                     btnCrear.Enabled = true;
@@ -505,17 +505,14 @@ namespace FrbaHotel.RegistrarEstadia
 
                     btnIngresar.Enabled = false;
                     gbxHuesped.Enabled = false;
-                    txtUsuario.Enabled = false;
                 }
             }
         }
 
         private void limpiarRegistroEstadia()
-        {
-            txtUsuario.Clear();
+        {            
             btnIngresar.Enabled = true;
             gbxHuesped.Enabled = true;
-            txtUsuario.Enabled = true;
         }
 
         private bool verificarSiYaRegistroIngreso()
