@@ -1575,9 +1575,9 @@ BEGIN
 	update CAIA_UNLIMITED.Direccion set dire_telefono = @telefono,dire_dom_calle = @calle,dire_nro_calle = @numeroCalle,dire_ciudad = @ciudad,dire_pais =@pais
 	WHERE dire_id = (SELECT d.dire_id FROM CAIA_UNLIMITED.Direccion d JOIN CAIA_UNLIMITED.Huesped h on d.dire_id = h.dire_id JOIN CAIA_UNLIMITED.Reserva_X_Huesped rh on (rh.rese_hues_mail = h.hues_mail AND rh.rese_hues_documento = h.hues_documento) WHERE rh.rese_hues_codigo = @codigoReserva)
 	
-	update CAIA_UNLIMITED.Huesped set hues_mail = @mail, hues_nombre = @name, hues_apellido = @apellido, hues_documento = @documento, hues_documento_tipo = @tipoDocumento, hues_habilitado = 1, hues_nacionalidad = @pais, dire_id = (SELECT dire_id FROM CAIA_UNLIMITED.Direccion WHERE (dire_telefono = @telefono OR dire_telefono IS NULL) AND dire_dom_calle = @calle AND dire_nro_calle = @numeroCalle AND (dire_ciudad = @ciudad OR dire_ciudad IS NULL) AND (dire_pais = @pais OR dire_pais IS NULL))
+	update CAIA_UNLIMITED.Huesped set hues_mail = @mail, hues_nombre = @name, hues_apellido = @apellido, hues_documento = @documento, hues_documento_tipo = @tipoDocumento, hues_habilitado = 1, hues_nacionalidad = @pais, dire_id = (SELECT d.dire_id FROM CAIA_UNLIMITED.Direccion d JOIN CAIA_UNLIMITED.Huesped h on d.dire_id = h.dire_id JOIN CAIA_UNLIMITED.Reserva_X_Huesped rh on (rh.rese_hues_mail = h.hues_mail AND rh.rese_hues_documento = h.hues_documento) WHERE rh.rese_hues_codigo = @codigoReserva)
 	WHERE hues_mail = (SELECT hues_mail FROM CAIA_UNLIMITED.Huesped h JOIN CAIA_UNLIMITED.Reserva_X_Huesped rh on (rh.rese_hues_mail = h.hues_mail AND rh.rese_hues_documento = h.hues_documento) WHERE rh.rese_hues_codigo = @codigoReserva) AND hues_documento = (SELECT hues_documento FROM CAIA_UNLIMITED.Huesped h JOIN CAIA_UNLIMITED.Reserva_X_Huesped rh on (rh.rese_hues_mail = h.hues_mail AND rh.rese_hues_documento = h.hues_documento) WHERE rh.rese_hues_codigo = @codigoReserva)
-
+	
 	DELETE FROM CAIA_UNLIMITED.Reserva_X_Huesped
 	WHERE rese_hues_codigo = @codigoReserva
 
