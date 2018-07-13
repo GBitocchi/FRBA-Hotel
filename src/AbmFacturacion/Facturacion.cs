@@ -129,7 +129,7 @@ namespace FrbaHotel.AbmFacturacion
             {
                 txtNochesEstadia.Text = nochesRestantes.ToString();
             }
-            txtCostoExtra.Text = (Convert.ToDouble(txtNochesEstadia.Text.Trim()) * (Convert.ToDouble(txtPrecioRegimen.Text.Trim()) * cantidadPersonas() + Convert.ToDouble(txtPorcentual.Text))).ToString();
+            txtCostoExtra.Text = (Convert.ToDouble(txtNochesEstadia.Text.Trim()) * (Convert.ToDouble(txtPrecioRegimen.Text.Trim()) * cantidadPersonas() + (Convert.ToDouble(txtPorcentual.Text) * cantidadDeHabitaciones))).ToString();
         }
 
         private void btnPagar_Click(object sender, EventArgs e)
