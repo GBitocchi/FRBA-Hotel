@@ -411,6 +411,13 @@ where Consumible_Codigo is not null
 insert into CAIA_UNLIMITED.Regimen (regi_descripcion, regi_precio_base, regi_estado)
 select distinct Regimen_Descripcion, Regimen_Precio, 1 from gd_esquema.Maestra
 
+--Inserto Direccion
+insert into CAIA_UNLIMITED.Direccion (dire_dom_calle,dire_nro_calle,dire_piso,dire_ciudad,dire_pais) values('Manuel Fraga',3480,1,'Buenos Aires','Argentina')
+
+--Insertamos Usuarios
+insert into CAIA_UNLIMITED.Usuario (usur_username, usur_password, usur_habilitado, usur_intentos, dire_id) values('admin', HASHBYTES('SHA2_256', 'w23e'), 1, 0,(SELECT dire_id FROM CAIA_UNLIMITED.Direccion where dire_dom_calle = 'Manuel Fraga' AND dire_nro_calle = 3480 AND dire_piso = 1 AND dire_ciudad = 'Buenos Aires' AND dire_pais = 'Argentina'))
+insert into CAIA_UNLIMITED.Usuario (usur_username, usur_password, usur_habilitado, usur_intentos, dire_id) values('guest', HASHBYTES('SHA2_256', 'w23e'), 0, 0,(SELECT dire_id FROM CAIA_UNLIMITED.Direccion where dire_dom_calle = 'Manuel Fraga' AND dire_nro_calle = 3480 AND dire_piso = 1 AND dire_ciudad = 'Buenos Aires' AND dire_pais = 'Argentina'))
+
 --Direccion
 insert into CAIA_UNLIMITED.Direccion (dire_dom_calle, dire_ciudad, dire_nro_calle)
 select distinct Hotel_Calle, Hotel_Ciudad, Hotel_Nro_Calle from gd_esquema.Maestra
@@ -440,10 +447,6 @@ from gd_esquema.Maestra join CAIA_UNLIMITED.Tipo_Habitacion on (thab_codigo = Ha
 															dire_dom_calle = Hotel_Calle and
 															dire_nro_calle = Hotel_Nro_Calle)
 						join CAIA_UNLIMITED.Hotel H on (H.dire_id = D.dire_id) 
-
---Insertamos Usuarios
-insert into CAIA_UNLIMITED.Usuario (usur_username, usur_password, usur_habilitado, usur_intentos) values('admin', HASHBYTES('SHA2_256', 'w23e'), 1, 0)
-insert into CAIA_UNLIMITED.Usuario (usur_username, usur_password, usur_habilitado, usur_intentos) values('guest', HASHBYTES('SHA2_256', 'w23e'), 0, 0)
 
 --Reserva
 insert into CAIA_UNLIMITED.Reserva (rese_codigo, rese_fecha_realizacion, rese_fecha_desde, rese_cantidad_noches, regi_codigo, rese_usur_creacion, esre_codigo)
