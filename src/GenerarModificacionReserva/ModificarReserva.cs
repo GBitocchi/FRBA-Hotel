@@ -299,7 +299,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                     }
                     else
                     {
-                        if (difference.Days <= 1)
+                        if (difference.Days < 1)
                         {
                             MessageBox.Show("No puede modificar su reserva! El plazo de modificacion es hasta 1 dia antes del ingreso.");
                             return;
