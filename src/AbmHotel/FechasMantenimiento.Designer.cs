@@ -38,6 +38,7 @@
             this.txtDescripcion = new System.Windows.Forms.RichTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtFechasIncorrectas = new System.Windows.Forms.Label();
+            this.lblDescripcion = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // dtInicio
@@ -133,11 +134,23 @@
             this.txtFechasIncorrectas.TabIndex = 9;
             this.txtFechasIncorrectas.Text = "*Fechas incorrectas";
             // 
+            // lblDescripcion
+            // 
+            this.lblDescripcion.AutoSize = true;
+            this.lblDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescripcion.ForeColor = System.Drawing.Color.Red;
+            this.lblDescripcion.Location = new System.Drawing.Point(376, 142);
+            this.lblDescripcion.Name = "lblDescripcion";
+            this.lblDescripcion.Size = new System.Drawing.Size(126, 18);
+            this.lblDescripcion.TabIndex = 10;
+            this.lblDescripcion.Text = "*Falta descripcion";
+            // 
             // FechasMantenimiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(548, 293);
+            this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.txtFechasIncorrectas);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtDescripcion);
@@ -167,5 +180,6 @@
         private System.Windows.Forms.RichTextBox txtDescripcion;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label txtFechasIncorrectas;
+        private System.Windows.Forms.Label lblDescripcion;
     }
 }

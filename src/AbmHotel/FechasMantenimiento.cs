@@ -19,6 +19,7 @@ namespace FrbaHotel.AbmHotel
             InitializeComponent();
             hotelID = idHotel;
             txtFechasIncorrectas.Visible = false;
+            lblDescripcion.Visible = false;
             dtFin.Value = DataBase.fechaSistema();
             dtInicio.Value = DataBase.fechaSistema();
         }
@@ -43,38 +44,48 @@ namespace FrbaHotel.AbmHotel
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            txtFechasIncorrectas.Visible = false;
+            lblDescripcion.Visible = false;
             fechaInicio = dtInicio.Value.ToString("yyyyMMdd");
             fechaFin = dtFin.Value.ToString("yyyyMMdd");
             if (dtFin.Value >= dtInicio.Value)
             {
-                string consultarPorReservas = queryReservas();
-                if (DataBase.realizarConsulta(consultarPorReservas).Tables[0].Rows.Count == 0)
+                if (txtDescripcion.Text.Trim() != "")
                 {
-                    string otrosMantenimientos = queryOtrosMantenimientos();
-                    if (DataBase.realizarConsulta(otrosMantenimientos).Tables[0].Rows.Count == 0)
+                    string consultarPorReservas = queryReservas();
+                    if (DataBase.realizarConsulta(consultarPorReservas).Tables[0].Rows.Count == 0)
                     {
-                        try
+                        string otrosMantenimientos = queryOtrosMantenimientos();
+                        if (DataBase.realizarConsulta(otrosMantenimientos).Tables[0].Rows.Count == 0)
                         {
-                            ejecutarStoredProcedure();
-                            txtFechasIncorrectas.Visible = false;
-                            MessageBox.Show("Baja de hotel exitosa.", "Baja exitosa", MessageBoxButtons.OK);
-                            this.Hide();
+                            try
+                            {
+                                ejecutarStoredProcedure();
+                                txtFechasIncorrectas.Visible = false;
+                                MessageBox.Show("Baja de hotel exitosa.", "Baja exitosa", MessageBoxButtons.OK);
+                                this.Hide();
+                            }
+                            catch
+                            {
+                                MessageBox.Show("No se pudo llevar a cabo el mantenimiento", "Error de mantenimiento", MessageBoxButtons.OK);
+                            }
                         }
-                        catch
+                        else
                         {
-                            MessageBox.Show("No se pudo llevar a cabo el mantenimiento", "Error de mantenimiento", MessageBoxButtons.OK);
+                            MessageBox.Show("Hay mantenimientos en ese periodo de tiempo.", "Fechas incorrectas", MessageBoxButtons.OK);
+                            txtFechasIncorrectas.Visible = false;
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Hay mantenimientos en ese periodo de tiempo.", "Fechas incorrectas", MessageBoxButtons.OK);
+                        MessageBox.Show("Hay reservas para ese periodo de tiempo.", "Baja erronea", MessageBoxButtons.OK);
                         txtFechasIncorrectas.Visible = false;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Hay reservas para ese periodo de tiempo.", "Baja erronea", MessageBoxButtons.OK);
-                    txtFechasIncorrectas.Visible = false;
+                    MessageBox.Show("Complete la descripcion del mantenimiento", "Campos incompletos", MessageBoxButtons.OK);
+                    lblDescripcion.Visible = true;
                 }
             }
             else
