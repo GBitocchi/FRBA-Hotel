@@ -48,7 +48,8 @@
             this.cbTrimestre.Items.AddRange(new object[] {
             "Primer trimestre",
             "Segundo trimestre",
-            "Tercer trimestre"});
+            "Tercer trimestre",
+            "Cuarto trimestre"});
             this.cbTrimestre.Location = new System.Drawing.Point(231, 126);
             this.cbTrimestre.Name = "cbTrimestre";
             this.cbTrimestre.Size = new System.Drawing.Size(133, 21);
