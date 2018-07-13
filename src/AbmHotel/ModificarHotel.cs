@@ -88,14 +88,6 @@ namespace FrbaHotel.AbmHotel
                         {
                             try
                             {
-                                modificarDireccion();
-                            }
-                            catch
-                            {
-                                MessageBox.Show("No se pudo modificar la direccion", "Error al modificar hotel", MessageBoxButtons.OK);
-                            }
-                            try
-                            {
                                 ejecutarStoredProcedure();
                                 MessageBox.Show("Hotel modificado correctamente.", "Modificacion exitosa", MessageBoxButtons.OK);
                                 this.Hide();
@@ -118,22 +110,7 @@ namespace FrbaHotel.AbmHotel
 
             }
         }
-        public void modificarDireccion()
-        {
-            if (cambioDireccion())
-            {
-                SqlConnection db = DataBase.conectarBD();
-                SqlCommand crearDireccion = new SqlCommand("CAIA_UNLIMITED.sp_CrearDireccion", db);
-                crearDireccion.CommandType = CommandType.StoredProcedure;
-                crearDireccion.Parameters.AddWithValue("@hote_telefono", txtTelefono.Text.Trim());
-                crearDireccion.Parameters.AddWithValue("@calle", txtDireccion.Text.Trim());
-                crearDireccion.Parameters.AddWithValue("@numero_calle", Int32.Parse(txtNumero.Text.Trim()));
-                crearDireccion.Parameters.AddWithValue("@ciudad", txtCiudad.Text.Trim());
-                crearDireccion.Parameters.AddWithValue("@pais", txtPais.Text.Trim());
-                crearDireccion.ExecuteNonQuery();
-                db.Close();
-            }
-        }
+
         private bool cambioDireccion()
         {
             return (txtDireccion.Text.Trim() != direccionVieja || txtNumero.Text.Trim() != numeroViejo || txtCiudad.Text.Trim() != ciudadVieja || txtPais.Text.Trim() != paisViejo || txtTelefono.Text.Trim() != telefonoViejo);  

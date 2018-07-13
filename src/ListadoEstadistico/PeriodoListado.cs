@@ -124,6 +124,7 @@ namespace FrbaHotel.ListadoEstadistico
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
+            txtAno.Clear();
             cbTrimestre.SelectedIndex = 0;
             cbListado.SelectedIndex = 0;
             lblAno.Visible = false;
