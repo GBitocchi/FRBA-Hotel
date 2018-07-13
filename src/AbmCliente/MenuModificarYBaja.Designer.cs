@@ -175,6 +175,7 @@
             this.dgClientes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.dgClientes.Location = new System.Drawing.Point(40, 239);
             this.dgClientes.Name = "dgClientes";
+            this.dgClientes.ReadOnly = true;
             this.dgClientes.RowHeadersVisible = false;
             this.dgClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgClientes.Size = new System.Drawing.Size(650, 176);
