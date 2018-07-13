@@ -438,7 +438,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                             }
                         }
                         string queryRegimen = string.Format("SELECT regi_precio_base as Precio FROM CAIA_UNLIMITED.Regimen where regi_codigo = '{0}'", regimen);
-                        string queryEstrella = string.Format("SELECT hote_recarga_estrella as Recarga FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
+                        string queryEstrella = string.Format("SELECT hote_recarga_estrella as Recarga, hote_cant_estrellas as Estrellas FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
                         DataSet dsPrecioRegimen = DataBase.realizarConsulta(queryRegimen);
                         DataSet dsRecarga = DataBase.realizarConsulta(queryEstrella);
                         decimal costoTotal = 0;
@@ -487,19 +487,19 @@ namespace FrbaHotel.GenerarModificacionReserva
                             decimal costoUnaHabitacion = 0;
                             if (tipitoHabitacion == "Base Doble" || tipitoHabitacion == "King")
                             {
-                                costoUnaHabitacion = (2 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                                costoUnaHabitacion = (2 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + ((decimal)dsRecarga.Tables[0].Rows[0]["Recarga"] * (decimal)dsRecarga.Tables[0].Rows[0]["Estrellas"]);
                             }
                             if (tipitoHabitacion == "Base Simple")
                             {
-                                costoUnaHabitacion = (1 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                                costoUnaHabitacion = (1 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + ((decimal)dsRecarga.Tables[0].Rows[0]["Recarga"] * (decimal)dsRecarga.Tables[0].Rows[0]["Estrellas"]);
                             }
                             if (tipitoHabitacion == "Base Triple")
                             {
-                                costoUnaHabitacion = (3 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                                costoUnaHabitacion = (3 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + ((decimal)dsRecarga.Tables[0].Rows[0]["Recarga"] * (decimal)dsRecarga.Tables[0].Rows[0]["Estrellas"]);
                             }
                             if (tipitoHabitacion == "Base Cuadruple")
                             {
-                                costoUnaHabitacion = (4 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                                costoUnaHabitacion = (4 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + ((decimal)dsRecarga.Tables[0].Rows[0]["Recarga"] * (decimal)dsRecarga.Tables[0].Rows[0]["Estrellas"]);
                             }
                             msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de: US$ '{0}' \n", costoUnaHabitacion));
                             costoTotal = costoTotal + costoUnaHabitacion;
@@ -593,7 +593,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                         }
                     }
                     string queryRegimen = string.Format("SELECT regi_precio_base as Precio FROM CAIA_UNLIMITED.Regimen where regi_codigo = '{0}'", regimen);
-                    string queryEstrella = string.Format("SELECT hote_recarga_estrella as Recarga FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
+                    string queryEstrella = string.Format("SELECT hote_recarga_estrella as Recarga, hote_cant_estrellas as Estrellas FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
                     DataSet dsPrecioRegimen = DataBase.realizarConsulta(queryRegimen);
                     DataSet dsRecarga = DataBase.realizarConsulta(queryEstrella);
                     decimal costoTotal = 0;
@@ -642,19 +642,19 @@ namespace FrbaHotel.GenerarModificacionReserva
                         decimal costoUnaHabitacion = 0;
                         if (tipitoHabitacion == "Base Doble" || tipitoHabitacion == "King")
                         {
-                            costoUnaHabitacion = (2 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                            costoUnaHabitacion = (2 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + ((decimal)dsRecarga.Tables[0].Rows[0]["Recarga"] * (decimal)dsRecarga.Tables[0].Rows[0]["Estrellas"]);
                         }
                         if (tipitoHabitacion == "Base Simple")
                         {
-                            costoUnaHabitacion = (1 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                            costoUnaHabitacion = (1 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + ((decimal)dsRecarga.Tables[0].Rows[0]["Recarga"] * (decimal)dsRecarga.Tables[0].Rows[0]["Estrellas"]);
                         }
                         if (tipitoHabitacion == "Base Triple")
                         {
-                            costoUnaHabitacion = (3 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                            costoUnaHabitacion = (3 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + ((decimal)dsRecarga.Tables[0].Rows[0]["Recarga"] * (decimal)dsRecarga.Tables[0].Rows[0]["Estrellas"]);
                         }
                         if (tipitoHabitacion == "Base Cuadruple")
                         {
-                            costoUnaHabitacion = (4 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                            costoUnaHabitacion = (4 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + ((decimal)dsRecarga.Tables[0].Rows[0]["Recarga"] * (decimal)dsRecarga.Tables[0].Rows[0]["Estrellas"]);
                         }
                         msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de: US$ '{0}' \n", costoUnaHabitacion));
                         costoTotal = costoTotal + costoUnaHabitacion;
@@ -754,7 +754,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                             }
                         }
                         string queryRegimen = string.Format("SELECT regi_precio_base as Precio FROM CAIA_UNLIMITED.Regimen where regi_codigo = '{0}'", regimen);
-                        string queryEstrella = string.Format("SELECT hote_recarga_estrella as Recarga FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
+                        string queryEstrella = string.Format("SELECT hote_recarga_estrella as Recarga, hote_cant_estrellas as Estrellas FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
                         DataSet dsPrecioRegimen = DataBase.realizarConsulta(queryRegimen);
                         DataSet dsRecarga = DataBase.realizarConsulta(queryEstrella);
                         decimal costoTotal = 0;
@@ -803,19 +803,19 @@ namespace FrbaHotel.GenerarModificacionReserva
                             decimal costoUnaHabitacion = 0;
                             if (tipitoHabitacion == "Base Doble" || tipitoHabitacion == "King")
                             {
-                                costoUnaHabitacion = (2 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                                costoUnaHabitacion = (2 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + ((decimal)dsRecarga.Tables[0].Rows[0]["Recarga"] * (decimal)dsRecarga.Tables[0].Rows[0]["Estrellas"]);
                             }
                             if (tipitoHabitacion == "Base Simple")
                             {
-                                costoUnaHabitacion = (1 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                                costoUnaHabitacion = (1 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + ((decimal)dsRecarga.Tables[0].Rows[0]["Recarga"] * (decimal)dsRecarga.Tables[0].Rows[0]["Estrellas"]);
                             }
                             if (tipitoHabitacion == "Base Triple")
                             {
-                                costoUnaHabitacion = (3 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                                costoUnaHabitacion = (3 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + ((decimal)dsRecarga.Tables[0].Rows[0]["Recarga"] * (decimal)dsRecarga.Tables[0].Rows[0]["Estrellas"]);
                             }
                             if (tipitoHabitacion == "Base Cuadruple")
                             {
-                                costoUnaHabitacion = (4 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                                costoUnaHabitacion = (4 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + ((decimal)dsRecarga.Tables[0].Rows[0]["Recarga"] * (decimal)dsRecarga.Tables[0].Rows[0]["Estrellas"]);
                             }
                             msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de: US$ '{0}' \n", costoUnaHabitacion));
                             costoTotal = costoTotal + costoUnaHabitacion;
@@ -908,7 +908,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                         }
                     }
                     string queryRegimen = string.Format("SELECT regi_precio_base as Precio FROM CAIA_UNLIMITED.Regimen where regi_codigo = '{0}'", regimen);
-                    string queryEstrella = string.Format("SELECT hote_recarga_estrella as Recarga FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
+                    string queryEstrella = string.Format("SELECT hote_recarga_estrella as Recarga, hote_cant_estrellas as Estrellas FROM CAIA_UNLIMITED.Hotel where hote_id = '{0}'", this.hotel);
                     DataSet dsPrecioRegimen = DataBase.realizarConsulta(queryRegimen);
                     DataSet dsRecarga = DataBase.realizarConsulta(queryEstrella);
                     decimal costoTotal = 0;
@@ -957,19 +957,19 @@ namespace FrbaHotel.GenerarModificacionReserva
                         decimal costoUnaHabitacion = 0;
                         if (tipitoHabitacion == "Base Doble" || tipitoHabitacion == "King")
                         {
-                            costoUnaHabitacion = (2 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                            costoUnaHabitacion = (2 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + ((decimal)dsRecarga.Tables[0].Rows[0]["Recarga"] * (decimal)dsRecarga.Tables[0].Rows[0]["Estrellas"]);
                         }
                         if (tipitoHabitacion == "Base Simple")
                         {
-                            costoUnaHabitacion = (1 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                            costoUnaHabitacion = (1 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + ((decimal)dsRecarga.Tables[0].Rows[0]["Recarga"] * (decimal)dsRecarga.Tables[0].Rows[0]["Estrellas"]);
                         }
                         if (tipitoHabitacion == "Base Triple")
                         {
-                            costoUnaHabitacion = (3 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                            costoUnaHabitacion = (3 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + ((decimal)dsRecarga.Tables[0].Rows[0]["Recarga"] * (decimal)dsRecarga.Tables[0].Rows[0]["Estrellas"]);
                         }
                         if (tipitoHabitacion == "Base Cuadruple")
                         {
-                            costoUnaHabitacion = (4 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + (decimal)dsRecarga.Tables[0].Rows[0]["Recarga"];
+                            costoUnaHabitacion = (4 * (decimal)dsPrecioRegimen.Tables[0].Rows[0]["Precio"]) + ((decimal)dsRecarga.Tables[0].Rows[0]["Recarga"] * (decimal)dsRecarga.Tables[0].Rows[0]["Estrellas"]);
                         }
                         msg += (string.Format("El monto de la habitacion " + tipitoHabitacion + "es de: US$ '{0}' \n", costoUnaHabitacion));
                         costoTotal = costoTotal + costoUnaHabitacion;
