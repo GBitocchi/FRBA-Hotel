@@ -162,10 +162,7 @@ namespace FrbaHotel.CancelarReserva
         }
 
         private void limpiarFormulario()
-        {
-            txtCancelacion.Clear();
-            txtUsername.Clear();
-            txtMail.Clear();
+        {            
             txtMotivo.Clear();
             txtNumero_Reserva.Clear();
         }

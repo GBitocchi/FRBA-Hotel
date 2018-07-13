@@ -33,7 +33,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtCodigo_Estadia = new System.Windows.Forms.TextBox();
-            this.txtHabitacion = new System.Windows.Forms.TextBox();
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.cbxConsumible = new System.Windows.Forms.ComboBox();
             this.btnAgregar_Consumible = new System.Windows.Forms.Button();
@@ -50,6 +49,7 @@
             this.Consumible = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Cantidad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Precio = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lstHabitaciones = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // label1
@@ -73,7 +73,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(34, 192);
+            this.label3.Location = new System.Drawing.Point(34, 243);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 13);
             this.label3.TabIndex = 2;
@@ -82,7 +82,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(34, 229);
+            this.label4.Location = new System.Drawing.Point(34, 280);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 3;
@@ -95,17 +95,9 @@
             this.txtCodigo_Estadia.Size = new System.Drawing.Size(214, 20);
             this.txtCodigo_Estadia.TabIndex = 6;
             // 
-            // txtHabitacion
-            // 
-            this.txtHabitacion.Enabled = false;
-            this.txtHabitacion.Location = new System.Drawing.Point(133, 117);
-            this.txtHabitacion.Name = "txtHabitacion";
-            this.txtHabitacion.Size = new System.Drawing.Size(214, 20);
-            this.txtHabitacion.TabIndex = 7;
-            // 
             // txtCantidad
             // 
-            this.txtCantidad.Location = new System.Drawing.Point(133, 226);
+            this.txtCantidad.Location = new System.Drawing.Point(133, 277);
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(214, 20);
             this.txtCantidad.TabIndex = 8;
@@ -113,14 +105,14 @@
             // cbxConsumible
             // 
             this.cbxConsumible.FormattingEnabled = true;
-            this.cbxConsumible.Location = new System.Drawing.Point(133, 189);
+            this.cbxConsumible.Location = new System.Drawing.Point(133, 240);
             this.cbxConsumible.Name = "cbxConsumible";
             this.cbxConsumible.Size = new System.Drawing.Size(214, 21);
             this.cbxConsumible.TabIndex = 9;
             // 
             // btnAgregar_Consumible
             // 
-            this.btnAgregar_Consumible.Location = new System.Drawing.Point(374, 204);
+            this.btnAgregar_Consumible.Location = new System.Drawing.Point(374, 255);
             this.btnAgregar_Consumible.Name = "btnAgregar_Consumible";
             this.btnAgregar_Consumible.Size = new System.Drawing.Size(120, 25);
             this.btnAgregar_Consumible.TabIndex = 11;
@@ -130,7 +122,7 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(97, 412);
+            this.btnLimpiar.Location = new System.Drawing.Point(97, 463);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(120, 33);
             this.btnLimpiar.TabIndex = 13;
@@ -141,7 +133,7 @@
             // btnIngresar_Consumibles
             // 
             this.btnIngresar_Consumibles.Enabled = false;
-            this.btnIngresar_Consumibles.Location = new System.Drawing.Point(299, 412);
+            this.btnIngresar_Consumibles.Location = new System.Drawing.Point(299, 463);
             this.btnIngresar_Consumibles.Name = "btnIngresar_Consumibles";
             this.btnIngresar_Consumibles.Size = new System.Drawing.Size(120, 33);
             this.btnIngresar_Consumibles.TabIndex = 14;
@@ -172,7 +164,7 @@
             // txtRegimen
             // 
             this.txtRegimen.Enabled = false;
-            this.txtRegimen.Location = new System.Drawing.Point(133, 153);
+            this.txtRegimen.Location = new System.Drawing.Point(133, 204);
             this.txtRegimen.Name = "txtRegimen";
             this.txtRegimen.Size = new System.Drawing.Size(214, 20);
             this.txtRegimen.TabIndex = 18;
@@ -180,7 +172,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(34, 156);
+            this.label6.Location = new System.Drawing.Point(34, 207);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 13);
             this.label6.TabIndex = 17;
@@ -205,7 +197,7 @@
             // 
             // btnEliminar_Consumible
             // 
-            this.btnEliminar_Consumible.Location = new System.Drawing.Point(374, 322);
+            this.btnEliminar_Consumible.Location = new System.Drawing.Point(374, 373);
             this.btnEliminar_Consumible.Name = "btnEliminar_Consumible";
             this.btnEliminar_Consumible.Size = new System.Drawing.Size(120, 25);
             this.btnEliminar_Consumible.TabIndex = 21;
@@ -219,7 +211,7 @@
             this.Consumible,
             this.Cantidad,
             this.Precio});
-            this.listaConsumibles.Location = new System.Drawing.Point(37, 253);
+            this.listaConsumibles.Location = new System.Drawing.Point(37, 304);
             this.listaConsumibles.Margin = new System.Windows.Forms.Padding(2);
             this.listaConsumibles.Name = "listaConsumibles";
             this.listaConsumibles.Size = new System.Drawing.Size(310, 154);
@@ -242,11 +234,20 @@
             this.Precio.Text = "Precio";
             this.Precio.Width = 70;
             // 
+            // lstHabitaciones
+            // 
+            this.lstHabitaciones.Location = new System.Drawing.Point(133, 118);
+            this.lstHabitaciones.Name = "lstHabitaciones";
+            this.lstHabitaciones.Size = new System.Drawing.Size(214, 70);
+            this.lstHabitaciones.TabIndex = 109;
+            this.lstHabitaciones.UseCompatibleStateImageBehavior = false;
+            // 
             // MenuRegistrarConsumible
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(534, 469);
+            this.ClientSize = new System.Drawing.Size(534, 516);
+            this.Controls.Add(this.lstHabitaciones);
             this.Controls.Add(this.listaConsumibles);
             this.Controls.Add(this.btnEliminar_Consumible);
             this.Controls.Add(this.txtHotel);
@@ -260,7 +261,6 @@
             this.Controls.Add(this.btnAgregar_Consumible);
             this.Controls.Add(this.cbxConsumible);
             this.Controls.Add(this.txtCantidad);
-            this.Controls.Add(this.txtHabitacion);
             this.Controls.Add(this.txtCodigo_Estadia);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -280,7 +280,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtCodigo_Estadia;
-        private System.Windows.Forms.TextBox txtHabitacion;
         private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.ComboBox cbxConsumible;
         private System.Windows.Forms.Button btnAgregar_Consumible;
@@ -297,5 +296,6 @@
         private System.Windows.Forms.ColumnHeader Consumible;
         private System.Windows.Forms.ColumnHeader Cantidad;
         private System.Windows.Forms.ColumnHeader Precio;
+        private System.Windows.Forms.ListView lstHabitaciones;
     }
 }

@@ -132,9 +132,16 @@ namespace FrbaHotel.RegistrarConsumible
 
                                 if (DataBase.realizarConsulta(codEstadiaIngresado).Tables[0].Rows.Count == 0)
                                 {
-                                    string consultaHabitacion = string.Format("select habi_rese_numero from CAIA_UNLIMITED.Habitacion_X_Reserva X join CAIA_UNLIMITED.Estadia E on (X.habi_rese_codigo = E.rese_codigo) where E.esta_codigo='{0}'", txtCodigo_Estadia.Text);
-                                    DataTable habitacion = DataBase.realizarConsulta(consultaHabitacion).Tables[0];
-                                    txtHabitacion.Text = habitacion.Rows[0][0].ToString();
+                                    string habitacionesBuscadas = String.Format("select habi_rese_numero from CAIA_UNLIMITED.Habitacion_X_Reserva X join CAIA_UNLIMITED.Estadia E on (X.habi_rese_codigo = E.rese_codigo) where E.esta_codigo='{0}'", txtCodigo_Estadia.Text.Trim());
+                                    DataTable habitacionesObtenidas = DataBase.realizarConsulta(habitacionesBuscadas).Tables[0];
+
+                                    foreach (DataRow habitacion in habitacionesObtenidas.Rows)
+                                    {
+                                        string habitacionSeleccionada = habitacion[0].ToString();
+
+                                        lstHabitaciones.Items.Add(habitacionSeleccionada);
+
+                                    }
                                                                         
                                     //HOTEL
                                     string consultaDireccionHotel = string.Format("select dire_id from CAIA_UNLIMITED.Hotel where hote_id='{0}'", idHotelActual);
@@ -272,7 +279,7 @@ namespace FrbaHotel.RegistrarConsumible
         {
             txtCodigo_Estadia.Clear();
                     txtCantidad.Clear();
-                    txtHabitacion.Clear();
+                    lstHabitaciones.Clear();
                     txtHotel.Clear();
                     txtRegimen.Clear();
                     cbxConsumible.SelectedIndex = 0;
@@ -284,7 +291,7 @@ namespace FrbaHotel.RegistrarConsumible
         {
             txtCodigo_Estadia.Clear();
             txtCantidad.Clear();
-            txtHabitacion.Clear();
+            lstHabitaciones.Clear();
             txtHotel.Clear();
             txtRegimen.Clear();
             cbxConsumible.SelectedIndex = 0;
