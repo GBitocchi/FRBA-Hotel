@@ -21,6 +21,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         bool seleccionoReserva = false;
         bool seleccionoInicio = false;
         bool seleccionoFin = false;
+        bool quiereModificar = false;
         string mail;
         string MailActual;
         string DocumentoActual;
@@ -342,6 +343,8 @@ namespace FrbaHotel.GenerarModificacionReserva
                         cargarComboBoxTipoHabitacion();
                         this.reserva = Convert.ToDecimal(textBoxReserva.Text.Trim());
                         seleccionoReserva = true;
+                        btnSeleccionarReserva.Visible = false;
+                        textBoxReserva.ReadOnly = true;
                     }
                 }
             }
@@ -513,29 +516,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                         {
                             return;
                         }
-
-                        cargarComboBoxTipoDocumento();
-                        lblNombre.Visible = true;
-                        textBoxNombre.Visible = true;
-                        lblApellido.Visible = true;
-                        textBoxApellido.Visible = true;
-                        lblMail.Visible = true;
-                        textBoxMail.Visible = true; ;
-                        lblDocumento.Visible = true;
-                        textBoxDocumento.Visible = true;
-                        lblTipoDocumentoCliente.Visible = true;
-                        comboBoxTipoDocumentoCliente.Visible = true;
-                        lblDireccion.Visible = true;
-                        textBoxDireccion.Visible = true;
-                        lblTelefono.Visible = true;
-                        textBoxTelefono.Visible = true;
-                        lblNumeroDireccion.Visible = true;
-                        textBoxNumeroDireccion.Visible = true;
-                        lblCity.Visible = true;
-                        textBoxCiudad.Visible = true;
-                        lblPais.Visible = true;
-                        textBoxPais.Visible = true;
-                        buttonBuscarCliente.Visible = true;
+                       
                         btnCheckear.Visible = false;
                         btnConfirmarPaso.Enabled = true;
                         calendarInicio.Visible = false;
@@ -563,6 +544,32 @@ namespace FrbaHotel.GenerarModificacionReserva
                         btnSeleccionarReserva.Visible = false;
                         button1.Visible = false;
                         button2.Visible = false;
+
+                        if (MessageBox.Show("¿Desea modificar los datos del huesped que hizo la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
+                        {
+                            quiereModificar = true;
+                            lblNombre.Visible = true;
+                            textBoxNombre.Visible = true;
+                            lblApellido.Visible = true;
+                            textBoxApellido.Visible = true;
+                            lblMail.Visible = true;
+                            textBoxMail.Visible = true; ;
+                            lblDocumento.Visible = true;
+                            textBoxDocumento.Visible = true;
+                            lblTipoDocumentoCliente.Visible = true;
+                            comboBoxTipoDocumentoCliente.Visible = true;
+                            lblDireccion.Visible = true;
+                            textBoxDireccion.Visible = true;
+                            lblTelefono.Visible = true;
+                            textBoxTelefono.Visible = true;
+                            lblNumeroDireccion.Visible = true;
+                            textBoxNumeroDireccion.Visible = true;
+                            lblCity.Visible = true;
+                            textBoxCiudad.Visible = true;
+                            lblPais.Visible = true;
+                            textBoxPais.Visible = true;
+                            buttonBuscarCliente.Visible = true;
+                        }
 
                     }
                 }
@@ -669,28 +676,6 @@ namespace FrbaHotel.GenerarModificacionReserva
                         return;
                     }
 
-                    cargarComboBoxTipoDocumento();
-                    lblNombre.Visible = true;
-                    textBoxNombre.Visible = true;
-                    lblApellido.Visible = true;
-                    textBoxApellido.Visible = true;
-                    lblMail.Visible = true;
-                    textBoxMail.Visible = true; ;
-                    lblDocumento.Visible = true;
-                    textBoxDocumento.Visible = true;
-                    lblTipoDocumentoCliente.Visible = true;
-                    comboBoxTipoDocumentoCliente.Visible = true;
-                    lblDireccion.Visible = true;
-                    textBoxDireccion.Visible = true;
-                    lblTelefono.Visible = true;
-                    textBoxTelefono.Visible = true;
-                    lblNumeroDireccion.Visible = true;
-                    textBoxNumeroDireccion.Visible = true;
-                    lblCity.Visible = true;
-                    textBoxCiudad.Visible = true;
-                    lblPais.Visible = true;
-                    textBoxPais.Visible = true;
-                    buttonBuscarCliente.Visible = true;
                     btnCheckear.Visible = false;
                     btnConfirmarPaso.Enabled = true;
                     calendarInicio.Visible = false;
@@ -718,6 +703,32 @@ namespace FrbaHotel.GenerarModificacionReserva
                     btnSeleccionarReserva.Visible = false;
                     button1.Visible = false;
                     button2.Visible = false;
+
+                    if (MessageBox.Show("¿Desea modificar los datos del huesped que hizo la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
+                    {
+                        quiereModificar = true;
+                        lblNombre.Visible = true;
+                        textBoxNombre.Visible = true;
+                        lblApellido.Visible = true;
+                        textBoxApellido.Visible = true;
+                        lblMail.Visible = true;
+                        textBoxMail.Visible = true; ;
+                        lblDocumento.Visible = true;
+                        textBoxDocumento.Visible = true;
+                        lblTipoDocumentoCliente.Visible = true;
+                        comboBoxTipoDocumentoCliente.Visible = true;
+                        lblDireccion.Visible = true;
+                        textBoxDireccion.Visible = true;
+                        lblTelefono.Visible = true;
+                        textBoxTelefono.Visible = true;
+                        lblNumeroDireccion.Visible = true;
+                        textBoxNumeroDireccion.Visible = true;
+                        lblCity.Visible = true;
+                        textBoxCiudad.Visible = true;
+                        lblPais.Visible = true;
+                        textBoxPais.Visible = true;
+                        buttonBuscarCliente.Visible = true;
+                    }
                 }
             }
             else
@@ -830,28 +841,6 @@ namespace FrbaHotel.GenerarModificacionReserva
                             return;
                         }
 
-                        cargarComboBoxTipoDocumento();
-                        lblNombre.Visible = true;
-                        textBoxNombre.Visible = true;
-                        lblApellido.Visible = true;
-                        textBoxApellido.Visible = true;
-                        lblMail.Visible = true;
-                        textBoxMail.Visible = true; ;
-                        lblDocumento.Visible = true;
-                        textBoxDocumento.Visible = true;
-                        lblTipoDocumentoCliente.Visible = true;
-                        comboBoxTipoDocumentoCliente.Visible = true;
-                        lblDireccion.Visible = true;
-                        textBoxDireccion.Visible = true;
-                        lblTelefono.Visible = true;
-                        textBoxTelefono.Visible = true;
-                        lblNumeroDireccion.Visible = true;
-                        textBoxNumeroDireccion.Visible = true;
-                        lblCity.Visible = true;
-                        textBoxCiudad.Visible = true;
-                        lblPais.Visible = true;
-                        textBoxPais.Visible = true;
-                        buttonBuscarCliente.Visible = true;
                         btnCheckear.Visible = false;
                         btnConfirmarPaso.Enabled = true;
                         calendarInicio.Visible = false;
@@ -879,6 +868,32 @@ namespace FrbaHotel.GenerarModificacionReserva
                         btnSeleccionarReserva.Visible = false;
                         button1.Visible = false;
                         button2.Visible = false;
+
+                        if (MessageBox.Show("¿Desea modificar los datos del huesped que hizo la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
+                        {
+                            quiereModificar = true;
+                            lblNombre.Visible = true;
+                            textBoxNombre.Visible = true;
+                            lblApellido.Visible = true;
+                            textBoxApellido.Visible = true;
+                            lblMail.Visible = true;
+                            textBoxMail.Visible = true; ;
+                            lblDocumento.Visible = true;
+                            textBoxDocumento.Visible = true;
+                            lblTipoDocumentoCliente.Visible = true;
+                            comboBoxTipoDocumentoCliente.Visible = true;
+                            lblDireccion.Visible = true;
+                            textBoxDireccion.Visible = true;
+                            lblTelefono.Visible = true;
+                            textBoxTelefono.Visible = true;
+                            lblNumeroDireccion.Visible = true;
+                            textBoxNumeroDireccion.Visible = true;
+                            lblCity.Visible = true;
+                            textBoxCiudad.Visible = true;
+                            lblPais.Visible = true;
+                            textBoxPais.Visible = true;
+                            buttonBuscarCliente.Visible = true;
+                        }
                     }
                 }
                 else
@@ -984,28 +999,6 @@ namespace FrbaHotel.GenerarModificacionReserva
                         return;
                     }
 
-                    cargarComboBoxTipoDocumento();
-                    lblNombre.Visible = true;
-                    textBoxNombre.Visible = true;
-                    lblApellido.Visible = true;
-                    textBoxApellido.Visible = true;
-                    lblMail.Visible = true;
-                    textBoxMail.Visible = true; ;
-                    lblDocumento.Visible = true;
-                    textBoxDocumento.Visible = true;
-                    lblTipoDocumentoCliente.Visible = true;
-                    comboBoxTipoDocumentoCliente.Visible = true;
-                    lblDireccion.Visible = true;
-                    textBoxDireccion.Visible = true;
-                    lblTelefono.Visible = true;
-                    textBoxTelefono.Visible = true;
-                    lblNumeroDireccion.Visible = true;
-                    textBoxNumeroDireccion.Visible = true;
-                    lblCity.Visible = true;
-                    textBoxCiudad.Visible = true;
-                    lblPais.Visible = true;
-                    textBoxPais.Visible = true;
-                    buttonBuscarCliente.Visible = true;
                     btnCheckear.Visible = false;
                     btnConfirmarPaso.Enabled = true;
                     calendarInicio.Visible = false;
@@ -1033,6 +1026,32 @@ namespace FrbaHotel.GenerarModificacionReserva
                     btnSeleccionarReserva.Visible = false;
                     button1.Visible = false;
                     button2.Visible = false;
+
+                    if (MessageBox.Show("¿Desea modificar los datos del huesped que hizo la reserva?", "Pregunta", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
+                    {
+                        quiereModificar = true;
+                        lblNombre.Visible = true;
+                        textBoxNombre.Visible = true;
+                        lblApellido.Visible = true;
+                        textBoxApellido.Visible = true;
+                        lblMail.Visible = true;
+                        textBoxMail.Visible = true; ;
+                        lblDocumento.Visible = true;
+                        textBoxDocumento.Visible = true;
+                        lblTipoDocumentoCliente.Visible = true;
+                        comboBoxTipoDocumentoCliente.Visible = true;
+                        lblDireccion.Visible = true;
+                        textBoxDireccion.Visible = true;
+                        lblTelefono.Visible = true;
+                        textBoxTelefono.Visible = true;
+                        lblNumeroDireccion.Visible = true;
+                        textBoxNumeroDireccion.Visible = true;
+                        lblCity.Visible = true;
+                        textBoxCiudad.Visible = true;
+                        lblPais.Visible = true;
+                        textBoxPais.Visible = true;
+                        buttonBuscarCliente.Visible = true;
+                    }
                 }
             }
 
@@ -1176,41 +1195,11 @@ namespace FrbaHotel.GenerarModificacionReserva
         private void btnConfirmarPaso_Click_1(object sender, EventArgs e)
         {
             limpiarErrores();
-            if (existeCliente)
+
+            if (!quiereModificar)
             {
                 SqlConnection createConnection = DataBase.conectarBD();
                 SqlCommand insertCommand;
-                string estaDeshabilitado = string.Format("SELECT Count(*) FROM CAIA_UNLIMITED.Huesped where hues_mail = '{0}' and hues_documento = '{1}' and hues_habilitado = 0", this.mail, this.documento);
-                SqlCommand commEstaDeshabilitado = new SqlCommand(estaDeshabilitado, createConnection);
-                Int32 countDeshabilitado = Convert.ToInt32(commEstaDeshabilitado.ExecuteScalar());
-
-                if (countDeshabilitado >= 1)
-                {
-                    MessageBox.Show("El cliente elegido esta deshabilitado, por favor seleccione otro.");
-                    this.existeCliente = false;
-                    lblNombre.Visible = true;
-                    textBoxNombre.Visible = true;
-                    lblApellido.Visible = true;
-                    textBoxApellido.Visible = true;
-                    lblMail.Visible = true;
-                    textBoxMail.Visible = true;
-                    lblDocumento.Visible = true;
-                    textBoxDocumento.Visible = true;
-                    lblTipoDocumentoCliente.Visible = true;
-                    comboBoxTipoDocumentoCliente.Visible = true;
-                    lblDireccion.Visible = true;
-                    textBoxDireccion.Visible = true;
-                    lblTelefono.Visible = true;
-                    textBoxTelefono.Visible = true;
-                    lblNumeroDireccion.Visible = true;
-                    textBoxNumeroDireccion.Visible = true;
-                    lblCity.Visible = true;
-                    textBoxCiudad.Visible = true;
-                    lblPais.Visible = true;
-                    textBoxPais.Visible = true;
-                    return;
-                }
-
                 if (guest)
                 {
                     insertCommand = new SqlCommand("[CAIA_UNLIMITED].sp_ModificarReservaHuesped", createConnection);
@@ -1234,97 +1223,47 @@ namespace FrbaHotel.GenerarModificacionReserva
                 tvpParam.TypeName = "[CAIA_UNLIMITED].HabitacionesLista";
                 insertCommand.ExecuteNonQuery();
 
-                SqlCommand insertCliente = new SqlCommand("[CAIA_UNLIMITED].sp_ModificarClienteExistente", createConnection);
-                insertCliente.CommandType = CommandType.StoredProcedure;
-                insertCliente.Parameters.AddWithValue("@codigoReserva", this.reserva);
-                insertCliente.Parameters.AddWithValue("@documento", this.documento);
-                insertCliente.Parameters.AddWithValue("@mail", this.mail);
-                insertCliente.ExecuteNonQuery();
-
                 MessageBox.Show("Reserva modificada exitosamente!");
+                createConnection.Close();
                 this.DialogResult = DialogResult.OK;
             }
             else
             {
-                int parsedValue;
-                Regex expEmail = new Regex(@"^([\w.-]+)@([\w-]+)((.(\w){2,3})+)$");
-                if (textBoxNombre.Text.Trim() == "")
-                {
-                    lblErrorNombre.Visible = true;
-                    lblErrorNoField.Visible = true;
-                }
-                else if (textBoxApellido.Text.Trim() == "")
-                {
-                    lblErrorApellido.Visible = true;
-                    lblErrorNoField.Visible = true;
-                }
-                else if (textBoxMail.Text.Trim() == "")
-                {
-                    lblErrorMail.Visible = true;
-                    lblErrorNoField.Visible = true;
-                }
-                else if (!expEmail.IsMatch(textBoxMail.Text.Trim()))
-                {
-                    MessageBox.Show("Formato de mail ingresado incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    lblErrorMail.Visible = true;
-                }
-                else if (textBoxDocumento.Text.Trim() == "")
-                {
-                    lblErrorDocumento.Visible = true;
-                    lblErrorNoField.Visible = true;
-                }
-                else if (!int.TryParse(textBoxDocumento.Text.Trim(), out parsedValue))
-                {
-                    lblErrorNumberValue.Visible = true;
-                    lblErrorDocumento.Visible = true;
-                }
-                else if (textBoxTelefono.Text.Trim() == "")
-                {
-                    lblErrorTelefono.Visible = true;
-                    lblErrorNoField.Visible = true;
-                }
-                else if (!int.TryParse(textBoxTelefono.Text.Trim(), out parsedValue))
-                {
-                    lblErrorNumberValue.Visible = true;
-                    lblErrorTelefono.Visible = true;
-                }
-                else if (textBoxDireccion.Text.Trim() == "")
-                {
-                    lblErrorDireccion.Visible = true;
-                    lblErrorNoField.Visible = true;
-                }
-                else if (textBoxNumeroDireccion.Text.Trim() == "")
-                {
-                    lblNroDireccion.Visible = true;
-                    lblErrorNoField.Visible = true;
-                }
-                else if (!int.TryParse(textBoxNumeroDireccion.Text.Trim(), out parsedValue))
-                {
-                    lblErrorNumberValue.Visible = true;
-                    lblNroDireccion.Visible = true;
-                }               
-                else if (textBoxPais.Text.Trim() == "")
-                {
-                    lblErrorPais.Visible = true;
-                    lblErrorNoField.Visible = true;
-                }
-                else if (textBoxCiudad.Text.Trim() == "")
-                {
-                    lblErrorCiudad.Visible = true;
-                    lblErrorNoField.Visible = true;
-                }
-                else
+                if (existeCliente)
                 {
                     SqlConnection createConnection = DataBase.conectarBD();
                     SqlCommand insertCommand;
-                    string yaExistePKS = string.Format("SELECT COUNT(*) FROM CAIA_UNLIMITED.Huesped WHERE (hues_mail = '{0}' OR hues_documento = '{1}') AND (hues_mail != '{2}' OR hues_documento != '{3}')", textBoxMail.Text.Trim(), textBoxDocumento.Text.Trim(),this.MailActual,this.DocumentoActual);
-                    SqlCommand commYaExistePKS = new SqlCommand(yaExistePKS, createConnection);
-                    Int32 countYaExistentesPKS = Convert.ToInt32(commYaExistePKS.ExecuteScalar());
-                    if (countYaExistentesPKS > 0)
+                    string estaDeshabilitado = string.Format("SELECT Count(*) FROM CAIA_UNLIMITED.Huesped where hues_mail = '{0}' and hues_documento = '{1}' and hues_habilitado = 0", this.mail, this.documento);
+                    SqlCommand commEstaDeshabilitado = new SqlCommand(estaDeshabilitado, createConnection);
+                    Int32 countDeshabilitado = Convert.ToInt32(commEstaDeshabilitado.ExecuteScalar());
+
+                    if (countDeshabilitado >= 1)
                     {
-                        MessageBox.Show("El mail o numero de identifacion ingresados coinciden con el de un usuario anterior. Intente con otro o elija un usuario ya existente");
+                        MessageBox.Show("El cliente elegido esta deshabilitado, por favor seleccione otro.");
+                        this.existeCliente = false;
+                        lblNombre.Visible = true;
+                        textBoxNombre.Visible = true;
+                        lblApellido.Visible = true;
+                        textBoxApellido.Visible = true;
+                        lblMail.Visible = true;
+                        textBoxMail.Visible = true;
+                        lblDocumento.Visible = true;
+                        textBoxDocumento.Visible = true;
+                        lblTipoDocumentoCliente.Visible = true;
+                        comboBoxTipoDocumentoCliente.Visible = true;
+                        lblDireccion.Visible = true;
+                        textBoxDireccion.Visible = true;
+                        lblTelefono.Visible = true;
+                        textBoxTelefono.Visible = true;
+                        lblNumeroDireccion.Visible = true;
+                        textBoxNumeroDireccion.Visible = true;
+                        lblCity.Visible = true;
+                        textBoxCiudad.Visible = true;
+                        lblPais.Visible = true;
+                        textBoxPais.Visible = true;
                         return;
                     }
+
                     if (guest)
                     {
                         insertCommand = new SqlCommand("[CAIA_UNLIMITED].sp_ModificarReservaHuesped", createConnection);
@@ -1348,24 +1287,141 @@ namespace FrbaHotel.GenerarModificacionReserva
                     tvpParam.TypeName = "[CAIA_UNLIMITED].HabitacionesLista";
                     insertCommand.ExecuteNonQuery();
 
-                    SqlCommand insertCliente = new SqlCommand("[CAIA_UNLIMITED].sp_ModificarCliente", createConnection);
-                    insertCliente.CommandType = CommandType.StoredProcedure;
-                    insertCliente.Parameters.AddWithValue("@codigoReserva", this.reserva);
-                    insertCliente.Parameters.AddWithValue("@name", textBoxNombre.Text.Trim());
-                    insertCliente.Parameters.AddWithValue("@apellido", textBoxApellido.Text.Trim());
-                    insertCliente.Parameters.AddWithValue("@tipoDocumento", comboBoxTipoDocumentoCliente.SelectedItem.ToString());
-                    insertCliente.Parameters.AddWithValue("@documento", decimal.Parse(textBoxDocumento.Text.Trim()));
-                    insertCliente.Parameters.AddWithValue("@pais", textBoxPais.Text.Trim());
-                    insertCliente.Parameters.AddWithValue("@ciudad", textBoxCiudad.Text.Trim());
-                    insertCliente.Parameters.AddWithValue("@telefono", decimal.Parse(textBoxTelefono.Text.Trim()));
-                    insertCliente.Parameters.AddWithValue("@mail", textBoxMail.Text.Trim());
-                    insertCliente.Parameters.AddWithValue("@calle", textBoxDireccion.Text.Trim());
-                    insertCliente.Parameters.AddWithValue("@numeroCalle", decimal.Parse(textBoxNumeroDireccion.Text.Trim()));
-                    insertCliente.ExecuteNonQuery();
+                        SqlCommand insertCliente = new SqlCommand("[CAIA_UNLIMITED].sp_ModificarClienteExistente", createConnection);
+                        insertCliente.CommandType = CommandType.StoredProcedure;
+                        insertCliente.Parameters.AddWithValue("@codigoReserva", this.reserva);
+                        insertCliente.Parameters.AddWithValue("@documento", this.documento);
+                        insertCliente.Parameters.AddWithValue("@mail", this.mail);
+                        insertCliente.ExecuteNonQuery();                 
 
                     MessageBox.Show("Reserva modificada exitosamente!");
                     createConnection.Close();
                     this.DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    int parsedValue;
+                    Regex expEmail = new Regex(@"^([\w.-]+)@([\w-]+)((.(\w){2,3})+)$");
+                    if (textBoxNombre.Text.Trim() == "")
+                    {
+                        lblErrorNombre.Visible = true;
+                        lblErrorNoField.Visible = true;
+                    }
+                    else if (textBoxApellido.Text.Trim() == "")
+                    {
+                        lblErrorApellido.Visible = true;
+                        lblErrorNoField.Visible = true;
+                    }
+                    else if (textBoxMail.Text.Trim() == "")
+                    {
+                        lblErrorMail.Visible = true;
+                        lblErrorNoField.Visible = true;
+                    }
+                    else if (!expEmail.IsMatch(textBoxMail.Text.Trim()))
+                    {
+                        MessageBox.Show("Formato de mail ingresado incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        lblErrorMail.Visible = true;
+                    }
+                    else if (textBoxDocumento.Text.Trim() == "")
+                    {
+                        lblErrorDocumento.Visible = true;
+                        lblErrorNoField.Visible = true;
+                    }
+                    else if (!int.TryParse(textBoxDocumento.Text.Trim(), out parsedValue))
+                    {
+                        lblErrorNumberValue.Visible = true;
+                        lblErrorDocumento.Visible = true;
+                    }
+                    else if (textBoxTelefono.Text.Trim() == "")
+                    {
+                        lblErrorTelefono.Visible = true;
+                        lblErrorNoField.Visible = true;
+                    }
+                    else if (!int.TryParse(textBoxTelefono.Text.Trim(), out parsedValue))
+                    {
+                        lblErrorNumberValue.Visible = true;
+                        lblErrorTelefono.Visible = true;
+                    }
+                    else if (textBoxDireccion.Text.Trim() == "")
+                    {
+                        lblErrorDireccion.Visible = true;
+                        lblErrorNoField.Visible = true;
+                    }
+                    else if (textBoxNumeroDireccion.Text.Trim() == "")
+                    {
+                        lblNroDireccion.Visible = true;
+                        lblErrorNoField.Visible = true;
+                    }
+                    else if (!int.TryParse(textBoxNumeroDireccion.Text.Trim(), out parsedValue))
+                    {
+                        lblErrorNumberValue.Visible = true;
+                        lblNroDireccion.Visible = true;
+                    }
+                    else if (textBoxPais.Text.Trim() == "")
+                    {
+                        lblErrorPais.Visible = true;
+                        lblErrorNoField.Visible = true;
+                    }
+                    else if (textBoxCiudad.Text.Trim() == "")
+                    {
+                        lblErrorCiudad.Visible = true;
+                        lblErrorNoField.Visible = true;
+                    }
+                    else
+                    {
+                        SqlConnection createConnection = DataBase.conectarBD();
+                        SqlCommand insertCommand;
+                        string yaExistePKS = string.Format("SELECT COUNT(*) FROM CAIA_UNLIMITED.Huesped WHERE (hues_mail = '{0}' OR hues_documento = '{1}') AND (hues_mail != '{2}' OR hues_documento != '{3}')", textBoxMail.Text.Trim(), textBoxDocumento.Text.Trim(), this.MailActual, this.DocumentoActual);
+                        SqlCommand commYaExistePKS = new SqlCommand(yaExistePKS, createConnection);
+                        Int32 countYaExistentesPKS = Convert.ToInt32(commYaExistePKS.ExecuteScalar());
+                        if (countYaExistentesPKS > 0)
+                        {
+                            MessageBox.Show("El mail o numero de identifacion ingresados coinciden con el de un usuario anterior. Intente con otro o elija un usuario ya existente");
+                            return;
+                        }
+                        if (guest)
+                        {
+                            insertCommand = new SqlCommand("[CAIA_UNLIMITED].sp_ModificarReservaHuesped", createConnection);
+                            insertCommand.CommandType = CommandType.StoredProcedure;
+                        }
+                        else
+                        {
+                            insertCommand = new SqlCommand("[CAIA_UNLIMITED].sp_ModificarReservaUsuario", createConnection);
+                            insertCommand.CommandType = CommandType.StoredProcedure;
+                            insertCommand.Parameters.AddWithValue("@usuarioModificacion", this.username);
+                        }
+                        insertCommand.Parameters.AddWithValue("@codigoReserva", this.reserva);
+                        insertCommand.Parameters.AddWithValue("@hotel", this.hotel);
+                        insertCommand.Parameters.AddWithValue("@fechaRealizacion", DataBase.fechaSistema());
+                        insertCommand.Parameters.AddWithValue("@fechaDesde", fechaElegidaInicio);
+                        insertCommand.Parameters.AddWithValue("@cantidadNoches", (decimal)difference.Days);
+                        insertCommand.Parameters.AddWithValue("@regimen", regimen);
+                        insertCommand.Parameters.AddWithValue("@estado", "Reserva modificada");
+                        SqlParameter tvpParam = insertCommand.Parameters.AddWithValue("@lista_Habitaciones", lh);
+                        tvpParam.SqlDbType = SqlDbType.Structured;
+                        tvpParam.TypeName = "[CAIA_UNLIMITED].HabitacionesLista";
+                        insertCommand.ExecuteNonQuery();
+
+                            SqlCommand insertCliente = new SqlCommand("[CAIA_UNLIMITED].sp_ModificarCliente", createConnection);
+                            insertCliente.CommandType = CommandType.StoredProcedure;
+                            insertCliente.Parameters.AddWithValue("@codigoReserva", this.reserva);
+                            insertCliente.Parameters.AddWithValue("@name", textBoxNombre.Text.Trim());
+                            insertCliente.Parameters.AddWithValue("@apellido", textBoxApellido.Text.Trim());
+                            insertCliente.Parameters.AddWithValue("@tipoDocumento", comboBoxTipoDocumentoCliente.SelectedItem.ToString());
+                            insertCliente.Parameters.AddWithValue("@documento", decimal.Parse(textBoxDocumento.Text.Trim()));
+                            insertCliente.Parameters.AddWithValue("@pais", textBoxPais.Text.Trim());
+                            insertCliente.Parameters.AddWithValue("@ciudad", textBoxCiudad.Text.Trim());
+                            insertCliente.Parameters.AddWithValue("@telefono", decimal.Parse(textBoxTelefono.Text.Trim()));
+                            insertCliente.Parameters.AddWithValue("@mail", textBoxMail.Text.Trim());
+                            insertCliente.Parameters.AddWithValue("@calle", textBoxDireccion.Text.Trim());
+                            insertCliente.Parameters.AddWithValue("@numeroCalle", decimal.Parse(textBoxNumeroDireccion.Text.Trim()));
+                            insertCliente.ExecuteNonQuery();
+
+                        MessageBox.Show("Reserva modificada exitosamente!");
+                        createConnection.Close();
+                        this.DialogResult = DialogResult.OK;
+                    }
+
                 }
 
             }
