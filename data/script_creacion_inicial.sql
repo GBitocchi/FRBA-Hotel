@@ -859,7 +859,7 @@ BEGIN
       ELSE
         SAVE TRANSACTION sp_CrearHuesped;
 
-		if((SELECT COUNT(*) FROM CAIA_UNLIMITED.Direccion WHERE dire_telefono = @telefono AND dire_dom_calle = @calle AND dire_nro_calle = @calle_nro AND (dire_piso = @piso or @piso is null) AND dire_dpto = @dpto AND dire_ciudad = @ciudad  AND dire_pais = @pais ) = 0)
+		if((SELECT COUNT(*) FROM CAIA_UNLIMITED.Direccion WHERE (CASE WHEN (dire_telefono IS NULL AND @telefono IS NULL) OR (dire_telefono = @telefono) THEN 1 ELSE 0 END) = 1 AND dire_dom_calle = @calle AND dire_nro_calle = @calle_nro AND (CASE WHEN (dire_piso IS NULL AND @piso IS NULL) OR (dire_piso = @piso) THEN 1 ELSE 0 END) = 1 AND (CASE WHEN (dire_dpto IS NULL AND @dpto IS NULL) OR (dire_dpto = @dpto) THEN 1 ELSE 0 END) = 1 AND (CASE WHEN (dire_ciudad IS NULL AND @ciudad IS NULL) OR (dire_ciudad = @ciudad) THEN 1 ELSE 0 END) = 1 AND (CASE WHEN (dire_pais IS NULL AND @pais IS NULL)  OR (dire_pais = @pais) THEN 1 ELSE 0 END) = 1) = 0)
         	BEGIN
 			insert into CAIA_UNLIMITED.Direccion (dire_ciudad, dire_pais, dire_dom_calle, dire_nro_calle,dire_telefono,dire_piso,dire_dpto)
 			values (@ciudad, @pais, @calle, @calle_nro, @telefono,@piso,@dpto)
