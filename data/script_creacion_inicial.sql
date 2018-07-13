@@ -848,6 +848,7 @@ AS
 BEGIN	
   SET NOCOUNT ON;
   DECLARE @trancount int;
+  DECLARE @direid numeric(18,0);
   SET @trancount = @@trancount;
   BEGIN TRY
     IF @trancount = 0
@@ -855,14 +856,12 @@ BEGIN
       ELSE
         SAVE TRANSACTION sp_CrearHuesped;
 
-		if((SELECT COUNT(*) FROM CAIA_UNLIMITED.Direccion WHERE (CASE WHEN (dire_telefono IS NULL AND @telefono IS NULL) OR (dire_telefono = @telefono) THEN 1 ELSE 0 END) = 1 AND dire_dom_calle = @calle AND dire_nro_calle = @calle_nro AND (CASE WHEN (dire_piso IS NULL AND @piso IS NULL) OR (dire_piso = @piso) THEN 1 ELSE 0 END) = 1 AND (CASE WHEN (dire_dpto IS NULL AND @dpto IS NULL) OR (dire_dpto = @dpto) THEN 1 ELSE 0 END) = 1 AND (CASE WHEN (dire_ciudad IS NULL AND @ciudad IS NULL) OR (dire_ciudad = @ciudad) THEN 1 ELSE 0 END) = 1 AND (CASE WHEN (dire_pais IS NULL AND @pais IS NULL)  OR (dire_pais = @pais) THEN 1 ELSE 0 END) = 1) = 0)
-        	BEGIN
 			insert into CAIA_UNLIMITED.Direccion (dire_ciudad, dire_pais, dire_dom_calle, dire_nro_calle,dire_telefono,dire_piso,dire_dpto)
 			values (@ciudad, @pais, @calle, @calle_nro, @telefono,@piso,@dpto)
-        	END
+			SELECT @direid = SCOPE_IDENTITY();
 	
-		insert into CAIA_UNLIMITED.Huesped (hues_mail,hues_nombre,hues_apellido,hues_documento,hues_nacionalidad,hues_nacimiento,hues_documento_tipo,hues_habilitado,dire_id)
-		values(@mail, @nombre,@apellido,@documento,@nacionalidad,convert(datetime,@fecha_nacimiento,120), @tipo,1,(SELECT dire_id FROM CAIA_UNLIMITED.Direccion WHERE dire_telefono = @telefono AND dire_dom_calle = @calle AND dire_nro_calle = @calle_nro AND (dire_piso = @piso or @piso is null) AND dire_dpto = @dpto AND dire_ciudad = @ciudad  AND dire_pais = @pais ))
+			insert into CAIA_UNLIMITED.Huesped (hues_mail,hues_nombre,hues_apellido,hues_documento,hues_nacionalidad,hues_nacimiento,hues_documento_tipo,hues_habilitado,dire_id)
+			values(@mail, @nombre,@apellido,@documento,@nacionalidad,convert(datetime,@fecha_nacimiento,120), @tipo,1,@direid)
 
 	lbexit:
       IF @trancount = 0
@@ -1085,6 +1084,7 @@ AS
 BEGIN	
   SET NOCOUNT ON;
   DECLARE @userid numeric(18,0);
+  DECLARE @direid numeric(18,0);
   DECLARE @trancount int;
   SET @trancount = @@trancount;
   BEGIN TRY
@@ -1093,14 +1093,13 @@ BEGIN
       ELSE
         SAVE TRANSACTION sp_CrearUsuarios;
 
-	if((SELECT COUNT(*) FROM CAIA_UNLIMITED.Direccion WHERE (CASE WHEN (dire_telefono IS NULL AND @telefono IS NULL) OR (dire_telefono = @telefono) THEN 1 ELSE 0 END) = 1 AND dire_dom_calle = @calle AND dire_nro_calle = @numeroCalle AND (CASE WHEN (dire_piso IS NULL AND @piso IS NULL) OR (dire_piso = @piso) THEN 1 ELSE 0 END) = 1 AND (CASE WHEN (dire_dpto IS NULL AND @departamento IS NULL) OR (dire_dpto = @departamento) THEN 1 ELSE 0 END) = 1 AND (CASE WHEN (dire_ciudad IS NULL AND @ciudad IS NULL) OR (dire_ciudad = @ciudad) THEN 1 ELSE 0 END) = 1 AND (CASE WHEN (dire_pais IS NULL AND @pais IS NULL)  OR (dire_pais = @pais) THEN 1 ELSE 0 END) = 1) = 0)
-		BEGIN
-			insert into CAIA_UNLIMITED.Direccion (dire_telefono,dire_dom_calle,dire_nro_calle,dire_piso,dire_dpto,dire_ciudad,dire_pais)
-			values (@telefono,@calle,@numeroCalle,@piso,@departamento,@ciudad,@pais)
-		END
+	
+	insert into CAIA_UNLIMITED.Direccion (dire_telefono,dire_dom_calle,dire_nro_calle,dire_piso,dire_dpto,dire_ciudad,dire_pais)
+	values (@telefono,@calle,@numeroCalle,@piso,@departamento,@ciudad,@pais)
+	SELECT @direid = SCOPE_IDENTITY();
 
 	insert into CAIA_UNLIMITED.Usuario (usur_username,usur_password,usur_nombre,usur_apellido,usur_documento,usur_documento_tipo,usur_mail,usur_nacimiento,usur_habilitado,usur_intentos,dire_id)
-	values (@username,@password,@name,@apellido,@documento,@tipoDocumento,@mail,convert(datetime,@fechaNacimiento,120),1,0,(SELECT dire_id FROM CAIA_UNLIMITED.Direccion WHERE (CASE WHEN (dire_telefono IS NULL AND @telefono IS NULL) OR (dire_telefono = @telefono) THEN 1 ELSE 0 END) = 1 AND dire_dom_calle = @calle AND dire_nro_calle = @numeroCalle AND (CASE WHEN (dire_piso IS NULL AND @piso IS NULL) OR (dire_piso = @piso) THEN 1 ELSE 0 END) = 1 AND (CASE WHEN (dire_dpto IS NULL AND @departamento IS NULL) OR (dire_dpto = @departamento) THEN 1 ELSE 0 END) = 1 AND (CASE WHEN (dire_ciudad IS NULL AND @ciudad IS NULL) OR (dire_ciudad = @ciudad) THEN 1 ELSE 0 END) = 1 AND (CASE WHEN (dire_pais IS NULL AND @pais IS NULL) OR (dire_pais = @pais) THEN 1 ELSE 0 END) = 1))
+	values (@username,@password,@name,@apellido,@documento,@tipoDocumento,@mail,convert(datetime,@fechaNacimiento,120),1,0,@direid)
 	SELECT @userid = SCOPE_IDENTITY();
 
 	insert into CAIA_UNLIMITED.Rol_X_Usuario(rol_usur_codigo,rol_usur_id)
@@ -1202,6 +1201,7 @@ BEGIN
 END
 
 GO
+								     
 CREATE PROCEDURE [CAIA_UNLIMITED].[sp_EliminarUsuarios] (@username nvarchar(255),@mail nvarchar(255),@documento numeric(18,0))
 AS
 BEGIN	
@@ -1433,6 +1433,7 @@ AS
 BEGIN	
   SET NOCOUNT ON;
   DECLARE @trancount int;
+  DECLARE @direid numeric(18,0);
   SET @trancount = @@trancount;
   BEGIN TRY
     IF @trancount = 0
@@ -1440,14 +1441,13 @@ BEGIN
       ELSE
         SAVE TRANSACTION sp_CrearCliente;
 
-	if((SELECT COUNT(*) FROM CAIA_UNLIMITED.Direccion WHERE (CASE WHEN (dire_telefono IS NULL AND @telefono IS NULL) OR (dire_telefono = @telefono) THEN 1 ELSE 0 END) = 1 AND dire_dom_calle = @calle AND dire_nro_calle = @numeroCalle AND (CASE WHEN (dire_ciudad IS NULL AND @ciudad IS NULL) OR (dire_ciudad = @ciudad) THEN 1 ELSE 0 END) = 1 AND (CASE WHEN (dire_pais IS NULL AND @pais IS NULL) OR (dire_pais = @pais) THEN 1 ELSE 0 END) = 1) = 0)
-		BEGIN
-			insert into CAIA_UNLIMITED.Direccion (dire_telefono,dire_dom_calle,dire_nro_calle,dire_ciudad,dire_pais)
-			values (@telefono,@calle,@numeroCalle,@ciudad,@pais)
-		END
+
+	insert into CAIA_UNLIMITED.Direccion (dire_telefono,dire_dom_calle,dire_nro_calle,dire_ciudad,dire_pais)
+	values (@telefono,@calle,@numeroCalle,@ciudad,@pais)
+	SELECT @direid = SCOPE_IDENTITY();
 	
 	insert into CAIA_UNLIMITED.Huesped (hues_mail,hues_nombre,hues_apellido,hues_documento,hues_documento_tipo,hues_habilitado,hues_nacionalidad,dire_id)
-	values (@mail,@name,@apellido,@documento,@tipoDocumento,1,@pais,(SELECT dire_id FROM CAIA_UNLIMITED.Direccion WHERE (CASE WHEN (dire_telefono IS NULL AND @telefono IS NULL) OR (dire_telefono = @telefono) THEN 1 ELSE 0 END) = 1 AND dire_dom_calle = @calle AND dire_nro_calle = @numeroCalle AND (CASE WHEN (dire_ciudad IS NULL AND @ciudad IS NULL) OR (dire_ciudad = @ciudad) THEN 1 ELSE 0 END) = 1 AND (CASE WHEN (dire_pais IS NULL AND @pais IS NULL) OR (dire_pais = @pais) THEN 1 ELSE 0 END) = 1))
+	values (@mail,@name,@apellido,@documento,@tipoDocumento,1,@pais,@direid)
 	
 	insert into CAIA_UNLIMITED.Reserva_X_Huesped(rese_hues_codigo,rese_hues_mail,rese_hues_documento)
 	values(@codigoReserva,@mail,@documento)
