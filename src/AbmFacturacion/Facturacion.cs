@@ -179,6 +179,7 @@ namespace FrbaHotel.AbmFacturacion
                     agregarItemFactura.Parameters.AddWithValue("@cantidad", item.Cells[3].Value.ToString());
                     agregarItemFactura.Parameters.AddWithValue("@monto", (Convert.ToDouble(item.Cells[2].Value) * Convert.ToDouble(item.Cells[3].Value)).ToString());
                     agregarItemFactura.Parameters.AddWithValue("@numero_factura", txtNroFactura.Text.Trim());
+                    agregarItemFactura.ExecuteNonQuery();
                 }
                 db.Close();
             }
