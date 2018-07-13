@@ -17,7 +17,7 @@ namespace FrbaHotel.AbmFacturacion
         bool existe;
         string documento;
         string estadia;
-        int cantidadDeHabitaciones = 0;
+        int cantidadDeHabitaciones;
         public Facturacion(string codigoEstadia)
         {
             InitializeComponent();
@@ -74,6 +74,7 @@ namespace FrbaHotel.AbmFacturacion
         private double cantidadPersonas()
         {
             int cantidadPersonas = 0;
+            cantidadDeHabitaciones = 0;
             DataTable tiposHabitacion = DataBase.realizarConsulta("select thab_descripcion from CAIA_UNLIMITED.Estadia E join CAIA_UNLIMITED.Reserva R on (E.rese_codigo = R.rese_codigo) join CAIA_UNLIMITED.Habitacion_X_Reserva X on (R.rese_codigo = X.habi_rese_codigo) join CAIA_UNLIMITED.Habitacion H on (H.hote_id = X.habi_rese_id and H.habi_numero = habi_rese_numero) join CAIA_UNLIMITED.Tipo_Habitacion T on (T.thab_codigo = H.thab_codigo) where esta_codigo=" + estadia).Tables[0];
             foreach (DataRow tipoHabitacion in tiposHabitacion.Rows)
             {
