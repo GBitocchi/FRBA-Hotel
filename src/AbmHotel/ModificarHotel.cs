@@ -143,9 +143,9 @@ namespace FrbaHotel.AbmHotel
         {
             if (cambioDireccion())
             {
-                string consulta = string.Format("select * from CAIA_UNLIMITED.Direccion where dire_dom_calle = '{0}' and dire_nro_calle = '{1}' and dire_ciudad = '{2}' and dire_pais = '{3}'",
-               txtDireccion.Text.Trim(), txtNumero.Text.Trim(), txtCiudad.Text.Trim(), txtPais.Text.Trim());
-                return DataBase.realizarConsulta(consulta).Tables[0].Rows.Count == 0;
+                string consulta = string.Format("select * from CAIA_UNLIMITED.Direccion where dire_dom_calle = '{0}' and dire_nro_calle = '{1}' and dire_ciudad = '{2}' and dire_pais = '{3}' and dire_telefono = '{4}'",
+               txtDireccion.Text.Trim(), txtNumero.Text.Trim(), txtCiudad.Text.Trim(), txtPais.Text.Trim(), txtTelefono.Text.Trim());
+                return DataBase.realizarConsulta(consulta).Tables[0].Rows.Count != 0;
             }
             return false;
         }
@@ -238,21 +238,31 @@ namespace FrbaHotel.AbmHotel
                 lblMail.Visible = true;
                 return false;
             }
-            else if (txtTelefono.Text.Trim() == "" || !int.TryParse(txtTelefono.Text.Trim(), out aux))
+            else if (txtTelefono.Text.Trim() == "")
             {
-                MessageBox.Show("El numero de telefono debe ser un numero.", "Campos invalidos", MessageBoxButtons.OK);
                 lblTelefono.Visible = true;
                 return false;
+            }
+            else if (!Int32.TryParse(txtTelefono.Text.Trim(), out aux))
+             {
+                 MessageBox.Show("El numero de telefono debe ser un numero.", "Campos invalidos", MessageBoxButtons.OK);
+                 lblTelefono.Visible = true;
+                 return false;
             }
             else if (txtDireccion.Text.Trim() == "")
             {
                 lblDireccion.Visible = true;
             }
-            else if (txtNumero.Text.Trim() == "" || !int.TryParse(txtNumero.Text.Trim(), out aux))
+            else if (txtNumero.Text.Trim() == "")
             {
-                MessageBox.Show("El numero de calle debe ser un numero.", "Campos invalidos", MessageBoxButtons.OK);
                 lblDireccion.Visible = true;
                 return false;
+           }
+            else if (!int.TryParse(txtNumero.Text.Trim(), out aux))
+             {
+                 MessageBox.Show("El numero de calle debe ser un numero.", "Campos invalidos", MessageBoxButtons.OK);
+                 lblDireccion.Visible = true;
+                 return false;
             }
             else if (cbCantidadEstrellas.SelectedItem.ToString() == "")
             {
