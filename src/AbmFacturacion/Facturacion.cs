@@ -17,6 +17,7 @@ namespace FrbaHotel.AbmFacturacion
         bool existe;
         string documento;
         string estadia;
+        int cantidadDeHabitaciones = 0;
         public Facturacion(string codigoEstadia)
         {
             InitializeComponent();
@@ -44,7 +45,7 @@ namespace FrbaHotel.AbmFacturacion
                     }
                     txtDescuento.Text = Convert.ToString(descuento);
                 }    
-                totalAFacturar += Convert.ToInt32(txtNochesReserva.Text.Trim()) * (Convert.ToDouble(txtPrecioRegimen.Text.Trim()) * cantidadPersonas() + Convert.ToDouble(txtPorcentual.Text));
+                totalAFacturar += Convert.ToInt32(txtNochesReserva.Text.Trim()) * (Convert.ToDouble(txtPrecioRegimen.Text.Trim()) * cantidadPersonas() + (Convert.ToDouble(txtPorcentual.Text)*cantidadDeHabitaciones));
                 txtTotal.Text = Convert.ToString(totalAFacturar);
                 existe = false;
             }
@@ -96,6 +97,7 @@ namespace FrbaHotel.AbmFacturacion
                 {
                     cantidadPersonas += 2;
                 }
+                cantidadDeHabitaciones++;
             }
             return cantidadPersonas;
         }
