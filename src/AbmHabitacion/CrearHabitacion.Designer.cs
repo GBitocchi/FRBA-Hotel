@@ -205,6 +205,7 @@
             // 
             // cbTipos
             // 
+            this.cbTipos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipos.FormattingEnabled = true;
             this.cbTipos.Location = new System.Drawing.Point(282, 165);
             this.cbTipos.Name = "cbTipos";
