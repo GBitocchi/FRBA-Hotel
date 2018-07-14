@@ -21,6 +21,7 @@ namespace FrbaHotel.RegistrarEstadia
         public Registrar(string cod, string idHotel, string usuario)
         {
             InitializeComponent();
+            cantHuespedPosible=0;
             codigoReserva = cod;
             idHotelActual = idHotel;
             usuarioActual = usuario;
@@ -36,7 +37,7 @@ namespace FrbaHotel.RegistrarEstadia
             {
                 string habitacionSeleccionada = habitacion[0].ToString();
 
-                string tipoHabitacionBuscada = String.Format("SELECT thab_codigo FROM CAIA_UNLIMITED.Habitacion WHERE habi_numero = '{0}'", habitacionSeleccionada);
+                string tipoHabitacionBuscada = String.Format("SELECT thab_codigo FROM CAIA_UNLIMITED.Habitacion WHERE habi_numero = '{0}' and hote_id='{1}'", habitacionSeleccionada,idHotelActual);
                 DataTable tipoHabitacionObtenido = DataBase.realizarConsulta(tipoHabitacionBuscada).Tables[0];
                 string tipoHabitacion = tipoHabitacionObtenido.Rows[0][0].ToString();
 
